@@ -1,0 +1,109 @@
+
+{% extends 'base.html' %}
+
+{% load  static%}
+
+{% block content %}
+
+    <div class="landingPage">
+        <div class="landing-content">
+            <div class="brand-logo">
+                Corporation
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae placeat tempora in ex eius sunt officia rerum maxime, dicta praesentium commodi consequuntur deserunt cupiditate hic alias!</p>
+            <div class="d-flex justify-content-center">
+                <button class="theme-btn hvr-sweep-orange-bottom" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                <button class="theme-btn hvr-sweep-orange-bottom ms-3" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signin Modal -->
+    <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="closeModalHeader">
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                        <!-- <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                        <button class="btn btn-primary" type="button">Understood</button> -->
+                    </div>
+                    <div class="modalBodyContent">
+                        <div class="image-modal"><img src="{% static 'imgs/sign.png' %}" alt="..."></div>
+                        <form class="login-form-modal">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                <input type="email" class="form-control formInput" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Password</label>
+                                <input type="password" class="form-control formInput" id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-3 cusd-checkbox">
+                                <label class="container-checkbox">Agree to terms and conditions
+                                    <input type="checkbox" checked="checked">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="d-flex formSubmit">
+                                <button type="submit" class="bg-grey white theme-btn hvr-sweep-orange-bottom">Sign-in</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Signup Modal -->
+    <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="signupModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="closeModalHeader">
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                        <!-- <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                        <button class="btn btn-primary" type="button">Understood</button> -->
+                    </div>
+                    <div class="modalBodyContent">
+                        <form class="login-form-modal">
+                            <div class="mb-3">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control formInput">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email address</label>
+                                <input type="email" class="form-control formInput">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control formInput">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control formInput">
+                            </div>
+                            <div class="mb-3 cusd-checkbox">
+                                <label class="container-checkbox">Agree to terms and conditions
+                                    <input type="checkbox" checked="checked">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="d-flex formSubmit">
+                                <button type="submit" class="bg-grey white theme-btn hvr-sweep-orange-bottom">Sign-up</button>
+                            </div>
+                        </form>
+                        <div class="image-modal signup-image-modal"><img src="{% static 'imgs/sigup.png' %}" alt="..."></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+

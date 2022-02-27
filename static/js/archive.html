@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Vollkorn:wght@400;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="./css/owl.carousel.min.css">
+	<link rel="stylesheet" href="./css/owl.theme.default.min.css">
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="./css/animation.css">
+    <link rel="stylesheet" href="./css/style.css">
+	<title>Login | Corporation</title>
+    <style>
+
+.login {
+    height: calc(100vh - 56px);
+    background: url(../imgs/login.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.login-content {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-form {
+    padding: 40px 70px;
+    width: 420px;
+    background: #000000a3;
+    position: relative;
+    left: 300px;
+    color: #fff;
+}
+.login-form label {
+    margin-bottom: 5px;
+}
+.login-form .formInput {
+    height: 40px;
+    border: unset;
+    border-radius: 0 6px 6px 0;
+    /* box-shadow: 0 0 20px rgb(49 59 84 / 10%); */
+    border-left: 2px solid #eb5d0a;
+}
+.formSubmit a {
+    font-size: 12px;
+    color: #fff;
+    text-decoration: none;
+    margin-top: 11px;
+}
+    </style>
+</head>
+<body>
+	<header class="header">
+		<nav class="navbar navbar-expand-lg bg-grey">
+			<div class="container">
+				<a class="navbar-brand" href="#"><span class="d-block white bg-orange">Corporation</span></a> <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link active" href="index.html">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Form</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="login-signup.html">Login</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+    
+
+    <section class="login">
+        <div class="login-content">
+            <form class="login-form" id="signIn">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control formInput" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control formInput" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3 cusd-checkbox">
+                    <label class="container-checkbox">Agree to terms and conditions
+                        <input type="checkbox" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="d-flex formSubmit">
+                    <button type="submit" class="theme-btn hvr-sweep-orange-bottom">Sign-in</button>
+                    <a href="javascript:;" class="ms-auto signin-btn">Want to Register?</a>
+                </div>
+            </form>
+
+            <form class="login-form d-none" id="signUp">
+                <div class="mb-3">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-control formInput">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email address</label>
+                    <input type="email" class="form-control formInput">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control formInput">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control formInput">
+                </div>
+                <div class="mb-3 cusd-checkbox">
+                    <label class="container-checkbox">Agree to terms and conditions
+                        <input type="checkbox" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="d-flex formSubmit">
+                    <button type="submit" class="theme-btn hvr-sweep-orange-bottom">Sign-up</button>
+                    <a href="javascript:;" class="ms-auto signup-btn">Already have account?</a>
+                </div>
+            </form>
+        </div>
+    </section>
+    
+    
+    
+    
+    
+    <!-- Optional JavaScript; choose one of the two! -->
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js">
+	</script> <!-- Option 2: Separate Popper and Bootstrap JS -->
+	 <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="./js/owl.carousel.min.js"></script>
+	<script src="./js/slider.js"></script>
+	<script src="./js/custom.js"></script>
+</body>
+</html>

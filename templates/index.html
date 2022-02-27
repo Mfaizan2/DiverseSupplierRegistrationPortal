@@ -1,0 +1,99 @@
+
+{% extends 'base.html' %}
+
+{% load  static%}
+
+{% block content %}
+
+    <section class="diversity">
+        <div class="container">
+            <div class="diversity-content center">
+                <h5 class="theme-heading">Supplier Diversity Registration Form</h5>
+                <p>Welcome to the ABC Corporation Supplier Diversity Registration Site. At ABC Corporation, we recognize that connecting qualified diverse businesses with sourcing opportunities provides both economic development and growth in our communities, as well as enables our customers to achieve their supplier diversity goals.</p>
+                <p>ABC Corporation is committed to creating a diverse and dynamic supply chain. Our goal is to include diverse suppliers in our sourcing efforts where there is alignment with our business needs and the needs of our customers.</p>
+            </div>
+            <div class="diversity-content center">
+                <h5 class="theme-heading">What is a Diverse Supplier?</h5>
+                <p>For the purpose of this program, a supplier is considered diverse if they are a U.S. privately held company that is 51% owned and operated by an individual who falls into one or more of the following categories:</p>
+                <div class="owl-carousel owl-theme slider-types">
+                    <div class="item">
+                        <div class="boxDiversty">
+                            <div class="gradientOverlay"></div>
+                            <img src="{% static 'imgs/women.jpeg' %}" alt="...">
+                            <h6>Women</h6>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="boxDiversty">
+                            <div class="gradientOverlay"></div>
+                            <img src="{% static 'imgs/hispanic.png' %}" alt="...">
+                            <h6>Hispanic American</h6>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="boxDiversty">
+                            <div class="gradientOverlay"></div>
+                            <img src="{% static 'imgs/africa.jpeg' %}" alt="...">
+                            <h6>African American</h6>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="boxDiversty">
+                            <div class="gradientOverlay"></div>
+                            <img src="{% static 'imgs/asia.jpg' %}" alt="...">
+                            <h6>Asian American</h6>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="boxDiversty">
+                            <div class="gradientOverlay"></div>
+                            <img src="{% static 'imgs/native.png' %}" alt="...">
+                            <h6>Native American/ Alaskan Native</h6>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="boxDiversty">
+                            <div class="gradientOverlay"></div>
+                            <img src="{% static 'imgs/vertan.jpg' %}"  alt="...">
+                            <h6>Veteran</h6>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="boxDiversty">
+                            <div class="gradientOverlay"></div>
+                            <img src="{% static 'imgs/disable.jpg' %}"   alt="...">
+                            <h6>Disabled Veteran</h6>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="boxDiversty">
+                            <div class="gradientOverlay"></div>
+                            <img src="{% static 'imgs/zone.jpg' %}" alt="...">
+                            <h6>Hubzone</h6>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="boxDiversty">
+                            <div class="gradientOverlay"></div>
+                            <img src="{% static 'imgs/business.jpg' %}" alt="...">
+                            <h6>Small Disadvantaged Business</h6>
+                        </div>
+                    </div>
+                </div>
+                <em>Please note: this site is for certified diverse companies only. All non-diverse supplier submissions will be deleted.</em>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsContent">
+                <h5>Certified Diverse Supplier?</h5>
+                <button class="hvr-sweep-orange-bottom">Yes</button>
+                <button class="hvr-sweep-orange-bottom">No</button>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
