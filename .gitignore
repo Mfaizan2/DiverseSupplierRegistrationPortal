@@ -3,3 +3,14 @@
 .venv
 venv
 venv/*
+
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+.DS_Store
+.DS_Store?
+.idea/
+

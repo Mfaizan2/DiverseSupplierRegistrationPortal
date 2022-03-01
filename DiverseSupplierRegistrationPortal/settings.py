@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-bomy4e!pz$*w#q1f#zn#wv-&7^o15!qzz$vxl^jx8=h4z0$^^q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -80,26 +80,26 @@ WSGI_APPLICATION = 'DiverseSupplierRegistrationPortal.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'sql_server.pyodbc',
-#         'NAME': 'ABC2DB',
-#         'USER': 'abc2',
-#         'PASSWORD': 'SupplierDiversity2',
-#         'HOST': 'abc2server.database.windows.net',
-#         'PORT': '1433',
-#         'OPTIONS': {
-#             'driver': 'ODBC Driver 17 for SQL Server',
-#         },
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'ABC2DB',
+        'USER': 'abc2',
+        'PASSWORD': 'SupplierDiversity2',
+        'HOST': 'abc2server.database.windows.net',
+        'PORT': '1433',
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+        },
+    }
+}
 
 
 # Password validation
