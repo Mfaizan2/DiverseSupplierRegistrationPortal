@@ -1,0 +1,81 @@
+
+
+{% extends 'base.html' %}
+
+{% load  static%}
+
+{% block content %}
+
+    <section class="dashboard-home">
+        <div class="container">
+            <div class="powerBi"></div>
+            <div class="dashboardChartJS mt-4">
+                <div class="row">
+                    <div class="col-lg-6 mb-3">
+                        <div class="same-inner-accord diverse-chart">
+                            <h3>Diverse Certifications </h3>
+                            <div class="theme-chart-box mt-3">
+                                <canvas id="diverseCertificateChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <div class="same-inner-accord application-state">
+                            <h3>Applications States </h3>
+                            <div class="theme-chart-box mt-3">
+                                <canvas id="applicationStateChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="same-inner-accord per-country">
+                            <h3>Records Per Country</h3>
+                            <div class="theme-chart-box mt-3">
+                                <canvas id="perCountryChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="same-inner-accord per-location">
+                            <h3>Records Per Na Locations</h3>
+                            <div class="theme-chart-box mt-3">
+                                <canvas id="perLocationChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="same-inner-accord per-oem">
+                            <h3>Records Per OEMs</h3>
+                            <div class="theme-chart-box mt-3">
+                                <canvas id="perOemChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="same-inner-accord npm-chart">
+                            <h3>NPM - Non Production Material</h3>
+                            <div class="theme-chart-box mt-3">
+                                <canvas id="npmChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="same-inner-accord pm-chart">
+                            <h3>PM - Production Material</h3>
+                            <div class="theme-chart-box mt-3">
+                                <canvas id="pmChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+{% endblock %}
+
+
+
+

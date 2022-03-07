@@ -1,0 +1,20 @@
+$('.slider-types').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    autoplay:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        576:{
+            items:2
+        },
+        768:{
+            items:3
+        },
+        1000:{
+            items:4
+        }
+    }
+});
