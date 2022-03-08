@@ -27,3 +27,4 @@ urlpatterns = [
     path('', include('dashboard.urls')),
     path('', include('registration.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
