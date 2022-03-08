@@ -16,6 +16,27 @@
 //     alert("window is loaded");
 //     // Handler for .load() called.
 // });
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+        })
+})()
 // Jquery 3.0
 $( window ).on("load", function() {
     // Handler for .load() called.
@@ -103,6 +124,30 @@ $(document).ready(function(){
         }
     });
 });
+// Oem on Radio Button Click
+$(document).ready(function(){
+    $('.oem-radio-click').click(function(){
+        var inputValue = $(this).attr("value");
+        if(inputValue == 'yes'){
+            $('.oem-supplier-product').removeClass('d-none');
+        }
+        else {
+            $('.oem-supplier-product').addClass('d-none');
+        }
+    });
+});
+// Supply on Radio Button Click
+$(document).ready(function(){
+    $('.supply-radio-click').click(function(){
+        var inputValue = $(this).attr("value");
+        if(inputValue == 'yes'){
+            $('.vendor-number').removeClass('d-none');
+        }
+        else {
+            $('.vendor-number').addClass('d-none');
+        }
+    });
+});
 
 
 
@@ -115,17 +160,17 @@ const labels = [ 'January', 'February', 'March', 'April', 'May', 'June', ];
 const barData = {
     labels: labels,
     datasets: [{
-      label: 'Minority Owned Businesses',
-      backgroundColor: 'rgb(49 59 84)',
-      borderColor: 'rgb(49 59 84)',
-      data: [7, 10, 5, 2, 20, 30, 45],
+        label: 'Minority Owned Businesses',
+        backgroundColor: 'rgb(49 59 84)',
+        borderColor: 'rgb(49 59 84)',
+        data: [7, 10, 5, 2, 20, 30, 45],
     },
-    {
-        label: 'Women Owned Businesses',
-        backgroundColor: 'rgb(235 93 10)',
-        borderColor: 'rgb(235 93 10)',
-        data: [7, 10, 15, 20, 30, 46, 25],
-    }]
+        {
+            label: 'Women Owned Businesses',
+            backgroundColor: 'rgb(235 93 10)',
+            borderColor: 'rgb(235 93 10)',
+            data: [7, 10, 15, 20, 30, 46, 25],
+        }]
 };
 
 const barConfig = {
@@ -146,10 +191,10 @@ const applicationStateChart = new Chart(
 const doughnutData = {
     labels: [ 'United State', 'Canada', 'Mexico', 'United Kingdom', 'Australia', 'India', 'Russia', 'China', 'Japan' ],
     datasets: [{
-      label: 'Counteries',
-      data: [300, 50, 100, 70, 40, 90, 40, 20, 10],
-      backgroundColor: [ 'rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)', 'rgb(235 93 10)', 'rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)' ],
-      hoverOffset: 4
+        label: 'Counteries',
+        data: [300, 50, 100, 70, 40, 90, 40, 20, 10],
+        backgroundColor: [ 'rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)', 'rgb(235 93 10)', 'rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)' ],
+        hoverOffset: 4
     }]
 };
 const doughnutConfig = {
@@ -168,10 +213,10 @@ const pmChart = new Chart(
 const doughnutDataLocation = {
     labels: [ 'Global' ],
     datasets: [{
-      label: 'Global chart',
-      data: [100],
-      backgroundColor: [ 'rgb(255, 159, 64)'],
-      hoverOffset: 4
+        label: 'Global chart',
+        data: [100],
+        backgroundColor: [ 'rgb(255, 159, 64)'],
+        hoverOffset: 4
     }]
 };
 const doughnutLocationConfig = {
@@ -186,10 +231,10 @@ const perLocationChart = new Chart(
 const doughnutDataOem = {
     labels: [ 'Bmw', 'Honda', 'Audi', 'Lamborghini' ],
     datasets: [{
-      label: 'Oem chart',
-      data: [90, 40, 20, 10],
-      backgroundColor: [  'rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)' ],
-      hoverOffset: 4
+        label: 'Oem chart',
+        data: [90, 40, 20, 10],
+        backgroundColor: [  'rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)' ],
+        hoverOffset: 4
     }]
 };
 const doughnutOemConfig = {

@@ -1,0 +1,1195 @@
+
+
+{% extends 'base.html' %}
+
+{#{% load  static%}#}
+
+{% block content %}
+    <section class="diversity diversity-form">
+        <div class="container">
+            <div class="diversity-content diversity-form-content center">
+                <h5 class="theme-heading">Supplier Diversity Registration Form</h5>
+                <p>Certified Diverse Suppliers: Please complete the following registration form as best you can, the information will be shared with purchasing and other stakeholders involved in sourcing opportunities.</p>
+            </div>
+            <div class="accordion-wrapper">
+                <form action="{% url 'Registration' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="bg-grey white theme-btn hvr-sweep-orange-bottom mt-3">Submit</button>
+                </form>
+                <form class="accordion-form-content needs-validation" novalidate action="{% url 'Registration' %}" method="post">
+                    {% csrf_token %}
+                    <div class="accordion" id="accordionForm">
+
+                        {% include 'partials/_messages.html' %}
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne"><button aria-controls="collapseOne" aria-expanded="true" class="accordion-button" data-bs-target="#collapseOne" data-bs-toggle="collapse" type="button">Genral Contact info</button></h2>
+                            <div aria-labelledby="headingOne" class="accordion-collapse collapse show" data-bs-parent="#accordionForm" id="collapseOne">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Company Name<sup class="requireRed">*</sup></label>
+                                                <input required type="text" value="fnmnm" name="campany_name" class="form-control formInput" placeholder="i.e (Apple Inc.)">
+                                                <div class="invalid-feedback">
+                                                    Please provide company name.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Website Url<sup class="requireRed">*</sup></label>
+                                                <input required type="text" value="fweb@mm.com" name="website_url" class="form-control formInput" placeholder="https://www.example.com/">
+                                                <div class="invalid-feedback">
+                                                    Please provide website url.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="same-inner-accord address-form">
+                                            <h3>Address</h3>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="mb-2 mt-2">
+                                                        <label class="form-label">Address 1<sup class="requireRed">*</sup></label>
+                                                        <input required type="text" value="faddress1" name="address1" class="form-control formInput" placeholder="i.e (2625 E 2nd St, Casper)">
+                                                        <div class="invalid-feedback">
+                                                            Please provide address 1.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="mb-2">
+                                                        <label class="form-label">Address 2 <small>(Optional)</small></label>
+                                                        <input type="text" name="address2" value="faddress2" class="form-control formInput">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-2 theme-select">
+                                                        <label class="form-label">Country<sup class="requireRed">*</sup></label>
+                                                        <select required class="state-select" name="country">
+                                                            <option value="-1" disabled selected>Select Country</option>
+                                                            <option value="AL">United States</option>
+                                                            <option value="WY">Canada</option>
+                                                            <option value="WY">Maxico</option>
+                                                        </select>
+                                                        <div class="invalid-feedback">
+                                                            Please provide country name.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-2">
+                                                        <label class="form-label">City<sup class="requireRed">*</sup></label>
+                                                        <input required type="text" value="fcity" name="city" class="form-control formInput" placeholder="i.e (Casper)">
+                                                        <div class="invalid-feedback">
+                                                            Please provide city name.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-2 theme-select">
+                                                        <label class="form-label">State<sup class="requireRed">*</sup></label>
+                                                        <select required class="state-select" name="state">
+                                                            <option value="" disabled selected>Select State</option>
+                                                            <option value="Alabama">Alabama</option>
+
+                                                            <option value="Alaska">Alaska</option>
+
+                                                            <option value="Arizona">Arizona</option>
+
+                                                            <option value="Arkansas">Arkansas</option>
+
+                                                            <option value="California">California</option>
+
+                                                            <option value="Colorado">Colorado</option>
+
+                                                            <option value="Connecticut">Connecticut</option>
+
+                                                            <option value="Delaware">Delaware</option>
+
+                                                            <option value="Florida">Florida</option>
+
+                                                            <option value="Georgia">Georgia</option>
+
+                                                            <option value="Hawaii">Hawaii</option>
+
+                                                            <option value="Idaho">Idaho</option>
+
+                                                            <option value="Illinois">Illinois</option>
+
+                                                            <option value="Indiana">Indiana</option>
+
+                                                            <option value="Iowa">Iowa</option>
+
+                                                            <option value="Kansas">Kansas</option>
+
+                                                            <option value="Kentucky">Kentucky</option>
+
+                                                            <option value="Louisiana">Louisiana</option>
+
+                                                            <option value="Maine">Maine</option>
+
+                                                            <option value="Maryland">Maryland</option>
+
+                                                            <option value="Massachusetts">Massachusetts</option>
+
+                                                            <option value="Michigan">Michigan</option>
+
+                                                            <option value="Minnesota">Minnesota</option>
+
+                                                            <option value="Mississippi">Mississippi</option>
+
+                                                            <option value="Missouri">Missouri</option>
+
+                                                            <option value="Montana">Montana</option>
+
+                                                            <option value="Nebraska">Nebraska</option>
+
+                                                            <option value="Nevada">Nevada</option>
+
+                                                            <option value="New Hampshire">New Hampshire</option>
+
+                                                            <option value="New Jersey">New Jersey</option>
+
+                                                            <option value="New Mexico">New Mexico</option>
+
+                                                            <option value="New York">New York</option>
+
+                                                            <option value="North Carolina">North Carolina</option>
+
+                                                            <option value="North Dakota">North Dakota</option>
+
+                                                            <option value="Ohio">Ohio</option>
+
+                                                            <option value="Oklahoma">Oklahoma</option>
+
+                                                            <option value="Oregon">Oregon</option>
+
+                                                            <option value="Pennsylvania">Pennsylvania</option>
+
+                                                            <option value="Rhode Island">Rhode Island</option>
+
+                                                            <option value="South Carolina">South Carolina</option>
+
+                                                            <option value="South Dakota">South Dakota</option>
+
+                                                            <option value="Tennessee">Tennessee</option>
+
+                                                            <option value="Texas">Texas</option>
+
+                                                            <option value="Utah">Utah</option>
+
+                                                            <option value="Vermont">Vermont</option>
+
+                                                            <option value="Virginia">Virginia</option>
+
+                                                            <option value="Washington">Washington</option>
+
+                                                            <option value="West Virginia">West Virginia</option>
+
+                                                            <option value="Wisconsin">Wisconsin</option>
+
+                                                            <option value="Wyoming">Wyoming</option>
+
+                                                            <option value="District of Columbia">District of Columbia</option>
+
+                                                            <option value="American Samoa">American Samoa</option>
+
+                                                            <option value="Federated States of Micronesia">Federated States of Micronesia</option>
+
+                                                            <option value="Marshall Islands">Marshall Islands</option>
+
+                                                            <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+
+                                                            <option value="Palau">Palau</option>
+
+                                                            <option value="Puerto Rico">Puerto Rico</option>
+
+                                                            <option value="Virgin Islands">Virgin Islands</option>
+
+                                                            <option value="Armed Forces Africa">Armed Forces Africa</option>
+
+                                                            <option value="Armed Forces Americas">Armed Forces Americas</option>
+
+                                                            <option value="Armed Forces Canada">Armed Forces Canada</option>
+
+                                                            <option value="Armed Forces Europe">Armed Forces Europe</option>
+
+                                                            <option value="Armed Forces Middle East">Armed Forces Middle East</option>
+
+                                                            <option value="Armed Forces Pacific">Armed Forces Pacific</option>
+                                                        </select>
+                                                        <div class="invalid-feedback">
+                                                            Please provide state.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-2">
+                                                        <label class="form-label">Zip Code<sup class="requireRed">*</sup></label>
+                                                        <input required type="text" value="fzip" name="zip_code" class="form-control formInput" >
+                                                        <div class="invalid-feedback">
+                                                            Please provide zip code.
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="same-inner-accord sales-contact-form mt-3">
+                                            <h3>Sales Contact</h3>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-2 mt-2">
+                                                        <label class="form-label">First Name<sup class="requireRed">*</sup></label>
+                                                        <input required type="text" value="ffirstname" name="sales_contact_first_name" class="form-control formInput" placeholder="i.e (Will)">
+                                                        <div class="invalid-feedback">
+                                                            Please provide first name.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-2 mt-2">
+                                                        <label class="form-label">Last Name<sup class="requireRed">*</sup></label>
+                                                        <input required type="text" value="flastname" name="sales_contact_last_name" class="form-control formInput" placeholder="i.e (Smith)">
+                                                        <div class="invalid-feedback">
+                                                            Please provide last name.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-2 mt-2">
+                                                        <label class="form-label">Email Address<sup class="requireRed">*</sup></label>
+                                                        <input required type="email" value="femail@ggg.com" name="sales_contact_email" class="form-control formInput" placeholder="example@mail.com">
+                                                        <div class="invalid-feedback">
+                                                            Please provide email address.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-2 mt-2">
+                                                        <label class="form-label">Job Title<sup class="requireRed">*</sup></label>
+                                                        <input required type="text" value="fjobtitle" name="sales_contact_job_title" class="form-control formInput" placeholder="Senior Marketing Officer">
+                                                        <div class="invalid-feedback">
+                                                            Please provide job title.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-2 mt-2">
+                                                        <label class="form-label">Office Phone<sup class="requireRed">*</sup></label>
+                                                        <input required type="number" value="1111" name="sales_contact_phone" class="form-control formInput" placeholder="1 264-965-345">
+                                                        <div class="invalid-feedback">
+                                                            Please provide office phone.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-2 mt-2">
+                                                        <label class="form-label">Mobile Phone <small>(Optional)</small></label>
+                                                        <input type="numbe" value="22222222" name="sales_contact_mobile" class="form-control formInput">
+                                                        <div class="invalid-feedback">
+                                                            Please provide mobile phone.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="same-inner-accord genral-contact-form mt-3">
+                                            <h3>General Contact</h3>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-2 mt-2">
+                                                        <label class="form-label">First Name<sup class="requireRed">*</sup></label>
+                                                        <input required type="text" value="ffirstname" name="general_contact_first_name" class="form-control formInput" placeholder="i.e (Will)">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-2 mt-2">
+                                                        <label class="form-label">Last Name<sup class="requireRed">*</sup></label>
+                                                        <input required type="text" value="flastname" name="general_contact_last_name" class="form-control formInput" placeholder="i.e (Smith)">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-2 mt-2">
+                                                        <label class="form-label">Email Address<sup class="requireRed">*</sup></label>
+                                                        <input required type="email" value="femail" name="general_contact_email" class="form-control formInput" placeholder="example@mail.com">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-2 mt-2">
+                                                        <label class="form-label">Job Title<sup class="requireRed">*</sup></label>
+                                                        <input required type="text" value="fjobtitle" name="general_contact_job_title" class="form-control formInput" placeholder="Senior Marketing Officer">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-2 mt-2">
+                                                        <label class="form-label">Office Phone<sup class="requireRed">*</sup></label>
+                                                        <input required type="number" value="123123123" name="general_contact_phone" class="form-control formInput" placeholder="1 264-965-345">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-2 mt-2">
+                                                        <label class="form-label">Mobile Phone <small>(Optional)</small></label>
+                                                        <input type="number" value="90909090" name="general_contact_mobile" class="form-control formInput">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo"><button aria-controls="collapseTwo" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapseTwo" data-bs-toggle="collapse" type="button">diverse certifications</button></h2>
+                            <div aria-labelledby="headingTwo" class="accordion-collapse collapse" data-bs-parent="#accordionForm" id="collapseTwo">
+                                <div class="accordion-body">
+                                    <div class="col-12">
+                                        <div class="same-inner-accord same-certificate-accord diverse-certificate">
+                                            <h3>Minority-Owned Business (MBE)</h3>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h6 class="mt-2 mb-2">Is your company certified by the National Minority Supplier Development Council (NMSDC) or one of it's affiliates?<sup class="requireRed">*</sup></h6>
+                                                    <div class="selection-radio-box mb-2">
+                                                        <div class="radio-box">
+                                                            <input type="radio" class="nmsdc-radio-click btn-check" name="mbe_business" id="nmsdcOne" autocomplete="off" value="yes">
+                                                            <label class="btn btn-secondary" for="nmsdcOne">Yes</label>
+                                                        </div>
+                                                        <div class="radio-box">
+                                                            <input type="radio" class="nmsdc-radio-click btn-check" name="mbe_business" id="nmsdcTwo" autocomplete="off" value="no">
+                                                            <label class="btn btn-secondary" for="nmsdcTwo">No</label>
+                                                        </div>
+                                                        <div class="radio-box">
+                                                            <input type="radio" class="nmsdc-radio-click btn-check" name="mbe_business" id="nmsdcThree" autocomplete="off" value="progress">
+                                                            <label class="btn btn-secondary" for="nmsdcThree">In Progress</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="same-certify-design nmsdcDetail d-none" id="nmsdcDetail">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="mb-2 theme-select">
+                                                                <label class="form-label">Please select the council(s) <sup class="requireRed">*</sup></label>
+                                                                <select required class="state-select" name="mbe_council">
+                                                                    <option value="-1" disabled selected>Select Council</option>
+                                                                    <option value="CAMSC - Canadian Aboriginal &amp; Minority Supplier Council">CAMSC - Canadian Aboriginal &amp; Minority Supplier Council</option>
+
+                                                                    <option value="Capital Region Minority Supplier Development Council">Capital Region Minority Supplier Development Council</option>
+
+                                                                    <option value="Carolinas-Virginia Minority Supplier Development Council">Carolinas-Virginia Minority Supplier Development Council</option>
+
+                                                                    <option value="Central &amp; North Florida Minority Supplier Development Council">Central &amp; North Florida Minority Supplier Development Council</option>
+
+                                                                    <option value="Chicago Minority Supplier Development Council">Chicago Minority Supplier Development Council</option>
+
+                                                                    <option value="Dallas/Fort Worth Minority Supplier Development Council">Dallas/Fort Worth Minority Supplier Development Council</option>
+
+                                                                    <option value="Eastern Minority Supplier Development Council">Eastern Minority Supplier Development Council</option>
+
+                                                                    <option value="Georgia Minority Supplier Development Council">Georgia Minority Supplier Development Council</option>
+
+                                                                    <option value="Greater New England Minority Supplier Development Council">Greater New England Minority Supplier Development Council</option>
+
+                                                                    <option value="Houston Minority Supplier Development Council">Houston Minority Supplier Development Council</option>
+
+                                                                    <option value="Michigan Minority Supplier Development Council">Michigan Minority Supplier Development Council</option>
+
+                                                                    <option value="Mid-States Minority Supplier Development Council">Mid-States Minority Supplier Development Council</option>
+
+                                                                    <option value="Mountain Plains Minority Supplier Development Council">Mountain Plains Minority Supplier Development Council</option>
+
+                                                                    <option value="New York &amp; New Jersey Minority Supplier Development Council">New York &amp; New Jersey Minority Supplier Development Council</option>
+
+                                                                    <option value="North Central Minority Supplier Development Council">North Central Minority Supplier Development Council</option>
+
+                                                                    <option value="Northwest Mountain Minority Supplier Development Council">Northwest Mountain Minority Supplier Development Council</option>
+
+                                                                    <option value="Ohio Minority Supplier Development Council">Ohio Minority Supplier Development Council</option>
+
+                                                                    <option value="Pacific Southwest Minority Supplier Development Council">Pacific Southwest Minority Supplier Development Council</option>
+
+                                                                    <option value="Puerto Rico Minority Supplier Development Council">Puerto Rico Minority Supplier Development Council</option>
+
+                                                                    <option value="Southern California Minority Supplier Development Council">Southern California Minority Supplier Development Council</option>
+
+                                                                    <option value="Southern Florida Minority Supplier Development Council">Southern Florida Minority Supplier Development Council</option>
+
+                                                                    <option value="Southern Region Minority Supplier Development Council">Southern Region Minority Supplier Development Council</option>
+
+                                                                    <option value="Southwest Minority Supplier Development Council">Southwest Minority Supplier Development Council</option>
+
+                                                                    <option value="TriState Minority Supplier Development Council">TriState Minority Supplier Development Council</option>
+
+                                                                    <option value="Western Regional Minority Supplier Development Council">Western Regional Minority Supplier Development Council</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="mb-2 theme-select">
+                                                                <label class="form-label">Ethnicity<sup class="requireRed">*</sup></label>
+                                                                <select required class="state-select" name="mbe_ethnicity">
+                                                                    <option value="-1" disabled selected>Select Ethnicity</option>
+                                                                    <option value="African-American">African-American</option>
+
+                                                                    <option value="Asian-Indian">Asian-Indian</option>
+
+                                                                    <option value="Asian-Pacific">Asian-Pacific</option>
+
+                                                                    <option value="Hispanic">Hispanic</option>
+
+                                                                    <option value="Native-American">Native-American</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6">
+                                                            <div class="mb-2">
+                                                                <label class="form-label">Expiration Date</label>
+                                                                <input type="date" value="f23/23/23" name="mbe_expirationDate" class="form-control formInput" placeholder="i.e (Apple Inc.)">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <div class="mb-3 mt-2">
+                                                                <label for="formFile" class="form-label">Certification Upload (only one file can be uploaded)</label>
+                                                                <input class="form-control" type="file" id="formFile">
+                                                                <div class="uplaod-info mt-2">
+                                                                    <p>Files must be less than <strong>8 MB</strong>.</p>
+                                                                    <p>Allowed file types: <strong>gif jpg jpeg png tif txt rtf pdf doc docx pptx xls xlsx zip</strong>.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <div class="mb-2">
+                                                                <label class="form-label">Certification Description </label>
+                                                                <textarea value="flmlmlmkmlkmjnmjkmlkjmknjhnjmnkjm" class="form-control formInput formTextarea" name="mbe_certificationDescription" rows="5"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="same-inner-accord same-certificate-accord women-own-certificate mt-4">
+                                            <h3> Women-Owned Business (WBE)</h3>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h6 class="mt-2 mb-2">Is your company certified by the Women's Business Enterprise National Council Development Council (WBENC) or one of it's affiliates?<sup class="requireRed">*</sup></h6>
+                                                    <div class="selection-radio-box mb-2">
+                                                        <div class="radio-box">
+                                                            <input type="radio" class="wbenc-radio-click btn-check" name="wbe_business" id="wbencOne" autocomplete="off" value="yes">
+                                                            <label class="btn btn-secondary" for="wbencOne">Yes</label>
+                                                        </div>
+                                                        <div class="radio-box">
+                                                            <input type="radio" class="wbenc-radio-click btn-check" name="wbe_business" id="wbencTwo" autocomplete="off" value="no">
+                                                            <label class="btn btn-secondary" for="wbencTwo">No</label>
+                                                        </div>
+                                                        <div class="radio-box">
+                                                            <input type="radio" class="wbenc-radio-click btn-check" name="wbe_business" id="wbencThree" autocomplete="off" value="progress">
+                                                            <label class="btn btn-secondary" for="wbencThree">In Progress</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="same-certify-design wbencDetail d-none" id="wbencDetail">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="mb-2 theme-select">
+                                                                <label class="form-label">Please select the council(s)<sup class="requireRed">*</sup></label>
+                                                                <select required class="state-select" name="wbe_council">
+                                                                    <option value="-1" disabled selected>Choose...</option>
+                                                                    <option value="Astra Women's Business Alliance">Astra Women's Business Alliance</option>
+
+                                                                    <option value="Center for Women &amp; Enterprise">Center for Women &amp; Enterprise</option>
+
+                                                                    <option value="Greater Women's Business Council">Greater Women's Business Council</option>
+
+                                                                    <option value="Ohio River Valley Women's Business Council">Ohio River Valley Women's Business Council</option>
+
+                                                                    <option value="WBE Canada">WBE Canada</option>
+
+                                                                    <option value="WeConnect International">WeConnect International</option>
+
+                                                                    <option value="Women Presidents' Educational Organization-DC">Women Presidents' Educational Organization-DC</option>
+
+                                                                    <option value="Women Presidents' Educational Organization-NY">Women Presidents' Educational Organization-NY</option>
+
+                                                                    <option value="Women's Business Council-Southwest">Women's Business Council-Southwest</option>
+
+                                                                    <option value="Women's Business Development Center-Chicago">Women's Business Development Center-Chicago</option>
+
+                                                                    <option value="Women's Business Development Council-Midwest">Women's Business Development Council-Midwest</option>
+
+                                                                    <option value="Women's Business Development Council of Florida">Women's Business Development Council of Florida</option>
+
+                                                                    <option value="Women's Business Enterprise Alliance">Women's Business Enterprise Alliance</option>
+
+                                                                    <option value="Women's Business Enterprise Council South">Women's Business Enterprise Council South</option>
+
+                                                                    <option value="Women's Business Enterprise Council-Great Lakes">Women's Business Enterprise Council-Great Lakes</option>
+
+                                                                    <option value="Women's Business Enterprise Council-PA-DE-sNJ">Women's Business Enterprise Council-PA-DE-sNJ</option>
+
+                                                                    <option value="Women's Business Enterprise Council-West">Women's Business Enterprise Council-West</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6">
+                                                            <div class="mb-2">
+                                                                <label class="form-label">Expiration Date</label>
+                                                                <input type="date" value="f34/34/34" name="wbe_expirationDate" class="form-control formInput" placeholder="i.e (Apple Inc.)">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <div class="mb-3 mt-2">
+                                                                <label for="formFile" class="form-label">Certification Upload (only one file can be uploaded)</label>
+                                                                <input class="form-control" type="file" id="formFile">
+                                                                <div class="uplaod-info mt-2">
+                                                                    <p>Files must be less than <strong>8 MB</strong>.</p>
+                                                                    <p>Allowed file types: <strong>gif jpg jpeg png tif txt rtf pdf doc docx pptx xls xlsx zip</strong>.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <div class="mb-2">
+                                                                <label class="form-label">Certification Description </label>
+                                                                <textarea value="fkmjnhbgvfcdxszasfg" class="form-control formInput formTextarea" name="wbe_certificationDescription" rows="5"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="same-inner-accord same-certificate-accord veteran-own-certificate mt-4">
+                                            <h3> Veteran-Owned Business</h3>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h6 class="mt-2 mb-2">Is your company a veteran-owned business? <sup class="requireRed">*</sup></h6>
+                                                    <div class="selection-radio-box mb-2">
+                                                        <div class="radio-box">
+                                                            <input type="radio" class="vob-radio-click btn-check" name="vb_business" id="vobOne" autocomplete="off" value="yes">
+                                                            <label class="btn btn-secondary" for="vobOne">Yes</label>
+                                                        </div>
+                                                        <div class="radio-box">
+                                                            <input type="radio" class="vob-radio-click btn-check" name="vb_business" id="vobTwo" autocomplete="off" value="no">
+                                                            <label class="btn btn-secondary" for="vobTwo">No</label>
+                                                        </div>
+                                                        <div class="radio-box">
+                                                            <input type="radio" class="vob-radio-click btn-check" name="vb_business" id="vobThree" autocomplete="off" value="progress">
+                                                            <label class="btn btn-secondary" for="vobThree">In Progress</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="same-certify-design vobDetail d-none" id="vobDetail">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="mb-2 theme-select">
+                                                                <label class="form-label">Please select the council(s) <sup class="requireRed">*</sup></label>
+                                                                <select required class="state-select" name="vb_council">
+                                                                    <option value="-1" disabled selected>Choose...</option>
+                                                                    <option value="National Veterans Business Development Council (NVBDC)">National Veterans Business Development Council (NVBDC)</option>
+
+                                                                    <option value="Service Disabled Veteran Owned">Service Disabled Veteran Owned</option>
+
+                                                                    <option value="Veteran Owned">Veteran Owned</option>
+
+                                                                    <option value="Veteran Owned Small Business">Veteran Owned Small Business</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="mb-2">
+                                                                <label class="form-label">Expiration Date</label>
+                                                                <input type="date" value="f23/45/67" name="vb_expirationDate" class="form-control formInput" placeholder="i.e (Apple Inc.)">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <div class="mb-3 mt-2">
+                                                                <label for="formFile" class="form-label">Certification Upload (only one file can be uploaded)</label>
+                                                                <input class="form-control" type="file" id="formFile">
+                                                                <div class="uplaod-info mt-2">
+                                                                    <p>Files must be less than <strong>8 MB</strong>.</p>
+                                                                    <p>Allowed file types: <strong>gif jpg jpeg png tif txt rtf pdf doc docx pptx xls xlsx zip</strong>.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <div class="mb-2">
+                                                                <label class="form-label">Certification Description </label>
+                                                                <textarea value="fdescription" class="form-control formInput formTextarea" name="vb_certificationDescription" rows="5"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="same-inner-accord same-certificate-accord other-certificate mt-4">
+                                            <h3> Other Certification </h3>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h6 class="mt-2 mb-2">Is your company certified by another organization? <sup class="requireRed">*</sup></h6>
+                                                    <div class="selection-radio-box mb-2">
+                                                        <div class="radio-box">
+                                                            <input type="radio" class="oc-radio-click btn-check" name="other_certification_business" id="ocOne" autocomplete="off" value="yes">
+                                                            <label class="btn btn-secondary" for="ocOne">Yes</label>
+                                                        </div>
+                                                        <div class="radio-box">
+                                                            <input type="radio" class="oc-radio-click btn-check" name="other_certification_business" id="ocTwo" autocomplete="off" value="no">
+                                                            <label class="btn btn-secondary" for="ocTwo">No</label>
+                                                        </div>
+                                                        <div class="radio-box">
+                                                            <input type="radio" class="oc-radio-click btn-check" name="other_certification_business" id="ocThree" autocomplete="off" value="progress">
+                                                            <label class="btn btn-secondary" for="ocThree">In Progress</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="same-certify-design ocDetail d-none" id="ocDetail">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="mb-2 theme-select">
+                                                                <label class="form-label">Please select the council(s)<sup class="requireRed">*</sup></label>
+                                                                <select class="state-select" name="other_certification_council">
+                                                                    <option required value="-1" disabled selected>Choose...</option><option value="Disabled Business Enterprise">Disabled Business Enterprise</option>
+
+                                                                    <option value="HubZone">HubZone</option>
+
+                                                                    <option value="Small Business Enterprise">Small Business Enterprise</option>
+
+                                                                    <option value="Small Disadvantaged Program">Small Disadvantaged Program</option>
+
+                                                                    <option value="Woman Owned Small Business">Woman Owned Small Business</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="mb-2">
+                                                                <label class="form-label">Expiration Date</label>
+                                                                <input type="date" value="fexp2" class="form-control formInput" name="other_certification_expirationDate" placeholder="i.e (Apple Inc.)">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <div class="mb-3 mt-2">
+                                                                <label for="formFile" class="form-label">Certification Upload (only one file can be uploaded)</label>
+                                                                <input class="form-control" type="file" id="formFile">
+                                                                <div class="uplaod-info mt-2">
+                                                                    <p>Files must be less than <strong>8 MB</strong>.</p>
+                                                                    <p>Allowed file types: <strong>gif jpg jpeg png tif txt rtf pdf doc docx pptx xls xlsx zip</strong>.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <div class="mb-2">
+                                                                <label class="form-label">Certification Description </label>
+                                                                <textarea value="fdemklmnjm" class="form-control formInput formTextarea" name="other_certification_certificationDescription" rows="5"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree"><button aria-controls="collapseThree" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapseThree" data-bs-toggle="collapse" type="button">Company details</button></h2>
+                            <div aria-labelledby="headingThree" class="accordion-collapse collapse" data-bs-parent="#accordionForm" id="collapseThree">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Number of Employee's<sup class="requireRed">*</sup></label>
+                                                <input required value="123123123123" type="number" name="numberOfEmployees" class="form-control formInput" placeholder="i.e (45)">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Tax Number / VAT Number</label>
+                                                <input type="text" value="24534534435" class="form-control formInput" name="taxIdVatNumber" placeholder="i.e (ESX1234567X)">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3 theme-select">
+                                                <label class="form-label">Total Annual Sales <sup class="requireRed">*</sup></label>
+                                                <select required class="state-select" name="totalAnnaulSales">
+                                                    <option value="-1" disabled selected>Choose...</option>
+                                                    <option value="Less than $1M">Less than $1M</option>
+
+                                                    <option value="Greater than $1M but less than $10M">Greater than $1M but less than $10M</option>
+
+                                                    <option value="Greater than $10M but less than $25M">Greater than $10M but less than $25M</option>
+
+                                                    <option value="Greater than $25M but less than $50M">Greater than $25M but less than $50M</option>
+
+                                                    <option value="Greater than $50M but less than $100M">Greater than $50M but less than $100M</option>
+
+                                                    <option value="Greater than $100M">Greater than $100M</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3 theme-select">
+                                                <label class="form-label">Please select your quality certifications<sup class="requireRed">*</sup></label>
+                                                <select required class="state-select" name="qualityCertification">
+                                                    <option value="-1" disabled selected>Choose...</option>
+                                                    <option value="ISO 14001">ISO 14001</option>
+
+                                                    <option value="ISO 9000">ISO 9000</option>
+
+                                                    <option value="QS 9000">QS 9000</option>
+
+                                                    <option value="TS 16949">TS 16949</option>
+
+                                                    <option value="IATF-16949">IATF-16949</option>
+
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">DUNS Number </label>
+                                                <input type="text" value="fkmjnmjklmkmkmk" name="DunsNumber" class="form-control formInput">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">If certification in process, list date expected to finalize</label>
+                                                <input type="date" value="fkmjnopopopopo" name="certificationExpectedDate" class="form-control formInput">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3 theme-select">
+                                                <label class="form-label">Operations outside USA<sup class="requireRed">*</sup></label>
+                                                <select required class="state-select" name="operationOutsideUsa">
+                                                    <option value="-1" disabled selected>Choose...</option>
+                                                    <option value="Mexico">Mexico</option>
+
+                                                    <option value="Canada">Canada</option>
+
+                                                    <option value="China">China</option>
+
+                                                    <option value="Europe">Europe</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="same-inner-accord presentation-form">
+                                            <h3>Presentation Upload</h3>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3 mt-2">
+                                                        <label for="formFile" class="form-label">Add new File</label>
+                                                        <input class="form-control" type="file" id="formFile">
+                                                        <div class="uplaod-info mt-2">
+                                                            <p>Files must be less than <strong>8 MB</strong>.</p>
+                                                            <p>Allowed file types: <strong>gif jpg jpeg png tif txt rtf pdf doc docx pptx xls xlsx zip</strong>.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="mb-2">
+                                                        <label class="form-label">Description <sup class="requireRed">*</sup></label>
+                                                        <textarea required name="presentationDescription" class="form-control formInput formTextarea" rows="5"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFour"><button aria-controls="collapseFour" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapseFour" data-bs-toggle="collapse" type="button">production capabilities</button></h2>
+                            <div aria-labelledby="headingFour" class="accordion-collapse collapse" data-bs-parent="#accordionForm" id="collapseFour">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">What is the % of sales that are automotive?</label>
+                                                <input type="number" value="5" name="percentageSale" class="form-control formInput">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">List any significant awards/ recognition your company has received</label>
+                                                <input type="text" value="fkmjnhm" name="significantAwards" class="form-control formInput">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Do you currently supply to any OEM's?</label>
+                                                <div class="d-flex">
+                                                    <div class="radio-box">
+                                                        <input type="radio" class="oem-radio-click btn-check" name="isOem" id="oemYes" autocomplete="off" value="yes">
+                                                        <label class="btn btn-secondary" for="oemYes">Yes</label>
+                                                    </div>
+                                                    <div class="radio-box">
+                                                        <input type="radio" class="oem-radio-click btn-check" name="isOem" id="oemNo" autocomplete="off" value="no">
+                                                        <label class="btn btn-secondary" for="oemNo">No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 oem-supplier-product theme-select d-none">
+                                                <label class="form-label">  Please select the OEMs </label>
+                                                <select class="state-select" name="oEMS" multiple="multiple">
+
+
+                                                    <option value="BMW">BMW</option>
+
+                                                    <option value="Cummins">Cummins</option>
+
+                                                    <option value="FCA">FCA</option>
+
+                                                    <option value="Ford">Ford</option>
+
+                                                    <option value="Fuji">Fuji</option>
+
+                                                    <option value="GM">GM</option>
+
+                                                    <option value="Honda">Honda</option>
+
+                                                    <option value="Hyundai/ Kia">Hyundai/ Kia</option>
+
+                                                    <option value="Mazda">Mazda</option>
+
+                                                    <option value="Mercedes/ Daimler">Mercedes/ Daimler</option>
+
+                                                    <option value="Mitsubishi">Mitsubishi</option>
+
+                                                    <option value="Navistar">Navistar</option>
+
+                                                    <option value="Nissan">Nissan</option>
+
+                                                    <option value="Toyota">Toyota</option>
+
+                                                    <option value="VW">VW</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Do you offer Just In Time (JIT) delivery?</label>
+                                                <div class="d-flex">
+                                                    <div class="radio-box">
+                                                        <input type="radio" class="jit-radio-click btn-check" name="JIT" id="jitYes" autocomplete="off" value="yes">
+                                                        <label class="btn btn-secondary" for="jitYes">Yes</label>
+                                                    </div>
+                                                    <div class="radio-box">
+                                                        <input type="radio" class="jit-radio-click btn-check" name="JIT" id="jitNo" autocomplete="off" value="no">
+                                                        <label class="btn btn-secondary" for="jitNo">No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Do you supply to any other Tier 1 automotive companies? </label>
+                                                <div class="d-flex">
+                                                    <div class="radio-box">
+                                                        <input type="radio" class="automotive-radio-click btn-check" name="anyOtherTier1AutomotiveCompany" id="automotiveYes" autocomplete="off" value="yes">
+                                                        <label class="btn btn-secondary" for="automotiveYes">Yes</label>
+                                                    </div>
+                                                    <div class="radio-box">
+                                                        <input type="radio" class="automotive-radio-click btn-check" name="anyOtherTier1AutomotiveCompany" id="automotiveNo" autocomplete="off" value="no">
+                                                        <label class="btn btn-secondary" for="automotiveNo">No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Do you offer Consignment or Vendor Managed Inventory (VMI)?</label>
+                                                <div class="d-flex">
+                                                    <div class="radio-box">
+                                                        <input type="radio" class="vmi-radio-click btn-check" name="vmi" id="VMI" autocomplete="off" value="yes">
+                                                        <label class="btn btn-secondary" for="vmiYes">Yes</label>
+                                                    </div>
+                                                    <div class="radio-box">
+                                                        <input type="radio" class="vmi-radio-click btn-check" name="vmi" id="VMI" autocomplete="off" value="no">
+                                                        <label class="btn btn-secondary" for="vmiNo">No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Are you a current supplier to ABC Corporation or have you supplied to ABC Corporation in the past?<sup class="requireRed">*</sup></label>
+                                                <div class="d-flex">
+                                                    <div class="radio-box">
+                                                        <input type="radio" class="supply-radio-click btn-check" name="AbcSupplier" id="supplyYes" autocomplete="off" value="yes">
+                                                        <label class="btn btn-secondary" for="supplyYes">Yes</label>
+                                                    </div>
+                                                    <div class="radio-box">
+                                                        <input type="radio" class="supply-radio-click btn-check" name="AbcSupplier" id="supplyNo" autocomplete="off" value="no">
+                                                        <label class="btn btn-secondary" for="supplyNo">No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 vendor-number d-none">
+                                                <label class="form-label"> Vendor Number </label>
+                                                <input type="text" value="5644545" name="vendorNumber" class="form-control formInput">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="same-inner-accord customers-form">
+                                            <h3 class="mb-3">Please list the top three customers</h3>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Customer Name (First)<sup class="requireRed">*</sup></label>
+                                                        <input required value="fc1" name="customerName1" type="text" class="form-control formInput">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">% of Sales<sup class="requireRed">*</sup></label>
+                                                        <input required type="number" value="2" name="sales1" class="form-control formInput">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Automotive - Yes or No<sup class="requireRed">*</sup></label>
+                                                        <div class="d-flex">
+                                                            <div class="radio-box">
+                                                                <input type="radio" class="cutomer-radio-click btn-check" name="automotive1" id="cutomerOne" autocomplete="off" value="yes">
+                                                                <label class="btn btn-secondary" for="cutomerOne">Yes</label>
+                                                            </div>
+                                                            <div class="radio-box">
+                                                                <input type="radio" class="cutomer-radio-click btn-check" name="automotive1" id="cutomerTwo" autocomplete="off" value="no">
+                                                                <label class="btn btn-secondary" for="cutomerTwo">No</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Customer Name (Second)<sup class="requireRed">*</sup></label>
+                                                        <input required type="text" value="fc2" name="customerName2" class="form-control formInput">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">% of Sales<sup class="requireRed">*</sup></label>
+                                                        <input required type="number" value="4" name="sales2" class="form-control formInput">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Automotive - Yes or No<sup class="requireRed">*</sup></label>
+                                                        <div class="d-flex">
+                                                            <div class="radio-box">
+                                                                <input type="radio" class="cutomer-radio-click btn-check" name="automotive2" id="cutomerThree" autocomplete="off" value="yes">
+                                                                <label class="btn btn-secondary" for="cutomerThree">Yes</label>
+                                                            </div>
+                                                            <div class="radio-box">
+                                                                <input type="radio" class="cutomer-radio-click btn-check" name="automotive2" id="cutomerFour" autocomplete="off" value="no">
+                                                                <label class="btn btn-secondary" for="cutomerFour">No</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Customer Name (Third)<sup class="requireRed">*</sup></label>
+                                                        <input required type="text" value="fc3" name="customerName3" class="form-control formInput">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">% of Sales<sup class="requireRed">*</sup></label>
+                                                        <input required type="number" value="5" name="sales3" class="form-control formInput">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Automotive - Yes or No<sup class="requireRed">*</sup></label>
+                                                        <div class="d-flex">
+                                                            <div class="radio-box">
+                                                                <input type="radio" class="cutomer-radio-click btn-check" name="automotive3" id="cutomerFive" autocomplete="off" value="yes">
+                                                                <label class="btn btn-secondary" for="cutomerFive">Yes</label>
+                                                            </div>
+                                                            <div class="radio-box">
+                                                                <input type="radio" class="cutomer-radio-click btn-check" name="automotive3" id="cutomerSix" autocomplete="off" value="no">
+                                                                <label class="btn btn-secondary" for="cutomerSix">No</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">For suppliers providing production parts, please list ALL manufacturing locations</label>
+                                                        <input type="text" value="fglm 3" name="manufacturingLocations" class="form-control formInput">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3 theme-select">
+                                                        <label class="form-label">  Please select all ABC Corporation NA locations you can effectively service <sup class="requireRed">*</sup> </label>
+                                                        <select class="state-select" name="recordPerNaLocation" multiple="multiple">
+                                                            <option value="CAN">CAN</option>
+                                                            <option value="Global">Global</option>
+                                                            <option value="MX">MX</option>
+                                                            <option value="US">US</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3 theme-select">
+                                                        <label class="form-label"> What event did you meet ABC Corporation? </label>
+                                                        <select class="state-select" name="event">
+                                                            <option value="-1" disabled selected>Choose...</option>
+                                                            <option value="WBENC National Conference">WBENC National Conference</option>
+
+                                                            <option value="Toyota Opportunity Exchange">Toyota Opportunity Exchange</option>
+
+                                                            <option value="FCA Matchmaker">FCA Matchmaker</option>
+
+                                                            <option value="CVMSDC Conference">CVMSDC Conference</option>
+
+                                                            <option value="Great Lakes Women’s Business Conference">Great Lakes Women’s Business Conference</option>
+
+                                                            <option value="Michigan Minority Procurement Conference (MMPC)">Michigan Minority Procurement Conference (MMPC)</option>
+
+                                                            <option value="NMSDC National Conference">NMSDC National Conference</option>
+
+                                                            <option value="BMW Matchmaker">BMW Matchmaker</option>
+
+                                                            <option value="Other">Other</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFive"><button aria-controls="collapseFive" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapseFive" data-bs-toggle="collapse" type="button">product & services</button></h2>
+                            <div aria-labelledby="headingFive" class="accordion-collapse collapse" data-bs-parent="#accordionForm" id="collapseFive">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="same-inner-accord npm-form">
+                                                <h3 class="npm-header">NPM - Non Production Material <span>Add</span></h3>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <div class="mb-2 mt-3 theme-select">
+                                                            <select class="state-select" name="npmValue">
+                                                                <option value="-1" disabled selected>Select NPM values</option>
+                                                                <option value="1">Auxiliaries and supplies</option>
+
+                                                                <option value="2">IT and Telecommunication</option>
+
+                                                                <option value="3">IT and Telecommunication(cont.)</option>
+
+                                                                <option value="4">Production Equipment and Engineering, Buildings and Vehicles</option>
+
+                                                                <option value="5">Production Equipment and Engineering, Buildings and Vehicles (cont.)</option>
+
+                                                                <option value="6">Corporate Services and Related Supplies</option>
+
+                                                                <option value="7">Logistical Services</option>
+
+                                                                <option value="8">Logistical Services (cont.)</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="mb-2 mt-3 theme-select">
+                                                            <select class="state-select" name="npmValueCategory1">
+                                                                <option value="-1" disabled selected>Select NPM values</option>
+                                                                <option value="PEE">Production Equipment and Engineering, Buildings and Vehicles</option>
+                                                                <option value="PEEV">Production Equipment and Engineering, Buildings and Vehicles (cont.)</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="mb-2 mt-3 theme-select">
+                                                            <select class="state-select" name="npmValueCategory2">
+                                                                <option value="-1" disabled selected>Select NPM values</option>
+                                                                <option value="PEE">Production Equipment and Engineering, Buildings and Vehicles</option>
+                                                                <option value="PEEV">Production Equipment and Engineering, Buildings and Vehicles (cont.)</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="npmSelectedValue"></div>
+                                                </div>
+                                            </div>
+                                            <div class="same-inner-accord pm-form mt-3">
+                                                <h3 class="npm-header">PM - Production Material <span>Add</span></h3>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <div class="mb-2 mt-3 theme-select">
+                                                            <select class="state-select" name="pmValue">
+                                                                <option value="-1" disabled selected>Select PM values</option>
+                                                                <option value="1">Raw Material</option>
+
+                                                                <option value="2">Casting</option>
+
+                                                                <option value="3">Non Cast Metal Parts</option>
+
+                                                                <option value="4">Miscelleanous</option>
+
+                                                                <option value="5">Plastic Parts</option>
+
+                                                                <option value="6">Rubber Parts</option>
+
+                                                                <option value="7">Electronics</option>
+
+                                                                <option value="8">Electronics (cont.)</option>
+
+                                                                <option value="9">Electro-mech Parts</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="mb-2 mt-3 theme-select">
+                                                            <select class="state-select" name="pmValueCategory1">
+                                                                <option value="-1" disabled selected>Select PM values</option>
+                                                                <option value="PEE">Production Equipment and Engineering, Buildings and Vehicles</option>
+                                                                <option value="PEEV">Production Equipment and Engineering, Buildings and Vehicles (cont.)</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="mb-2 mt-3 theme-select">
+                                                            <select class="state-select" name="pmValueCategory2">
+                                                                <option value="-1" disabled selected>Select PM values</option>
+                                                                <option value="PEE">Production Equipment and Engineering, Buildings and Vehicles</option>
+                                                                <option value="PEEV">Production Equipment and Engineering, Buildings and Vehicles (cont.)</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pmSelectedValue"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="mt-3">
+                                            <label class="form-label">Additional Products and Services: List any additional products and services that you can provide but could not find listed above, Separate each item with a comma (,)</label>
+                                            <textarea value="fmklmklm" class="form-control formInput formTextarea" name="additoinalProductAndServices" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="bg-grey white theme-btn hvr-sweep-orange-bottom mt-3">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+
+
+
+
+
+
+

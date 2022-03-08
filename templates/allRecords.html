@@ -1,0 +1,74 @@
+
+
+{% extends 'base.html' %}
+
+{% load  static%}
+
+{% block content %}
+
+    <section class="records">
+        <div class="container">
+            <div class="record-content">
+                <div class="table-record">
+                    <div class="table-record-actions">
+                        <button class="hvr-sweep-orange-bottom theme-btn bg-grey white">Excel</button>
+                        <button class="hvr-sweep-orange-bottom theme-btn bg-grey white">PDF</button>
+                        <button class="hvr-sweep-orange-bottom theme-btn bg-grey white">Print</button>
+                        <div class="d-flex search-tbl">
+                            <form>
+                                <input type="text" placeholder="Search.....">
+                                <button type="submit"><i class="bi bi-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tbl-wrapper-content">
+                        <table class="table theme-tbl">
+                            <thead>
+                            <tr>
+                                <th>Company Name</th>
+                                <th>Non Production Material</th>
+                                <th>Production Material</th>
+                                <th>Oem's</th>
+                                <th>Current Supplier</th>
+                                <th>Technology & Location</th>
+                                <th>Responded</th>
+                                <th>Emailed</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for rec in page_obj %}
+                                <tr>
+                                    <td>{{rec.generalContantInfo.companyName}}</td>
+                                    <td>{{rec.productAndService.npmValue}} > {{rec.productAndService.npmValueCategory1}} > {{rec.productAndService.npmValueCategory2}}</td>
+                                    <td>{{rec.productAndService.pmValue}} > {{rec.productAndService.pmValueCategory1}} > {{rec.productAndService.pmValueCategory2}}</td>
+                                    <td>{{rec.productionCapabilities.OEMS.name}}</td>
+                                    <td>{{rec.productionCapabilities.AbcSupplier}}</td>
+                                    <td>{{rec.productionCapabilities.recordPerNaLocation.name}}</td>
+                                    <td>No</td>
+                                    <td>2 Times</td>
+                                    <td><i class="bi bi-eye-fill"></i>{{rec.id}}</td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="theme-pagination">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+

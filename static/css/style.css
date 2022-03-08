@@ -5,6 +5,7 @@
 body {
     width: 100vw;
     overflow-x: hidden;
+    background-color: #e9ecef;
 }
 body, p, h1, h2, h3, h4, h5, h6, ul {
     padding: 0;
@@ -30,7 +31,7 @@ body, p, h1, h2, h3, h4, h5, h6, ul {
     font-size: 22px;
     font-weight: 600;
     color: #017a82;
-    margin: 30px 0 15px 0;
+    padding: 30px 0 15px 0;
 }
 .theme-btn {
     width: 100px;
@@ -46,6 +47,13 @@ button:focus {
     outline: none !important;
     border-color: transparent !important;
     box-shadow: none !important;
+}
+.requireRed {
+    color: red;
+    font-size: 16px;
+    position: relative;
+    top: 0px;
+    left: 5px;
 }
 /* ================ Homepage Styling ================ */
 .navbar-brand {
@@ -307,6 +315,7 @@ button:focus {
 }
 .diversity-form {
     min-height: calc(100vh - 100px);
+    background: #e9ecef;
 }
 .same-inner-accord {
     border: 1px solid #dfdfdf;
