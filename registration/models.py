@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 
 class CompanyDetails(models.Model):
     presentationDescription =models.CharField(max_length=266, default='N', null=False, blank=False)
-    numberOfEmployees = models.IntegerField(null=False, blank=False)
+    numberOfEmployees = models.BigIntegerField(null=False, blank=False)
     taxIdVatNumber =  models.CharField(max_length=266)
     totalAnnaulSales = models.CharField(max_length=266, null=False, blank=False)
     DunsNumber =  models.CharField(max_length=266)
@@ -51,7 +51,7 @@ class WomenOwnedBusiness(models.Model):
 class VeteranOwnedBusiness(models.Model):
     Business = models.CharField(max_length=255, null=False, blank=False)
     council =  models.CharField(max_length=255)
-    ethnicity = models.CharField(max_length=255)
+    # ethnicity = models.CharField(max_length=255)
     certificationDescription = models.CharField(max_length=255)
     expirationDate = models.DateField()
 
@@ -95,8 +95,8 @@ class ProductionCapabilities(models.Model):
     AbcSupplier = models.BooleanField(null=False, blank=False)
     vendorNumber = models.IntegerField()
     anyOtherTier1AutomotiveCompany = models.BooleanField()
-    VMI = models.BooleanField()
-    JIT = models.BooleanField()
+    VMI = models.BooleanField(default=False)
+    JIT = models.BooleanField(default=False)
     percentageSale = models.IntegerField()
     significantAwards = models.CharField(max_length=1055, null=False, blank=False)
     customerName1 = models.CharField(max_length=255, null=False, blank=False)
