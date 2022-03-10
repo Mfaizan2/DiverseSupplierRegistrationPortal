@@ -138,12 +138,26 @@ class ProductAndService(models.Model):
     pmValueCategory2 = models.CharField(max_length=255)
     additoinalProductAndServices = models.CharField(max_length=1055)
 
+class ApplicationResponse(models.Model):
+    date = models.DateTimeField(auto_now_add=True, blank=True)
+    message = models.CharField(max_length=1055)
+    to = models.CharField(max_length=1055)
+
+class ApplicationEmailed(models.Model):
+    date = models.DateTimeField(auto_now_add=True, blank=True)
+    message = models.CharField(max_length=1055)
+    to = models.CharField(max_length=1055)
+
 class ABCCorporation(models.Model):
     generalContantInfo = models.ForeignKey(GeneralContactInfo, on_delete=models.CASCADE)
     diverseCertification = models.ForeignKey(DiverseCertification, on_delete=models.CASCADE)
     companyDetails = models.ForeignKey(CompanyDetails, on_delete=models.CASCADE)
     productionCapabilities = models.ForeignKey(ProductionCapabilities, on_delete=models.CASCADE)
     productAndService = models.ForeignKey(ProductAndService, on_delete=models.CASCADE)
+    response = models.IntegerField(default=0)
+    emailed = models.IntegerField(default=0)
+
+
 
 
 
