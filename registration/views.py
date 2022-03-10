@@ -387,3 +387,28 @@ def AllRecords(request):
         'page_obj': page_obj
     }
     return render(request, 'allRecords.html', context)
+
+def mapCountryName(name):
+    if name=='WY':
+        return "Canada"
+    elif name == 'AL':
+        return "United States"
+    elif name == 'MX':
+        return "Maxico"
+
+def DetailRecord(request, id):
+    print("kmk", id)
+    application = ABCCorporation.objects.filter(id=id).first()
+    print(application)
+    # paginator = Paginator(all_applications, 10)
+    # page_number = 1 #request.GET.get('page')
+    # page_obj = Paginator.get_page(paginator, page_number)
+    # print("all_applications", page_obj)
+    # for rec in page_obj:
+    #     print(rec.productAndService.npmValue)
+    country = Country.objects.filter(countryName=application.generalContantInfo.country.countryName).first()
+    context = {
+        'application': application,
+        'country': mapCountryName(country.countryName)
+    }
+    return render(request, 'detailRecord.html', context)

@@ -423,6 +423,7 @@ button:focus {
 /* ================ Records Page Styling ================ */
 .records {
     padding: 50px 0 30px 0;
+    min-height: calc(100vh - 112px);
 }
 .table-record {
     border: 1px solid #ccc;
