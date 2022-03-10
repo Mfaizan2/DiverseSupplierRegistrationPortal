@@ -1,0 +1,526 @@
+
+{% extends 'base.html' %}
+
+{% load  static%}
+
+{% block content %}
+
+
+<section class="detailRecord">
+    <div class="container">
+        <div class="viewRecordContent accordion-wrapper">
+            <div class="accordion accordion-form-content accordion-view-content" id="accordionViewRecord">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingViewOne"><button aria-controls="collapseViewOne" aria-expanded="true" class="accordion-button" data-bs-target="#collapseViewOne" data-bs-toggle="collapse" type="button">Genral Contact info</button></h2>
+                    <div aria-labelledby="headingViewOne" class="accordion-collapse collapse show" data-bs-parent="#accordionViewRecord" id="collapseViewOne">
+                        <div class="accordion-body">
+                            <div class="same-inner-accord gci-form">
+                                <h3>General Contact Information</h3>
+                                <div class="same-detail-record-tbl">
+                                    <table class="table-view-record table table-striped">
+                                        <tbody>
+                                        <tr>
+                                            <td>Company Name</td>
+                                            <td>{{application.generalContantInfo.companyName}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Website URL</td>
+                                            <td>{{application.generalContantInfo.websiteUrl}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Country</td>
+                                            <td>{{country}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Address Line 1</td>
+                                            <td>{{application.generalContantInfo.address1}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Address Line 2</td>
+                                            <td>{{application.generalContantInfo.address2}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Neighborhood</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>City</td>
+                                            <td>{{application.generalContantInfo.city}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>State</td>
+                                            <td>{{application.generalContantInfo.state}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ZipCode</td>
+                                            <td>{{application.generalContantInfo.zipCode}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="same-inner-accord sci-form mt-3">
+                                <h3>Sales Contact Information</h3>
+                                <div class="same-detail-record-tbl">
+                                    <table class="table-view-record table table-striped">
+                                        <tbody>
+                                        <tr>
+                                            <td>First Name</td>
+                                            <td>{{application.generalContantInfo.SalesContact.firstName}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Last Name</td>
+                                            <td>{{application.generalContantInfo.SalesContact.lastName}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email Address</td>
+                                            <td>{{application.generalContantInfo.SalesContact.email}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Job Title</td>
+                                            <td>{{application.generalContantInfo.SalesContact.jobTitle}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Office Phone</td>
+                                            <td>{{application.generalContantInfo.SalesContact.phoneNumber}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mobile Phone</td>
+                                            <td>{{application.generalContantInfo.SalesContact.MobileNumber}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="same-inner-accord sci-form mt-3">
+                                <h3>General Contact Information</h3>
+                                <div class="same-detail-record-tbl">
+                                    <table class="table-view-record table table-striped">
+                                        <tbody>
+                                        <tr>
+                                            <td>First Name</td>
+                                            <td>{{application.generalContantInfo.GeneralContact.firstName}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Last Name</td>
+                                            <td>{{application.generalContantInfo.GeneralContact.lastName}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email Address</td>
+                                            <td>{{application.generalContantInfo.GeneralContact.email}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Job Title</td>
+                                            <td>{{application.generalContantInfo.GeneralContact.jobTitle}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Office Phone</td>
+                                            <td>{{application.generalContantInfo.GeneralContact.phoneNumber}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mobile Phone</td>
+                                            <td>{{application.generalContantInfo.GeneralContact.MobileNumber}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingViewTwo"><button aria-controls="collapseViewTwo" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapseViewTwo" data-bs-toggle="collapse" type="button">diverse certifications</button></h2>
+                    <div aria-labelledby="headingViewTwo" class="accordion-collapse collapse" data-bs-parent="#accordionViewRecord" id="collapseViewTwo">
+                        <div class="accordion-body">
+                            <div class="same-inner-accord mob-form">
+                                <h3>Minority Owned Business</h3>
+                                <div class="same-detail-record-tbl">
+                                    <table class="table-view-record table table-striped">
+                                        <tbody>
+                                        <tr>
+                                            <td>Minority Owned Business</td>
+                                            <td>{{application.diverseCertification.MinorityOwnedBusiness.Business}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Council</td>
+                                            <td>{{application.diverseCertification.MinorityOwnedBusiness.council}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ethnicity</td>
+                                            <td>{{application.diverseCertification.MinorityOwnedBusiness.ethnicity}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Certification Description</td>
+                                            <td>{{application.diverseCertification.MinorityOwnedBusiness.certificationDescription}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Expiration Date</td>
+                                            <td>{{application.diverseCertification.MinorityOwnedBusiness.expirationDate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Certification File</td>
+                                            <td></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="same-inner-accord wob-form mt-3">
+                                <h3>Women Owned Business</h3>
+                                <div class="same-detail-record-tbl">
+                                    <table class="table-view-record table table-striped">
+                                        <tbody>
+                                        <tr>
+                                            <td>Women Owned Business</td>
+                                            <td>{{application.diverseCertification.WomenOwnedBusiness.Business}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Council</td>
+                                            <td>{{application.diverseCertification.WomenOwnedBusiness.council}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Certification Description</td>
+                                            <td>{{application.diverseCertification.WomenOwnedBusiness.certificationDescription}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Expiration Date</td>
+                                            <td>{{application.diverseCertification.WomenOwnedBusiness.expirationDate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Certification File</td>
+                                            <td></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="same-inner-accord vob-form mt-3">
+                                <h3>Veteran Owned Business</h3>
+                                <div class="same-detail-record-tbl">
+                                    <table class="table-view-record table table-striped">
+                                        <tbody>
+                                        <tr>
+                                            <td>Veteran Owned Business</td>
+                                            <td>{{application.diverseCertification.VeteranOwnedBusiness.Business}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Council</td>
+                                            <td>{{application.diverseCertification.VeteranOwnedBusiness.council}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Certification Description</td>
+                                            <td>{{application.diverseCertification.VeteranOwnedBusiness.certificationDescription}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Expiration Date</td>
+                                            <td>{{application.diverseCertification.VeteranOwnedBusiness.expirationDate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Certification File</td>
+                                            <td></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="same-inner-accord other-busines-form mt-3">
+                                <h3>Other Business</h3>
+                                <div class="same-detail-record-tbl">
+                                    <table class="table-view-record table table-striped">
+                                        <tbody>
+                                        <tr>
+                                            <td>Other Business</td>
+                                            <td>{{application.diverseCertification.OtherCertification.Business}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Council</td>
+                                            <td>{{application.diverseCertification.OtherCertification.council}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Certification Description</td>
+                                            <td>{{application.diverseCertification.OtherCertification.certificationDescription}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Expiration Date</td>
+                                            <td>{{application.diverseCertification.OtherCertification.expirationDate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Certification File</td>
+                                            <td></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingViewThree"><button aria-controls="collapseViewThree" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapseViewThree" data-bs-toggle="collapse" type="button">Company Details</button></h2>
+                    <div aria-labelledby="headingViewThree" class="accordion-collapse collapse" data-bs-parent="#accordionViewRecord" id="collapseViewThree">
+                        <div class="accordion-body">
+                            <div class="same-inner-accord company-detail-form">
+                                <h3>Company Details</h3>
+                                <div class="same-detail-record-tbl">
+                                    <table class="table-view-record table table-striped">
+                                        <tbody>
+                                        <tr>
+                                            <td>Presentation File</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Presentation Description</td>
+                                            <td>{{application.companyDetails.presentationDescription}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Number of Employees</td>
+                                            <td>{{application.companyDetails.numberOfEmployees}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tax ID / VAT Number</td>
+                                            <td>{{application.companyDetails.taxIdVatNumber}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total Annual Sales</td>
+                                            <td>{{application.companyDetails.totalAnnaulSales}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>DUNS Number</td>
+                                            <td>{{application.companyDetails.DunsNumber}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Quality Certifications</td>
+                                            <td>{{application.companyDetails.qualityCertification}}</td>
+                                        </tr>
+<!--                                        <tr>-->
+<!--                                            <td>Other Quality Certification</td>-->
+<!--                                            <td>{{application.companyDetails.certificationExpectedDate}}</td>-->
+<!--                                        </tr>-->
+                                        <tr>
+                                            <td>Certification Expected Date</td>
+                                            <td>{{application.companyDetails.certificationExpectedDate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Operations Outside USA</td>
+                                            <td>{{application.companyDetails.operationOutsideUsa}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingViewFour"><button aria-controls="collapseViewFour" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapseViewFour" data-bs-toggle="collapse" type="button">Production Capabilities</button></h2>
+                    <div aria-labelledby="headingViewFour" class="accordion-collapse collapse" data-bs-parent="#accordionViewRecord" id="collapseViewFour">
+                        <div class="accordion-body">
+                            <div class="same-inner-accord production-detail-form">
+                                <h3>Production Capabilities</h3>
+                                <div class="same-detail-record-tbl">
+                                    <table class="table-view-record table table-striped">
+                                        <tbody>
+                                        <tr>
+                                            <td>OEM</td>
+                                            <td>{{application.productionCapabilities.isOem}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>OEM's</td>
+                                            <td>{{application.productionCapabilities.OEMS.name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ABC Supplier</td>
+                                            <td>{{application.productionCapabilities.AbcSupplier}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Vendor Number</td>
+                                            <td>{{application.productionCapabilities.vendorNumber}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Any Other Tier Automotive Companies</td>
+                                            <td>{{application.productionCapabilities.anyOtherTier1AutomotiveCompany}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Offer JIT Delivery</td>
+                                            <td>{{application.productionCapabilities.VMI}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Offer Consignment Or VMI</td>
+                                            <td>{{application.productionCapabilities.JIT}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sales Automotive</td>
+                                            <td>{{application.productionCapabilities.percentageSale}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Significant Awards</td>
+                                            <td>{{application.productionCapabilities.significantAwards}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Customer Name 1</td>
+                                            <td>{{application.productionCapabilities.customerName1}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sales 1</td>
+                                            <td>{{application.productionCapabilities.sales1}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Automotive 1</td>
+                                            <td>{{application.productionCapabilities.automotive1}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Customer Name 2</td>
+                                            <td>{{application.productionCapabilities.customerName2}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sales 2</td>
+                                            <td>{{application.productionCapabilities.sales2}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Automotive 2</td>
+                                            <td>{{application.productionCapabilities.isOem}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Customer Name 3</td>
+                                            <td>{{application.productionCapabilities.customerName3}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sales 3</td>
+                                            <td>{{application.productionCapabilities.sales3}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Automotive 3</td>
+                                            <td>{{application.productionCapabilities.automotive3}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Service Location</td>
+                                            <td>{{application.productionCapabilities.recordPerNaLocation.name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Manufacturing Locations</td>
+                                            <td>{{application.productionCapabilities.manufacturingLocations}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Effectively Service Location</td>
+                                            <td>{{application.productionCapabilities.event}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingViewFive"><button aria-controls="collapseViewFive" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapseViewFive" data-bs-toggle="collapse" type="button">Production Services</button></h2>
+                    <div aria-labelledby="headingViewFive" class="accordion-collapse collapse" data-bs-parent="#accordionViewRecord" id="collapseViewFive">
+                        <div class="accordion-body">
+                            <div class="same-inner-accord npm-form">
+                                <h3>NPM - Non Production Material</h3>
+                                <table class="table-view-record table table-striped">
+                                    <tbody>
+                                    <tr>
+                                        <td>{{application.productAndService.npmValue}} > {{application.productAndService.npmValueCategory1}} > {{application.productAndService.npmValueCategory2}}  </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="same-inner-accord pm-form mt-3">
+                                <h3>PM - Production Material</h3>
+                                <table class="table-view-record table table-striped">
+                                    <tbody>
+                                    <tr>
+                                        <td>{{application.productAndService.pmValue}} > {{application.productAndService.pmValueCategory1}} > {{application.productAndService.pmValueCategory2}} </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="response-view">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="same-inner-accord response-form">
+                        <h3>Send Response to Submitter</h3>
+                        <form>
+                            <div class="selection-radio-box response-radio-box justify-content-center mb-3">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="radio-box mt-3 mb-3">
+                                            <input type="radio" class="srs-radio-click btn-check" name="srs" id="srsTwo" autocomplete="off" value="Under Review">
+                                            <label class="btn btn-secondary" for="srsTwo">Under Review</label>
+                                        </div>
+                                        <div class="radio-box">
+                                            <input type="radio" class="srs-radio-click btn-check" name="srs" id="srsThree" autocomplete="off" value="Review & No Opportunity">
+                                            <label class="btn btn-secondary" for="srsThree">Review & No Opportunity</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="radio-box mt-3 mb-3">
+                                            <input type="radio" class="srs-radio-click btn-check" name="srs" id="srsFour" autocomplete="off" value="Review & Opportunity">
+                                            <label class="btn btn-secondary" for="srsFour">Review & Opportunity</label>
+                                        </div>
+                                        <div class="radio-box">
+                                            <input type="radio" class="srs-radio-click btn-check" name="srs" id="srsOne" autocomplete="off" value="Custom Response">
+                                            <label class="btn btn-secondary" for="srsOne">Custom Response</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="response-custom-msg d-none">
+                                <div class="customMessageArea mb-3">
+                                    <label class="form-label">Custom Description</label>
+                                    <textarea class="form-control formInput formTextarea" rows="5"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="response-btn bg-green white">Send Response</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="same-inner-accord report-form">
+                        <h3>Send Report to Someone</h3>
+                        <form>
+                            <div class="selection-radio-box response-radio-box report-radio-box justify-content-center mb-3">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="radio-box mt-3">
+                                            <input type="radio" class="report-radio-click btn-check" name="report" id="reportTwo" autocomplete="off" value="Default Message">
+                                            <label class="btn btn-secondary" for="reportTwo">Default Message</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="radio-box mt-3">
+                                            <input type="radio" class="report-radio-click btn-check" name="report" id="reportOne" autocomplete="off" value="Custom Report">
+                                            <label class="btn btn-secondary" for="reportOne">Custom Message</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 mb-3 report-mail">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control formInput" placeholder="example@mail.com">
+                            </div>
+                            <div class="report-custom-msg d-none">
+                                <div class="customMessageArea mt-3 mb-3">
+                                    <label class="form-label">Custom Description</label>
+                                    <textarea class="form-control formInput formTextarea" rows="5"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="response-btn bg-green white">Send Report</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+
+

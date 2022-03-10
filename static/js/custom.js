@@ -136,6 +136,8 @@ $(document).ready(function(){
         }
     });
 });
+
+var labels = [  ];
 // Supply on Radio Button Click
 $(document).ready(function(){
     $('.supply-radio-click').click(function(){
@@ -149,103 +151,165 @@ $(document).ready(function(){
     });
 });
 
+// alert("faizan");
+// make POST ajax call
+$.ajax({
+    type: 'POST',
+    url: '/diverseCertificationData',
+    // data: {
+    //     // 'folder_id': JSON.stringify(folder_id),
+    // },
+    success: function (response) {
+        var arrayLength = response['email_error'].length;
+        for (var i = 0; i < arrayLength; i++) {
+            labels[i]= response['email_error'][i];
+        }
+        // Chart JS Content Goes Here
+
+        const barData = {
+            labels: labels,
+            datasets: [{
+                label: 'Yes',
+                backgroundColor: 'rgb(49 59 84)',
+                borderColor: 'rgb(49 59 84)',
+                data: [7, 10, 5, 2, 20, 30, 45],
+            },
+                {
+                    label: 'No',
+                    backgroundColor: 'rgb(235 93 10)',
+                    borderColor: 'rgb(235 93 10)',
+                    data: [7, 10, 15, 20, 30, 46, 25],
+                },
+
+                {
+                    label: 'In Progress',
+                    backgroundColor: 'rgb(54, 162, 235)',
+                    borderColor: 'rgb(135 93 10)',
+                    data: [7, 10, 15, 20, 30, 46, 25],
+                }
+            ]
+        };
+
+        const barConfig = {
+            type: 'bar',
+            data: barData,
+            options: {}
+        };
+        const diverseCertificateChart = new Chart(
+            document.getElementById('diverseCertificateChart'),
+            barConfig
+        );
+
+        var labelsForApplicationStates = [ 0 ];
+
+        const barDataForApplicationStates = {
+            labels: labelsForApplicationStates,
+            datasets: [{
+                label: 'Applications Received',
+                backgroundColor: 'rgb(49 59 84)',
+                borderColor: 'rgb(49 59 84)',
+                data: [7, 10, 5, 2, 20, 30, 45],
+            },
+                {
+                    label: 'Response Generated',
+                    backgroundColor: 'rgb(235 93 10)',
+                    borderColor: 'rgb(235 93 10)',
+                    data: [7, 10, 15, 20, 30, 46, 25],
+                },
+
+                {
+                    label: 'Application Emailed',
+                    backgroundColor: 'rgb(135 93 10)',
+                    borderColor: 'rgb(135 93 10)',
+                    data: [7, 10, 15, 20, 30, 46, 25],
+                }
+            ]
+        };
+
+        const barConfigForApplicationStates = {
+            type: 'bar',
+            data: barDataForApplicationStates,
+            options: {}
+        };
 
 
 
+        const applicationStateChart = new Chart(
+            document.getElementById('applicationStateChart'),
+            barConfigForApplicationStates
+        );
 
-
-
-// Chart JS Content Goes Here
-const labels = [ 'January', 'February', 'March', 'April', 'May', 'June', ];
-const barData = {
-    labels: labels,
-    datasets: [{
-        label: 'Minority Owned Businesses',
-        backgroundColor: 'rgb(49 59 84)',
-        borderColor: 'rgb(49 59 84)',
-        data: [7, 10, 5, 2, 20, 30, 45],
-    },
-        {
-            label: 'Women Owned Businesses',
-            backgroundColor: 'rgb(235 93 10)',
-            borderColor: 'rgb(235 93 10)',
-            data: [7, 10, 15, 20, 30, 46, 25],
-        }]
-};
-
-const barConfig = {
-    type: 'bar',
-    data: barData,
-    options: {}
-};
-const diverseCertificateChart = new Chart(
-    document.getElementById('diverseCertificateChart'),
-    barConfig
-);
-const applicationStateChart = new Chart(
-    document.getElementById('applicationStateChart'),
-    barConfig
-);
-
-// Doughnut Chart and settings
-const doughnutData = {
-    labels: [ 'United State', 'Canada', 'Mexico', 'United Kingdom', 'Australia', 'India', 'Russia', 'China', 'Japan' ],
-    datasets: [{
-        label: 'Counteries',
-        data: [300, 50, 100, 70, 40, 90, 40, 20, 10],
-        backgroundColor: [ 'rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)', 'rgb(235 93 10)', 'rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)' ],
-        hoverOffset: 4
-    }]
-};
-const doughnutConfig = {
-    type: 'doughnut',
-    data: doughnutData,
-};
-const perCountryChart = new Chart(
-    document.getElementById('perCountryChart'),
-    doughnutConfig
-);
-const pmChart = new Chart(
-    document.getElementById('pmChart'),
-    doughnutConfig
-);
-// Location Chart and settings
-const doughnutDataLocation = {
-    labels: [ 'Global' ],
-    datasets: [{
-        label: 'Global chart',
-        data: [100],
-        backgroundColor: [ 'rgb(255, 159, 64)'],
-        hoverOffset: 4
-    }]
-};
-const doughnutLocationConfig = {
-    type: 'doughnut',
-    data: doughnutDataLocation,
-};
-const perLocationChart = new Chart(
-    document.getElementById('perLocationChart'),
-    doughnutLocationConfig
-);
+        var labelsForRecordPerCountry =  [ 'United State', 'Canada', 'Mexico']
+        var dataForRecordPerCountry = [100, 50, 100]
+        // Doughnut Chart and settings
+        const doughnutDataForRecordPerCountry = {
+            labels: labelsForRecordPerCountry,
+            datasets: [{
+                label: 'Counteries',
+                data: dataForRecordPerCountry,
+                backgroundColor: [ 'rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+                hoverOffset: 4
+            }]
+        };
+        const doughnutConfigForRecordPerCountry = {
+            type: 'doughnut',
+            data: doughnutDataForRecordPerCountry,
+        };
+        const perCountryChart = new Chart(
+            document.getElementById('perCountryChart'),
+            doughnutConfigForRecordPerCountry
+        );
+        const pmChart = new Chart(
+            document.getElementById('pmChart'),
+            doughnutConfigForRecordPerCountry
+        );
+        // Location Chart and settings
+        const doughnutDataLocation = {
+            labels: [ 'United State', 'Canada', 'Mexico','Global' ],
+            datasets: [{
+                label: 'Global chart',
+                data: [100,12,12,3],
+                backgroundColor: [ 'rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)','rgb(49 59 84)'],
+                hoverOffset: 4
+            }]
+        };
+        const doughnutLocationConfig = {
+            type: 'doughnut',
+            data: doughnutDataLocation,
+        };
+        const perLocationChart = new Chart(
+            document.getElementById('perLocationChart'),
+            doughnutLocationConfig
+        );
 // Oem Chart and settings
-const doughnutDataOem = {
-    labels: [ 'Bmw', 'Honda', 'Audi', 'Lamborghini' ],
-    datasets: [{
-        label: 'Oem chart',
-        data: [90, 40, 20, 10],
-        backgroundColor: [  'rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)' ],
-        hoverOffset: 4
-    }]
-};
-const doughnutOemConfig = {
-    type: 'doughnut',
-    data: doughnutDataOem,
-};
-const perOemChart = new Chart(
-    document.getElementById('perOemChart'),
-    doughnutOemConfig
-);
-const npmChart = new Chart(
-    document.getElementById('npmChart'),
-    doughnutOemConfig
-);
+        const doughnutDataOem = {
+            labels: [ 'Bmw', 'Honda', 'Audi', 'Lamborghini' ],
+            datasets: [{
+                label: 'Oem chart',
+                data: [90, 40, 20, 10],
+                backgroundColor: [  'rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)' ],
+                hoverOffset: 4
+            }]
+        };
+        const doughnutOemConfig = {
+            type: 'doughnut',
+            data: doughnutDataOem,
+        };
+        const perOemChart = new Chart(
+            document.getElementById('perOemChart'),
+            doughnutOemConfig
+        );
+        const npmChart = new Chart(
+            document.getElementById('npmChart'),
+            doughnutOemConfig
+        );
+    },
+    error: function (response) {
+        alert("error");
+    }
+});
+
+
+
+
+
