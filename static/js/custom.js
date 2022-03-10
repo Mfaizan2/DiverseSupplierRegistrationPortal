@@ -167,25 +167,25 @@ $.ajax({
         // Chart JS Content Goes Here
 
         const barData = {
-            labels: labels,
+            labels: ['Minority-Owned Business', 'Women-Owned Business', 'Veteran-Owned Business', 'Other Certification'],
             datasets: [{
                 label: 'Yes',
                 backgroundColor: 'rgb(49 59 84)',
                 borderColor: 'rgb(49 59 84)',
-                data: [7, 10, 5, 2, 20, 30, 45],
+                data: [response['BusinessAndCertificationYes'], response['WomenOwnedBusinessYes'], response['VeteranOwnedBusinessYes'], response['OtherCertificationYes']],
             },
                 {
                     label: 'No',
                     backgroundColor: 'rgb(235 93 10)',
                     borderColor: 'rgb(235 93 10)',
-                    data: [7, 10, 15, 20, 30, 46, 25],
+                    data: [response['BusinessAndCertificationNo'], response['WomenOwnedBusinessNo'], response['VeteranOwnedBusinessNo'], response['OtherCertificationNo']],
                 },
 
                 {
                     label: 'In Progress',
                     backgroundColor: 'rgb(54, 162, 235)',
                     borderColor: 'rgb(135 93 10)',
-                    data: [7, 10, 15, 20, 30, 46, 25],
+                    data: [response['BusinessAndCertificationInProgress'], response['WomenOwnedBusinessInProgress'], response['VeteranOwnedBusinessInProgress'], response['OtherCertificationInProgress']],
                 }
             ]
         };
@@ -208,20 +208,20 @@ $.ajax({
                 label: 'Applications Received',
                 backgroundColor: 'rgb(49 59 84)',
                 borderColor: 'rgb(49 59 84)',
-                data: [7, 10, 5, 2, 20, 30, 45],
+                data: [response['ApplicationReceived']],
             },
                 {
                     label: 'Response Generated',
                     backgroundColor: 'rgb(235 93 10)',
                     borderColor: 'rgb(235 93 10)',
-                    data: [7, 10, 15, 20, 30, 46, 25],
+                    data: [response['ApplicationsResponse']],
                 },
 
                 {
                     label: 'Application Emailed',
                     backgroundColor: 'rgb(135 93 10)',
                     borderColor: 'rgb(135 93 10)',
-                    data: [7, 10, 15, 20, 30, 46, 25],
+                    data: [response['ApplicationsEmailed']],
                 }
             ]
         };
@@ -259,10 +259,6 @@ $.ajax({
             document.getElementById('perCountryChart'),
             doughnutConfigForRecordPerCountry
         );
-        const pmChart = new Chart(
-            document.getElementById('pmChart'),
-            doughnutConfigForRecordPerCountry
-        );
         // Location Chart and settings
         const doughnutDataLocation = {
             labels: [ 'United State', 'Canada', 'Mexico','Global' ],
@@ -281,13 +277,13 @@ $.ajax({
             document.getElementById('perLocationChart'),
             doughnutLocationConfig
         );
-// Oem Chart and settings
+        // Oem Chart and settings
         const doughnutDataOem = {
-            labels: [ 'Bmw', 'Honda', 'Audi', 'Lamborghini' ],
+            labels: [ 'BMW', 'Cummins', 'FCA', 'Ford', 'Fuji', 'GM', 'Honda', 'Hyundai/Kia', 'Mazda', 'Mercedes/ Daimler', 'Mitsubishi', 'Navistar', 'Nisaan', 'Toyota', 'VM' ],
             datasets: [{
                 label: 'Oem chart',
-                data: [90, 40, 20, 10],
-                backgroundColor: [  'rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)' ],
+                data: [90, 40, 20, 10, 12, 12, 12, 12, 12, 12, 12, 12, 12, 11, 14, 15],
+                backgroundColor: [  'rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)','rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)','rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)','rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)' ],
                 hoverOffset: 4
             }]
         };
@@ -299,10 +295,44 @@ $.ajax({
             document.getElementById('perOemChart'),
             doughnutOemConfig
         );
+
+        const NpmData = {
+            labels: [ 'Auxiliaries and supplies', 'IT and Telecommunication', 'IT and Telecommunication(cont.)', 'Production Equipment and Engineering, Buildings and Vehicles','Production Equipment and Engineering, Buildings and Vehicles (cont.)', 'Corporate Service and Related Supplies', 'Logistical Services', 'Logistical Services(cont.)' ],
+            datasets: [{
+                label: 'Oem chart',
+                data: [90, 40, 20, 10, 12, 12, 12, 12],
+                backgroundColor: [  'rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)','rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(255, 159, 64)' ],
+                hoverOffset: 4
+            }]
+        };
+        const NpmConfig = {
+            type: 'doughnut',
+            data: NpmData,
+        };
         const npmChart = new Chart(
             document.getElementById('npmChart'),
-            doughnutOemConfig
+            NpmConfig
         );
+
+        const PmData = {
+            labels: [ 'Raw Material', 'Casting', 'Non Cast Metal Parts', 'Miscelleanous','Plastic Parts', 'Rubber Parts', 'Electronics (cont.)', 'Electro-mech Parts' ],
+            datasets: [{
+                label: 'Oem chart',
+                data: [90, 40, 20, 10, 12, 12, 12, 12],
+                backgroundColor: [  'rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)','rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(255, 159, 64)' ],
+                hoverOffset: 4
+            }]
+        };
+        const PmConfig = {
+            type: 'doughnut',
+            data: PmData,
+        };
+
+        const pmChart = new Chart(
+            document.getElementById('pmChart'),
+            PmConfig
+        );
+
     },
     error: function (response) {
         alert("error");
