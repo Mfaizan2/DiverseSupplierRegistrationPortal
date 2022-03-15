@@ -8,80 +8,80 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class CompanyDetails(models.Model):
-    presentationDescription =models.CharField(max_length=266, default='N', null=False, blank=False)
-    numberOfEmployees = models.BigIntegerField(null=False, blank=False)
-    taxIdVatNumber =  models.CharField(max_length=266)
-    totalAnnaulSales = models.CharField(max_length=266, null=False, blank=False)
-    DunsNumber =  models.CharField(max_length=266)
-    qualityCertification = models.CharField(max_length=266, null=False, blank=False)
+    presentation_description =models.CharField(max_length=266, default='N', null=False, blank=False)
+    number_of_employees = models.BigIntegerField(null=False, blank=False)
+    tax_id_vat_number =  models.CharField(max_length=266)
+    total_annaul_sales = models.CharField(max_length=266, null=False, blank=False)
+    duns_number =  models.CharField(max_length=266)
+    quality_certification = models.CharField(max_length=266, null=False, blank=False)
     # otherQualityCertification = models.CharField(max_length=266)
-    certificationExpectedDate = models.DateField()
-    operationOutsideUsa = models.CharField(max_length=266, null=False, blank=False)
+    certification_expected_date = models.DateField()
+    operation_outside_usa = models.CharField(max_length=266, null=False, blank=False)
 
 class GeneralContact(models.Model):
-    firstName = models.CharField(max_length=255, null=False, blank=False)
-    lastName = models.CharField(max_length=255, null=False, blank=False)
+    first_name = models.CharField(max_length=255, null=False, blank=False)
+    last_name = models.CharField(max_length=255, null=False, blank=False)
     email = models.EmailField(_('email address'), unique=True, null=False, blank=False)
-    jobTitle = models.CharField(max_length=255, null=False, blank=False)
-    phoneNumber = models.IntegerField(null=False, blank=False)
-    MobileNumber = models.IntegerField()
+    job_title = models.CharField(max_length=255, null=False, blank=False)
+    phone_number = models.IntegerField(null=False, blank=False)
+    mobile_number = models.IntegerField()
 
 class SalesContact(models.Model):
-    firstName = models.CharField(max_length=255, null=False, blank=False)
-    lastName = models.CharField(max_length=255, null=False, blank=False)
+    first_name = models.CharField(max_length=255, null=False, blank=False)
+    last_name = models.CharField(max_length=255, null=False, blank=False)
     email = models.EmailField(_('email address'), unique=True, null=False, blank=False)
-    jobTitle = models.CharField(max_length=255, null=False, blank=False)
-    phoneNumber = models.IntegerField(null=False, blank=False)
-    MobileNumber = models.IntegerField()
+    job_title = models.CharField(max_length=255, null=False, blank=False)
+    phone_number = models.IntegerField(null=False, blank=False)
+    mobile_number = models.IntegerField()
 
 class BusinessAndCertification(models.Model):
-    Business = models.CharField(max_length=255, null=False, blank=False)
+    business = models.CharField(max_length=255, null=False, blank=False)
     council =  models.CharField(max_length=255)
     ethnicity = models.CharField(max_length=255)
-    certificationDescription = models.CharField(max_length=255)
-    expirationDate = models.DateField()
+    certification_description = models.CharField(max_length=255)
+    expiration_date = models.DateField()
 
 class WomenOwnedBusiness(models.Model):
-    Business = models.CharField(max_length=255, null=False, blank=False)
+    business = models.CharField(max_length=255, null=False, blank=False)
     council =  models.CharField(max_length=255)
     # ethnicity = models.CharField(max_length=255)
-    certificationDescription = models.CharField(max_length=255)
-    expirationDate = models.DateField()
+    certification_description = models.CharField(max_length=255)
+    expiration_date = models.DateField()
 
 class VeteranOwnedBusiness(models.Model):
-    Business = models.CharField(max_length=255, null=False, blank=False)
+    business = models.CharField(max_length=255, null=False, blank=False)
     council =  models.CharField(max_length=255)
     # ethnicity = models.CharField(max_length=255)
-    certificationDescription = models.CharField(max_length=255)
-    expirationDate = models.DateField()
+    certification_description = models.CharField(max_length=255)
+    expiration_date = models.DateField()
 
 class OtherCertification(models.Model):
-    Business = models.CharField(max_length=255, null=False, blank=False)
+    business = models.CharField(max_length=255, null=False, blank=False)
     council =  models.CharField(max_length=255)
     # ethnicity = models.CharField(max_length=255)
-    certificationDescription = models.CharField(max_length=255)
-    expirationDate = models.DateField()
+    certification_description = models.CharField(max_length=255)
+    expiration_date = models.DateField()
 
 class Country(models.Model):
-    countryName = models.CharField(max_length=255, null=False, blank=False)
+    country_name = models.CharField(max_length=255, null=False, blank=False)
 
 class GeneralContactInfo(models.Model):
-    companyName = models.CharField(max_length=255, null=False, blank=False)
-    websiteUrl = models.CharField(max_length=255, null=False, blank=False)
+    company_name = models.CharField(max_length=255, null=False, blank=False)
+    website_url = models.CharField(max_length=255, null=False, blank=False)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     address1 = models.CharField(max_length=255, null=False, blank=False)
     address2 = models.CharField(max_length=255, null=False, blank=False)
     city = models.CharField(max_length=255, null=False, blank=False)
     state = models.CharField(max_length=255, null=False, blank=False)
-    zipCode = models.IntegerField(null=False, blank=False)
-    SalesContact = models.ForeignKey(SalesContact, on_delete=models.CASCADE)
-    GeneralContact = models.ForeignKey(GeneralContact, on_delete=models.CASCADE)
+    zip_code = models.IntegerField(null=False, blank=False)
+    sales_contact = models.ForeignKey(SalesContact, on_delete=models.CASCADE)
+    general_contact = models.ForeignKey(GeneralContact, on_delete=models.CASCADE)
 
 class DiverseCertification(models.Model):
-    MinorityOwnedBusiness = models.ForeignKey(BusinessAndCertification, on_delete=models.CASCADE)
-    WomenOwnedBusiness = models.ForeignKey(WomenOwnedBusiness, on_delete=models.CASCADE)
-    VeteranOwnedBusiness = models.ForeignKey(VeteranOwnedBusiness, on_delete=models.CASCADE)
-    OtherCertification = models.ForeignKey(OtherCertification, on_delete=models.CASCADE)
+    minority_owned_business = models.ForeignKey(BusinessAndCertification, on_delete=models.CASCADE)
+    women_owned_business = models.ForeignKey(WomenOwnedBusiness, on_delete=models.CASCADE)
+    veteran_owned_business = models.ForeignKey(VeteranOwnedBusiness, on_delete=models.CASCADE)
+    other_certification = models.ForeignKey(OtherCertification, on_delete=models.CASCADE)
 
 class OEMS(models.Model):
     name = models.CharField(max_length=255)
@@ -91,25 +91,25 @@ class NaLocation(models.Model):
 
 class ProductionCapabilities(models.Model):
     isOem = models.BooleanField(null=False, blank=False)
-    OEMS = models.ForeignKey(OEMS, on_delete=models.CASCADE)
-    AbcSupplier = models.BooleanField(null=False, blank=False)
-    vendorNumber = models.IntegerField()
-    anyOtherTier1AutomotiveCompany = models.BooleanField()
-    VMI = models.BooleanField(default=False)
-    JIT = models.BooleanField(default=False)
-    percentageSale = models.IntegerField()
-    significantAwards = models.CharField(max_length=1055, null=False, blank=False)
-    customerName1 = models.CharField(max_length=255, null=False, blank=False)
+    oems = models.ForeignKey(OEMS, on_delete=models.CASCADE)
+    abc_supplier = models.BooleanField(null=False, blank=False)
+    vendor_number = models.IntegerField()
+    any_other_tier1_automotive_company = models.BooleanField()
+    nmi = models.BooleanField(default=False)
+    jit = models.BooleanField(default=False)
+    percentage_sale = models.IntegerField()
+    significant_awards = models.CharField(max_length=1055, null=False, blank=False)
+    customer_name1 = models.CharField(max_length=255, null=False, blank=False)
     sales1 = models.IntegerField(null=False, blank=False)
     automotive1 = models.BooleanField(null=False, blank=False)
-    customerName2 = models.CharField(max_length=255, null=False, blank=False)
+    customer_name2 = models.CharField(max_length=255, null=False, blank=False)
     sales2 = models.IntegerField(null=False, blank=False)
     automotive2 = models.BooleanField(null=False, blank=False)
-    customerName3 = models.CharField(max_length=255, null=False, blank=False)
+    customer_name3 = models.CharField(max_length=255, null=False, blank=False)
     sales3 = models.IntegerField(null=False, blank=False)
     automotive3 = models.BooleanField(null=False, blank=False)
-    recordPerNaLocation = models.ForeignKey(NaLocation, on_delete=models.CASCADE)
-    manufacturingLocations = models.CharField(max_length=1055)
+    record_per_naLocation = models.ForeignKey(NaLocation, on_delete=models.CASCADE)
+    manufacturing_locations = models.CharField(max_length=1055)
     event = models.CharField(max_length=1055)
 
 class NpmCategory(models.Model):
@@ -129,14 +129,14 @@ class PmSubCategory(models.Model):
     name = models.CharField(max_length=255)
 
 class ProductAndService(models.Model):
-    npmValue = models.CharField(max_length=255)
-    npmValueCategory1 = models.CharField(max_length=255)
-    npmValueCategory2 = models.CharField(max_length=255)
+    npm_value = models.CharField(max_length=255)
+    npm_value_category1 = models.CharField(max_length=255)
+    npm_value_category2 = models.CharField(max_length=255)
 
-    pmValue = models.CharField(max_length=255)
-    pmValueCategory1 = models.CharField(max_length=255)
-    pmValueCategory2 = models.CharField(max_length=255)
-    additoinalProductAndServices = models.CharField(max_length=1055)
+    pm_value = models.CharField(max_length=255)
+    pm_value_category1 = models.CharField(max_length=255)
+    pm_value_category2 = models.CharField(max_length=255)
+    additoinal_product_and_services = models.CharField(max_length=1055)
 
 class ApplicationResponse(models.Model):
     date = models.DateTimeField(auto_now_add=True, blank=True)
@@ -149,11 +149,11 @@ class ApplicationEmailed(models.Model):
     to = models.CharField(max_length=1055)
 
 class ABCCorporation(models.Model):
-    generalContantInfo = models.ForeignKey(GeneralContactInfo, on_delete=models.CASCADE)
-    diverseCertification = models.ForeignKey(DiverseCertification, on_delete=models.CASCADE)
-    companyDetails = models.ForeignKey(CompanyDetails, on_delete=models.CASCADE)
-    productionCapabilities = models.ForeignKey(ProductionCapabilities, on_delete=models.CASCADE)
-    productAndService = models.ForeignKey(ProductAndService, on_delete=models.CASCADE)
+    general_contant_info = models.ForeignKey(GeneralContactInfo, on_delete=models.CASCADE)
+    diverse_certification = models.ForeignKey(DiverseCertification, on_delete=models.CASCADE)
+    company_details = models.ForeignKey(CompanyDetails, on_delete=models.CASCADE)
+    production_capabilities = models.ForeignKey(ProductionCapabilities, on_delete=models.CASCADE)
+    product_and_service = models.ForeignKey(ProductAndService, on_delete=models.CASCADE)
     response = models.IntegerField(default=0)
     emailed = models.IntegerField(default=0)
 

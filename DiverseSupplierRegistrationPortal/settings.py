@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'DiverseSupplierRegistrationPortal.wsgi.application'
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'supplierDiversity',
+#         'NAME': 'temp1',
 #         'USER': 'postgres',
 #         'PASSWORD': '123456',
 #         'HOST': os.environ.get('DB_HOST'),

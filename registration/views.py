@@ -198,91 +198,90 @@ def Registration(request):
 
 
         salesContact = SalesContact()
-        salesContact.firstName = sales_contact_first_name
-        salesContact.lastName = sales_contact_last_name
+        salesContact.first_name = sales_contact_first_name
+        salesContact.last_name = sales_contact_last_name
         salesContact.email = sales_contact_email
-        salesContact.jobTitle = sales_contact_job_title
-        salesContact.phoneNumber = sales_contact_phone
-        salesContact.MobileNumber = sales_contact_mobile
+        salesContact.job_title = sales_contact_job_title
+        salesContact.phone_number = sales_contact_phone
+        salesContact.mobile_number = sales_contact_mobile
         salesContact.save()
 
         generalContact = GeneralContact()
-        generalContact.firstName = general_contact_first_name
-        generalContact.lastName = general_contact_last_name
+        generalContact.first_name = general_contact_first_name
+        generalContact.last_name = general_contact_last_name
         generalContact.email = general_contact_email
-        generalContact.jobTitle = general_contact_job_title
-        generalContact.phoneNumber = general_contact_phone
-        generalContact.MobileNumber = general_contact_mobile
+        generalContact.job_title = general_contact_job_title
+        generalContact.phone_number = general_contact_phone
+        generalContact.mobile_number = general_contact_mobile
         generalContact.save()
         generalContact = GeneralContact.objects.filter(email=general_contact_email).first()
 
         print("country b", country)
-        country = Country.objects.filter(countryName=country).first()
-        print("country", country)
-        print("generalContact", generalContact)
+        country = Country.objects.filter(country_name=country).first()
+        
 
         generalContactInfo = GeneralContactInfo()
-        generalContactInfo.companyName = campany_name
-        generalContactInfo.websiteUrl = website_url
+        generalContactInfo.company_name = campany_name
+        generalContactInfo.website_url = website_url
         generalContactInfo.address1 = address1
         generalContactInfo.address2 = address2
         generalContactInfo.country = country
         generalContactInfo.city = city
         generalContactInfo.state = state
-        generalContactInfo.zipCode = zip_code
-        generalContactInfo.SalesContact = salesContact
-        generalContactInfo.GeneralContact = generalContact
+        generalContactInfo.zip_code = zip_code
+        generalContactInfo.sales_contact = salesContact
+        generalContactInfo.general_contact = generalContact
         generalContactInfo.save()
 
 
         businessAndCertification = BusinessAndCertification()
-        businessAndCertification.Business = mbe_business
+        businessAndCertification.business = mbe_business
         businessAndCertification.council =  mbe_council
         businessAndCertification.ethnicity = mbe_ethnicity
-        businessAndCertification.certificationDescription = mbe_certificationDescription
-        businessAndCertification.expirationDate = mbe_expirationDate
+        businessAndCertification.certification_description = mbe_certificationDescription
+        businessAndCertification.expiration_date = mbe_expirationDate
         businessAndCertification.save()
 
         womenOwnedBusiness = WomenOwnedBusiness()
         womenOwnedBusiness.Business = wbe_business
         womenOwnedBusiness.council =  wbe_council
         # womenOwnedBusiness.ethnicity = wbe_ethnicity
-        womenOwnedBusiness.certificationDescription = wbe_certificationDescription
-        womenOwnedBusiness.expirationDate = wbe_expirationDate
+        womenOwnedBusiness.certification_description = wbe_certificationDescription
+        womenOwnedBusiness.expiration_date = wbe_expirationDate
         womenOwnedBusiness.save()
 
         veteranOwnedBusiness = VeteranOwnedBusiness()
         veteranOwnedBusiness.Business = vb_business
         veteranOwnedBusiness.council =  vb_council
         # veteranOwnedBusiness.ethnicity = vb_ethnicity
-        veteranOwnedBusiness.certificationDescription = vb_certificationDescription
-        veteranOwnedBusiness.expirationDate = vb_expirationDate
+        veteranOwnedBusiness.certification_description = vb_certificationDescription
+        veteranOwnedBusiness.expiration_date = vb_expirationDate
         veteranOwnedBusiness.save()
 
         otherCertification = OtherCertification()
         otherCertification.Business = other_certification_business
         otherCertification.council =  other_certification_council
         # otherCertification.ethnicity = other_certification_ethnicity
-        otherCertification.certificationDescription = other_certification_certificationDescription
-        otherCertification.expirationDate = other_certification_expirationDate
+        otherCertification.certification_description = other_certification_certificationDescription
+        otherCertification.expiration_date = other_certification_expirationDate
         otherCertification.save()
 
         diverseCertification = DiverseCertification()
-        diverseCertification.MinorityOwnedBusiness = businessAndCertification
-        diverseCertification.WomenOwnedBusiness = womenOwnedBusiness
-        diverseCertification.OtherCertification = otherCertification
-        diverseCertification.VeteranOwnedBusiness = veteranOwnedBusiness
+        diverseCertification.minority_owned_business = businessAndCertification
+        diverseCertification.women_owned_business = womenOwnedBusiness
+        diverseCertification.other_certification = otherCertification
+        diverseCertification.veteran_owned_business = veteranOwnedBusiness
         diverseCertification.save()
 
         companyDetails = CompanyDetails()
-        companyDetails.presentationDescription = presentationDescription
-        companyDetails.numberOfEmployees = numberOfEmployees
-        companyDetails.taxIdVatNumber =  taxIdVatNumber
-        companyDetails.totalAnnaulSales = totalAnnaulSales
-        companyDetails.DunsNumber =  DunsNumber
-        companyDetails.qualityCertification = qualityCertification
-        companyDetails.certificationExpectedDate = certificationExpectedDate
-        companyDetails.operationOutsideUsa = operationOutsideUsa
+        companyDetails.presentation_description = presentationDescription
+        companyDetails.number_of_employees = numberOfEmployees
+        companyDetails.tax_id_vat_number =  taxIdVatNumber
+        companyDetails.total_annaul_sales = totalAnnaulSales
+        companyDetails.duns_number =  DunsNumber
+        companyDetails.quality_certification = qualityCertification
+        companyDetails.certification_expected_date = certificationExpectedDate
+        companyDetails.operation_outside_usa = operationOutsideUsa
         companyDetails.save()
 
         naLocation = NaLocation.objects.filter(name=recordPerNaLocation).first()
@@ -322,46 +321,46 @@ def Registration(request):
             anyOtherTier1AutomotiveCompany = False
         # print(isOem, AbcSupplier, VMI, JIT, automotive1, automotive2, automotive3)
         productionCapabilities.isOem = isOem
-        productionCapabilities.OEMS = oEMS
-        productionCapabilities.AbcSupplier = AbcSupplier
-        productionCapabilities.vendorNumber = vendorNumber
-        productionCapabilities.anyOtherTier1AutomotiveCompany = anyOtherTier1AutomotiveCompany
-        productionCapabilities.VMI = VMI
-        productionCapabilities.JIT = JIT
-        productionCapabilities.percentageSale = percentageSale
-        productionCapabilities.significantAwards = significantAwards
-        productionCapabilities.customerName1 = customerName1
+        productionCapabilities.oems = oEMS
+        productionCapabilities.abc_supplier = AbcSupplier
+        productionCapabilities.vendor_number = vendorNumber
+        productionCapabilities.any_other_tier1_automotive_company = anyOtherTier1AutomotiveCompany
+        productionCapabilities.nmi = VMI
+        productionCapabilities.jit = JIT
+        productionCapabilities.percentage_sale = percentageSale
+        productionCapabilities.significant_awards = significantAwards
+        productionCapabilities.customer_name1 = customerName1
         productionCapabilities.sales1 = sales1
         productionCapabilities.automotive1 = automotive1
-        productionCapabilities.customerName2 = customerName2
+        productionCapabilities.customer_name2 = customerName2
         productionCapabilities.sales2 = sales2
         productionCapabilities.automotive2 = automotive2
-        productionCapabilities.customerName3 = customerName3
+        productionCapabilities.customer_name3 = customerName3
         productionCapabilities.sales3 = sales3
         productionCapabilities.automotive3 = automotive3
-        productionCapabilities.recordPerNaLocation = naLocation
-        productionCapabilities.manufacturingLocations = manufacturingLocations
+        productionCapabilities.record_per_naLocation = naLocation
+        productionCapabilities.manufacturing_locations = manufacturingLocations
         productionCapabilities.event = event
         productionCapabilities.save()
 
         productAndService = ProductAndService()
-        productAndService.npmValue = npmValue
-        productAndService.npmValueCategory1 = npmValueCategory1
-        productAndService.npmValueCategory2 = npmValueCategory2
+        productAndService.npm_value = npmValue
+        productAndService.npm_value_category1 = npmValueCategory1
+        productAndService.npm_value_category2 = npmValueCategory2
         productAndService.save()
 
-        productAndService.pmValue = pmValue
-        productAndService.pmValueCategory1 = pmValueCategory1
-        productAndService.pmValueCategory2 = pmValueCategory2
-        productAndService.additoinalProductAndServices = additoinalProductAndServices
+        productAndService.pm_value = pmValue
+        productAndService.pm_value_category1 = pmValueCategory1
+        productAndService.pm_value_category2 = pmValueCategory2
+        productAndService.additoinal_product_and_services = additoinalProductAndServices
         productAndService.save()
 
         aBCCorporation = ABCCorporation()
-        aBCCorporation.generalContantInfo = generalContactInfo
-        aBCCorporation.diverseCertification = diverseCertification
-        aBCCorporation.companyDetails = companyDetails
-        aBCCorporation.productionCapabilities = productionCapabilities
-        aBCCorporation.productAndService = productAndService
+        aBCCorporation.general_contant_info = generalContactInfo
+        aBCCorporation.diverse_certification = diverseCertification
+        aBCCorporation.company_details = companyDetails
+        aBCCorporation.production_capabilities = productionCapabilities
+        aBCCorporation.product_and_service = productAndService
         aBCCorporation.save()
         messages.success(request, 'Application successfully submitted')
         return render(request, 'Registrationform.html')
@@ -406,9 +405,9 @@ def DetailRecord(request, id):
     # print("all_applications", page_obj)
     # for rec in page_obj:
     #     print(rec.productAndService.npmValue)
-    country = Country.objects.filter(countryName=application.generalContantInfo.country.countryName).first()
+    country = Country.objects.filter(country_name=application.generalContantInfo.country.country_name).first()
     context = {
         'application': application,
-        'country': mapCountryName(country.countryName)
+        'country': mapCountryName(country.country_name)
     }
     return render(request, 'detailRecord.html', context)
