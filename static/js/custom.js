@@ -279,10 +279,10 @@ $.ajax({
         );
         // Oem Chart and settings
         const doughnutDataOem = {
-            labels: [ 'BMW', 'Cummins', 'FCA', 'Ford', 'Fuji', 'GM', 'Honda', 'Hyundai/Kia', 'Mazda', 'Mercedes/ Daimler', 'Mitsubishi', 'Navistar', 'Nisaan', 'Toyota', 'VM' ],
+            labels: response['doughnutDataOemForRecordPerOem'],
             datasets: [{
                 label: 'Oem chart',
-                data: [90, 40, 20, 10, 12, 12, 12, 12, 12, 12, 12, 12, 12, 11, 14, 15],
+                data: response['doughnutDataOemForRecordPerOemData'],
                 backgroundColor: [  'rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)','rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)','rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)','rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)' ],
                 hoverOffset: 4
             }]
@@ -297,10 +297,10 @@ $.ajax({
         );
 
         const NpmData = {
-            labels: [ 'Auxiliaries and supplies', 'IT and Telecommunication', 'IT and Telecommunication(cont.)', 'Production Equipment and Engineering, Buildings and Vehicles','Production Equipment and Engineering, Buildings and Vehicles (cont.)', 'Corporate Service and Related Supplies', 'Logistical Services', 'Logistical Services(cont.)' ],
+            labels: response['doughnutDataOemForNPM'],
             datasets: [{
                 label: 'Oem chart',
-                data: [90, 40, 20, 10, 12, 12, 12, 12],
+                data: response['doughnutDataForNPM'],
                 backgroundColor: [  'rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)','rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(255, 159, 64)' ],
                 hoverOffset: 4
             }]
@@ -315,10 +315,10 @@ $.ajax({
         );
 
         const PmData = {
-            labels: [ 'Raw Material', 'Casting', 'Non Cast Metal Parts', 'Miscelleanous','Plastic Parts', 'Rubber Parts', 'Electronics (cont.)', 'Electro-mech Parts' ],
+            labels: response['doughnutDataOemForPM'],
             datasets: [{
                 label: 'Oem chart',
-                data: [90, 40, 20, 10, 12, 12, 12, 12],
+                data: response['doughnutDataForPM'],
                 backgroundColor: [  'rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)','rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(255, 159, 64)' ],
                 hoverOffset: 4
             }]
