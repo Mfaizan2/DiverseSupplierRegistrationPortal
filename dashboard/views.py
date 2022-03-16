@@ -14,6 +14,10 @@ def dashboard(request):
 
 def diverseCertificationData(request):
     print("Hhhh")
+    GeneralContactInfoT = GeneralContactInfo.objects.filter(company_name='fnmnm').first()
+    print("GeneralContactInfoT",GeneralContactInfoT)
+
+
     labels = [ 'Minority-Owned Business', 'Women-Owned Business', 'Veteran-Owned Business', 'Other Certification' ]
     
     BusinessAndCertificationYes = BusinessAndCertification.objects.filter(business='yes').count()
@@ -38,12 +42,25 @@ def diverseCertificationData(request):
 
     ApplicationsEmailed = ABCCorporation.objects.filter(~Q(emailed=0)).count()
 
-    cursor = connection.cursor()
-    cursor.execute('''SELECT name FROM registration_oems group by name''')
-    row = cursor.fetchone()
-    if row:
-        row = list(row)
-    doughnutDataOemForRecordPerOem = row
+
+
+    totalOemsIds = ProductionCapabilities.objects.values('oems_id').order_by('oems_id')
+
+    print("totalOemsIds", totalOemsIds)
+
+    totalOemsIdsArray = []
+    
+    for r in range(0,len(totalOemsIds)):
+        totalOemsIdsArray.append(totalOemsIds[r]['oems_id'])
+
+    totalOems = OEMS.objects.filter(id__in=totalOemsIdsArray)
+
+    print("temp", totalOems)
+
+    doughnutDataOemForRecordPerOem = []
+
+    for r in range(0,len(totalOems)):
+        doughnutDataOemForRecordPerOem.append(totalOems[r].name)
 
     doughnutDataOemForRecordPerOemData = []
 
@@ -53,6 +70,7 @@ def diverseCertificationData(request):
             doughnutDataOemForRecordPerOemData.append(temp)
 
 
+    cursor = connection.cursor()
     cursor.execute('''SELECT npm_value FROM registration_productandservice group by npm_value''')
     row = cursor.fetchone()
     if row:
