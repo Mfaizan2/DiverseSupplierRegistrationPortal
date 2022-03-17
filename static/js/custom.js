@@ -239,14 +239,12 @@ $.ajax({
             barConfigForApplicationStates
         );
 
-        var labelsForRecordPerCountry =  [ 'United State', 'Canada', 'Mexico']
-        var dataForRecordPerCountry = [100, 50, 100]
         // Doughnut Chart and settings
         const doughnutDataForRecordPerCountry = {
-            labels: labelsForRecordPerCountry,
+            labels: response['totalCountriesArray'],
             datasets: [{
                 label: 'Counteries',
-                data: dataForRecordPerCountry,
+                data: response['totalCountriesCount'],
                 backgroundColor: [ 'rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
                 hoverOffset: 4
             }]
@@ -261,10 +259,10 @@ $.ajax({
         );
         // Location Chart and settings
         const doughnutDataLocation = {
-            labels: [ 'United State', 'Canada', 'Mexico','Global' ],
+            labels: response['totalNaLocationArray'],
             datasets: [{
                 label: 'Global chart',
-                data: [100,12,12,3],
+                data: response['totalNaLocationCount'],
                 backgroundColor: [ 'rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)','rgb(49 59 84)'],
                 hoverOffset: 4
             }]
@@ -279,10 +277,10 @@ $.ajax({
         );
         // Oem Chart and settings
         const doughnutDataOem = {
-            labels: response['doughnutDataOemForRecordPerOem'],
+            labels: response['totalOemsArray'],
             datasets: [{
                 label: 'Oem chart',
-                data: response['doughnutDataOemForRecordPerOemData'],
+                data: response['totalOemsArrayCount'],
                 backgroundColor: [  'rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)','rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)','rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)','rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)' ],
                 hoverOffset: 4
             }]
@@ -297,10 +295,10 @@ $.ajax({
         );
 
         const NpmData = {
-            labels: response['doughnutDataOemForNPM'],
+            labels: response['totalNpmValuesArray'],
             datasets: [{
                 label: 'Oem chart',
-                data: response['doughnutDataForNPM'],
+                data: response['totalNpmValuesCount'],
                 backgroundColor: [  'rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)','rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(255, 159, 64)' ],
                 hoverOffset: 4
             }]
@@ -315,10 +313,10 @@ $.ajax({
         );
 
         const PmData = {
-            labels: response['doughnutDataOemForPM'],
+            labels: response['totalPmValuesArray'],
             datasets: [{
                 label: 'Oem chart',
-                data: response['doughnutDataForPM'],
+                data: response['totalPmValuesCount'],
                 backgroundColor: [  'rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)','rgb(49 59 84)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(255, 159, 64)' ],
                 hoverOffset: 4
             }]

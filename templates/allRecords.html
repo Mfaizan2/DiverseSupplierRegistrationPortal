@@ -39,7 +39,7 @@
                             <tbody>
                             {% for rec in page_obj %}
                                 <tr>
-                                    <td>{{rec.generalContantInfo.company_name}}</td>
+                                    <td>{{rec.general_contant_info.company_name}}</td>
                                     <td>{{rec.product_and_service.npm_value}} > {{rec.product_and_service.npm_value_category1}} > {{rec.product_and_service.npm_value_category2}}</td>
                                     <td>{{rec.product_and_service.pm_value}} > {{rec.product_and_service.pm_value_category1}} > {{rec.product_and_service.pm_value_category2}}</td>
                                     <td>{{rec.production_capabilities.oems.name}}</td>
