@@ -379,8 +379,7 @@ def AllRecords(request):
     page_number = 1 #request.GET.get('page')
     page_obj = Paginator.get_page(paginator, page_number)
     print("all_applications", page_obj)
-    for rec in page_obj:
-        print(rec.productAndService.npmValue)
+
     context = {
         'expenses': all_applications,
         'page_obj': page_obj
@@ -396,16 +395,9 @@ def mapCountryName(name):
         return "Maxico"
 
 def DetailRecord(request, id):
-    print("kmk", id)
     application = ABCCorporation.objects.filter(id=id).first()
-    print(application)
-    # paginator = Paginator(all_applications, 10)
-    # page_number = 1 #request.GET.get('page')
-    # page_obj = Paginator.get_page(paginator, page_number)
-    # print("all_applications", page_obj)
-    # for rec in page_obj:
-    #     print(rec.productAndService.npmValue)
-    country = Country.objects.filter(country_name=application.generalContantInfo.country.country_name).first()
+
+    country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
     context = {
         'application': application,
         'country': mapCountryName(country.country_name)
