@@ -39,12 +39,12 @@
                             <tbody>
                             {% for rec in page_obj %}
                                 <tr>
-                                    <td>{{rec.generalContantInfo.companyName}}</td>
-                                    <td>{{rec.productAndService.npmValue}} > {{rec.productAndService.npmValueCategory1}} > {{rec.productAndService.npmValueCategory2}}</td>
-                                    <td>{{rec.productAndService.pmValue}} > {{rec.productAndService.pmValueCategory1}} > {{rec.productAndService.pmValueCategory2}}</td>
-                                    <td>{{rec.productionCapabilities.OEMS.name}}</td>
-                                    <td>{{rec.productionCapabilities.AbcSupplier}}</td>
-                                    <td>{{rec.productionCapabilities.recordPerNaLocation.name}}</td>
+                                    <td>{{rec.generalContantInfo.company_name}}</td>
+                                    <td>{{rec.product_and_service.npm_value}} > {{rec.product_and_service.npm_value_category1}} > {{rec.product_and_service.npm_value_category2}}</td>
+                                    <td>{{rec.product_and_service.pm_value}} > {{rec.product_and_service.pm_value_category1}} > {{rec.product_and_service.pm_value_category2}}</td>
+                                    <td>{{rec.production_capabilities.oems.name}}</td>
+                                    <td>{{rec.production_capabilities.abc_supplier}}</td>
+                                    <td>{{rec.production_capabilities.record_per_naLocation.name}}</td>
                                     <td>No</td>
                                     <td>2 Times</td>
                                     <td><a href="{% url 'detailRecord' rec.id %}"><i class="bi bi-eye-fill"></i>{{rec.id}}</a></td>
