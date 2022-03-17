@@ -13,7 +13,9 @@ def dashboard(request):
 
 
 def diverseCertificationData(request):
-    print("Hhhh")
+    GeneralContactInfoT = GeneralContactInfo.objects.filter(company_name='fnmnm').first()
+
+
     labels = [ 'Minority-Owned Business', 'Women-Owned Business', 'Veteran-Owned Business', 'Other Certification' ]
     
     BusinessAndCertificationYes = BusinessAndCertification.objects.filter(business='yes').count()
@@ -38,12 +40,23 @@ def diverseCertificationData(request):
 
     ApplicationsEmailed = ABCCorporation.objects.filter(~Q(emailed=0)).count()
 
-    cursor = connection.cursor()
-    cursor.execute('''SELECT name FROM registration_oems group by name''')
-    row = cursor.fetchone()
-    if row:
-        row = list(row)
-    doughnutDataOemForRecordPerOem = row
+
+
+    totalOemsIds = ProductionCapabilities.objects.values('oems_id').order_by('oems_id')
+
+
+    totalOemsIdsArray = []
+    
+    for r in range(0,len(totalOemsIds)):
+        totalOemsIdsArray.append(totalOemsIds[r]['oems_id'])
+
+    totalOems = OEMS.objects.filter(id__in=totalOemsIdsArray)
+
+
+    doughnutDataOemForRecordPerOem = []
+
+    for r in range(0,len(totalOems)):
+        doughnutDataOemForRecordPerOem.append(totalOems[r].name)
 
     doughnutDataOemForRecordPerOemData = []
 
@@ -53,32 +66,37 @@ def diverseCertificationData(request):
             doughnutDataOemForRecordPerOemData.append(temp)
 
 
-    cursor.execute('''SELECT npm_value FROM registration_productandservice group by npm_value''')
-    row = cursor.fetchone()
-    if row:
-        row = list(row)
 
-    doughnutDataOemForNPM = row
+
+    # ProductionCapabilities.objects.values('oems_id').order_by('oems_id')
+    temp = ProductAndService.objects.values('npm_value').order_by('npm_value')
+
+    doughnutDataOemForNPMArray = []
+    
+    for m in range(0,len(temp)):
+        doughnutDataOemForNPMArray.append(temp[m]['npm_value'])
+
+    doughnutDataOemForNPM = doughnutDataOemForNPMArray
 
     doughnutDataForNPM = []
 
 
     if doughnutDataOemForNPM:
         for r in range(0,len(doughnutDataOemForNPM)):
-            # temp = ProductAndService.objects.filter(npmValue=doughnutDataOemForNPM[r]).count()
-            query = "SELECT count(*) FROM registration_productandservice where npm_value='{}'".format(doughnutDataOemForNPM[r])
-            cursor.execute(query)
-            temp = cursor.fetchone()
-            temp = list(temp)
-            doughnutDataForNPM.append(temp[0])
+            totalCount = ProductAndService.objects.filter(npm_value=doughnutDataOemForNPM[r]).count()
+            doughnutDataForNPM.append(totalCount)
 
 
-    cursor.execute('''SELECT pm_value FROM registration_productandservice group by pm_value''')
-    row = cursor.fetchone()
-    if row:
-        row = list(row)
 
-    doughnutDataOemForPM = row
+
+    temp = ProductAndService.objects.values('pm_value').order_by('pm_value')
+
+    doughnutDataOemForPMArray = []
+
+    for m in range(0,len(temp)):
+        doughnutDataOemForPMArray.append(temp[m]['pm_value'])
+
+    doughnutDataOemForPM = doughnutDataOemForPMArray
 
     doughnutDataForPM = []
 
@@ -86,11 +104,12 @@ def diverseCertificationData(request):
     if doughnutDataOemForPM:
         for r in range(0,len(doughnutDataOemForPM)):
             # temp = ProductAndService.objects.filter(npmValue=doughnutDataOemForNPM[r]).count()
-            query = "SELECT count(*) FROM registration_productandservice where npm_value='{}'".format(doughnutDataOemForNPM[r])
-            cursor.execute(query)
-            temp = cursor.fetchone()
-            temp = list(temp)
-            doughnutDataForPM.append(temp[0])
+            # query = "SELECT count(*) FROM registration_productandservice where npm_value='{}'".format(doughnutDataOemForPM[r])
+            # cursor.execute(query)
+            # temp = cursor.fetchone()
+            # temp = list(temp)
+            totalCount = ProductAndService.objects.filter(pm_value=doughnutDataOemForPM[r]).count()
+            doughnutDataForPM.append(totalCount)
 
 
 
