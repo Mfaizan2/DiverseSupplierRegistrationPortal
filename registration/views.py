@@ -593,6 +593,7 @@ def UploadExcelFile(request):
 
 
         vb_business = data["Is your company a veteran-owned business"]
+        print("vb_business", vb_business[0])
         vb_council = data['VOB council']
         vb_certificationDescription = data['VOB Certification Description']
         vb_expirationDate = data['VOB Expiration Date']
@@ -689,7 +690,7 @@ def UploadExcelFile(request):
             businessAndCertification.save()
 
             womenOwnedBusiness = WomenOwnedBusiness()
-            womenOwnedBusiness.Business = wbe_business[index]
+            womenOwnedBusiness.business = wbe_business[index]
             womenOwnedBusiness.council =  wbe_council[index]
             # womenOwnedBusiness.ethnicity = wbe_ethnicity
             womenOwnedBusiness.certification_description = wbe_certificationDescription[index]
@@ -699,7 +700,8 @@ def UploadExcelFile(request):
             womenOwnedBusiness.save()
 
             veteranOwnedBusiness = VeteranOwnedBusiness()
-            veteranOwnedBusiness.Business = vb_business[index]
+            print("vb_business[index]", vb_business[index])
+            veteranOwnedBusiness.business = vb_business[index]
             veteranOwnedBusiness.council =  vb_council[index]
             # veteranOwnedBusiness.ethnicity = vb_ethnicity
             veteranOwnedBusiness.certification_description = vb_certificationDescription[index]
@@ -709,7 +711,7 @@ def UploadExcelFile(request):
             veteranOwnedBusiness.save()
 
             otherCertification = OtherCertification()
-            otherCertification.Business = other_certification_business[index]
+            otherCertification.business = other_certification_business[index]
             otherCertification.council =  other_certification_council[index]
             # otherCertification.ethnicity = other_certification_ethnicity
             otherCertification.certification_description = other_certification_certificationDescription[index]

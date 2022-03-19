@@ -108,20 +108,20 @@ def diverseCertificationData(request):
 
     labels = [ 'Minority-Owned Business', 'Women-Owned Business', 'Veteran-Owned Business', 'Other Certification' ]
     
-    BusinessAndCertificationYes = BusinessAndCertification.objects.filter(business='yes').count()
-    BusinessAndCertificationNo = BusinessAndCertification.objects.filter(business='no').count()
+    BusinessAndCertificationYes = BusinessAndCertification.objects.filter(business='Yes').count()
+    BusinessAndCertificationNo = BusinessAndCertification.objects.filter(business='No').count()
     BusinessAndCertificationInProgress = BusinessAndCertification.objects.filter(business='In Progress').count()
 
-    WomenOwnedBusinessYes = WomenOwnedBusiness.objects.filter(business='yes').count()
-    WomenOwnedBusinessNo = WomenOwnedBusiness.objects.filter(business='no').count()
+    WomenOwnedBusinessYes = WomenOwnedBusiness.objects.filter(business='Yes').count()
+    WomenOwnedBusinessNo = WomenOwnedBusiness.objects.filter(business='No').count()
     WomenOwnedBusinessInProgress = WomenOwnedBusiness.objects.filter(business='In Progress').count()
 
-    VeteranOwnedBusinessYes = VeteranOwnedBusiness.objects.filter(business='yes').count()
-    VeteranOwnedBusinessNo = VeteranOwnedBusiness.objects.filter(business='no').count()
+    VeteranOwnedBusinessYes = VeteranOwnedBusiness.objects.filter(business='Yes').count()
+    VeteranOwnedBusinessNo = VeteranOwnedBusiness.objects.filter(business='No').count()
     VeteranOwnedBusinessInProgress = VeteranOwnedBusiness.objects.filter(business='In Progress').count()
 
-    OtherCertificationYes = OtherCertification.objects.filter(business='yes').count()
-    OtherCertificationNo = OtherCertification.objects.filter(business='no').count()
+    OtherCertificationYes = OtherCertification.objects.filter(business='Yes').count()
+    OtherCertificationNo = OtherCertification.objects.filter(business='No').count()
     OtherCertificationInProgress = OtherCertification.objects.filter(business='In Progress').count()
     
     ApplicationReceived = ABCCorporation.objects.all().count()
