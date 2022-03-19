@@ -484,6 +484,43 @@ def DownloadSampleExcelFile(request):
     wb.save(response)
     return response
 
+def UnmapNpm(id):
+    if id=="Auxiliaries and supplies":
+        return 1
+    elif id == "IT and Telecommunication":
+        return 2
+    elif id == "IT and Telecommunication(cont.)":
+        return 3
+    elif id == "Production Equipment and Engineering, Buildings and Vehicles":
+        return 4
+    elif id == "Production Equipment and Engineering, Buildings and Vehicles (cont.)":
+        return 5
+    elif id == "Corporate Services and Related Supplies":
+        return 6
+    elif id == "Logistical Services":
+        return 7
+    elif id == "Logistical Services (cont.)":
+        return 8
+
+def UnmapPm(id):
+    if id=="Raw Material":
+        return 1
+    elif id == "Casting":
+        return 2
+    elif id == "Non Cast Metal Parts":
+        return 3
+    elif id == "Miscelleanous":
+        return 4
+    elif id == "Plastic Parts":
+        return 5
+    elif id == "Rubber Parts":
+        return 6
+    elif id == "Electronics":
+        return 7
+    elif id == "Electronics (cont.)":
+        return 8
+    elif id == "Electro-mech Parts":
+        return 9
 
 
 def UploadExcelFile(request):
@@ -508,104 +545,297 @@ def UploadExcelFile(request):
     #         row_data.append(str(cell.value))
     #     excel_data.append(row_data)
 
-    excel_file = request.FILES['excel_file']
-    print("excel_file", excel_file)
-    data = ""
-    # except MultiValueDictKeyError:
-    # return redirect(<your_upload_file_failed_url>)
-    if (str(excel_file).split('.')[-1] == "csv"):
-        data= pd.read_csv(excel_file)
+    try:
+        excel_file = request.FILES['excel_file']
+        print("excel_file", excel_file)
+        data = ""
+        # except MultiValueDictKeyError:
+        # return redirect(<your_upload_file_failed_url>)
+        if (str(excel_file).split('.')[-1] == "csv"):
+            data= pd.read_csv(excel_file)
 
 
 
-    campany_name = data['Company Name']
-    website_url = data['Website URL']
-
-    for index in range(0,len(campany_name)):
-        print(campany_name[index])
-        print(website_url[index])
-
-
-    sales_contact_job_title = data['Sales Job Title']
-    sales_contact_phone = data['Sales Office Phone']
-    sales_contact_mobile = data['Sales Mobile Phone']
-
-    general_contact_first_name = ['General First Name']
-    general_contact_last_name = ['General Last Name']
-    general_contact_email = ['General Email Address']
-    general_contact_phone = ['General Office Phone']
-    general_contact_mobile = ['General Mobile Phone']
-
-    mbe_business = ["Is your company certified by the National Minority Supplier Development Council (NMSDC) or one of it's affiliates?"]
-    mbe_council = ['MOB council']
-    mbe_ethnicity = ['Ethnicity']
-    mbe_certificationDescription = ['MOB Certification Description']
-    mbe_expirationDate = ['MOB Expiration Date']
-
-    wbe_business = data["Is your company certified by the Women's Business Enterprise National Council Development Council (WBENC) or one of it's affiliates? *"]
-    wbe_council = data['WOB council']
-    wbe_certificationDescription = data['WOB Certification Description']
-    wbe_expirationDate = data['WOB Expiration Date']
+        campany_name = data['Company Name']
+        website_url = data['Website URL']
+        address1 = data['Address 1']
+        address2 = data['Address 2']
+        country = data['Country']
+        city = data['City']
+        state = data['State']
+        zip_code = data['Postal Code']
 
 
-    vb_business = data["Is your company a veteran-owned business"]
-    vb_council = data['VOB council']
-    vb_certificationDescription = data['VOB Certification Description']
-    vb_expirationDate = data['VOB Expiration Date']
+        sales_contact_job_title = data['Sales Job Title']
+        sales_contact_phone = data['Sales Office Phone']
+        sales_contact_mobile = data['Sales Mobile Phone']
+        sales_contact_first_name = data['Sales First Name']
+        sales_contact_last_name = data['Sales Last Name']
+        sales_contact_email = data['Sales Email Address']
 
-    other_certification_business = data["Is your company certified by another organization?"]
-    other_certification_council = data['OC council']
-    other_certification_certificationDescription = data['OC Certification Description']
-    other_certification_expirationDate = data['OC Expiration Date']
+        general_contact_first_name = data['General First Name']
+        general_contact_last_name = data['General Last Name']
+        general_contact_job_title = data['General Job Title']
+        general_contact_email = data['General Email Address']
+        general_contact_phone = data['General Office Phone']
+        general_contact_mobile = data['General Mobile Phone']
 
-    presentationDescription = data['Description']
-    numberOfEmployees = data['Number of Employees']
-    taxIdVatNumber = data['Tax ID/ VAT Number']
-    totalAnnaulSales = data['Total Annual Sales']
-    DunsNumber = data['DUNS Number']
-    qualityCertification = data['quality certifications']
-    certificationExpectedDate = data['If certification in process, list date expected to finalize']
-    operationOutsideUsa = data['Operations outside USA']
+        mbe_business = data["Is your company certified by the National Minority Supplier Development Council (NMSDC) or one of it's affiliates?"]
+        mbe_council = data['MOB council']
+        mbe_ethnicity = data['Ethnicity']
+        mbe_certificationDescription = data['MOB Certification Description']
+        mbe_expirationDate = data['MOB Expiration Date']
 
-    isOem = data["Do you currently supply to any OEM's?"]
-    oEMS = data['OEMs']
-    AbcSupplier = data['Are you a current supplier to ABC Corporation or have you supplied to ABC Corporation in the past?']
-    vendorNumber = data['Vendor Number']
-    anyOtherTier1AutomotiveCompany = data['Do you supply to any other Tier 1 automotive companies?']
-    VMI = data['Do you offer Consignment or Vendor Managed Inventory (VMI) ?']
-    JIT = data['Do you offer Just In Time (JIT) delivery?']
-    percentageSale = data['What is the % of sales that are automotive?']
-    significantAwards = data['List any significant awards/ recognition your company has received']
-    customerName1 = data['Customer Name 1']
-    sales1 = data['% of Sales 1']
-    automotive1 = data['Automotive - Yes or No 1']
-    customerName2 = data['Customer Name 2']
-    sales2 = data['% of Sales 2']
-    automotive2 = data['Automotive - Yes or No 2']
-    customerName3 = data['Customer Name 3']
-    sales3 = data['% of Sales 3']
-    automotive3 = data['Automotive - Yes or No 3']
-    naLocation = data['Please select all ABC Corporation NA locations you can effectively service *']
-    manufacturingLocations = data['For suppliers providing production parts, please list ALL manufacturing locations']
-    event = data['What event did you meet ABC Corporation?']
-
-    temp = data['Non Production Material e.g (category>subcategory1>subcategory2,category>subcategory1>subcategory2)']
-    print("temp", temp)
-    temp = str(temp).split('>')
-    npmValue = temp[0]
-    npmValueCategory1 = temp[1]
-    npmValueCategory2 = temp[2]
-
-    temp = data['Production Material e.g (category>subcategory1>subcategory2,category>subcategory1>subcategory2)']
-    temp = str(temp).split('>')
-    pmValue = temp[0]
-    pmValueCategory1 = temp[1]
-    pmValueCategory2 = temp[2]
-    additoinalProductAndServices = data['Additional Products and Services: List any additional products and services that you can provide but could not find listed above, Separate each item with a comma (,)']
+        wbe_business = data["Is your company certified by the Women's Business Enterprise National Council Development Council (WBENC) or one of it's affiliates? *"]
+        wbe_council = data['WOB council']
+        wbe_certificationDescription = data['WOB Certification Description']
+        wbe_expirationDate = data['WOB Expiration Date']
 
 
+        vb_business = data["Is your company a veteran-owned business"]
+        vb_council = data['VOB council']
+        vb_certificationDescription = data['VOB Certification Description']
+        vb_expirationDate = data['VOB Expiration Date']
+
+        other_certification_business = data["Is your company certified by another organization?"]
+        other_certification_council = data['OC council']
+        other_certification_certificationDescription = data['OC Certification Description']
+        other_certification_expirationDate = data['OC Expiration Date']
+
+        presentationDescription = data['Description']
+        numberOfEmployees = data['Number of Employees']
+        taxIdVatNumber = data['Tax ID/ VAT Number']
+        totalAnnaulSales = data['Total Annual Sales']
+        DunsNumber = data['DUNS Number']
+        qualityCertification = data['quality certifications']
+        certificationExpectedDate = data['If certification in process, list date expected to finalize']
+        operationOutsideUsa = data['Operations outside USA']
+
+        isOem = data["Do you currently supply to any OEM's?"]
+        oEMS = data['OEMs']
+        AbcSupplier = data['Are you a current supplier to ABC Corporation or have you supplied to ABC Corporation in the past?']
+        vendorNumber = data['Vendor Number']
+        anyOtherTier1AutomotiveCompany = data['Do you supply to any other Tier 1 automotive companies?']
+        VMI = data['Do you offer Consignment or Vendor Managed Inventory (VMI) ?']
+        JIT = data['Do you offer Just In Time (JIT) delivery?']
+        percentageSale = data['What is the % of sales that are automotive?']
+        significantAwards = data['List any significant awards/ recognition your company has received']
+        customerName1 = data['Customer Name 1']
+        sales1 = data['% of Sales 1']
+        automotive1 = data['Automotive - Yes or No 1']
+        customerName2 = data['Customer Name 2']
+        sales2 = data['% of Sales 2']
+        automotive2 = data['Automotive - Yes or No 2']
+        customerName3 = data['Customer Name 3']
+        sales3 = data['% of Sales 3']
+        automotive3 = data['Automotive - Yes or No 3']
+        naLocation = data['Please select all ABC Corporation NA locations you can effectively service *']
+        manufacturingLocations = data['For suppliers providing production parts, please list ALL manufacturing locations']
+        event = data['What event did you meet ABC Corporation?']
+
+        npmValue = data['Non Production Material e.g (category>subcategory1>subcategory2,category>subcategory1>subcategory2)']
+
+        pmValue = data['Production Material e.g (category>subcategory1>subcategory2,category>subcategory1>subcategory2)']
+
+        additoinalProductAndServices = data['Additional Products and Services: List any additional products and services that you can provide but could not find listed above, Separate each item with a comma (,)']
 
 
+        for index in range(0,len(campany_name)):
+            salesContact = SalesContact()
+            salesContact.first_name = sales_contact_first_name[index]
+            salesContact.last_name = sales_contact_last_name[index]
+            salesContact.email = sales_contact_email[index]
+            salesContact.job_title = sales_contact_job_title[index]
+            salesContact.phone_number = sales_contact_phone[index]
+            salesContact.mobile_number = sales_contact_mobile[index]
+            salesContact.save()
+
+            generalContact = GeneralContact()
+            generalContact.first_name = general_contact_first_name[index]
+            generalContact.last_name = general_contact_last_name[index]
+            generalContact.email = general_contact_email[index]
+            generalContact.job_title = general_contact_job_title[index]
+            generalContact.phone_number = general_contact_phone[index]
+            generalContact.mobile_number = general_contact_mobile[index]
+            generalContact.save()
+            generalContact = GeneralContact.objects.filter(email=general_contact_email[index]).first()
+
+            tempCountry = Country.objects.filter(country_name=country[index]).first()
+
+
+            generalContactInfo = GeneralContactInfo()
+            generalContactInfo.company_name = campany_name[index]
+            generalContactInfo.website_url = website_url[index]
+            generalContactInfo.address1 = address1[index]
+            generalContactInfo.address2 = address2[index]
+            generalContactInfo.country = tempCountry
+            generalContactInfo.city = city[index]
+            generalContactInfo.state = state[index]
+            generalContactInfo.zip_code = zip_code[index]
+            generalContactInfo.sales_contact = salesContact
+            generalContactInfo.general_contact = generalContact
+            generalContactInfo.save()
+
+
+            businessAndCertification = BusinessAndCertification()
+            businessAndCertification.business = mbe_business[index]
+            businessAndCertification.council =  mbe_council[index]
+            businessAndCertification.ethnicity = mbe_ethnicity[index]
+            businessAndCertification.certification_description = mbe_certificationDescription[index]
+            temp_date = str(mbe_expirationDate[index]).split('/')
+            mbe_expirationDate[index] = datetime.date(int(temp_date[2]), int(temp_date[1]), int(temp_date[0]))
+            businessAndCertification.expiration_date = mbe_expirationDate[index]
+            print("mbe_expirationDate[index]", mbe_expirationDate[index])
+            businessAndCertification.save()
+
+            womenOwnedBusiness = WomenOwnedBusiness()
+            womenOwnedBusiness.Business = wbe_business[index]
+            womenOwnedBusiness.council =  wbe_council[index]
+            # womenOwnedBusiness.ethnicity = wbe_ethnicity
+            womenOwnedBusiness.certification_description = wbe_certificationDescription[index]
+            temp_date = str(wbe_expirationDate[index]).split('/')
+            wbe_expirationDate[index] = datetime.date(int(temp_date[2]), int(temp_date[1]), int(temp_date[0]))
+            womenOwnedBusiness.expiration_date = wbe_expirationDate[index]
+            womenOwnedBusiness.save()
+
+            veteranOwnedBusiness = VeteranOwnedBusiness()
+            veteranOwnedBusiness.Business = vb_business[index]
+            veteranOwnedBusiness.council =  vb_council[index]
+            # veteranOwnedBusiness.ethnicity = vb_ethnicity
+            veteranOwnedBusiness.certification_description = vb_certificationDescription[index]
+            temp_date = str(vb_expirationDate[index]).split('/')
+            vb_expirationDate[index] = datetime.date(int(temp_date[2]), int(temp_date[1]), int(temp_date[0]))
+            veteranOwnedBusiness.expiration_date = vb_expirationDate[index]
+            veteranOwnedBusiness.save()
+
+            otherCertification = OtherCertification()
+            otherCertification.Business = other_certification_business[index]
+            otherCertification.council =  other_certification_council[index]
+            # otherCertification.ethnicity = other_certification_ethnicity
+            otherCertification.certification_description = other_certification_certificationDescription[index]
+            temp_date = str(other_certification_expirationDate[index]).split('/')
+            other_certification_expirationDate[index] = datetime.date(int(temp_date[2]), int(temp_date[1]), int(temp_date[0]))
+            otherCertification.expiration_date = other_certification_expirationDate[index]
+            otherCertification.save()
+
+            diverseCertification = DiverseCertification()
+            diverseCertification.minority_owned_business = businessAndCertification
+            diverseCertification.women_owned_business = womenOwnedBusiness
+            diverseCertification.other_certification = otherCertification
+            diverseCertification.veteran_owned_business = veteranOwnedBusiness
+            diverseCertification.save()
+
+            companyDetails = CompanyDetails()
+            companyDetails.presentation_description = presentationDescription[index]
+            companyDetails.number_of_employees = numberOfEmployees[index]
+            companyDetails.tax_id_vat_number =  taxIdVatNumber[index]
+            companyDetails.total_annaul_sales = totalAnnaulSales[index]
+            companyDetails.duns_number =  DunsNumber[index]
+            companyDetails.quality_certification = qualityCertification[index]
+            temp_date = str(certificationExpectedDate[index]).split('/')
+            certificationExpectedDate[index] = datetime.date(int(temp_date[2]), int(temp_date[1]), int(temp_date[0]))
+            companyDetails.certification_expected_date = certificationExpectedDate[index]
+            companyDetails.operation_outside_usa = operationOutsideUsa[index]
+            companyDetails.save()
+
+            tempNaLocation = NaLocation.objects.filter(name=naLocation[index]).first()
+
+            productionCapabilities = ProductionCapabilities()
+            if isOem[index] == 'yes' or isOem[index] == 'Yes':
+                isOem[index] = True
+            else:
+                isOem[index] = False
+            if AbcSupplier[index] == 'yes' or AbcSupplier[index] == 'Yes':
+                AbcSupplier[index] = True
+            else:
+                isOem[index] = False
+            if VMI[index] == 'yes' or VMI[index] == 'Yes':
+                VMI[index] = True
+            else:
+                VMI[index] = False
+            if JIT[index] == 'yes' or JIT[index] == 'Yes':
+                JIT[index] = True
+            else:
+                JIT[index] = False
+            if automotive1[index] == 'yes' or automotive1[index] == 'Yes':
+                automotive1[index] = True
+            else:
+                automotive1[index] = False
+            if automotive2[index] == 'yes' or automotive2[index] == 'Yes':
+                automotive2[index] = True
+            else:
+                automotive2[index] = False
+            if automotive3[index] == 'yes' or automotive3[index] == 'Yes':
+                automotive3[index] = True
+            else:
+                automotive3[index] = False
+            if anyOtherTier1AutomotiveCompany[index] == 'yes' or anyOtherTier1AutomotiveCompany[index] == 'Yes':
+                anyOtherTier1AutomotiveCompany[index] = True
+            else:
+                anyOtherTier1AutomotiveCompany[index] = False
+            # print(isOem, AbcSupplier, VMI, JIT, automotive1, automotive2, automotive3)
+            productionCapabilities.isOem = isOem[index]
+            tempOEMS = OEMS.objects.filter(name=oEMS[index]).first()
+            productionCapabilities.oems = tempOEMS
+            productionCapabilities.abc_supplier = AbcSupplier[index]
+            productionCapabilities.vendor_number = vendorNumber[index]
+            productionCapabilities.any_other_tier1_automotive_company = anyOtherTier1AutomotiveCompany[index]
+            productionCapabilities.nmi = VMI[index]
+            productionCapabilities.jit = JIT[index]
+            productionCapabilities.percentage_sale = percentageSale[index]
+            productionCapabilities.significant_awards = significantAwards[index]
+            productionCapabilities.customer_name1 = customerName1[index]
+            productionCapabilities.sales1 = sales1[index]
+            productionCapabilities.automotive1 = automotive1[index]
+            productionCapabilities.customer_name2 = customerName2[index]
+            productionCapabilities.sales2 = sales2[index]
+            productionCapabilities.automotive2 = automotive2[index]
+            productionCapabilities.customer_name3 = customerName3[index]
+            productionCapabilities.sales3 = sales3[index]
+            productionCapabilities.automotive3 = automotive3[index]
+            productionCapabilities.record_per_naLocation = tempNaLocation
+            productionCapabilities.manufacturing_locations = manufacturingLocations[index]
+            productionCapabilities.event = event[index]
+            productionCapabilities.save()
+
+            productAndService = ProductAndService()
+
+            temp = str(npmValue[index]).split('>')
+            tempNpmValue = temp[0]
+            npmValueCategory1 = temp[1]
+            npmValueCategory2 = temp[2]
+
+            productAndService.npm_value = UnmapNpm(tempNpmValue)
+            productAndService.npm_value_category1 = npmValueCategory1
+            productAndService.npm_value_category2 = npmValueCategory2
+            productAndService.save()
+
+
+            temp = str(pmValue[index]).split('>')
+            tempPmValue = temp[0]
+            pmValueCategory1 = temp[1]
+            pmValueCategory2 = temp[2]
+
+
+            productAndService.pm_value = UnmapPm(tempPmValue)
+            productAndService.pm_value_category1 = pmValueCategory1
+            productAndService.pm_value_category2 = pmValueCategory2
+            productAndService.additoinal_product_and_services = additoinalProductAndServices[index]
+            productAndService.save()
+
+            aBCCorporation = ABCCorporation()
+            aBCCorporation.general_contant_info = generalContactInfo
+            aBCCorporation.diverse_certification = diverseCertification
+            aBCCorporation.company_details = companyDetails
+            aBCCorporation.production_capabilities = productionCapabilities
+            aBCCorporation.product_and_service = productAndService
+            aBCCorporation.save()
+
+        messages.success(request, 'Data successfully uploaded')
+
+    except:
+        messages.error(request, 'Error while uploading data')
+        print ("No")
 
 
 
