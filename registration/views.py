@@ -4,6 +4,14 @@ from django.shortcuts import render
 from registration.models import *
 from django.contrib import messages
 from django.core.paginator import Paginator
+import xlwt
+from django.http import HttpResponse
+import openpyxl
+from pyexcel_xls import get_data as xls_get
+from pyexcel_xlsx import get_data as xlsx_get
+from django.utils.datastructures import MultiValueDictKeyError
+import pandas as pd
+import csv
 
 # Create your views here.
 
@@ -403,3 +411,121 @@ def DetailRecord(request, id):
         'country': mapCountryName(country.country_name)
     }
     return render(request, 'detailRecord.html', context)
+
+def BulkUpload(request):
+    return render(request, 'bulk.html')
+
+def DownloadSampleExcelFile(request):
+    # content-type of response
+    response = HttpResponse(content_type='application/ms-excel')
+
+    #decide file name
+    response['Content-Disposition'] = 'attachment; filename="bulk_upload_template.xls"'
+
+    #creating workbook
+    wb = xlwt.Workbook(encoding='utf-8')
+
+    #adding sheet
+    ws = wb.add_sheet("sheet1")
+
+    # Sheet header, first row
+    row_num = 0
+
+    font_style = xlwt.XFStyle()
+    # headers are bold
+    font_style.font.bold = True
+
+    #column header names, you can use your own headers here
+    columns = ['Company Name', 'Website URL', 'Country', 'Address 1',
+               'Address 2', 'Neighborhood', 'City', 'State', 'Postal Code',
+               'Sales First Name', 'Sales Last Name', 'Sales Email Address',
+               'Sales Job Title', 'Sales Office Phone', 'Sales Mobile Phone',
+               'General First Name', 'General Last Name', 'General Email Address',
+               'General Job Title', 'General Office Phone', 'General Mobile Phone',
+               'Is your company certified by the National Minority Supplier Development Council (NMSDC) or one of its affiliates?',
+               'MOB council', 'Ethnicity', 'MOB Certification Description', 'MOB Expiration Date',
+               'MOB Certification Upload',
+               'Is your company certified by the Women Business Enterprise National Council Development Council (WBENC) or one of it affiliates? *',
+               'WOB council', 'WOB Certification Description', 'WOB Expiration Date', 'WOB Certification Upload',
+               'Is your company a veteran-owned business', 'VOB council', 'VOB Certification Description', 'VOB Expiration Date',
+               'VOB Certification Upload', 'Is your company certified by another organization?', 'OC council', 'OC Certification Description',
+               'OC Expiration Date', 'OC Certification Upload', 'Presentation Upload', 'Description', 'Number of Employees',
+               'Tax ID/ VAT Number', 'Total Annual Sales', 'DUNS Number', 'quality certifications', 'Please describe the "other" quality certification',
+               'If certification in process, list date expected to finalize', 'Operations outside USA', "Do you currently supply to any OEM's?", 'OEMs',
+               'Are you a current supplier to ABC Corporation or have you supplied to ABC Corporation in the past?', 'Vendor Number',
+               'Do you supply to any other Tier 1 automotive companies?', 'Do you offer Just In Time (JIT) delivery?',
+               'Do you offer Consignment or Vendor Managed Inventory (VMI) ?', 'What is the % of sales that are automotive?',
+               'List any significant awards/ recognition your company has received', 'Customer Name 1', '% of Sales 1', 'Automotive - Yes or No 1',
+               'Customer Name 2', '% of Sales 2', 'Automotive - Yes or No 2', 'Customer Name 3', '% of Sales 3', 'Automotive - Yes or No 3',
+               'Please select all ABC Corporation NA locations you can effectively service *', 'For suppliers providing production parts, please list ALL manufacturing locations',
+               'What event did you meet ABC Corporation?', 'Non Production Material e.g (category>subcategory1>subcategory2,category>subcategory1>subcategory2)',
+               'Production Material e.g (category>subcategory1>subcategory2,category>subcategory1>subcategory2)',
+               'Additional Products and Services: List any additional products and services that you can provide but could not find listed above, Separate each item with a comma (,)',
+
+               ]
+
+
+    #write column headers in sheet
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+    # Sheet body, remaining rows
+    font_style = xlwt.XFStyle()
+
+    #get your data, from database or from a text file...
+    # data = get_data() #dummy method to fetch data.
+    # for my_row in data:
+    #     row_num = row_num + 1
+    #     ws.write(row_num, 0, my_row.name, font_style)
+    #     ws.write(row_num, 1, my_row.start_date_time, font_style)
+    #     ws.write(row_num, 2, my_row.end_date_time, font_style)
+    #     ws.write(row_num, 3, my_row.notes, font_style)
+
+    wb.save(response)
+    return response
+
+
+
+def UploadExcelFile(request):
+    # excel_file = request.FILES["excel_file"]
+    #
+    # print("excel_file", excel_file)
+    #
+    # # you may put validations here to check extension or file size
+    #
+    # wb = openpyxl.load_workbook(excel_file)
+    #
+    # # getting a particular sheet by name out of many sheets
+    # worksheet = wb["Sheet1"]
+    # print(worksheet)
+    #
+    # excel_data = list()
+    # # iterating over the rows and
+    # # getting value from each cell in row
+    # for row in worksheet.iter_rows():
+    #     row_data = list()
+    #     for cell in row:
+    #         row_data.append(str(cell.value))
+    #     excel_data.append(row_data)
+
+    excel_file = request.FILES['excel_file']
+    print("excel_file", excel_file)
+    data = ""
+    # except MultiValueDictKeyError:
+    # return redirect(<your_upload_file_failed_url>)
+    if (str(excel_file).split('.')[-1] == "csv"):
+        data= pd.read_csv(excel_file)
+
+    comany_name = data['Company Name']
+    website_url = data['Website URL']
+
+
+
+    print(comany_name)
+    print(website_url)
+
+
+
+    return render(request , 'bulk.html')
+
+

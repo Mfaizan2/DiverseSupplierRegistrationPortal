@@ -62,6 +62,46 @@ def mapOems(id):
     elif id == 15:
         return "VW"
 
+def mapNpm(id):
+    id = int(id)
+    if id==1:
+        return "Auxiliaries and supplies"
+    elif id == 2:
+        return "IT and Telecommunication"
+    elif id == 3:
+        return "IT and Telecommunication(cont.)"
+    elif id == 4:
+        return "Production Equipment and Engineering, Buildings and Vehicles"
+    elif id == 5:
+        return "Production Equipment and Engineering, Buildings and Vehicles (cont.)"
+    elif id == 6:
+        return "Corporate Services and Related Supplies"
+    elif id == 7:
+        return "Logistical Services"
+    elif id == 8:
+        return "Logistical Services (cont.)"
+
+def mapPm(id):
+    id = int(id)
+    if id==1:
+        return "Raw Material"
+    elif id == 2:
+        return "Casting"
+    elif id == 3:
+        return "Non Cast Metal Parts"
+    elif id == 4:
+        return "Miscelleanous"
+    elif id == 5:
+        return "Plastic Parts"
+    elif id == 6:
+        return "Rubber Parts"
+    elif id == 7:
+        return "Electronics"
+    elif id == 8:
+        return "Electronics (cont.)"
+    elif id == 9:
+        return "Electro-mech Parts"
+
 
 def diverseCertificationData(request):
 
@@ -121,20 +161,15 @@ def diverseCertificationData(request):
 
     
 
-    
 
-
-    # ProductionCapabilities.objects.values('oems_id').order_by('oems_id')
     totalNpmValues = ProductAndService.objects.values('npm_value').annotate(count=Count('npm_value')).order_by('npm_value')
 
     totalNpmValuesArray = []
     totalNpmValuesCount = []
 
     for r in range(0,len(totalNpmValues)):
-        totalNpmValuesArray.append(totalNpmValues[r]['npm_value'])
+        totalNpmValuesArray.append(mapNpm(totalNpmValues[r]['npm_value']))
         totalNpmValuesCount.append(totalNpmValues[r]['count'])
-
-
 
 
     totalPmValues = ProductAndService.objects.values('pm_value').annotate(count=Count('pm_value')).order_by('pm_value')
@@ -143,7 +178,7 @@ def diverseCertificationData(request):
     totalPmValuesCount = []
     
     for r in range(0,len(totalPmValues)):
-        totalPmValuesArray.append(totalPmValues[r]['pm_value'])
+        totalPmValuesArray.append(mapPm(totalPmValues[r]['pm_value']))
         totalPmValuesCount.append(totalPmValues[r]['count'])
 
 
