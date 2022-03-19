@@ -384,7 +384,7 @@ def Registration(request):
 def AllRecords(request):
     all_applications = ABCCorporation.objects.all()
     paginator = Paginator(all_applications, 10)
-    page_number = 1 #request.GET.get('page')
+    page_number = request.GET.get('page')
     page_obj = Paginator.get_page(paginator, page_number)
     print("all_applications", page_obj)
 
