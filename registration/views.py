@@ -516,13 +516,96 @@ def UploadExcelFile(request):
     if (str(excel_file).split('.')[-1] == "csv"):
         data= pd.read_csv(excel_file)
 
-    comany_name = data['Company Name']
+
+
+    campany_name = data['Company Name']
     website_url = data['Website URL']
 
+    for index in range(0,len(campany_name)):
+        print(campany_name[index])
+        print(website_url[index])
 
 
-    print(comany_name)
-    print(website_url)
+    sales_contact_job_title = data['Sales Job Title']
+    sales_contact_phone = data['Sales Office Phone']
+    sales_contact_mobile = data['Sales Mobile Phone']
+
+    general_contact_first_name = ['General First Name']
+    general_contact_last_name = ['General Last Name']
+    general_contact_email = ['General Email Address']
+    general_contact_phone = ['General Office Phone']
+    general_contact_mobile = ['General Mobile Phone']
+
+    mbe_business = ["Is your company certified by the National Minority Supplier Development Council (NMSDC) or one of it's affiliates?"]
+    mbe_council = ['MOB council']
+    mbe_ethnicity = ['Ethnicity']
+    mbe_certificationDescription = ['MOB Certification Description']
+    mbe_expirationDate = ['MOB Expiration Date']
+
+    wbe_business = data["Is your company certified by the Women's Business Enterprise National Council Development Council (WBENC) or one of it's affiliates? *"]
+    wbe_council = data['WOB council']
+    wbe_certificationDescription = data['WOB Certification Description']
+    wbe_expirationDate = data['WOB Expiration Date']
+
+
+    vb_business = data["Is your company a veteran-owned business"]
+    vb_council = data['VOB council']
+    vb_certificationDescription = data['VOB Certification Description']
+    vb_expirationDate = data['VOB Expiration Date']
+
+    other_certification_business = data["Is your company certified by another organization?"]
+    other_certification_council = data['OC council']
+    other_certification_certificationDescription = data['OC Certification Description']
+    other_certification_expirationDate = data['OC Expiration Date']
+
+    presentationDescription = data['Description']
+    numberOfEmployees = data['Number of Employees']
+    taxIdVatNumber = data['Tax ID/ VAT Number']
+    totalAnnaulSales = data['Total Annual Sales']
+    DunsNumber = data['DUNS Number']
+    qualityCertification = data['quality certifications']
+    certificationExpectedDate = data['If certification in process, list date expected to finalize']
+    operationOutsideUsa = data['Operations outside USA']
+
+    isOem = data["Do you currently supply to any OEM's?"]
+    oEMS = data['OEMs']
+    AbcSupplier = data['Are you a current supplier to ABC Corporation or have you supplied to ABC Corporation in the past?']
+    vendorNumber = data['Vendor Number']
+    anyOtherTier1AutomotiveCompany = data['Do you supply to any other Tier 1 automotive companies?']
+    VMI = data['Do you offer Consignment or Vendor Managed Inventory (VMI) ?']
+    JIT = data['Do you offer Just In Time (JIT) delivery?']
+    percentageSale = data['What is the % of sales that are automotive?']
+    significantAwards = data['List any significant awards/ recognition your company has received']
+    customerName1 = data['Customer Name 1']
+    sales1 = data['% of Sales 1']
+    automotive1 = data['Automotive - Yes or No 1']
+    customerName2 = data['Customer Name 2']
+    sales2 = data['% of Sales 2']
+    automotive2 = data['Automotive - Yes or No 2']
+    customerName3 = data['Customer Name 3']
+    sales3 = data['% of Sales 3']
+    automotive3 = data['Automotive - Yes or No 3']
+    naLocation = data['Please select all ABC Corporation NA locations you can effectively service *']
+    manufacturingLocations = data['For suppliers providing production parts, please list ALL manufacturing locations']
+    event = data['What event did you meet ABC Corporation?']
+
+    temp = data['Non Production Material e.g (category>subcategory1>subcategory2,category>subcategory1>subcategory2)']
+    print("temp", temp)
+    temp = str(temp).split('>')
+    npmValue = temp[0]
+    npmValueCategory1 = temp[1]
+    npmValueCategory2 = temp[2]
+
+    temp = data['Production Material e.g (category>subcategory1>subcategory2,category>subcategory1>subcategory2)']
+    temp = str(temp).split('>')
+    pmValue = temp[0]
+    pmValueCategory1 = temp[1]
+    pmValueCategory2 = temp[2]
+    additoinalProductAndServices = data['Additional Products and Services: List any additional products and services that you can provide but could not find listed above, Separate each item with a comma (,)']
+
+
+
+
 
 
 
