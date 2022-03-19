@@ -1,0 +1,45 @@
+
+
+
+{% extends 'base.html' %}
+
+{% load  static%}
+
+{% block content %}
+
+<section class="bulkUpload">
+	<div class="container">
+		<div class="bulkUploadContent">
+				<div class="same-inner-accord bulk-upload-form">
+					<h3>Bulk Application/Record Upload</h3>
+					<div class="row">
+						<div class="col-md-6">
+							<form action="{% url 'uploadExcelFile' %}" method="post" enctype="multipart/form-data">
+								{% csrf_token %}
+								<div class="mb-3 mt-3">
+									<label for="formFile" class="form-label">Upload Applications/Records List (Only CSV File Supported)</label>
+									<input class="form-control" name="excel_file" required type="file" id="formFile">
+									<button type="submit" class="bg-grey white">Upload Template</button>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-6">
+							<form action="{% url 'downloadSampleExcelFile' %}">
+								{% csrf_token %}
+								<div class="mb-3 mt-3">
+									<label class="form-label">Please download the template file and fill data accordingly.</label>
+									<button type="submit" class="bg-grey white">Download Excel File Template</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}
+
+
+
+
