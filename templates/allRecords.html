@@ -7,22 +7,27 @@
 {% block content %}
 
     <section class="records">
+
+
+
+<!--        <input type="button" value="select table" onclick="selectElementContents( document.getElementById('tableId') );">-->
+
         <div class="container">
             <div class="record-content">
                 <div class="table-record">
-                    <div class="table-record-actions">
-                        <button class="hvr-sweep-orange-bottom theme-btn bg-grey white">Excel</button>
-                        <button class="hvr-sweep-orange-bottom theme-btn bg-grey white">PDF</button>
-                        <button class="hvr-sweep-orange-bottom theme-btn bg-grey white">Print</button>
-                        <div class="d-flex search-tbl">
-                            <form>
-                                <input type="text" placeholder="Search.....">
-                                <button type="submit"><i class="bi bi-search"></i></button>
-                            </form>
-                        </div>
-                    </div>
+<!--                    <div class="table-record-actions">-->
+<!--                        <button class="hvr-sweep-orange-bottom theme-btn bg-grey white" id="download-button">Excel</button>-->
+<!--                        <button class="hvr-sweep-orange-bottom theme-btn bg-grey white" onclick="generate()">PDF</button>-->
+<!--                        <button class="hvr-sweep-orange-bottom theme-btn bg-grey white">Print</button>-->
+<!--                        <div class="d-flex search-tbl">-->
+<!--                            <form>-->
+<!--                                <input type="text" placeholder="Search.....">-->
+<!--                                <button type="submit"><i class="bi bi-search"></i></button>-->
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="tbl-wrapper-content">
-                        <table class="table theme-tbl">
+                        <table class="table theme-tbl" id="AllRecords">
                             <thead>
                             <tr>
                                 <th>Company Name</th>
@@ -87,6 +92,9 @@
             </div>
         </div>
     </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
 
 {% endblock %}
 
