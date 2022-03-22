@@ -338,6 +338,159 @@ $.ajax({
 });
 
 
+//
+//
+//
+// function downloadCSVFile(csv, filename) {
+//     var csv_file, download_link;
+//
+//     csv_file = new Blob([csv], {type: "text/csv"});
+//
+//     download_link = document.createElement("a");
+//
+//     download_link.download = filename;
+//
+//     download_link.href = window.URL.createObjectURL(csv_file);
+//
+//     download_link.style.display = "none";
+//
+//     document.body.appendChild(download_link);
+//
+//     download_link.click();
+// }
+//
+// function htmlToCSV(html, filename) {
+//     var data = [];
+//     var rows = document.querySelectorAll("table tr");
+//
+//     for (var i = 0; i < rows.length; i++) {
+//     var row = [], cols = rows[i].querySelectorAll("td, th");
+//
+//     for (var j = 0; j < cols.length; j++) {
+//     row.push(cols[j].innerText);
+// }
+//
+//     data.push(row.join(","));
+// }
+//
+//     downloadCSVFile(data.join("\n"), filename);
+// }
+//
+// document.getElementById("download-button").addEventListener("click", function () {
+//     var html = document.querySelector("table").outerHTML;
+//     htmlToCSV(html, "excel_data.csv");
+// });
+//
+//
+// function generate() {
+//     var doc = new jsPDF('p', 'pt', 'letter');
+//     var htmlstring = '';
+//     var tempVarToCheckPageHeight = 0;
+//     var pageHeight = 0;
+//     pageHeight = doc.internal.pageSize.height;
+//     specialElementHandlers = {
+//         // element with id of "bypass" - jQuery style selector
+//         '#bypassme': function (element, renderer) {
+//             // true = "handled elsewhere, bypass text extraction"
+//             return true
+//         }
+//     };
+//     margins = {
+//         top: 10,
+//         bottom: 10,
+//         left: 25,
+//         right: 25,
+//         width: 1000
+//     };
+//     doc.setLineWidth(1);
+//     // doc.text(200, y = y + 30, "TOTAL MARKS OF STUDENTS");
+//     doc.autoTable({
+//         html: '#AllRecords',
+//         startY: 70,
+//         theme: 'striped',
+//         margins: margins,
+//         columnStyles: {
+//             0: {
+//                 cellWidth: 60,
+//             },
+//             1: {
+//                 cellWidth: 80,
+//             },
+//             2: {
+//                 cellWidth: 80,
+//             },
+//             3: {
+//                 cellWidth: 50,
+//             },
+//             4: {
+//                 cellWidth: 50,
+//             },
+//             5: {
+//                 cellWidth: 80,
+//             },
+//             6: {
+//                 cellWidth: 70,
+//             },
+//             7: {
+//                 cellWidth: 50,
+//             },
+//             8: {
+//                 cellWidth: 50,
+//             }
+//         },
+//         styles: {
+//             minCellHeight: 40
+//         }
+//     })
+//     doc.save('All Records.pdf');
+// }
+//
+// function selectElementContents(el) {
+//     var body = document.body, range, sel;
+//     if (document.createRange && window.getSelection) {
+//         range = document.createRange();
+//         sel = window.getSelection();
+//         sel.removeAllRanges();
+//         try {
+//             range.selectNodeContents(el);
+//             sel.addRange(range);
+//         } catch (e) {
+//             range.selectNode(el);
+//             sel.addRange(range);
+//         }
+//     } else if (body.createTextRange) {
+//         range = body.createTextRange();
+//         range.moveToElementText(el);
+//         range.select();
+//         range.execCommand("Copy");
+//     }
+// }
+
+
+
+
+$(document).ready(function() {
+    $('#AllRecords').DataTable( {
+        dom: 'Bfrtip',
+        "paging": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "responsive": true,
+        "lengthChange": true,
+        "autoWidth": false,
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5',
+            'print',
+            'colvis'
+        ]
+    } );
+} );
+
+
 
 
 
