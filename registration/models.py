@@ -9,6 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 
 class CompanyDetails(models.Model):
     presentation_description =models.CharField(max_length=266, default='N', null=False, blank=False)
+    presentation_file = models.CharField(max_length=255, default='')
     number_of_employees = models.BigIntegerField(null=False, blank=False)
     tax_id_vat_number =  models.CharField(max_length=266)
     total_annaul_sales = models.CharField(max_length=266, null=False, blank=False)
@@ -40,6 +41,7 @@ class BusinessAndCertification(models.Model):
     ethnicity = models.CharField(max_length=255)
     certification_description = models.CharField(max_length=255)
     expiration_date = models.DateField()
+    certification_file = models.CharField(max_length=255, default='')
 
 class WomenOwnedBusiness(models.Model):
     business = models.CharField(max_length=255, null=False, blank=False)
@@ -47,6 +49,7 @@ class WomenOwnedBusiness(models.Model):
     # ethnicity = models.CharField(max_length=255)
     certification_description = models.CharField(max_length=255)
     expiration_date = models.DateField()
+    certification_file = models.CharField(max_length=255, default='')
 
 class VeteranOwnedBusiness(models.Model):
     business = models.CharField(max_length=255, null=False, blank=False)
@@ -54,6 +57,7 @@ class VeteranOwnedBusiness(models.Model):
     # ethnicity = models.CharField(max_length=255)
     certification_description = models.CharField(max_length=255)
     expiration_date = models.DateField()
+    certification_file = models.CharField(max_length=255, default='')
 
 class OtherCertification(models.Model):
     business = models.CharField(max_length=255, null=False, blank=False)
@@ -61,6 +65,7 @@ class OtherCertification(models.Model):
     # ethnicity = models.CharField(max_length=255)
     certification_description = models.CharField(max_length=255)
     expiration_date = models.DateField()
+    certification_file = models.CharField(max_length=255, default='')
 
 class Country(models.Model):
     country_name = models.CharField(max_length=255, null=False, blank=False)
