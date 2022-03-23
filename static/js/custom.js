@@ -56,7 +56,7 @@ $(document).ready(function() {
 $(document).ready(function(){
     $('.nmsdc-radio-click').click(function(){
         var inputValue = $(this).attr("value");
-        if(inputValue == 'yes'){
+        if(inputValue == 'Yes'){
             $('.nmsdcDetail').removeClass('d-none');
         }
         else {
@@ -68,7 +68,7 @@ $(document).ready(function(){
 $(document).ready(function(){
     $('.wbenc-radio-click').click(function(){
         var inputValue = $(this).attr("value");
-        if(inputValue == 'yes'){
+        if(inputValue == 'Yes'){
             $('.wbencDetail').removeClass('d-none');
         }
         else {
@@ -80,7 +80,7 @@ $(document).ready(function(){
 $(document).ready(function(){
     $('.vob-radio-click').click(function(){
         var inputValue = $(this).attr("value");
-        if(inputValue == 'yes'){
+        if(inputValue == 'Yes'){
             $('.vobDetail').removeClass('d-none');
         }
         else {
@@ -92,7 +92,7 @@ $(document).ready(function(){
 $(document).ready(function(){
     $('.oc-radio-click').click(function(){
         var inputValue = $(this).attr("value");
-        if(inputValue == 'yes'){
+        if(inputValue == 'Yes'){
             $('.ocDetail').removeClass('d-none');
         }
         else {
@@ -128,7 +128,7 @@ $(document).ready(function(){
 $(document).ready(function(){
     $('.oem-radio-click').click(function(){
         var inputValue = $(this).attr("value");
-        if(inputValue == 'yes'){
+        if(inputValue == 'Yes'){
             $('.oem-supplier-product').removeClass('d-none');
         }
         else {
@@ -142,7 +142,7 @@ var labels = [  ];
 $(document).ready(function(){
     $('.supply-radio-click').click(function(){
         var inputValue = $(this).attr("value");
-        if(inputValue == 'yes'){
+        if(inputValue == 'Yes'){
             $('.vendor-number').removeClass('d-none');
         }
         else {

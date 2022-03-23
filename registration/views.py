@@ -10,12 +10,14 @@ import openpyxl
 from pyexcel_xls import get_data as xls_get
 from pyexcel_xlsx import get_data as xlsx_get
 from django.utils.datastructures import MultiValueDictKeyError
+from django.core.files.storage import FileSystemStorage
 import pandas as pd
 import csv
 
 # Create your views here.
 
 def Registration(request):
+
     if request.method == 'POST':
 
         # try:
@@ -74,6 +76,15 @@ def Registration(request):
         mbe_ethnicity = request.POST['mbe_ethnicity']
         # print(request.POST['mbe_certificationDescription'])
         mbe_certificationDescription = request.POST['mbe_certificationDescription']
+
+        if request.FILES['MobCertificationFile']:
+            mbe_certification_file = request.FILES['MobCertificationFile']
+            fss = FileSystemStorage()
+            file = fss.save(mbe_certification_file.name, mbe_certification_file)
+            mbe_certification_file = fss.url(file)
+            print("mbe_certification_file", mbe_certification_file)
+        else:
+            mbe_certification_file = ''
         # print(request.POST['mbe_expirationDate'])
         mbe_expirationDate = str(request.POST['mbe_expirationDate']).split('-')
         mbe_expirationDate = datetime.date(int(mbe_expirationDate[0]), int(mbe_expirationDate[1]), int(mbe_expirationDate[2]))
@@ -86,6 +97,14 @@ def Registration(request):
         # wbe_ethnicity = "xyz"
         # print(request.POST['wbe_certificationDescription'])
         wbe_certificationDescription = request.POST['wbe_certificationDescription']
+        if request.FILES['WobCertificationFile']:
+            wbe_certification_file = request.FILES['WobCertificationFile']
+            fss = FileSystemStorage()
+            file = fss.save(wbe_certification_file.name, wbe_certification_file)
+            wbe_certification_file = fss.url(file)
+            print("wbe_certification_file", wbe_certification_file)
+        else:
+            wbe_certification_file = ''
         # print(request.POST['wbe_expirationDate'])
         wbe_expirationDate = str((request.POST['wbe_expirationDate'])).split('-')
         wbe_expirationDate = datetime.date(int(wbe_expirationDate[0]), int(wbe_expirationDate[1]), int(wbe_expirationDate[2]))
@@ -99,6 +118,15 @@ def Registration(request):
         # print(request.POST['vb_certificationDescription'])
         vb_certificationDescription = request.POST['vb_certificationDescription']
 
+        if request.FILES['VobCertificationFile']:
+            vb_certification_file = request.FILES['VobCertificationFile']
+            fss = FileSystemStorage()
+            file = fss.save(vb_certification_file.name, vb_certification_file)
+            vb_certification_file = fss.url(file)
+            print("vb_certification_file", vb_certification_file)
+        else:
+            vb_certification_file = ''
+
         vb_expirationDate = str(request.POST['vb_expirationDate']).split('-')
         print(int(vb_expirationDate[0]),int(vb_expirationDate[1]),int(vb_expirationDate[2]), "faizan")
         vb_expirationDate = datetime.date(int(vb_expirationDate[0]), int(vb_expirationDate[1]), int(vb_expirationDate[2]))
@@ -111,6 +139,16 @@ def Registration(request):
         # other_certification_ethnicity = "xyz"
         # print(request.POST['other_certification_certificationDescription'])
         other_certification_certificationDescription = request.POST['other_certification_certificationDescription']
+
+        if request.FILES['CobCertificationFile']:
+            other_certification_file = request.FILES['CobCertificationFile']
+            fss = FileSystemStorage()
+            file = fss.save(other_certification_file.name, other_certification_file)
+            other_certification_file = fss.url(file)
+            print("other_certification_file", other_certification_file)
+        else:
+            other_certification_file = ''
+
         # print(request.POST['other_certification_expirationDate'])
         other_certification_expirationDate = str(request.POST['other_certification_expirationDate']).split('-')
         other_certification_expirationDate = datetime.date(int(other_certification_expirationDate[0]), int(other_certification_expirationDate[1]), int(other_certification_expirationDate[2]))
@@ -120,6 +158,15 @@ def Registration(request):
 
         # print(request.POST['presentationDescription'])
         presentationDescription = request.POST['presentationDescription']
+
+        if request.FILES['presentationFile']:
+            presentation_file = request.FILES['presentationFile']
+            fss = FileSystemStorage()
+            file = fss.save(presentation_file.name, presentation_file)
+            presentation_file = fss.url(file)
+        else:
+            presentation_file = ''
+        
         # print(request.POST['numberOfEmployees'])
         numberOfEmployees = request.POST['numberOfEmployees']
         # print(request.POST['taxIdVatNumber'])
@@ -226,7 +273,7 @@ def Registration(request):
 
         print("country b", country)
         country = Country.objects.filter(country_name=country).first()
-        
+
 
         generalContactInfo = GeneralContactInfo()
         generalContactInfo.company_name = campany_name
@@ -242,35 +289,43 @@ def Registration(request):
         generalContactInfo.save()
 
 
+        print("mbe_business", mbe_business)
         businessAndCertification = BusinessAndCertification()
         businessAndCertification.business = mbe_business
         businessAndCertification.council =  mbe_council
         businessAndCertification.ethnicity = mbe_ethnicity
         businessAndCertification.certification_description = mbe_certificationDescription
+        businessAndCertification.certification_file = mbe_certification_file
         businessAndCertification.expiration_date = mbe_expirationDate
         businessAndCertification.save()
 
+        print("wbe_business", wbe_business)
         womenOwnedBusiness = WomenOwnedBusiness()
-        womenOwnedBusiness.Business = wbe_business
+        womenOwnedBusiness.business = wbe_business
         womenOwnedBusiness.council =  wbe_council
         # womenOwnedBusiness.ethnicity = wbe_ethnicity
         womenOwnedBusiness.certification_description = wbe_certificationDescription
+        womenOwnedBusiness.certification_file = wbe_certification_file
         womenOwnedBusiness.expiration_date = wbe_expirationDate
         womenOwnedBusiness.save()
 
+        print("vb_business", vb_business)
         veteranOwnedBusiness = VeteranOwnedBusiness()
-        veteranOwnedBusiness.Business = vb_business
+        veteranOwnedBusiness.business = vb_business
         veteranOwnedBusiness.council =  vb_council
         # veteranOwnedBusiness.ethnicity = vb_ethnicity
         veteranOwnedBusiness.certification_description = vb_certificationDescription
+        veteranOwnedBusiness.certification_file = vb_certification_file
         veteranOwnedBusiness.expiration_date = vb_expirationDate
         veteranOwnedBusiness.save()
 
+        print("other_certification_business", other_certification_business)
         otherCertification = OtherCertification()
-        otherCertification.Business = other_certification_business
+        otherCertification.business = other_certification_business
         otherCertification.council =  other_certification_council
         # otherCertification.ethnicity = other_certification_ethnicity
         otherCertification.certification_description = other_certification_certificationDescription
+        otherCertification.certification_file = other_certification_file
         otherCertification.expiration_date = other_certification_expirationDate
         otherCertification.save()
 
@@ -283,6 +338,7 @@ def Registration(request):
 
         companyDetails = CompanyDetails()
         companyDetails.presentation_description = presentationDescription
+        companyDetails.presentation_file = presentation_file
         companyDetails.number_of_employees = numberOfEmployees
         companyDetails.tax_id_vat_number =  taxIdVatNumber
         companyDetails.total_annaul_sales = totalAnnaulSales
@@ -295,35 +351,35 @@ def Registration(request):
         naLocation = NaLocation.objects.filter(name=recordPerNaLocation).first()
 
         productionCapabilities = ProductionCapabilities()
-        if isOem == 'yes':
+        if isOem == 'Yes':
             isOem = True
         else:
             isOem = False
-        if AbcSupplier == 'yes':
+        if AbcSupplier == 'Yes':
             AbcSupplier = True
         else:
             isOem = False
-        if VMI == 'yes':
+        if VMI == 'Yes':
             VMI = True
         else:
             VMI = False
-        if JIT == 'yes':
+        if JIT == 'Yes':
             JIT = True
         else:
             JIT = False
-        if automotive1 == 'yes':
+        if automotive1 == 'Yes':
             automotive1 = True
         else:
             automotive1 = False
-        if automotive2 == 'yes':
+        if automotive2 == 'Yes':
             automotive2 = True
         else:
             automotive2 = False
-        if automotive3 == 'yes':
+        if automotive3 == 'Yes':
             automotive3 = True
         else:
             automotive3 = False
-        if anyOtherTier1AutomotiveCompany == 'yes':
+        if anyOtherTier1AutomotiveCompany == 'Yes':
             anyOtherTier1AutomotiveCompany = True
         else:
             anyOtherTier1AutomotiveCompany = False

@@ -160,7 +160,12 @@
                                         </tr>
                                         <tr>
                                             <td>Certification File</td>
-                                            <td></td>
+                                            {% if application.diverse_certification.minority_owned_business.certification_file %}
+                                                <td><a href="{{application.diverse_certification.minority_owned_business.certification_file}}">Certification File</a></td>
+                                            {% else %}
+                                                <td></td>
+                                            {% endif %}
+
                                         </tr>
                                         </tbody>
                                     </table>
@@ -189,7 +194,11 @@
                                         </tr>
                                         <tr>
                                             <td>Certification File</td>
-                                            <td></td>
+                                            {% if application.diverse_certification.women_owned_business.certification_file %}
+                                                <td><a href="{{application.diverse_certification.women_owned_business.certification_file}}">Certification File</a></td>
+                                            {% else %}
+                                                <td></td>
+                                            {% endif %}
                                         </tr>
                                         </tbody>
                                     </table>
@@ -218,7 +227,11 @@
                                         </tr>
                                         <tr>
                                             <td>Certification File</td>
-                                            <td></td>
+                                            {% if application.diverse_certification.veteran_owned_business.certification_file %}
+                                                <td><a href="{{application.diverse_certification.veteran_owned_business.certification_file}}">Certification File</a></td>
+                                            {% else %}
+                                                <td></td>
+                                            {% endif %}
                                         </tr>
                                         </tbody>
                                     </table>
@@ -247,7 +260,11 @@
                                         </tr>
                                         <tr>
                                             <td>Certification File</td>
-                                            <td></td>
+                                            {% if application.diverse_certification.other_certification.certification_file %}
+                                                <td><a href="{{application.diverse_certification.other_certification.certification_file}}">Certification File</a></td>
+                                            {% else %}
+                                                <td></td>
+                                            {% endif %}
                                         </tr>
                                         </tbody>
                                     </table>
@@ -267,7 +284,11 @@
                                         <tbody>
                                         <tr>
                                             <td>Presentation File</td>
-                                            <td></td>
+                                            {%if application.company_details.presentation_file %}
+                                                <td><a href="{{application.company_details.presentation_file}}">Presentation File</a></td>
+                                            {% else %}
+                                                <td></td>
+                                            {% endif %}
                                         </tr>
                                         <tr>
                                             <td>Presentation Description</td>
