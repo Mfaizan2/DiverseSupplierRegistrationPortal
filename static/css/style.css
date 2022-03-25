@@ -433,11 +433,12 @@ button:focus {
 }
 .tbl-wrapper-content {
     overflow-x: scroll;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 .theme-tbl {
     margin: unset;
     width: 100%;
+    border-bottom-color: #ccc !important;
 }
 .theme-tbl thead tr th {
     border-bottom-color: #ccc !important;
@@ -449,6 +450,9 @@ button:focus {
 .theme-tbl tbody tr:last-child {
     border-bottom-color: transparent;
 }
+.theme-tbl thead tr th {
+    padding: 10px;
+}
 .theme-tbl thead tr th:first-child, .theme-tbl tbody tr td:first-child {
     padding-left: 20px;
 }
@@ -456,7 +460,9 @@ button:focus {
     padding-right: 20px;
 }
 /* +++++++++++++++ Theme Table TD +++++++++++++++ */
-.theme-tbl tbody tr td:nth-child(1) { min-width: 140px; } .theme-tbl tbody tr td:nth-child(2), .theme-tbl tbody tr td:nth-child(3) { min-width: 320px; } .theme-tbl tbody tr td:nth-child(4) { min-width: 70px; } .theme-tbl tbody tr td:nth-child(5) { min-width: 130px; } .theme-tbl tbody tr td:nth-child(6) { min-width: 165px; } .theme-tbl tbody tr td:last-child { text-align: center; } 
+
+.theme-tbl thead tr th:nth-child(1) { min-width: 140px; } .theme-tbl thead tr th:nth-child(2), .theme-tbl thead tr th:nth-child(3) { min-width: 320px; } .theme-tbl thead tr th:nth-child(4) { min-width: 70px; } .theme-tbl thead tr th:nth-child(5) { min-width: 130px; } .theme-tbl thead tr th:nth-child(6) { min-width: 165px; } .theme-tbl thead tr th:last-child { text-align: center; }
+.theme-tbl tbody tr td:nth-child(1) { min-width: 140px; } .theme-tbl tbody tr td:nth-child(2), .theme-tbl tbody tr td:nth-child(3) { min-width: 320px; } .theme-tbl tbody tr td:nth-child(4) { min-width: 70px; } .theme-tbl tbody tr td:nth-child(5) { min-width: 130px; } .theme-tbl tbody tr td:nth-child(6) { min-width: 165px; } .theme-tbl tbody tr td:last-child { text-align: center; }
 /* +++++++++++++++ Theme Table TD +++++++++++++++ */
 .table-record-actions {
     display: flex;
@@ -465,6 +471,75 @@ button:focus {
 .table-record-actions .theme-btn.white.bg-grey {
     margin-right: 6px;
 }
+/* Data Table Styles */
+.tbl-wrapper-content .dt-buttons {
+    position: sticky;
+    left: 20px;
+}
+.dt-buttons button {
+    height: 40px;
+    border-radius: 6px;
+    border: unset;
+    background: #313b54;
+    color: #fff;
+    padding: 0 15px;
+    transition: 0.3s;
+}
+.dt-buttons button:hover {
+    border: unset !important;
+    background: #eb5d0a !important;
+    transition: 0.3s !important;
+}
+.dt-buttons .buttons-collection {
+    position: relative;
+    top: -1px;
+}
+.dt-buttons .buttons-collection span {
+    position: relative;
+    top: 2px;
+}
+.dt-buttons .buttons-collection .dt-down-arrow {
+    color: #fff !important;
+    line-height: unset !important;
+    top: 0px !important;
+    padding-left: 5px !important;
+    font-size: 6px !important;
+}
+.dt-button-collection {
+    border: unset !important;
+    border-radius: 6px !important;
+}
+.dt-button-collection button {
+    background: #eb5d0a !important;
+    border: unset !important;
+    border-radius: 6px !important;
+    box-shadow: unset !important;
+}
+.dt-button-collection button:hover {
+    background: #313b54 !important;
+}
+.dt-button-collection .buttons-columnVisibility {
+    background: #313b54 !important;
+}
+.dt-button-collection .buttons-columnVisibility.active {
+    background: #eb5d0a !important;
+}
+.theme-tbl tbody tr {
+    border-color: #ccc;
+}
+.theme-tbl tbody tr td {
+    background: #e9ecef;
+}
+.dataTables_info {
+    position: sticky;
+    left: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+
+/* Data Table Styles */
 .search-tbl {
     margin-left: auto;
 }
@@ -507,6 +582,22 @@ button:focus {
     border-color: #ccc;
     outline: unset;
     box-shadow: unset;
+}
+/* ================ Forgot Page Styling ================ */
+.forgot-content {
+    width: 400px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 4px;
+}
+.form-forgot p {
+    font-size: 13px;
+    text-align: left;
+}
+.form-forgot .formSubmit button {
+    width: auto;
+    padding-left: 12px;
+    padding-right: 12px;
 }
 /* ================ Bulk Page Styling ================ */
 .bulkUpload {
@@ -689,5 +780,8 @@ button:focus {
 @media (max-width: 450px) {
     .newsContent h5 {
         padding-top: unset;
+    }
+    .forgot-content {
+        width: 90%;
     }
 }
