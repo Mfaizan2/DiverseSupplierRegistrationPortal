@@ -505,9 +505,13 @@ button:focus {
     padding-left: 5px !important;
     font-size: 6px !important;
 }
+.dt-button-background {
+    z-index: 9999 !important;
+}
 .dt-button-collection {
     border: unset !important;
     border-radius: 6px !important;
+    z-index: 9999 !important;
 }
 .dt-button-collection button {
     background: #eb5d0a !important;
@@ -527,6 +531,9 @@ button:focus {
 .theme-tbl tbody tr {
     border-color: #ccc;
 }
+.theme-tbl tbody tr:nth-child(odd) td {
+    background: #fff;
+}
 .theme-tbl tbody tr td {
     background: #e9ecef;
 }
@@ -535,6 +542,35 @@ button:focus {
     left: 20px;
     font-size: 14px;
     font-weight: 600;
+    margin-top: 8px;
+}
+.dataTables_filter {
+    position: relative;
+    right: 20px;
+}
+.table-record .tbl-wrapper-content .dataTables_wrapper .dataTables_paginate a {
+    background: #313b54 !important;
+    color: #fff!important;
+    border-radius: 4px;
+    height: 36px;
+    padding: 6px 15px;
+    transition: 0.3s;
+}
+.table-record .tbl-wrapper-content .dataTables_wrapper .dataTables_paginate a:hover {
+    background: #eb5d0a !important;
+    color: #fff!important;
+    transition: 0.3s;
+}
+.dataTables_paginate {
+    position: relative;
+    margin: 10px 20px 10px 0;
+    padding: unset !important;
+}
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+    border-color: #ccc;
+}
+.header-tbl-index, .body-tbl-index, .search-tbl-index, .pagination-tbl-index {
+    z-index: -1;
 }
 
 
