@@ -94,11 +94,23 @@ WSGI_APPLICATION = 'DiverseSupplierRegistrationPortal.wsgi.application'
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'temp1',
 #         'USER': 'postgres',
+#         'PASSWORD': 'secret',
+#         'HOST': os.environ.get('DB_HOST'),
+#         'PORT': '5432'
+#     }
+# }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'temp1',
+#         'USER': 'postgres',
 #         'PASSWORD': '123456',
 #         'HOST': os.environ.get('DB_HOST'),
 #         'PORT': '5433'
 #     }
 # }
+
 
 DATABASES = {
     'default': {
