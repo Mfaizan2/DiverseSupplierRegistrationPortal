@@ -486,9 +486,28 @@ $(document).ready(function() {
             'pdfHtml5',
             'print',
             'colvis'
-        ]
+        ],
+        fixedHeader: true,
+        scrollX: true
     } );
 } );
+
+
+// Data Table Dropdown Button Click
+$(document).ready(function(){
+    $('.buttons-colvis').click(function(){
+        $('.dataTables_scrollHead').addClass('header-tbl-index');
+        $('.dataTables_scrollBody').addClass('body-tbl-index');
+        $('.dataTables_paginate').addClass('pagination-tbl-index');
+        $('.dataTables_filter').addClass('search-tbl-index');
+        $('.dt-button-background').click(function(){
+            $('.dataTables_scrollHead').removeClass('header-tbl-index');
+            $('.dataTables_scrollBody').removeClass('body-tbl-index');
+            $('.dataTables_paginate').removeClass('pagination-tbl-index');
+            $('.dataTables_filter').removeClass('search-tbl-index');
+        });
+    });
+});
 
 
 
