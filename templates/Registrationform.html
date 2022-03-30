@@ -28,8 +28,8 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Company Name<sup class="requireRed">*</sup></label>
-                                                <input required type="text" value="fnmnm" name="campany_name" class="form-control formInput" placeholder="i.e (Apple Inc.)">
+                                                <label for="campany_name" class="form-label">Company Name<sup class="requireRed">*</sup></label>
+                                                <input required type="text" id="campany_name" name="campany_name" class="form-control formInput" placeholder="i.e (Apple Inc.)">
                                                 <div class="invalid-feedback">
                                                     Please provide company name.
                                                 </div>
@@ -37,8 +37,8 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Website Url<sup class="requireRed">*</sup></label>
-                                                <input required type="text" value="fweb@mm.com" name="website_url" class="form-control formInput" placeholder="https://www.example.com/">
+                                                <label for="website_url" class="form-label">Website Url<sup class="requireRed">*</sup></label>
+                                                <input required type="text" id="website_url" name="website_url" class="form-control formInput" placeholder="https://www.example.com/">
                                                 <div class="invalid-feedback">
                                                     Please provide website url.
                                                 </div>
@@ -51,8 +51,8 @@
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="mb-2 mt-2">
-                                                        <label class="form-label">Address 1<sup class="requireRed">*</sup></label>
-                                                        <input required type="text" value="faddress1" name="address1" class="form-control formInput" placeholder="i.e (2625 E 2nd St, Casper)">
+                                                        <label for="address1" class="form-label">Address 1<sup class="requireRed">*</sup></label>
+                                                        <input required type="text" id="address1" name="address1" class="form-control formInput" placeholder="i.e (2625 E 2nd St, Casper)">
                                                         <div class="invalid-feedback">
                                                             Please provide address 1.
                                                         </div>
@@ -60,14 +60,14 @@
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div class="mb-2">
-                                                        <label class="form-label">Address 2 <small>(Optional)</small></label>
-                                                        <input type="text" name="address2" value="faddress2" class="form-control formInput">
+                                                        <label for="address2" class="form-label">Address 2 <small>(Optional)</small></label>
+                                                        <input type="text" id="address2" name="address2" class="form-control formInput">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-2 theme-select">
-                                                        <label class="form-label">Country<sup class="requireRed">*</sup></label>
-                                                        <select required class="state-select" name="country">
+                                                        <label for="country" class="form-label">Country<sup class="requireRed">*</sup></label>
+                                                        <select required class="state-select" name="country" id="country">
                                                             <option value="-1" disabled selected>Select Country</option>
                                                             <option value="United States">United States</option>
                                                             <option value="Canada">Canada</option>
@@ -80,8 +80,8 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-2">
-                                                        <label class="form-label">City<sup class="requireRed">*</sup></label>
-                                                        <input required type="text" value="fcity" name="city" class="form-control formInput" placeholder="i.e (Casper)">
+                                                        <label for="city" class="form-label">City<sup class="requireRed">*</sup></label>
+                                                        <input required value="fcity" name="city" id="city" class="form-control formInput" placeholder="i.e (Casper)">
                                                         <div class="invalid-feedback">
                                                             Please provide city name.
                                                         </div>
@@ -89,8 +89,8 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-2 theme-select">
-                                                        <label class="form-label">State<sup class="requireRed">*</sup></label>
-                                                        <select required class="state-select" name="state">
+                                                        <label for="state" class="form-label">State<sup class="requireRed">*</sup></label>
+                                                        <select required class="state-select" name="state" id="state">
                                                             <option value="" disabled selected>Select State</option>
                                                             <option value="Alabama">Alabama</option>
 
@@ -227,8 +227,8 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-2">
-                                                        <label class="form-label">Zip Code<sup class="requireRed">*</sup></label>
-                                                        <input required type="text" value="fzip" name="zip_code" class="form-control formInput" >
+                                                        <label for="zip_code" class="form-label">Zip Code<sup class="requireRed">*</sup></label>
+                                                        <input required type="text" name="zip_code"  id="zip_code" class="form-control formInput" >
                                                         <div class="invalid-feedback">
                                                             Please provide zip code.
                                                         </div>
@@ -242,8 +242,8 @@
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="mb-2 mt-2">
-                                                        <label class="form-label">First Name<sup class="requireRed">*</sup></label>
-                                                        <input required type="text" value="ffirstname" name="sales_contact_first_name" class="form-control formInput" placeholder="i.e (Will)">
+                                                        <label for="ffirstname" class="form-label">First Name<sup class="requireRed">*</sup></label>
+                                                        <input id="ffirstname" required type="text" name="sales_contact_first_name" class="form-control formInput" placeholder="i.e (Will)">
                                                         <div class="invalid-feedback">
                                                             Please provide first name.
                                                         </div>
@@ -252,7 +252,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="mb-2 mt-2">
                                                         <label class="form-label">Last Name<sup class="requireRed">*</sup></label>
-                                                        <input required type="text" value="flastname" name="sales_contact_last_name" class="form-control formInput" placeholder="i.e (Smith)">
+                                                        <input required type="text" name="sales_contact_last_name" class="form-control formInput" placeholder="i.e (Smith)">
                                                         <div class="invalid-feedback">
                                                             Please provide last name.
                                                         </div>
@@ -261,7 +261,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="mb-2 mt-2">
                                                         <label class="form-label">Email Address<sup class="requireRed">*</sup></label>
-                                                        <input required type="email" value="femail@ggg.com" name="sales_contact_email" class="form-control formInput" placeholder="example@mail.com">
+                                                        <input required type="email" name="sales_contact_email" class="form-control formInput" placeholder="example@mail.com">
                                                         <div class="invalid-feedback">
                                                             Please provide email address.
                                                         </div>
@@ -270,7 +270,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="mb-2 mt-2">
                                                         <label class="form-label">Job Title<sup class="requireRed">*</sup></label>
-                                                        <input required type="text" value="fjobtitle" name="sales_contact_job_title" class="form-control formInput" placeholder="Senior Marketing Officer">
+                                                        <input required type="text"  name="sales_contact_job_title" class="form-control formInput" placeholder="Senior Marketing Officer">
                                                         <div class="invalid-feedback">
                                                             Please provide job title.
                                                         </div>
@@ -279,7 +279,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="mb-2 mt-2">
                                                         <label class="form-label">Office Phone<sup class="requireRed">*</sup></label>
-                                                        <input required type="number" value="1111" name="sales_contact_phone" class="form-control formInput" placeholder="1 264-965-345">
+                                                        <input required type="number" name="sales_contact_phone" class="form-control formInput" placeholder="1 264-965-345">
                                                         <div class="invalid-feedback">
                                                             Please provide office phone.
                                                         </div>
@@ -288,7 +288,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="mb-2 mt-2">
                                                         <label class="form-label">Mobile Phone <small>(Optional)</small></label>
-                                                        <input type="numbe" value="22222222" name="sales_contact_mobile" class="form-control formInput">
+                                                        <input type="number"  name="sales_contact_mobile" class="form-control formInput">
 
                                                     </div>
                                                 </div>
@@ -300,7 +300,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="mb-2 mt-2">
                                                         <label class="form-label">First Name<sup class="requireRed">*</sup></label>
-                                                        <input required type="text" value="ffirstname" name="general_contact_first_name" class="form-control formInput" placeholder="i.e (Will)">
+                                                        <input required type="text" name="general_contact_first_name" class="form-control formInput" placeholder="i.e (Will)">
                                                         <div class="invalid-feedback">
                                                             Please provide first name.
                                                         </div>
@@ -309,7 +309,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="mb-2 mt-2">
                                                         <label class="form-label">Last Name<sup class="requireRed">*</sup></label>
-                                                        <input required type="text" value="flastname" name="general_contact_last_name" class="form-control formInput" placeholder="i.e (Smith)">
+                                                        <input required type="text"  name="general_contact_last_name" class="form-control formInput" placeholder="i.e (Smith)">
                                                         <div class="invalid-feedback">
                                                             Please provide last name.
                                                         </div>
@@ -318,7 +318,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="mb-2 mt-2">
                                                         <label class="form-label">Email Address<sup class="requireRed">*</sup></label>
-                                                        <input required type="email" value="femail" name="general_contact_email" class="form-control formInput" placeholder="example@mail.com">
+                                                        <input required type="email"  name="general_contact_email" class="form-control formInput" placeholder="example@mail.com">
                                                         <div class="invalid-feedback">
                                                             Please provide email address.
                                                         </div>
@@ -327,7 +327,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="mb-2 mt-2">
                                                         <label class="form-label">Job Title<sup class="requireRed">*</sup></label>
-                                                        <input required type="text" value="fjobtitle" name="general_contact_job_title" class="form-control formInput" placeholder="Senior Marketing Officer">
+                                                        <input required type="text"  name="general_contact_job_title" class="form-control formInput" placeholder="Senior Marketing Officer">
                                                         <div class="invalid-feedback">
                                                             Please provide job title.
                                                         </div>
@@ -336,7 +336,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="mb-2 mt-2">
                                                         <label class="form-label">Office Phone<sup class="requireRed">*</sup></label>
-                                                        <input required type="number" value="123123123" name="general_contact_phone" class="form-control formInput" placeholder="1 264-965-345">
+                                                        <input required type="number"  name="general_contact_phone" class="form-control formInput" placeholder="1 264-965-345">
                                                         <div class="invalid-feedback">
                                                             Please provide office phone.
                                                         </div>
@@ -345,7 +345,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="mb-2 mt-2">
                                                         <label class="form-label">Mobile Phone <small>(Optional)</small></label>
-                                                        <input type="number" value="90909090" name="general_contact_mobile" class="form-control formInput">
+                                                        <input type="number"  name="general_contact_mobile" class="form-control formInput">
                                                     </div>
                                                 </div>
                                             </div>
@@ -465,12 +465,12 @@
                                                         <div class="col-lg-6">
                                                             <div class="mb-2">
                                                                 <label class="form-label">Expiration Date</label>
-                                                                <input type="date" value="f23/23/23" name="mbe_expirationDate" class="form-control formInput" placeholder="i.e (Apple Inc.)">
+                                                                <input type="date"  name="mbe_expirationDate" class="form-control formInput" placeholder="i.e (Apple Inc.)">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-12">
                                                             <div class="mb-3 mt-2">
-                                                                <label for="formFile" class="form-label">Certification Upload (only one file can be uploaded)</label>
+                                                                <label for="MobCertificationFile" class="form-label">Certification Upload (only one file can be uploaded)</label>
                                                                 <input class="form-control" type="file" name="MobCertificationFile" id="MobCertificationFile" accept=".doc, .docx, .pdf, .txt">
                                                                 <div class="uplaod-info mt-2">
                                                                     <p>Files must be less than <strong>8 MB</strong>.</p>
@@ -481,7 +481,7 @@
                                                         <div class="col-lg-12">
                                                             <div class="mb-2">
                                                                 <label class="form-label">Certification Description </label>
-                                                                <textarea value="flmlmlmkmlkmjnmjkmlkjmknjhnjmnkjm" class="form-control formInput formTextarea" name="mbe_certificationDescription" rows="5"></textarea>
+                                                                <textarea  class="form-control formInput formTextarea" name="mbe_certificationDescription" rows="5"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -558,12 +558,12 @@
                                                         <div class="col-lg-6">
                                                             <div class="mb-2">
                                                                 <label class="form-label">Expiration Date</label>
-                                                                <input type="date" value="f34/34/34" name="wbe_expirationDate" class="form-control formInput" placeholder="i.e (Apple Inc.)">
+                                                                <input type="date" name="wbe_expirationDate" class="form-control formInput" placeholder="i.e (Apple Inc.)">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-12">
                                                             <div class="mb-3 mt-2">
-                                                                <label for="formFile" class="form-label">Certification Upload (only one file can be uploaded)</label>
+                                                                <label for="WobCertificationFile" class="form-label">Certification Upload (only one file can be uploaded)</label>
                                                                 <input class="form-control" type="file" name="WobCertificationFile" id="WobCertificationFile" accept=".doc, .docx, .pdf, .txt">
                                                                 <div class="uplaod-info mt-2">
                                                                     <p>Files must be less than <strong>8 MB</strong>.</p>
@@ -574,7 +574,7 @@
                                                         <div class="col-lg-12">
                                                             <div class="mb-2">
                                                                 <label class="form-label">Certification Description </label>
-                                                                <textarea value="fkmjnhbgvfcdxszasfg" class="form-control formInput formTextarea" name="wbe_certificationDescription" rows="5"></textarea>
+                                                                <textarea  class="form-control formInput formTextarea" name="wbe_certificationDescription" rows="5"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -624,12 +624,12 @@
                                                         <div class="col-lg-6">
                                                             <div class="mb-2">
                                                                 <label class="form-label">Expiration Date</label>
-                                                                <input type="date" value="f23/45/67" name="vb_expirationDate" class="form-control formInput" placeholder="i.e (Apple Inc.)">
+                                                                <input type="date"  name="vb_expirationDate" class="form-control formInput" placeholder="i.e (Apple Inc.)">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-12">
                                                             <div class="mb-3 mt-2">
-                                                                <label for="formFile" class="form-label">Certification Upload (only one file can be uploaded)</label>
+                                                                <label for="VobCertificationFile" class="form-label">Certification Upload (only one file can be uploaded)</label>
                                                                 <input class="form-control" type="file" name="VobCertificationFile" id="VobCertificationFile" accept=".doc, .docx, .pdf, .txt">
                                                                 <div class="uplaod-info mt-2">
                                                                     <p>Files must be less than <strong>8 MB</strong>.</p>
@@ -640,7 +640,7 @@
                                                         <div class="col-lg-12">
                                                             <div class="mb-2">
                                                                 <label class="form-label">Certification Description </label>
-                                                                <textarea value="fdescription" class="form-control formInput formTextarea" name="vb_certificationDescription" rows="5"></textarea>
+                                                                <textarea  class="form-control formInput formTextarea" name="vb_certificationDescription" rows="5"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -691,12 +691,12 @@
                                                         <div class="col-lg-6">
                                                             <div class="mb-2">
                                                                 <label class="form-label">Expiration Date</label>
-                                                                <input type="date" value="fexp2" class="form-control formInput" name="other_certification_expirationDate" placeholder="i.e (Apple Inc.)">
+                                                                <input type="date"  class="form-control formInput" name="other_certification_expirationDate" placeholder="i.e (Apple Inc.)">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-12">
                                                             <div class="mb-3 mt-2">
-                                                                <label for="formFile" class="form-label">Certification Upload (only one file can be uploaded)</label>
+                                                                <label for="CobCertificationFile" class="form-label">Certification Upload (only one file can be uploaded)</label>
                                                                 <input class="form-control" type="file" name="CobCertificationFile" id="CobCertificationFile" accept=".doc, .docx, .pdf, .txt">
                                                                 <div class="uplaod-info mt-2">
                                                                     <p>Files must be less than <strong>8 MB</strong>.</p>
@@ -707,7 +707,7 @@
                                                         <div class="col-lg-12">
                                                             <div class="mb-2">
                                                                 <label class="form-label">Certification Description </label>
-                                                                <textarea value="fdemklmnjm" class="form-control formInput formTextarea" name="other_certification_certificationDescription" rows="5"></textarea>
+                                                                <textarea  class="form-control formInput formTextarea" name="other_certification_certificationDescription" rows="5"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -726,7 +726,7 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Number of Employee's<sup class="requireRed">*</sup></label>
-                                                <input required value="123123123123" type="number" name="numberOfEmployees" class="form-control formInput" placeholder="i.e (45)">
+                                                <input required  type="number" name="numberOfEmployees" class="form-control formInput" placeholder="i.e (45)">
                                                 <div class="invalid-feedback">
                                                     Please provide number of employee's.
                                                 </div>
@@ -735,7 +735,7 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Tax Number / VAT Number</label>
-                                                <input type="text" value="24534534435" class="form-control formInput" name="taxIdVatNumber" placeholder="i.e (ESX1234567X)">
+                                                <input type="text"  class="form-control formInput" name="taxIdVatNumber" placeholder="i.e (ESX1234567X)">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -785,13 +785,13 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label class="form-label">DUNS Number </label>
-                                                <input type="text" value="fkmjnmjklmkmkmk" name="DunsNumber" class="form-control formInput">
+                                                <input type="text"  name="DunsNumber" class="form-control formInput">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label class="form-label">If certification in process, list date expected to finalize</label>
-                                                <input type="date" value="fkmjnopopopopo" name="certificationExpectedDate" class="form-control formInput">
+                                                <input type="date"  name="certificationExpectedDate" class="form-control formInput">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -850,13 +850,13 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label class="form-label">What is the % of sales that are automotive?</label>
-                                                <input type="number" value="5" name="percentageSale" class="form-control formInput">
+                                                <input type="number"  name="percentageSale" class="form-control formInput">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label class="form-label">List any significant awards/ recognition your company has received</label>
-                                                <input type="text" value="fkmjnhm" name="significantAwards" class="form-control formInput">
+                                                <input type="text"  name="significantAwards" class="form-control formInput">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -971,7 +971,7 @@
                                             </div>
                                             <div class="mb-3 vendor-number d-none">
                                                 <label class="form-label"> Vendor Number </label>
-                                                <input type="text" value="5644545" name="vendorNumber" class="form-control formInput">
+                                                <input type="text"  name="vendorNumber" class="form-control formInput">
                                             </div>
                                         </div>
                                     </div>
@@ -982,7 +982,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">Customer Name (First)<sup class="requireRed">*</sup></label>
-                                                        <input required value="fc1" name="customerName1" type="text" class="form-control formInput">
+                                                        <input required  name="customerName1" type="text" class="form-control formInput">
                                                         <div class="invalid-feedback">
                                                             Please provide customer name.
                                                         </div>
@@ -991,7 +991,7 @@
                                                 <div class="col-lg-3">
                                                     <div class="mb-3">
                                                         <label class="form-label">% of Sales<sup class="requireRed">*</sup></label>
-                                                        <input required type="number" value="2" name="sales1" class="form-control formInput">
+                                                        <input required type="number"  name="sales1" class="form-control formInput">
                                                         <div class="invalid-feedback">
                                                             Please provide % of sales.
                                                         </div>
@@ -1015,7 +1015,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">Customer Name (Second)<sup class="requireRed">*</sup></label>
-                                                        <input required type="text" value="fc2" name="customerName2" class="form-control formInput">
+                                                        <input required type="text"  name="customerName2" class="form-control formInput">
                                                         <div class="invalid-feedback">
                                                             Please provide customer name.
                                                         </div>
@@ -1024,7 +1024,7 @@
                                                 <div class="col-lg-3">
                                                     <div class="mb-3">
                                                         <label class="form-label">% of Sales<sup class="requireRed">*</sup></label>
-                                                        <input required type="number" value="4" name="sales2" class="form-control formInput">
+                                                        <input required type="number"  name="sales2" class="form-control formInput">
                                                         <div class="invalid-feedback">
                                                             Please provide % of sales.
                                                         </div>
@@ -1048,7 +1048,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">Customer Name (Third)<sup class="requireRed">*</sup></label>
-                                                        <input required type="text" value="fc3" name="customerName3" class="form-control formInput">
+                                                        <input required type="text"  name="customerName3" class="form-control formInput">
                                                         <div class="invalid-feedback">
                                                             Please provide customer name.
                                                         </div>
@@ -1057,7 +1057,7 @@
                                                 <div class="col-lg-3">
                                                     <div class="mb-3">
                                                         <label class="form-label">% of Sales<sup class="requireRed">*</sup></label>
-                                                        <input required type="number" value="5" name="sales3" class="form-control formInput">
+                                                        <input required type="number"  name="sales3" class="form-control formInput">
                                                         <div class="invalid-feedback">
                                                             Please provide % of sales.
                                                         </div>
@@ -1081,7 +1081,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">For suppliers providing production parts, please list ALL manufacturing locations</label>
-                                                        <input type="text" value="fglm 3" name="manufacturingLocations" class="form-control formInput">
+                                                        <input type="text"  name="manufacturingLocations" class="form-control formInput">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -1231,7 +1231,7 @@
                                     <div class="col-lg-12">
                                         <div class="mt-3">
                                             <label class="form-label">Additional Products and Services: List any additional products and services that you can provide but could not find listed above, Separate each item with a comma (,)</label>
-                                            <textarea value="fmklmklm" class="form-control formInput formTextarea" name="additoinalProductAndServices" rows="5"></textarea>
+                                            <textarea class="form-control formInput formTextarea" name="additoinalProductAndServices" rows="5"></textarea>
                                         </div>
                                     </div>
                                 </div>
