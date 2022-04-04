@@ -42,21 +42,31 @@
 						<li class="nav-item">
 							<a class="nav-link active" href="{% url 'index' %}">Home</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{% url 'allRecords' %}">All Records</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{% url 'bulkUpload' %}">Bulk Upload</a>
-						</li>
+						{% if request.user.is_authenticated %}
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'allRecords' %}">All Records</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'bulkUpload' %}">Bulk Upload</a>
+							</li>
+						{% endif %}
 						<li class="nav-item">
 							<a class="nav-link" href="{% url 'Registration' %}">Form</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{% url 'login' %}">Login</a>
-						</li>
+
+						{% if request.user.is_authenticated %}
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'logout' %}">Logout</a>
+							</li>
+						{% else %}
+
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'login' %}">Login</a>
+							</li>
+						{% endif %}
 					</ul>
 				</div>
 			</div>
