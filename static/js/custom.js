@@ -508,7 +508,80 @@ $(document).ready(function(){
         });
     });
 });
- 
+
+
+function UserSignup()
+{
+    $form=$('#signup_form');
+    var datastring = $form.serialize();
+    $.ajax({
+        type: "POST",
+        url: $form.attr('action'),
+        dataType: 'html',
+        data: datastring,
+        success: function(result)
+        {
+
+            var test=JSON.parse(result);
+            
+            if (test.status === 200)
+            {
+                $('#signupModal').modal('hide');
+                $('#loginModal').modal('show');
+
+                $("#messagesDivLogin").addClass("alert-success");
+                $("#outputLabelLogin").text(test.data);
+            }
+            else
+            {
+                $("#messagesDiv").addClass("alert-danger");
+                $("#outputLabel").text(test.data);
+            }
+
+            // $("#loginModal").modal();
+            
+
+
+
+            // $("#search_modal").modal("show");
+        }
+    });
+}
+
+
+function UserLogin()
+{
+    $form=$('#login_form');
+    var datastring = $form.serialize();
+    $.ajax({
+        type: "POST",
+        url: $form.attr('action'),
+        dataType: 'html',
+        data: datastring,
+        success: function(result)
+        {
+
+            var test=JSON.parse(result);
+
+            if (test.status === 200)
+            {
+                window.location = '/';
+            }
+            else
+            {
+                $("#messagesDivLogin").addClass("alert-danger");
+                $("#outputLabelLogin").text(test.data);
+            }
+
+            // $("#loginModal").modal();
+
+
+
+
+            // $("#search_modal").modal("show");
+        }
+    });
+}
 
 
 

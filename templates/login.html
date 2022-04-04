@@ -30,14 +30,20 @@
                     </div>
                     <div class="modalBodyContent">
                         <div class="image-modal"><img src="{% static 'imgs/sign.png' %}" alt="..."></div>
-                        <form class="login-form-modal">
+                        <form class="login-form-modal"id="login_form" method="POST" action="{% url 'login' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="messages">
+                                <div id="messagesDivLogin" class="alert" >
+                                    <lable id="outputLabelLogin"></lable>
+                                </div>
+                            </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input type="email" class="form-control formInput" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <input type="email" required name="email" class="form-control formInput" id="exampleInputEmail1" aria-describedby="emailHelp">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                                <input type="password" class="form-control formInput" id="exampleInputPassword1">
+                                <input type="password" required name="password" class="form-control formInput" id="exampleInputPassword1">
                             </div>
                             <div class="mb-3 cusd-checkbox">
                                 <label class="container-checkbox">Agree to terms and conditions
@@ -46,7 +52,7 @@
                                 </label>
                             </div>
                             <div class="d-flex formSubmit">
-                                <button type="submit" class="bg-grey white theme-btn hvr-sweep-orange-bottom">Sign-in</button>
+                                <a type="submit" onclick="UserLogin()" class="bg-grey white theme-btn hvr-sweep-orange-bottom">Sign-in</a>
                             </div>
                         </form>
                     </div>
@@ -68,22 +74,28 @@
                         <button class="btn btn-primary" type="button">Understood</button> -->
                     </div>
                     <div class="modalBodyContent">
-                        <form class="login-form-modal">
+                        <form class="login-form-modal" id="signup_form" method="POST" action="{% url 'signup' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="messages">
+                                <div id="messagesDiv" class="alert" >
+                                    <lable id="outputLabel"></lable>
+                                </div>
+                            </div>
                             <div class="mb-3">
-                                <label class="form-label">Full Name</label>
-                                <input type="text" class="form-control formInput">
+                                <label class="form-label">First Name</label>
+                                <input type="text" required name="first_name" class="form-control formInput">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" name="last_name" class="form-control formInput">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Email address</label>
-                                <input type="email" class="form-control formInput">
+                                <input type="email" required name="email" class="form-control formInput">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Password</label>
-                                <input type="password" class="form-control formInput">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Confirm Password</label>
-                                <input type="password" class="form-control formInput">
+                                <input type="password" required name="password" class="form-control formInput">
                             </div>
                             <div class="mb-3 cusd-checkbox">
                                 <label class="container-checkbox">Agree to terms and conditions
@@ -92,7 +104,7 @@
                                 </label>
                             </div>
                             <div class="d-flex formSubmit">
-                                <button type="submit" class="bg-grey white theme-btn hvr-sweep-orange-bottom">Sign-up</button>
+                                <a onclick="UserSignup()"  class="bg-grey white theme-btn hvr-sweep-orange-bottom">Sign-up</a>
                             </div>
                         </form>
                         <div class="image-modal signup-image-modal"><img src="{% static 'imgs/sigup.png' %}" alt="..."></div>

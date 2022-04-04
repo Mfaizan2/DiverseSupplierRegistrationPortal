@@ -52,7 +52,7 @@
                                     <td>{{rec.production_capabilities.record_per_naLocation.name}}</td>
                                     <td>No</td>
                                     <td>2 Times</td>
-                                    <td><a href="{% url 'detailRecord' rec.id %}"><i class="bi bi-eye-fill"></i>{{rec.id}}</a></td>
+                                    <td><a href="{% url 'detailRecord' rec.id %}"><i class="bi bi-eye-fill"></i></a></td>
                                 </tr>
                             {% endfor %}
 
@@ -63,32 +63,32 @@
 
 
 
-                {% if page_obj.paginator.num_pages > 1 %}
-                <div class="theme-pagination">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
+<!--                {% if page_obj.paginator.num_pages > 1 %}-->
+<!--                <div class="theme-pagination">-->
+<!--                    <nav aria-label="Page navigation example">-->
+<!--                        <ul class="pagination">-->
 
-                            {% if page_obj.has_previous %}
-                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
-                            {% endif %}
+<!--                            {% if page_obj.has_previous %}-->
+<!--                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>-->
+<!--                            {% endif %}-->
 
-                            {% for page_num in page_obj.paginator.page_range %}
-                                {% if page_num == page_obj.number %}
-                                    <li class="page-item"><a class="page-link" href="#">{{page_num}}</a></li>
+<!--                            {% for page_num in page_obj.paginator.page_range %}-->
+<!--                                {% if page_num == page_obj.number %}-->
+<!--                                    <li class="page-item"><a class="page-link" href="#">{{page_num}}</a></li>-->
 
-                                {% endif %}
-                            {%endfor%}
+<!--                                {% endif %}-->
+<!--                            {%endfor%}-->
 
-                            {% if page_obj.has_next %}
-                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}"><span>&raquo;</span></a></li>
-                            {% endif %}
+<!--                            {% if page_obj.has_next %}-->
+<!--                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}"><span>&raquo;</span></a></li>-->
+<!--                            {% endif %}-->
 
 
 
-                        </ul>
-                    </nav>
-                </div>
-                {% endif %}
+<!--                        </ul>-->
+<!--                    </nav>-->
+<!--                </div>-->
+<!--                {% endif %}-->
             </div>
         </div>
     </section>

@@ -14,9 +14,18 @@ from django.core.files.storage import FileSystemStorage
 import pandas as pd
 import csv
 
+
 # Create your views here.
 
 def Registration(request):
+    storage = messages.get_messages(request)
+    for _ in storage:
+        # This is important
+        # Without this loop `_loaded_messages` is empty
+        pass
+
+    for _ in list(storage._loaded_messages):
+        del storage._loaded_messages[0]
 
     try:
         if request.method == 'POST':

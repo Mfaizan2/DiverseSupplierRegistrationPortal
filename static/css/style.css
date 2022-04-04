@@ -635,6 +635,20 @@ button:focus {
     padding-left: 12px;
     padding-right: 12px;
 }
+.formSubmit a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: unset;
+}
+
+.hvr-sweep-orange-bottom a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: unset;
+    color: black;
+}
 /* ================ Bulk Page Styling ================ */
 .bulkUpload {
     height: calc(100vh - 112px);
