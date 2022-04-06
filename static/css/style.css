@@ -698,8 +698,16 @@ button:focus {
     height: 40px;
     border: unset;
     border-radius: 6px;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: unset;
+    width: 150px;
     margin: 0 auto;
+    cursor: pointer;
+}
+.response-btn:hover {
+    color: #fff;
 }
 .customMessageArea {
     width: 470px;
@@ -713,6 +721,13 @@ button:focus {
 }
 .powerBi {
     margin-top: 50px;
+}
+
+.emailResponse{
+    margin-top: 10px;
+}
+.displayNone{
+    display: none;
 }
 
 

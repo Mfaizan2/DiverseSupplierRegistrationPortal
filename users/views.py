@@ -54,20 +54,23 @@ def login(request):
         print("password", password)
 
         if email and password:
-            username = User.objects.filter(email=email).first().username
-            user = auth.authenticate(username=username, password=password)
-            if user:
-                if user.is_active:
-                    auth.login(request, user)
-                    messages.success(request, 'Successfully login')
-                    return JsonResponse({'data': "Successfully login.",'status':200})
+            userObj = User.objects.filter(email=email).first()
+            if userObj:
+                user = auth.authenticate(username=userObj.username, password=password)
+                if user:
+                    if user.is_active:
+                        auth.login(request, user)
+                        messages.success(request, 'Successfully login')
+                        return JsonResponse({'data': "Successfully login.",'status':200})
+                    else:
+                        messages.error(request, 'User is not active')
+                        return JsonResponse({'data': "User is not active.",'status':400})
                 else:
-                    messages.error(request, 'User is not active')
-                    return JsonResponse({'data': "User is not active.",'status':400})
+                    print("In valid")
+                    messages.error(request, 'Invalid credentials!!!')
+                    return JsonResponse({'data': "Invalid credentials.",'status':400})
             else:
-                print("In valid")
-                messages.error(request, 'Invalid credentials!!!')
-                return JsonResponse({'data': "Invalid credentials.",'status':400})
+                return JsonResponse({'data': "User not found.",'status':400})
 
         else:
             messages.error(request, 'Provide credentials!!!')

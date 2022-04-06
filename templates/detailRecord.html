@@ -467,27 +467,34 @@
                 <div class="col-lg-6">
                     <div class="same-inner-accord response-form">
                         <h3>Send Response to Submitter</h3>
-                        <form>
+                        <form method="POST" id="sendResponse_form" action="{% url 'sendResponseToSubmitter' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="messages emailResponse displayNone" id="emailResponse" >
+                                <div id="messagesDivSendResponse" class="alert" >
+                                    <lable id="outputLabelSendResponse"></lable>
+                                </div>
+                            </div>
+                            <input type="hidden" id="ApplicationId" name="ApplicationId" value={{application.id}}>
                             <div class="selection-radio-box response-radio-box justify-content-center mb-3">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="radio-box mt-3 mb-3">
-                                            <input type="radio" class="srs-radio-click btn-check" name="srs" id="srsTwo" autocomplete="off" value="Under Review">
-                                            <label class="btn btn-secondary" for="srsTwo">Under Review</label>
+                                            <input type="radio" class="srs-radio-click btn-check" name="review" id="underReview" autocomplete="off" value="Under Review">
+                                            <label class="btn btn-secondary" for="underReview">Under Review</label>
                                         </div>
                                         <div class="radio-box">
-                                            <input type="radio" class="srs-radio-click btn-check" name="srs" id="srsThree" autocomplete="off" value="Review & No Opportunity">
-                                            <label class="btn btn-secondary" for="srsThree">Review & No Opportunity</label>
+                                            <input type="radio" class="srs-radio-click btn-check" name="review" id="noOpportunity" autocomplete="off" value="Review & No Opportunity">
+                                            <label class="btn btn-secondary" for="noOpportunity">Review & No Opportunity</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="radio-box mt-3 mb-3">
-                                            <input type="radio" class="srs-radio-click btn-check" name="srs" id="srsFour" autocomplete="off" value="Review & Opportunity">
-                                            <label class="btn btn-secondary" for="srsFour">Review & Opportunity</label>
+                                            <input type="radio" class="srs-radio-click btn-check" name="review" id="Opportunity" autocomplete="off" value="Review & Opportunity">
+                                            <label class="btn btn-secondary" for="Opportunity">Review & Opportunity</label>
                                         </div>
                                         <div class="radio-box">
-                                            <input type="radio" class="srs-radio-click btn-check" name="srs" id="srsOne" autocomplete="off" value="Custom Response">
-                                            <label class="btn btn-secondary" for="srsOne">Custom Response</label>
+                                            <input type="radio" class="srs-radio-click btn-check" name="review" id="customResponse" autocomplete="off" value="Custom Response">
+                                            <label class="btn btn-secondary" for="customResponse">Custom Response</label>
                                         </div>
                                     </div>
                                 </div>
@@ -495,10 +502,10 @@
                             <div class="response-custom-msg d-none">
                                 <div class="customMessageArea mb-3">
                                     <label class="form-label">Custom Description</label>
-                                    <textarea class="form-control formInput formTextarea" rows="5"></textarea>
+                                    <textarea class="form-control formInput formTextarea" name="customDescription" rows="5"></textarea>
                                 </div>
                             </div>
-                            <button type="submit" class="response-btn bg-green white">Send Response</button>
+                            <a onclick="SendResponse()" class="response-btn bg-green white">Send Response</a>
                         </form>
                     </div>
                 </div>

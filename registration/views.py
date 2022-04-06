@@ -13,6 +13,9 @@ from django.utils.datastructures import MultiValueDictKeyError
 from django.core.files.storage import FileSystemStorage
 import pandas as pd
 import csv
+from django.http import JsonResponse
+from django.conf import settings
+from django.core.mail import send_mail
 
 
 # Create your views here.
@@ -910,5 +913,30 @@ def UploadExcelFile(request):
 
 
     return render(request , 'bulk.html')
+
+def send_mail_to_client(email, review, customDescription):
+    subject = 'Supplier Diversity Registration Form Response'
+
+    if customDescription:
+        message = customDescription
+    else:
+        message = f'Your application is {review}'
+
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [email]
+    send_mail(subject, message, email_from, recipient_list, fail_silently=False)
+
+def SendResponseToSubmitter(request):
+    ApplicationId = request.POST['ApplicationId']
+
+    review = request.POST.get('review', None)
+
+    customDescription = request.POST.get('customDescription', None)
+
+    send_mail_to_client("mf591108@gmail.com", review, customDescription)
+
+
+    print("ApplicationId", ApplicationId)
+    return JsonResponse({'data': "Response successfully sent.",'status':200})
 
 

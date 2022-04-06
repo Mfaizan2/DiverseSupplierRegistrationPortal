@@ -30,7 +30,7 @@
                     </div>
                     <div class="modalBodyContent">
                         <div class="image-modal"><img src="{% static 'imgs/sign.png' %}" alt="..."></div>
-                        <form class="login-form-modal"id="login_form" method="POST" action="{% url 'login' %}" enctype="multipart/form-data">
+                        <form class="login-form-modal" id="login_form" method="POST" action="{% url 'login' %}" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="messages">
                                 <div id="messagesDivLogin" class="alert" >
@@ -104,7 +104,7 @@
                                 </label>
                             </div>
                             <div class="d-flex formSubmit">
-                                <a onclick="UserSignup()"  class="bg-grey white theme-btn hvr-sweep-orange-bottom">Sign-up</a>
+                                <a onclick="UserSignup()" type="submit" class="bg-grey white theme-btn hvr-sweep-orange-bottom">Sign-up</a>
                             </div>
                         </form>
                         <div class="image-modal signup-image-modal"><img src="{% static 'imgs/sigup.png' %}" alt="..."></div>
