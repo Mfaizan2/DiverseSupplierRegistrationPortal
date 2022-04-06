@@ -583,6 +583,51 @@ function UserLogin()
     });
 }
 
+function SendResponse()
+{
+    $form=$('#sendResponse_form');
+    var datastring = $form.serialize();
+    $.ajax({
+        type: "POST",
+        url: $form.attr('action'),
+        dataType: 'html',
+        data: datastring,
+        success: function(result)
+        {
+
+            var test=JSON.parse(result);
+
+            $("#emailResponse").removeClass("displayNone");
+
+
+            if (test.status === 200)
+            {
+
+                $("#messagesDivSendResponse").addClass("alert-success");
+                $("#outputLabelSendResponse").text(test.data);
+            }
+            else
+            {
+                $("#messagesDivSendResponse").addClass("alert-danger");
+                $("#outputLabelSendResponse").text(test.data);
+            }
+            setTimeout(function() {
+                // $('#emailResponse').fadeOut('fast');
+                $("#emailResponse").addClass("displayNone");
+            }, 2000); // <-- time in milliseconds
+
+            // $("#loginModal").modal();
+
+
+
+
+            // $("#search_modal").modal("show");
+        }
+    });
+}
+
+
+
 
 
 
