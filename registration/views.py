@@ -927,16 +927,21 @@ def send_mail_to_client(email, review, customDescription):
     send_mail(subject, message, email_from, recipient_list, fail_silently=False)
 
 def SendResponseToSubmitter(request):
-    ApplicationId = request.POST['ApplicationId']
+    try:
 
-    review = request.POST.get('review', None)
+        ApplicationId = request.POST['ApplicationId']
 
-    customDescription = request.POST.get('customDescription', None)
+        general_contact_email = ABCCorporation.objects.filter(id=ApplicationId).first().general_contant_info.general_contact.email
 
-    send_mail_to_client("mf591108@gmail.com", review, customDescription)
+        review = request.POST.get('review', None)
+
+        customDescription = request.POST.get('customDescription', None)
+
+        send_mail_to_client(general_contact_email, review, customDescription)
 
 
-    print("ApplicationId", ApplicationId)
-    return JsonResponse({'data': "Response successfully sent.",'status':200})
+        return JsonResponse({'data': "Response successfully sent.",'status':200})
+    except:
+        return JsonResponse({'data': "Error while sending response.",'status':400})
 
 
