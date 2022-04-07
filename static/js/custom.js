@@ -586,6 +586,9 @@ function UserLogin()
 function SendResponse()
 {
     $form=$('#sendResponse_form');
+    $("#emailResponse").removeClass("displayNone");
+    $("#messagesDivSendResponse").addClass("alert-primary");
+    $("#outputLabelSendResponse").text("Sending Response to Submitter");
     var datastring = $form.serialize();
     $.ajax({
         type: "POST",
@@ -596,18 +599,15 @@ function SendResponse()
         {
 
             var test=JSON.parse(result);
-
-            $("#emailResponse").removeClass("displayNone");
-
-
             if (test.status === 200)
             {
-
+                $("#messagesDivSendResponse").removeClass("alert-warning");
                 $("#messagesDivSendResponse").addClass("alert-success");
                 $("#outputLabelSendResponse").text(test.data);
             }
             else
             {
+                $("#messagesDivSendResponse").removeClass("alert-warning");
                 $("#messagesDivSendResponse").addClass("alert-danger");
                 $("#outputLabelSendResponse").text(test.data);
             }
@@ -616,12 +616,6 @@ function SendResponse()
                 $("#emailResponse").addClass("displayNone");
             }, 2000); // <-- time in milliseconds
 
-            // $("#loginModal").modal();
-
-
-
-
-            // $("#search_modal").modal("show");
         }
     });
 }
