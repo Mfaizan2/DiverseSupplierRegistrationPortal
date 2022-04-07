@@ -626,6 +626,318 @@ function SendResponse()
     });
 }
 
+$(document).ready(function(){
+    $(function(){
+        $('#npmValue').change(function(){
+            var opt = $(this).val();
+
+            $('#npmValueCategory1Div').removeClass("displayNone");
+
+
+            $('#npmValueCategory1').html("");
+
+            $('#npmValueCategory2Div').addClass("displayNone");
+
+
+            $('#npmValueCategory2').html("");
+
+            var select = document.getElementById("npmValueCategory1");
+
+            $('#npmValueCategory1').prepend('<option value="-1" selected="selected" disabled="disabled">Select Subcategory</option>');
+
+            var arr = [];
+
+
+
+            if (opt === "Auxiliaries and supplies")
+            {
+                arr = [ "Energy", "MRO Material and Standard Parts", "Gases, Lubricants, Chemicals", "Offices supplies", "Personal safety equipment", "Facility Management", "Environmental services", "Catering and canteen services" ]
+            }
+            else if (opt === "IT and Telecommunication")
+            {
+                arr = [ "IT Software", "IT Hardware"]
+            }
+            else if (opt === "IT and Telecommunication(cont.)")
+            {
+                arr = [ "IT Hardware (cont.)", "IT Operations", "Communication", "IT Services"]
+            }
+            else if (opt === "Production Equipment and Engineering, Buildings and Vehicles")
+            {
+                arr = [ "Buildings and utilities", "Plant Equipment, machines, related non-standard parts and services"]
+            }
+            else if (opt === "Production Equipment and Engineering, Buildings and Vehicles (cont.)")
+            {
+                arr = [ "Plant Equipment, machines, related non-standard parts and services (cont.)","Vehicles","Repair and maintenance of production equipment",
+                        "Engineering and manufacturing Services", "Production Tools"]
+            }
+            else if (opt === "Corporate Services and Related Supplies")
+            {
+                arr = [ "Consulting", "Advertising/Marketing services", "Legal Services", "HR services",
+                        "Financial services", "Business travel", "Trainings and Seminars"]
+            }
+            else if (opt === "Logistical Services")
+            {
+                arr = [ "Freight Services", "Freight Services (cont.)", "Warehouse + distribution service", "Packaging and Labeling"]
+            }
+            else if (opt === "Logistical Services (cont.)")
+            {
+                $('#npmValueCategory1Div').addClass("displayNone");
+            }
+            else
+            {
+                arr = [];
+            }
+
+            jQuery.each(arr, function(i, val) {
+
+                select.options[i+1] = new Option(val, val);
+            });
+
+        });
+    });
+});
+
+$(document).ready(function(){
+    $(function(){
+        $('#npmValueCategory1').change(function(){
+            var opt = $(this).val();
+
+            $('#npmValueCategory2Div').removeClass("displayNone");
+
+            $('#npmValueCategory2').html("");
+
+
+            var select = document.getElementById("npmValueCategory2");
+            $('#npmValueCategory2').prepend('<option value="-1" selected="selected" disabled="disabled">Select Subcategory</option>');
+
+            var arr = [];
+
+            if (opt === "Energy")
+            {
+                arr = [ "Electricity", "Natural Gas", "Fuel Others", "Outsourced Energy", "Water"]
+            }
+            else if (opt === "MRO Material and Standard Parts")
+            {
+                arr = [ "Electrical components", "Hydraulic components", "Pneumatic components", "Mechanical components", "Hand tools", "Machine tools", "Electronics and sensors", "Linear technology", "Workshop and laboratory furniture and equipm"]
+            }
+            else if (opt === "Gases, Lubricants")
+            {
+                arr = [ "Technical gase", "Oils, grease, lubricants", "Chemicals (Suppl)", "Mechanical components", "Hand tools", "Machine tools", "Electronics and sensors", "Linear technology", "Workshop and laboratory furniture and equipm"]
+            }
+            else if (opt === "Offices supplies")
+            {
+                arr = [ "Office furniture and equipment", "Office material", "Books, subscriptions, forms and printed materials"]
+            }
+            else if (opt === "Personal safety equipment")
+            {
+                arr = [ "Personal safety and protective equipment, working clothes", "Medicine and medical equipment"]
+            }
+            else if (opt === "Facility Management")
+            {
+                arr = [ "Office and building cleaning", "Office and building cleaning", "Building rep./maint.", "Security / Guard services and building security", "Health Care Services", "Integrated FM", "Employee Transport", "Mold cleaning", "Machine rep./maint."]
+            }
+
+            else if (opt === "Environmental services")
+            {
+                $('#npmValueCategory2Div').addClass("displayNone");
+            }
+            else if (opt === "Catering and canteen services")
+            {
+                $('#npmValueCategory2Div').addClass("displayNone");
+            }
+            else if (opt === "IT Hardware")
+            {
+                arr = [ "IT Printers and scanners"]
+            }
+            else if (opt === "IT Hardware (cont.)")
+            {
+                $('#npmValueCategory2Div').addClass("displayNone");
+            }
+            else if (opt === "IT Operations")
+            {
+                arr = [ "IT Consulting and programming", "IT Outsourcing", "IT Infrastructur as a Service (IaaS / PaaS)"]
+            }
+            else if (opt === "Communication")
+            {
+                arr = [ "Telecommunications and network infrastructure", "Land line fees", "Mobile fees", "Mobile phone devices"]
+            }
+            else if (opt === "IT Services")
+            {
+                arr = [ "IT Application & infrastructure services"]
+            }
+            else if (opt === "Buildings and utilities")
+            {
+                $('#npmValueCategory2Div').addClass("displayNone");
+            }
+            else if (opt === "Plant Equipment, machines, related non-standard parts and services")
+            {
+                arr = [ "Controls", "Special purpose machines", "Injection mold machines", "Chipping machines", "Grinding Machines", "Surface treatment equipment and machines",
+                        "Automated Measurement Equipment for Mechanical Parameters", "Measurement equip. for electrical / magnetic parameters",
+                        "Automated Optical Inspection including X-Ray and Vision test","Measuring equipment for test center and special test purpose",
+                        "Welding Machines", "Winding Machines", "Bonding Machines", "Production Machines for Electronic Backend Technologies",
+                        "Production Machines for Non-Electronic Technologies", "Machines for pick, place and insertion in electronic prod",
+                        "Soldering Equipment", "Screen Printers", "Washing and Cleaning Machines for production"]
+
+            }
+            else if (opt === "Plant Equipment, machines, related non-standard parts and services (cont.)")
+            {
+                arr = ["Erosion Machines", "Machines for temperature controls (TCUs)", "Storage Systems for production areas and Accessories",
+                        "Conveyor Systems and Accessories", "Automated tire handling and accessories"];
+            }
+            else if (opt === "Vehicles")
+            {
+                arr = [ "Forklifts and industrial trucks", "Cars and vehicles",
+                        "Repair and maintenance for forklifts and industrial trucks", "Repair and maintenance for cars and vehicles"]
+            }
+            else if (opt === "Repair and maintenance of production equipment")
+            {
+                arr = [ "Installation and relocation services of machines", "Machinery repair (electronical Equipment)",
+                        "Machinery repair (mechanical Equipment)", "Maintenance of Test-and Measuring Equipment"]
+            }
+            else if (opt === "Engineering and manufacturing Services")
+            {
+                arr = [ "Research projects", "Construction of machines", "Outsourcing Manufacturing Services",
+                        "Software & Hardware Requirements", "Software & Hardware Architecture", "Software & Hardware Design (incl. CAD)",
+                        "Software Coding, Hardware Comp. Specs.", "Software Code Review, Supplier Test Reports", "Software Module Test, Hardware Simulation & Test",
+                        "Software + Hardware Integration", "Software & Hardware Verification", "System Integration and Verification", "R&D Process Support & Know How Transfer",
+                        "R&D Test/Measurement", "Industrial Engineering", "Advance Development", "Test-Eng. Temporary labour", "Test-Eng. Others", "R&D M&K:Process/Proj./Q…"]
+            }
+            else if (opt === "Production Tools")
+            {
+                arr = [ "Assembly tools & fixture", "Fitting tools", "Tool design change", "Interchange Parts and Workpiece Holder", "Injection Molding Tools"]
+            }
+            else if (opt === "Consulting")
+            {
+                arr = [ "Strategy Consulting", "Business Environment Consulting", "Business Operations Consulting", "Technology Consulting", "Auditors & Certificates & Inspections"]
+            }
+            else if (opt === "Advertising/Marketing services")
+            {
+                arr = [ "Promotional articles", "Media buying", "Advertising agencies", "Events/Fairs/PR (Marketing)", "Sponsoring", "Market research", "Co-op advertising"]
+            }
+            else if (opt === "Legal Services")
+            {
+                arr = [ "Patents and product licencies", "Court and layer fees"]
+            }
+            else if (opt === "HR services")
+            {
+                arr = [ "Temp Labor - Light Industria", "Temp Labor - Professional Services", "HR Direct Search", "Jobboards",
+                        "Employee relocation services", "Sorting and rework services", "Work & Labour based service contracts",
+                        "Translations", "Other HR Services"]
+            }
+            else if (opt === "Business travel" || opt === "Financial services" || opt === "Trainings and Seminars")
+            {
+                $('#npmValueCategory2Div').addClass("displayNone");
+            }
+            else if (opt === "Freight Services")
+            {
+                arr = [ "Courier, Express + Parcel Service", "Road freight", "Ocean freight"]
+            }
+            else if (opt === "Freight Services (cont.)")
+            {
+                arr = [ "Air freight", "Customs service"]
+            }
+            else if (opt === "Warehouse + distribution service" || opt === "IT Software")
+            {
+                $('#npmValueCategory2Div').addClass("displayNone");
+            }
+            else if (opt === "Packaging and Labeling")
+            {
+                arr = [ "Cardboard, paper, corrugated", "Labels (barcode, tire etc.)", "Packaging supplies, dunnage",
+                        "Liners, foils, separators", "Packaging and marking equipment", "Packaging: Wood", "Packaging: Plastic", "Packaging: Metal", "Tray cleaning"]
+            }
+            else
+            {
+                arr = [];
+            }
+
+            jQuery.each(arr, function(i, val) {
+
+                select.options[i+1] = new Option(val, val);
+            });
+
+        });
+    });
+});
+
+
+
+$(document).ready(function(){
+    $(function(){
+        $('#pmValue').change(function(){
+            var opt = $(this).val();
+
+            $('#pmValueCategory1Div').removeClass("displayNone");
+
+
+            $('#pmValueCategory1').html("");
+
+            $('#pmValueCategory2Div').addClass("displayNone");
+
+
+            $('#pmValueCategory2').html("");
+
+            var select = document.getElementById("pmValueCategory1");
+
+            $('#pmValueCategory1').prepend('<option value="-1" selected="selected" disabled="disabled">Select Subcategory</option>');
+
+            var arr = [];
+
+
+
+            if (opt === "Raw Material")
+            {
+                arr = [ "Flat Metal", "Bar Metal", "Wire Metal", "Pipe Metal" ]
+            }
+            else if (opt === "Casting")
+            {
+                arr = [ "HighPressure Die Casting", "Sand Casting", "Gravity Die Casting","Gray Iron Casting", "LowPressure Die Casting" ]
+            }
+            else if (opt === "Non Cast Metal Parts")
+            {
+                arr = [ "Stamping Parts", "Deep Drawn", "Springs", "Tube Stamping Parts", "Surface Treatment", "Turned Parts",
+                        "Turned Parts Steel", "Turned Parts Steel Aluminum", "Turned Parts Steel Brass", "Turned Parts (Hard Steel)",
+                        "Aluminum Extrusion", "Forgings/Fasteners", "Brake Pads"]
+            }
+            else if (opt === "Miscelleanous")
+            {
+                arr = [ "Soldering & Thick Film", "Potting & Adhesives", "Grease, Lubricants, Oil" ]
+            }
+            else if (opt === "Plastic Parts")
+            {
+                arr = [ "Resin", "Thermoplastic Decorative", "Functional Plastic Parts", "Functional Plastics", "Decorative Plastic Parts",
+                        "Key/Key Fobs", "Cockpit Parts", "Heads Up Display", "Dials/Pointers"]
+            }
+            else if (opt === "Rubber Parts")
+            {
+                arr = [ "Rigid Molded Parts", "Extrusion / Hoses", "Connectivity", "Converting Solutions", "Molded Foams", "Sealing Solutions" ]
+            }
+            else if (opt === "Electronics")
+            {
+                arr = [ "Passive" ]
+            }
+            else if (opt === "Electronics (cont.)")
+            {
+                arr = [ "Passive (cont.)", "Passive", "ASICS", "Sensor Elements", "Sensors - IC", "Memories", "Transistors", "Multimedia Ics", "Microcontrollers", "Production Related Software" ]
+            }
+            else if (opt === "Electro-mech Parts")
+            {
+                arr = [ "Motors & Components", "Electro-Mechanical Assmbl - Connectivit", "Printed Circuit Boards", "Plastic Mechanic & Connectors",
+                        "Mechatronics", "Drives", "Batteries", "Switches", "Hybrid Vehicle Comp"]
+            }
+            else
+            {
+                arr = [];
+            }
+
+            jQuery.each(arr, function(i, val) {
+
+                select.options[i+1] = new Option(val, val);
+            });
+
+        });
+    });
+});
+
 
 
 
