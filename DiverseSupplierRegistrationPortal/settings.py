@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_inlinecss',
     'users',
     'dashboard',
     'registration'
@@ -195,3 +196,4 @@ EMAIL_HOST_PASSWORD = 'enooetksxehjrjts'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
+# EMAIl_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

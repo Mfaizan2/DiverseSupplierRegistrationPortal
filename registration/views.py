@@ -16,6 +16,11 @@ import csv
 from django.http import JsonResponse
 from django.conf import settings
 from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+import imaplib, email, getpass
+from email import policy
 
 
 # Create your views here.
@@ -77,14 +82,14 @@ def Registration(request):
             general_contact_phone = request.POST['general_contact_phone']
             # print(request.POST['general_contact_mobile'])
             general_contact_mobile = request.POST['general_contact_mobile']
-            #----------------------------------
+            # ----------------------------------
 
-            #Diverse Certification
+            # Diverse Certification
 
             # print(request.POST['mbe_business'])
             mbe_business = request.POST['mbe_business']
             # print(request.POST['mbe_council'])
-            mbe_council =  request.POST['mbe_council']
+            mbe_council = request.POST['mbe_council']
             # print(request.POST['mbe_ethnicity'])
             mbe_ethnicity = request.POST['mbe_ethnicity']
             # print(request.POST['mbe_certificationDescription'])
@@ -100,12 +105,13 @@ def Registration(request):
                 mbe_certification_file = ''
             # print(request.POST['mbe_expirationDate'])
             mbe_expirationDate = str(request.POST['mbe_expirationDate']).split('-')
-            mbe_expirationDate = datetime.date(int(mbe_expirationDate[0]), int(mbe_expirationDate[1]), int(mbe_expirationDate[2]))
+            mbe_expirationDate = datetime.date(int(mbe_expirationDate[0]), int(mbe_expirationDate[1]),
+                                               int(mbe_expirationDate[2]))
 
             # print(request.POST['wbe_business'])
             wbe_business = request.POST['wbe_business']
             # print(request.POST['wbe_council'])
-            wbe_council =  request.POST['wbe_council']
+            wbe_council = request.POST['wbe_council']
             # print(request.POST['wbe_ethnicity'])
             # wbe_ethnicity = "xyz"
             # print(request.POST['wbe_certificationDescription'])
@@ -120,7 +126,8 @@ def Registration(request):
                 wbe_certification_file = ''
             # print(request.POST['wbe_expirationDate'])
             wbe_expirationDate = str((request.POST['wbe_expirationDate'])).split('-')
-            wbe_expirationDate = datetime.date(int(wbe_expirationDate[0]), int(wbe_expirationDate[1]), int(wbe_expirationDate[2]))
+            wbe_expirationDate = datetime.date(int(wbe_expirationDate[0]), int(wbe_expirationDate[1]),
+                                               int(wbe_expirationDate[2]))
 
             # print(request.POST['vb_business'])
             vb_business = request.POST['vb_business']
@@ -141,13 +148,14 @@ def Registration(request):
                 vb_certification_file = ''
 
             vb_expirationDate = str(request.POST['vb_expirationDate']).split('-')
-            print(int(vb_expirationDate[0]),int(vb_expirationDate[1]),int(vb_expirationDate[2]), "faizan")
-            vb_expirationDate = datetime.date(int(vb_expirationDate[0]), int(vb_expirationDate[1]), int(vb_expirationDate[2]))
+            print(int(vb_expirationDate[0]), int(vb_expirationDate[1]), int(vb_expirationDate[2]), "faizan")
+            vb_expirationDate = datetime.date(int(vb_expirationDate[0]), int(vb_expirationDate[1]),
+                                              int(vb_expirationDate[2]))
 
             # print(request.POST['other_certification_business'])
             other_certification_business = request.POST['other_certification_business']
             # print(request.POST['other_certification_council'])
-            other_certification_council =  request.POST['other_certification_council']
+            other_certification_council = request.POST['other_certification_council']
             # print(request.POST['other_certification_ethnicity'])
             # other_certification_ethnicity = "xyz"
             # print(request.POST['other_certification_certificationDescription'])
@@ -164,10 +172,12 @@ def Registration(request):
 
             # print(request.POST['other_certification_expirationDate'])
             other_certification_expirationDate = str(request.POST['other_certification_expirationDate']).split('-')
-            other_certification_expirationDate = datetime.date(int(other_certification_expirationDate[0]), int(other_certification_expirationDate[1]), int(other_certification_expirationDate[2]))
-            #--------------------------------------
+            other_certification_expirationDate = datetime.date(int(other_certification_expirationDate[0]),
+                                                               int(other_certification_expirationDate[1]),
+                                                               int(other_certification_expirationDate[2]))
+            # --------------------------------------
 
-            #Company Details
+            # Company Details
 
             # print(request.POST['presentationDescription'])
             presentationDescription = request.POST['presentationDescription']
@@ -183,22 +193,24 @@ def Registration(request):
             # print(request.POST['numberOfEmployees'])
             numberOfEmployees = request.POST['numberOfEmployees']
             # print(request.POST['taxIdVatNumber'])
-            taxIdVatNumber =  request.POST['taxIdVatNumber']
+            taxIdVatNumber = request.POST['taxIdVatNumber']
             # print(request.POST['totalAnnaulSales'])
             totalAnnaulSales = request.POST['totalAnnaulSales']
             # print(request.POST['DunsNumber'])
-            DunsNumber =  request.POST['DunsNumber']
+            DunsNumber = request.POST['DunsNumber']
             # print(request.POST['qualityCertification'])
             qualityCertification = request.POST['qualityCertification']
             # print(request.POST['certificationExpectedDate'])
             certificationExpectedDate = str(request.POST['certificationExpectedDate']).split('-')
-            certificationExpectedDate = datetime.date(int(certificationExpectedDate[0]), int(certificationExpectedDate[1]), int(certificationExpectedDate[2]))
+            certificationExpectedDate = datetime.date(int(certificationExpectedDate[0]),
+                                                      int(certificationExpectedDate[1]),
+                                                      int(certificationExpectedDate[2]))
             # print(request.POST['operationOutsideUsa'])
             operationOutsideUsa = request.POST['operationOutsideUsa']
 
-            #--------------------------------------
+            # --------------------------------------
 
-            #Production Capability
+            # Production Capability
             # print(request.POST['isOem'])
             isOem = request.POST.get('isOem', False)
             # print(request.POST['oEMS'])
@@ -243,7 +255,7 @@ def Registration(request):
             # print(request.POST['event'])
             event = request.POST['event']
 
-            #-----------------------------------------------
+            # -----------------------------------------------
 
             # Production and services
             # print(request.POST['npmValue'])
@@ -262,8 +274,7 @@ def Registration(request):
             # print(request.POST['additoinalProductAndServices'])
             additoinalProductAndServices = request.POST['additoinalProductAndServices']
 
-            #------------------------------------------------
-
+            # ------------------------------------------------
 
             salesContact = SalesContact()
             salesContact.first_name = sales_contact_first_name
@@ -287,7 +298,6 @@ def Registration(request):
             print("country b", country)
             country = Country.objects.filter(country_name=country).first()
 
-
             generalContactInfo = GeneralContactInfo()
             generalContactInfo.company_name = campany_name
             generalContactInfo.website_url = website_url
@@ -301,11 +311,10 @@ def Registration(request):
             generalContactInfo.general_contact = generalContact
             generalContactInfo.save()
 
-
             print("mbe_business", mbe_business)
             businessAndCertification = BusinessAndCertification()
             businessAndCertification.business = mbe_business
-            businessAndCertification.council =  mbe_council
+            businessAndCertification.council = mbe_council
             businessAndCertification.ethnicity = mbe_ethnicity
             businessAndCertification.certification_description = mbe_certificationDescription
             businessAndCertification.certification_file = mbe_certification_file
@@ -315,7 +324,7 @@ def Registration(request):
             print("wbe_business", wbe_business)
             womenOwnedBusiness = WomenOwnedBusiness()
             womenOwnedBusiness.business = wbe_business
-            womenOwnedBusiness.council =  wbe_council
+            womenOwnedBusiness.council = wbe_council
             # womenOwnedBusiness.ethnicity = wbe_ethnicity
             womenOwnedBusiness.certification_description = wbe_certificationDescription
             womenOwnedBusiness.certification_file = wbe_certification_file
@@ -325,7 +334,7 @@ def Registration(request):
             print("vb_business", vb_business)
             veteranOwnedBusiness = VeteranOwnedBusiness()
             veteranOwnedBusiness.business = vb_business
-            veteranOwnedBusiness.council =  vb_council
+            veteranOwnedBusiness.council = vb_council
             # veteranOwnedBusiness.ethnicity = vb_ethnicity
             veteranOwnedBusiness.certification_description = vb_certificationDescription
             veteranOwnedBusiness.certification_file = vb_certification_file
@@ -335,7 +344,7 @@ def Registration(request):
             print("other_certification_business", other_certification_business)
             otherCertification = OtherCertification()
             otherCertification.business = other_certification_business
-            otherCertification.council =  other_certification_council
+            otherCertification.council = other_certification_council
             # otherCertification.ethnicity = other_certification_ethnicity
             otherCertification.certification_description = other_certification_certificationDescription
             otherCertification.certification_file = other_certification_file
@@ -353,9 +362,9 @@ def Registration(request):
             companyDetails.presentation_description = presentationDescription
             companyDetails.presentation_file = presentation_file
             companyDetails.number_of_employees = numberOfEmployees
-            companyDetails.tax_id_vat_number =  taxIdVatNumber
+            companyDetails.tax_id_vat_number = taxIdVatNumber
             companyDetails.total_annaul_sales = totalAnnaulSales
-            companyDetails.duns_number =  DunsNumber
+            companyDetails.duns_number = DunsNumber
             companyDetails.quality_certification = qualityCertification
             companyDetails.certification_expected_date = certificationExpectedDate
             companyDetails.operation_outside_usa = operationOutsideUsa
@@ -447,8 +456,6 @@ def Registration(request):
     except:
         messages.error(request, 'Error while doing registration')
 
-
-
     return render(request, 'Registrationform.html')
 
 
@@ -465,13 +472,15 @@ def AllRecords(request):
     }
     return render(request, 'allRecords.html', context)
 
+
 def mapCountryName(name):
-    if name=='WY':
+    if name == 'WY':
         return "Canada"
     elif name == 'AL':
         return "United States"
     elif name == 'MX':
         return "Maxico"
+
 
 def DetailRecord(request, id):
     application = ABCCorporation.objects.filter(id=id).first()
@@ -483,20 +492,22 @@ def DetailRecord(request, id):
     }
     return render(request, 'detailRecord.html', context)
 
+
 def BulkUpload(request):
     return render(request, 'bulk.html')
+
 
 def DownloadSampleExcelFile(request):
     # content-type of response
     response = HttpResponse(content_type='application/ms-excel')
 
-    #decide file name
+    # decide file name
     response['Content-Disposition'] = 'attachment; filename="bulk_upload_template.xls"'
 
-    #creating workbook
+    # creating workbook
     wb = xlwt.Workbook(encoding='utf-8')
 
-    #adding sheet
+    # adding sheet
     ws = wb.add_sheet("sheet1")
 
     # Sheet header, first row
@@ -506,7 +517,7 @@ def DownloadSampleExcelFile(request):
     # headers are bold
     font_style.font.bold = True
 
-    #column header names, you can use your own headers here
+    # column header names, you can use your own headers here
     columns = ['Company Name', 'Website URL', 'Country', 'Address 1',
                'Address 2', 'Neighborhood', 'City', 'State', 'Postal Code',
                'Sales First Name', 'Sales Last Name', 'Sales Email Address',
@@ -518,32 +529,42 @@ def DownloadSampleExcelFile(request):
                'MOB Certification Upload',
                'Is your company certified by the Women Business Enterprise National Council Development Council (WBENC) or one of it affiliates? *',
                'WOB council', 'WOB Certification Description', 'WOB Expiration Date', 'WOB Certification Upload',
-               'Is your company a veteran-owned business', 'VOB council', 'VOB Certification Description', 'VOB Expiration Date',
-               'VOB Certification Upload', 'Is your company certified by another organization?', 'OC council', 'OC Certification Description',
-               'OC Expiration Date', 'OC Certification Upload', 'Presentation Upload', 'Description', 'Number of Employees',
-               'Tax ID/ VAT Number', 'Total Annual Sales', 'DUNS Number', 'quality certifications', 'Please describe the "other" quality certification',
-               'If certification in process, list date expected to finalize', 'Operations outside USA', "Do you currently supply to any OEM's?", 'OEMs',
-               'Are you a current supplier to ABC Corporation or have you supplied to ABC Corporation in the past?', 'Vendor Number',
+               'Is your company a veteran-owned business', 'VOB council', 'VOB Certification Description',
+               'VOB Expiration Date',
+               'VOB Certification Upload', 'Is your company certified by another organization?', 'OC council',
+               'OC Certification Description',
+               'OC Expiration Date', 'OC Certification Upload', 'Presentation Upload', 'Description',
+               'Number of Employees',
+               'Tax ID/ VAT Number', 'Total Annual Sales', 'DUNS Number', 'quality certifications',
+               'Please describe the "other" quality certification',
+               'If certification in process, list date expected to finalize', 'Operations outside USA',
+               "Do you currently supply to any OEM's?", 'OEMs',
+               'Are you a current supplier to ABC Corporation or have you supplied to ABC Corporation in the past?',
+               'Vendor Number',
                'Do you supply to any other Tier 1 automotive companies?', 'Do you offer Just In Time (JIT) delivery?',
-               'Do you offer Consignment or Vendor Managed Inventory (VMI) ?', 'What is the % of sales that are automotive?',
-               'List any significant awards/ recognition your company has received', 'Customer Name 1', '% of Sales 1', 'Automotive - Yes or No 1',
-               'Customer Name 2', '% of Sales 2', 'Automotive - Yes or No 2', 'Customer Name 3', '% of Sales 3', 'Automotive - Yes or No 3',
-               'Please select all ABC Corporation NA locations you can effectively service *', 'For suppliers providing production parts, please list ALL manufacturing locations',
-               'What event did you meet ABC Corporation?', 'Non Production Material e.g (category>subcategory1>subcategory2,category>subcategory1>subcategory2)',
+               'Do you offer Consignment or Vendor Managed Inventory (VMI) ?',
+               'What is the % of sales that are automotive?',
+               'List any significant awards/ recognition your company has received', 'Customer Name 1', '% of Sales 1',
+               'Automotive - Yes or No 1',
+               'Customer Name 2', '% of Sales 2', 'Automotive - Yes or No 2', 'Customer Name 3', '% of Sales 3',
+               'Automotive - Yes or No 3',
+               'Please select all ABC Corporation NA locations you can effectively service *',
+               'For suppliers providing production parts, please list ALL manufacturing locations',
+               'What event did you meet ABC Corporation?',
+               'Non Production Material e.g (category>subcategory1>subcategory2,category>subcategory1>subcategory2)',
                'Production Material e.g (category>subcategory1>subcategory2,category>subcategory1>subcategory2)',
                'Additional Products and Services: List any additional products and services that you can provide but could not find listed above, Separate each item with a comma (,)',
 
                ]
 
-
-    #write column headers in sheet
+    # write column headers in sheet
     for col_num in range(len(columns)):
         ws.write(row_num, col_num, columns[col_num], font_style)
 
     # Sheet body, remaining rows
     font_style = xlwt.XFStyle()
 
-    #get your data, from database or from a text file...
+    # get your data, from database or from a text file...
     # data = get_data() #dummy method to fetch data.
     # for my_row in data:
     #     row_num = row_num + 1
@@ -555,8 +576,9 @@ def DownloadSampleExcelFile(request):
     wb.save(response)
     return response
 
+
 def UnmapNpm(id):
-    if id=="Auxiliaries and supplies":
+    if id == "Auxiliaries and supplies":
         return 1
     elif id == "IT and Telecommunication":
         return 2
@@ -573,8 +595,9 @@ def UnmapNpm(id):
     elif id == "Logistical Services (cont.)":
         return 8
 
+
 def UnmapPm(id):
-    if id=="Raw Material":
+    if id == "Raw Material":
         return 1
     elif id == "Casting":
         return 2
@@ -623,9 +646,7 @@ def UploadExcelFile(request):
         # except MultiValueDictKeyError:
         # return redirect(<your_upload_file_failed_url>)
         if (str(excel_file).split('.')[-1] == "csv"):
-            data= pd.read_csv(excel_file)
-
-
+            data = pd.read_csv(excel_file)
 
         campany_name = data['Company Name']
         website_url = data['Website URL']
@@ -635,7 +656,6 @@ def UploadExcelFile(request):
         city = data['City']
         state = data['State']
         zip_code = data['Postal Code']
-
 
         sales_contact_job_title = data['Sales Job Title']
         sales_contact_phone = data['Sales Office Phone']
@@ -651,17 +671,18 @@ def UploadExcelFile(request):
         general_contact_phone = data['General Office Phone']
         general_contact_mobile = data['General Mobile Phone']
 
-        mbe_business = data["Is your company certified by the National Minority Supplier Development Council (NMSDC) or one of it's affiliates?"]
+        mbe_business = data[
+            "Is your company certified by the National Minority Supplier Development Council (NMSDC) or one of it's affiliates?"]
         mbe_council = data['MOB council']
         mbe_ethnicity = data['Ethnicity']
         mbe_certificationDescription = data['MOB Certification Description']
         mbe_expirationDate = data['MOB Expiration Date']
 
-        wbe_business = data["Is your company certified by the Women's Business Enterprise National Council Development Council (WBENC) or one of it's affiliates? *"]
+        wbe_business = data[
+            "Is your company certified by the Women's Business Enterprise National Council Development Council (WBENC) or one of it's affiliates? *"]
         wbe_council = data['WOB council']
         wbe_certificationDescription = data['WOB Certification Description']
         wbe_expirationDate = data['WOB Expiration Date']
-
 
         vb_business = data["Is your company a veteran-owned business"]
         print("vb_business", vb_business[0])
@@ -685,7 +706,8 @@ def UploadExcelFile(request):
 
         isOem = data["Do you currently supply to any OEM's?"]
         oEMS = data['OEMs']
-        AbcSupplier = data['Are you a current supplier to ABC Corporation or have you supplied to ABC Corporation in the past?']
+        AbcSupplier = data[
+            'Are you a current supplier to ABC Corporation or have you supplied to ABC Corporation in the past?']
         vendorNumber = data['Vendor Number']
         anyOtherTier1AutomotiveCompany = data['Do you supply to any other Tier 1 automotive companies?']
         VMI = data['Do you offer Consignment or Vendor Managed Inventory (VMI) ?']
@@ -702,17 +724,20 @@ def UploadExcelFile(request):
         sales3 = data['% of Sales 3']
         automotive3 = data['Automotive - Yes or No 3']
         naLocation = data['Please select all ABC Corporation NA locations you can effectively service *']
-        manufacturingLocations = data['For suppliers providing production parts, please list ALL manufacturing locations']
+        manufacturingLocations = data[
+            'For suppliers providing production parts, please list ALL manufacturing locations']
         event = data['What event did you meet ABC Corporation?']
 
-        npmValue = data['Non Production Material e.g (category>subcategory1>subcategory2,category>subcategory1>subcategory2)']
+        npmValue = data[
+            'Non Production Material e.g (category>subcategory1>subcategory2,category>subcategory1>subcategory2)']
 
-        pmValue = data['Production Material e.g (category>subcategory1>subcategory2,category>subcategory1>subcategory2)']
+        pmValue = data[
+            'Production Material e.g (category>subcategory1>subcategory2,category>subcategory1>subcategory2)']
 
-        additoinalProductAndServices = data['Additional Products and Services: List any additional products and services that you can provide but could not find listed above, Separate each item with a comma (,)']
+        additoinalProductAndServices = data[
+            'Additional Products and Services: List any additional products and services that you can provide but could not find listed above, Separate each item with a comma (,)']
 
-
-        for index in range(0,len(campany_name)):
+        for index in range(0, len(campany_name)):
             salesContact = SalesContact()
             salesContact.first_name = sales_contact_first_name[index]
             salesContact.last_name = sales_contact_last_name[index]
@@ -734,7 +759,6 @@ def UploadExcelFile(request):
 
             tempCountry = Country.objects.filter(country_name=country[index]).first()
 
-
             generalContactInfo = GeneralContactInfo()
             generalContactInfo.company_name = campany_name[index]
             generalContactInfo.website_url = website_url[index]
@@ -748,10 +772,9 @@ def UploadExcelFile(request):
             generalContactInfo.general_contact = generalContact
             generalContactInfo.save()
 
-
             businessAndCertification = BusinessAndCertification()
             businessAndCertification.business = mbe_business[index]
-            businessAndCertification.council =  mbe_council[index]
+            businessAndCertification.council = mbe_council[index]
             businessAndCertification.ethnicity = mbe_ethnicity[index]
             businessAndCertification.certification_description = mbe_certificationDescription[index]
             temp_date = str(mbe_expirationDate[index]).split('/')
@@ -762,7 +785,7 @@ def UploadExcelFile(request):
 
             womenOwnedBusiness = WomenOwnedBusiness()
             womenOwnedBusiness.business = wbe_business[index]
-            womenOwnedBusiness.council =  wbe_council[index]
+            womenOwnedBusiness.council = wbe_council[index]
             # womenOwnedBusiness.ethnicity = wbe_ethnicity
             womenOwnedBusiness.certification_description = wbe_certificationDescription[index]
             temp_date = str(wbe_expirationDate[index]).split('/')
@@ -773,7 +796,7 @@ def UploadExcelFile(request):
             veteranOwnedBusiness = VeteranOwnedBusiness()
             print("vb_business[index]", vb_business[index])
             veteranOwnedBusiness.business = vb_business[index]
-            veteranOwnedBusiness.council =  vb_council[index]
+            veteranOwnedBusiness.council = vb_council[index]
             # veteranOwnedBusiness.ethnicity = vb_ethnicity
             veteranOwnedBusiness.certification_description = vb_certificationDescription[index]
             temp_date = str(vb_expirationDate[index]).split('/')
@@ -783,11 +806,12 @@ def UploadExcelFile(request):
 
             otherCertification = OtherCertification()
             otherCertification.business = other_certification_business[index]
-            otherCertification.council =  other_certification_council[index]
+            otherCertification.council = other_certification_council[index]
             # otherCertification.ethnicity = other_certification_ethnicity
             otherCertification.certification_description = other_certification_certificationDescription[index]
             temp_date = str(other_certification_expirationDate[index]).split('/')
-            other_certification_expirationDate[index] = datetime.date(int(temp_date[2]), int(temp_date[1]), int(temp_date[0]))
+            other_certification_expirationDate[index] = datetime.date(int(temp_date[2]), int(temp_date[1]),
+                                                                      int(temp_date[0]))
             otherCertification.expiration_date = other_certification_expirationDate[index]
             otherCertification.save()
 
@@ -801,9 +825,9 @@ def UploadExcelFile(request):
             companyDetails = CompanyDetails()
             companyDetails.presentation_description = presentationDescription[index]
             companyDetails.number_of_employees = numberOfEmployees[index]
-            companyDetails.tax_id_vat_number =  taxIdVatNumber[index]
+            companyDetails.tax_id_vat_number = taxIdVatNumber[index]
             companyDetails.total_annaul_sales = totalAnnaulSales[index]
-            companyDetails.duns_number =  DunsNumber[index]
+            companyDetails.duns_number = DunsNumber[index]
             companyDetails.quality_certification = qualityCertification[index]
             temp_date = str(certificationExpectedDate[index]).split('/')
             certificationExpectedDate[index] = datetime.date(int(temp_date[2]), int(temp_date[1]), int(temp_date[0]))
@@ -883,12 +907,10 @@ def UploadExcelFile(request):
             productAndService.npm_value_category2 = npmValueCategory2
             productAndService.save()
 
-
             temp = str(pmValue[index]).split('>')
             tempPmValue = temp[0]
             pmValueCategory1 = temp[1]
             pmValueCategory2 = temp[2]
-
 
             productAndService.pm_value = UnmapPm(tempPmValue)
             productAndService.pm_value_category1 = pmValueCategory1
@@ -908,11 +930,10 @@ def UploadExcelFile(request):
 
     except:
         messages.error(request, 'Error while uploading data')
-        print ("No")
+        print("No")
 
+    return render(request, 'bulk.html')
 
-
-    return render(request , 'bulk.html')
 
 def send_mail_to_client(email, review, customDescription):
     subject = 'Supplier Diversity Registration Form Response'
@@ -926,12 +947,14 @@ def send_mail_to_client(email, review, customDescription):
     recipient_list = [email]
     send_mail(subject, message, email_from, recipient_list, fail_silently=False)
 
+
 def SendResponseToSubmitter(request):
     try:
 
         ApplicationId = request.POST['ApplicationId']
 
-        general_contact_email = ABCCorporation.objects.filter(id=ApplicationId).first().general_contant_info.general_contact.email
+        general_contact_email = ABCCorporation.objects.filter(
+            id=ApplicationId).first().general_contant_info.general_contact.email
 
         review = request.POST.get('review', None)
 
@@ -939,9 +962,86 @@ def SendResponseToSubmitter(request):
 
         send_mail_to_client(general_contact_email, review, customDescription)
 
-
-        return JsonResponse({'data': "Response successfully sent.",'status':200})
+        return JsonResponse({'data': "Response successfully sent.", 'status': 200})
     except:
-        return JsonResponse({'data': "Error while sending response.",'status':400})
+        return JsonResponse({'data': "Error while sending response.", 'status': 400})
 
 
+def SendResponseToSomeone(request):
+    try:
+
+        ApplicationId = request.POST['ApplicationId']
+
+        email = request.POST.get('email', None)
+
+        messageType = request.POST.get('messageType', None)
+
+        if messageType == 'Default Message':
+            content = "A Harold Construction Inc company has registered on the ABC supplier diversity portal. You are receiving this note because this supplier may be of interest to you. Please review the supplier information by clicking on the following link. Afterwards please let us know if you plan any further actions by submitting your feedback below the application."
+        else:
+            customDescription = request.POST.get('customDescription', None)
+            content = customDescription
+
+        html_content = render_to_string("delete_account.html", {'content': content})
+        text_content = strip_tags(html_content)
+        email = EmailMultiAlternatives(
+            "New Application at ABC Supplier",
+            text_content,
+            settings.EMAIL_HOST_USER,
+            [email]
+        )
+
+        email.attach_alternative(html_content, "text/html")
+        email.send()
+
+        return JsonResponse({'data': "Response successfully sent.", 'status': 200})
+    except:
+        return JsonResponse({'data': "Error while sending response.", 'status': 400})
+
+
+def GetEmailResponse(request):
+    try:
+
+        import email
+        import imaplib
+
+        EMAIL = 'faizanaslam455@gmail.com'
+        PASSWORD = 'enooetksxehjrjts'
+
+
+
+        imap_host = 'imap.gmail.com'
+
+        # init imap connection
+        mail = imaplib.IMAP4_SSL(imap_host, 993)
+        rc, resp = mail.login(EMAIL, PASSWORD)
+
+        # select only unread messages from inbox
+        mail.select('Inbox')
+        status, data = mail.search(None, '(FROM "mf591108@gmail.com" SUBJECT "abc")' )
+
+        # for each e-mail messages, print text content
+        for num in data[0].split():
+            # get a single message and parse it by policy.SMTP (RFC compliant)
+            status, data = mail.fetch(num, '(RFC822)')
+            email_msg = data[0][1]
+            email_msg = email.message_from_bytes(email_msg, policy=policy.SMTP)
+
+            print("\n----- MESSAGE START -----\n")
+
+            print("From: %s\nTo: %s\nDate: %s\nSubject: %s\n\n" % ( \
+                str(email_msg['From']), \
+                str(email_msg['To']), \
+                str(email_msg['Date']), \
+                str(email_msg['Subject'] )))
+
+            # print only message parts that contain text data
+            for part in email_msg.walk():
+                if part.get_content_type() == "text/plain":
+                    for line in part.get_content().splitlines():
+                        print(line)
+
+            print("\n----- MESSAGE END -----\n")
+        return JsonResponse({'data': "Response successfully sent.", 'status': 200})
+    except:
+        return JsonResponse({'data': "Error while sending response.", 'status': 400})

@@ -512,18 +512,25 @@
                 <div class="col-lg-6">
                     <div class="same-inner-accord report-form">
                         <h3>Send Report to Someone</h3>
-                        <form>
+                        <form method="POST" id="sendResponseToSomeone_form" action="{% url 'sendResponseToSomeone' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="messages emailResponse displayNone" id="emailResponseToSomeone" >
+                                <div id="messagesDivSendResponseToSomeone" class="alert" >
+                                    <lable id="outputLabelSendResponseToSomeone"></lable>
+                                </div>
+                            </div>
+                            <input type="hidden" id="ApplicationIdToSomeone" name="ApplicationId" value={{application.id}}>
                             <div class="selection-radio-box response-radio-box report-radio-box justify-content-center mb-3">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="radio-box mt-3">
-                                            <input type="radio" class="report-radio-click btn-check" name="report" id="reportTwo" autocomplete="off" value="Default Message">
+                                            <input type="radio" class="report-radio-click btn-check" name="messageType" id="reportTwo" autocomplete="off" value="Default Message">
                                             <label class="btn btn-secondary" for="reportTwo">Default Message</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="radio-box mt-3">
-                                            <input type="radio" class="report-radio-click btn-check" name="report" id="reportOne" autocomplete="off" value="Custom Report">
+                                            <input type="radio" class="report-radio-click btn-check" name="messageType" id="reportOne" autocomplete="off" value="Custom Report">
                                             <label class="btn btn-secondary" for="reportOne">Custom Message</label>
                                         </div>
                                     </div>
@@ -531,15 +538,15 @@
                             </div>
                             <div class="mt-3 mb-3 report-mail">
                                 <label class="form-label">Email</label>
-                                <input type="email" class="form-control formInput" placeholder="example@mail.com">
+                                <input type="email" required name="email" class="form-control formInput" placeholder="example@mail.com">
                             </div>
                             <div class="report-custom-msg d-none">
                                 <div class="customMessageArea mt-3 mb-3">
                                     <label class="form-label">Custom Description</label>
-                                    <textarea class="form-control formInput formTextarea" rows="5"></textarea>
+                                    <textarea name="customDescription" class="form-control formInput formTextarea" rows="5"></textarea>
                                 </div>
                             </div>
-                            <button type="submit" class="response-btn bg-green white">Send Report</button>
+                            <a onclick="SendResponseToSomeone()" class="response-btn bg-green white">Send Response</a>
                         </form>
                     </div>
                 </div>
