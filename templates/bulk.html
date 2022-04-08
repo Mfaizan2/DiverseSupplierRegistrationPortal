@@ -23,8 +23,10 @@
 								{% csrf_token %}
 								<div class="mb-3 mt-3">
 									<label for="formFile" class="form-label">Upload Applications/Records List (Only CSV File Supported)</label>
-									<input class="form-control" name="excel_file" required type="file" id="formFile">
-									<button type="submit" class="bg-grey white">Upload Template</button>
+									<div class="d-flex">
+										<input class="form-control" name="excel_file" required type="file" id="formFile">
+										<button type="submit" class="bg-grey white ms-3">Upload Template</button>
+									</div>
 								</div>
 							</form>
 						</div>

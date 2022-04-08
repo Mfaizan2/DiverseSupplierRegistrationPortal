@@ -298,6 +298,12 @@ button:focus {
 .diversity-form-content p {
     margin-bottom: 30px;
 }
+.danger-text-note {
+    font-weight: 400;
+    color: red;
+    font-size: 14px;
+    padding: 0 0 5px 5px;
+}
 .accordion-form-content {
     padding-bottom: 40px;
 }
@@ -321,6 +327,7 @@ button:focus {
     border: 1px solid #dfdfdf;
     padding: 0 15px 15px 15px;
     border-radius: 4px 4px 3px 3px;
+    background: #fff;
 }
 .same-inner-accord h3 {
     margin-left: -15px;
@@ -722,12 +729,25 @@ button:focus {
 .powerBi {
     margin-top: 50px;
 }
-
 .emailResponse{
     margin-top: 10px;
 }
 .displayNone{
     display: none;
+}
+#formFile{
+    height: 38px;
+    margin-top: 2px;
+}
+.margin-top-40 {
+    margin-top: 40px;
+}
+.feedback-sent form {
+    padding: 0 10px;
+}
+.feedback-sent form a {
+    margin-left: auto;
+    margin-right: unset;
 }
 
 
