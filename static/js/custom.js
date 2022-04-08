@@ -933,6 +933,44 @@ $(document).ready(function(){
 });
 
 
+function SendResponseToSomeone()
+{
+    $form=$('#sendResponseToSomeone_form');
+    $("#emailResponseToSomeone").removeClass("displayNone");
+    $("#messagesDivSendResponseToSomeone").addClass("alert-primary");
+    $("#outputLabelSendResponseToSomeone").text("Sending Response to Submitter");
+    var datastring = $form.serialize();
+    $.ajax({
+        type: "POST",
+        url: $form.attr('action'),
+        dataType: 'html',
+        data: datastring,
+        success: function(result)
+        {
+
+            var test=JSON.parse(result);
+            if (test.status === 200)
+            {
+                $("#messagesDivSendResponseToSomeone").removeClass("alert-warning");
+                $("#messagesDivSendResponseToSomeone").addClass("alert-success");
+                $("#outputLabelSendResponseToSomeone").text(test.data);
+            }
+            else
+            {
+                $("#messagesDivSendResponseToSomeone").removeClass("alert-warning");
+                $("#messagesDivSendResponseToSomeone").addClass("alert-danger");
+                $("#outputLabelSendResponseToSomeone").text(test.data);
+            }
+            setTimeout(function() {
+                // $('#emailResponse').fadeOut('fast');
+                $("#emailResponseToSomeone").addClass("displayNone");
+            }, 2000); // <-- time in milliseconds
+
+        }
+    });
+}
+
+
 
 
 
