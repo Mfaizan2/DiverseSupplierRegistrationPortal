@@ -583,42 +583,42 @@ function UserLogin()
     });
 }
 
-function SendResponse()
-{
-    $form=$('#sendResponse_form');
-    $("#emailResponse").removeClass("displayNone");
-    $("#messagesDivSendResponse").addClass("alert-primary");
-    $("#outputLabelSendResponse").text("Sending Response to Submitter");
-    var datastring = $form.serialize();
-    $.ajax({
-        type: "POST",
-        url: $form.attr('action'),
-        dataType: 'html',
-        data: datastring,
-        success: function(result)
-        {
-
-            var test=JSON.parse(result);
-            if (test.status === 200)
-            {
-                $("#messagesDivSendResponse").removeClass("alert-warning");
-                $("#messagesDivSendResponse").addClass("alert-success");
-                $("#outputLabelSendResponse").text(test.data);
-            }
-            else
-            {
-                $("#messagesDivSendResponse").removeClass("alert-warning");
-                $("#messagesDivSendResponse").addClass("alert-danger");
-                $("#outputLabelSendResponse").text(test.data);
-            }
-            setTimeout(function() {
-                // $('#emailResponse').fadeOut('fast');
-                $("#emailResponse").addClass("displayNone");
-            }, 2000); // <-- time in milliseconds
-
-        }
-    });
-}
+// function SendResponse()
+// {
+//     $form=$('#sendResponse_form');
+//     $("#emailResponse").removeClass("displayNone");
+//     $("#messagesDivSendResponse").addClass("alert-primary");
+//     $("#outputLabelSendResponse").text("Sending Response to Submitter");
+//     var datastring = $form.serialize();
+//     $.ajax({
+//         type: "POST",
+//         url: $form.attr('action'),
+//         dataType: 'html',
+//         data: datastring,
+//         success: function(result)
+//         {
+//
+//             var test=JSON.parse(result);
+//             if (test.status === 200)
+//             {
+//                 $("#messagesDivSendResponse").removeClass("alert-warning");
+//                 $("#messagesDivSendResponse").addClass("alert-success");
+//                 $("#outputLabelSendResponse").text(test.data);
+//             }
+//             else
+//             {
+//                 $("#messagesDivSendResponse").removeClass("alert-warning");
+//                 $("#messagesDivSendResponse").addClass("alert-danger");
+//                 $("#outputLabelSendResponse").text(test.data);
+//             }
+//             setTimeout(function() {
+//                 // $('#emailResponse').fadeOut('fast');
+//                 $("#emailResponse").addClass("displayNone");
+//             }, 2000); // <-- time in milliseconds
+//
+//         }
+//     });
+// }
 
 $(document).ready(function(){
     $(function(){
@@ -933,12 +933,47 @@ $(document).ready(function(){
 });
 
 
-function SendResponseToSomeone()
+// function SendResponseToSomeone()
+// {
+//     $form=$('#sendResponseToSomeone_form');
+//     $("#emailResponseToSomeone").removeClass("displayNone");
+//     $("#messagesDivSendResponseToSomeone").addClass("alert-primary");
+//     $("#outputLabelSendResponseToSomeone").text("Sending Response to Submitter");
+//     var datastring = $form.serialize();
+//     $.ajax({
+//         type: "POST",
+//         url: $form.attr('action'),
+//         dataType: 'html',
+//         data: datastring,
+//         success: function(result)
+//         {
+//
+//             var test=JSON.parse(result);
+//             if (test.status === 200)
+//             {
+//                 $("#messagesDivSendResponseToSomeone").removeClass("alert-warning");
+//                 $("#messagesDivSendResponseToSomeone").addClass("alert-success");
+//                 $("#outputLabelSendResponseToSomeone").text(test.data);
+//             }
+//             else
+//             {
+//                 $("#messagesDivSendResponseToSomeone").removeClass("alert-warning");
+//                 $("#messagesDivSendResponseToSomeone").addClass("alert-danger");
+//                 $("#outputLabelSendResponseToSomeone").text(test.data);
+//             }
+//             setTimeout(function() {
+//                 // $('#emailResponse').fadeOut('fast');
+//                 $("#emailResponseToSomeone").addClass("displayNone");
+//             }, 2000); // <-- time in milliseconds
+//
+//         }
+//     });
+// }
+
+function GetFeedbacks()
 {
-    $form=$('#sendResponseToSomeone_form');
-    $("#emailResponseToSomeone").removeClass("displayNone");
-    $("#messagesDivSendResponseToSomeone").addClass("alert-primary");
-    $("#outputLabelSendResponseToSomeone").text("Sending Response to Submitter");
+    $form=$('#getFeedbacks_form');
+
     var datastring = $form.serialize();
     $.ajax({
         type: "POST",
@@ -949,27 +984,40 @@ function SendResponseToSomeone()
         {
 
             var test=JSON.parse(result);
-            if (test.status === 200)
-            {
-                $("#messagesDivSendResponseToSomeone").removeClass("alert-warning");
-                $("#messagesDivSendResponseToSomeone").addClass("alert-success");
-                $("#outputLabelSendResponseToSomeone").text(test.data);
+
+            // Find a <table> element with id="myTable":
+            var table = document.getElementById("feedback_table");
+
+            var body = ''
+
+
+            for (const key in test.result) {
+                // var row = table.insertRow(key + 1);
+                body = '<tr>'
+                for (const k in test.result[key]) {
+
+                    if (test.result[key][k]) {
+                        body = body + '<td>' + test.result[key][k] + '</td>'
+                    }
+                    else
+                    {
+                        body = body + '<td>'  + '</td>'
+                    }
+                }
+                body = body + '</tr>'
+                $('#feedback_table tbody').append(body);
             }
-            else
-            {
-                $("#messagesDivSendResponseToSomeone").removeClass("alert-warning");
-                $("#messagesDivSendResponseToSomeone").addClass("alert-danger");
-                $("#outputLabelSendResponseToSomeone").text(test.data);
-            }
-            setTimeout(function() {
-                // $('#emailResponse').fadeOut('fast');
-                $("#emailResponseToSomeone").addClass("displayNone");
-            }, 2000); // <-- time in milliseconds
 
         }
     });
 }
 
+
+$(document).ready(function(){
+    $(function(){
+        GetFeedbacks();
+    });
+});
 
 
 // Add Span Click

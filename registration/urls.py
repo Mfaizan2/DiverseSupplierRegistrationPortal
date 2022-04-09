@@ -11,6 +11,9 @@ urlpatterns = [
     path('downloadSampleExcelFile', views.DownloadSampleExcelFile, name='downloadSampleExcelFile'),
     path('uploadExcelFile', views.UploadExcelFile, name='uploadExcelFile'),
     path('sendResponseToSubmitter', views.SendResponseToSubmitter, name='sendResponseToSubmitter'),
-    path('sendResponseToSomeone', views.SendResponseToSomeone, name='sendResponseToSomeone'),
+    path('sendResponseToSomeone/<int:id>', views.SendResponseToSomeone, name='sendResponseToSomeone'),
+    path('report/<int:id>/<str:email_address>', views.Report, name='report'),
+    path('sendFeedback', views.SendFeedback, name='sendFeedback'),
+    path('getFeedbacks', views.GetFeedbacks, name='getFeedbacks'),
 
 ]
