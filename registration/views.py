@@ -1092,7 +1092,7 @@ def Report(request, id, email_address):
         'country': mapCountryName(country.country_name),
         'email_address': email_address
     }
-    return render(request, 'Report.html', context)
+    return render(request, 'report.html', context)
 
 def SendFeedback(request):
 
@@ -1128,7 +1128,7 @@ def SendFeedback(request):
             'email_address': email_address
         }
         messages.error(request, 'Error while sending the feedback.')
-        return render(request, 'Report.html', context)
+        return render(request, 'report.html', context)
 
 def GetFeedbacks(request):
 
