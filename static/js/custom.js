@@ -972,6 +972,51 @@ function SendResponseToSomeone()
 
 
 
+// Add Span Click
+var npmSelectCatOne = null;
+var npmSelectCatTwo = null;
+var npmSelectCatThree = null;
+var npmCount = 0;
+var clickCount = 1;
+var npmArrayHtml = []; // Store data in Array
+$(document).ready(function(){
+    $('#npm-select-add').click(function(){
+        npmSelectCatOne = $("#select2-npmValue-container").text()
+        npmSelectCatTwo = $("#select2-npmValueCategory1-container").text()
+        npmSelectCatThree = $("#select2-npmValueCategory2-container").text()
+        htmlQuery = npmSelectCatOne + ' > ' + npmSelectCatTwo + ' > ' + npmSelectCatThree
+        if(!npmArrayHtml.includes(htmlQuery)){
+            npmArrayHtml.push(htmlQuery)
+            $("#npmListJquery").append('<li class="npmList'+npmCount+'">'+htmlQuery+'<button class="remove-btn-npm-select" data-id="npmList'+npmCount+'">Remove</button></li>');
+        }
+        $('.remove-btn-npm-select').click(function(){
+            if( clickCount === 1) {
+                let dataID = $(this).attr("data-id")
+                let numberStr = dataID.substr(7);
+                let index = parseInt(numberStr)
+                //$("."+dataID).remove(); //Removing the specific List
+                let clone = []
+                for(let i = 0; i < npmArrayHtml.length; i++){
+                    if(npmArrayHtml[i] === npmArrayHtml[index]){}
+                    else{
+                        clone.push(npmArrayHtml[i])
+                    }
+                }
+                npmArrayHtml = clone
+                console.log(npmArrayHtml)
+                clickCount++;
+            } else {}
+        });
+//        let index = npmArrayHtml.indexOf(this);
+//        npmArrayHtml.splice(index,1);
+//        console.log(npmArrayHtml)
+        clickCount=1;
+        npmCount++;
+    });
+//    for (let i = 0; i < npmArrayHtml.length; i++) {
+//        $("#npmListJquery").append('<li class="npmList'+i+'">'+npmArrayHtml[i]+'<a href="#" class="remove-btn-npm-select" data-id="npmList'+i+'">Remove</a></li>');
+//    }
+});
 
 
 
