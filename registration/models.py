@@ -162,6 +162,13 @@ class ABCCorporation(models.Model):
     response = models.IntegerField(default=0)
     emailed = models.IntegerField(default=0)
 
+class Feedback(models.Model):
+    application_id = models.IntegerField(null=False, default=0)
+    email = models.EmailField(_('email address'), null=False, blank=False)
+    feedback = models.CharField(max_length=5000, null=True, blank=True)
+    feedback_date = models.DateField(auto_now_add=True)
+    update_date = models.DateField(null=True)
+
 
 
 

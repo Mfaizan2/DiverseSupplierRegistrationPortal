@@ -936,7 +936,7 @@ def UploadExcelFile(request):
 
 
 def send_mail_to_client(email, review, customDescription):
-    subject = 'Supplier Diversity Registration Form Response'
+    subject = 'New Application at ABC Supplier'
 
     if customDescription:
         message = customDescription
@@ -949,12 +949,12 @@ def send_mail_to_client(email, review, customDescription):
 
 
 def SendResponseToSubmitter(request):
+    ApplicationId = request.POST['ApplicationId']
     try:
 
-        ApplicationId = request.POST['ApplicationId']
+        application = ABCCorporation.objects.filter(id=ApplicationId).first()
 
-        general_contact_email = ABCCorporation.objects.filter(
-            id=ApplicationId).first().general_contant_info.general_contact.email
+        general_contact_email = application.general_contant_info.general_contact.email
 
         review = request.POST.get('review', None)
 
@@ -962,17 +962,32 @@ def SendResponseToSubmitter(request):
 
         send_mail_to_client(general_contact_email, review, customDescription)
 
-        return JsonResponse({'data': "Response successfully sent.", 'status': 200})
+
+
+        country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
+        context = {
+            'application': application,
+            'country': mapCountryName(country.country_name)
+        }
+        messages.success(request, 'The Response Has Been Sent Successfully To: '+general_contact_email)
+        return render(request, 'detailRecord.html', context)
     except:
-        return JsonResponse({'data': "Error while sending response.", 'status': 400})
+        application = ABCCorporation.objects.filter(id=ApplicationId).first()
+        country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
+        general_contact_email = application.general_contant_info.general_contact.email
+        context = {
+            'application': application,
+            'country': mapCountryName(country.country_name)
+        }
+        messages.error(request, 'Error While Sending Reponse To: '+general_contact_email)
+        return render(request, 'detailRecord.html', context)
 
 
-def SendResponseToSomeone(request):
+def SendResponseToSomeone(request, id):
+    email_address = request.POST.get('email', None)
     try:
 
-        ApplicationId = request.POST['ApplicationId']
-
-        email = request.POST.get('email', None)
+        application_id = id
 
         messageType = request.POST.get('messageType', None)
 
@@ -982,21 +997,40 @@ def SendResponseToSomeone(request):
             customDescription = request.POST.get('customDescription', None)
             content = customDescription
 
-        html_content = render_to_string("delete_account.html", {'content': content})
+        report_link = settings.APPLICATION_BASE_URL+"report/"+str(application_id)+"/"+email_address
+        html_content = render_to_string("report_email_template.html", {'content': content, 'report_link':report_link})
         text_content = strip_tags(html_content)
         email = EmailMultiAlternatives(
             "New Application at ABC Supplier",
             text_content,
             settings.EMAIL_HOST_USER,
-            [email]
+            [email_address]
         )
 
         email.attach_alternative(html_content, "text/html")
         email.send()
 
-        return JsonResponse({'data': "Response successfully sent.", 'status': 200})
+        application = ABCCorporation.objects.filter(id=id).first()
+
+        country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
+        context = {
+            'application': application,
+            'country': mapCountryName(country.country_name)
+        }
+        messages.success(request, 'The Report Has Been Sent Successfully To: '+email_address)
+        return render(request, 'detailRecord.html', context)
+
     except:
-        return JsonResponse({'data': "Error while sending response.", 'status': 400})
+
+        messages.error(request, 'Error while sending report to: '+email_address)
+        application = ABCCorporation.objects.filter(id=id).first()
+
+        country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
+        context = {
+            'application': application,
+            'country': mapCountryName(country.country_name)
+        }
+        return render(request, 'detailRecord.html', context)
 
 
 def GetEmailResponse(request):
@@ -1045,3 +1079,80 @@ def GetEmailResponse(request):
         return JsonResponse({'data': "Response successfully sent.", 'status': 200})
     except:
         return JsonResponse({'data': "Error while sending response.", 'status': 400})
+
+
+
+
+def Report(request, id, email_address):
+    application = ABCCorporation.objects.filter(id=id).first()
+
+    country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
+    context = {
+        'application': application,
+        'country': mapCountryName(country.country_name),
+        'email_address': email_address
+    }
+    return render(request, 'Report.html', context)
+
+def SendFeedback(request):
+
+    email_address = request.POST['email_address']
+
+    feedbackDescription = request.POST.get('feedbackDescription', None)
+
+    ApplicationIdFeedback = request.POST.get('ApplicationIdFeedback', None)
+
+    try:
+
+        application = ABCCorporation.objects.filter(id=ApplicationIdFeedback).first()
+
+        country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
+        context = {
+            'application': application,
+            'country': mapCountryName(country.country_name),
+            'email_address': email_address
+        }
+
+        feedback = Feedback(email=email_address,feedback= feedbackDescription, application_id=ApplicationIdFeedback)
+        feedback.save()
+
+        messages.success(request, 'The Feedback Has Been Sumitted Successfully. Thank You For Providing Your Feedback.')
+        return render(request, 'Report.html', context)
+    except:
+        application = ABCCorporation.objects.filter(id=ApplicationIdFeedback).first()
+
+        country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
+        context = {
+            'application': application,
+            'country': mapCountryName(country.country_name),
+            'email_address': email_address
+        }
+        messages.error(request, 'Error while sending the feedback.')
+        return render(request, 'Report.html', context)
+
+def GetFeedbacks(request):
+
+    application_id = request.POST['ApplicationIdForGetFeedbacks']
+
+    try:
+
+        result = []
+
+
+        print("application_id", application_id)
+
+        all_feedbacks = Feedback.objects.filter(application_id=application_id)
+        for obj in all_feedbacks:
+            temp = []
+            temp.append(obj.email)
+            temp.append(obj.feedback)
+            temp.append(obj.feedback_date)
+            temp.append(obj.update_date)
+            result.append(temp)
+
+        print("temp", result)
+        return JsonResponse({'data': "Perfect",'status':200,"result":result})
+    except:
+
+        print("application_id", application_id)
+        return JsonResponse({'data': "Error",'status':400})

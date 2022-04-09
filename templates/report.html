@@ -1,15 +1,37 @@
 
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Vollkorn:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}" >
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-{% load  static%}
 
-{% block content %}
+    <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css" rel="stylesheet" />
 
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="{% static 'css/animation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <title>Home | Corporation</title>
+</head>
+<body>
 
 <section class="detailRecord">
     <div class="container">
-        {% include 'partials/_messages.html' %}
         <div class="viewRecordContent accordion-wrapper">
+            {% include 'partials/_messages.html' %}
             <div class="accordion accordion-form-content accordion-view-content" id="accordionViewRecord">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingViewOne"><button aria-controls="collapseViewOne" aria-expanded="true" class="accordion-button" data-bs-target="#collapseViewOne" data-bs-toggle="collapse" type="button">Genral Contact info</button></h2>
@@ -162,9 +184,9 @@
                                         <tr>
                                             <td>Certification File</td>
                                             {% if application.diverse_certification.minority_owned_business.certification_file %}
-                                                <td><a href="{{application.diverse_certification.minority_owned_business.certification_file}}">Certification File</a></td>
+                                            <td><a href="{{application.diverse_certification.minority_owned_business.certification_file}}">Certification File</a></td>
                                             {% else %}
-                                                <td></td>
+                                            <td></td>
                                             {% endif %}
 
                                         </tr>
@@ -196,9 +218,9 @@
                                         <tr>
                                             <td>Certification File</td>
                                             {% if application.diverse_certification.women_owned_business.certification_file %}
-                                                <td><a href="{{application.diverse_certification.women_owned_business.certification_file}}">Certification File</a></td>
+                                            <td><a href="{{application.diverse_certification.women_owned_business.certification_file}}">Certification File</a></td>
                                             {% else %}
-                                                <td></td>
+                                            <td></td>
                                             {% endif %}
                                         </tr>
                                         </tbody>
@@ -229,9 +251,9 @@
                                         <tr>
                                             <td>Certification File</td>
                                             {% if application.diverse_certification.veteran_owned_business.certification_file %}
-                                                <td><a href="{{application.diverse_certification.veteran_owned_business.certification_file}}">Certification File</a></td>
+                                            <td><a href="{{application.diverse_certification.veteran_owned_business.certification_file}}">Certification File</a></td>
                                             {% else %}
-                                                <td></td>
+                                            <td></td>
                                             {% endif %}
                                         </tr>
                                         </tbody>
@@ -262,9 +284,9 @@
                                         <tr>
                                             <td>Certification File</td>
                                             {% if application.diverse_certification.other_certification.certification_file %}
-                                                <td><a href="{{application.diverse_certification.other_certification.certification_file}}">Certification File</a></td>
+                                            <td><a href="{{application.diverse_certification.other_certification.certification_file}}">Certification File</a></td>
                                             {% else %}
-                                                <td></td>
+                                            <td></td>
                                             {% endif %}
                                         </tr>
                                         </tbody>
@@ -286,9 +308,9 @@
                                         <tr>
                                             <td>Presentation File</td>
                                             {%if application.company_details.presentation_file %}
-                                                <td><a href="{{application.company_details.presentation_file}}">Presentation File</a></td>
+                                            <td><a href="{{application.company_details.presentation_file}}">Presentation File</a></td>
                                             {% else %}
-                                                <td></td>
+                                            <td></td>
                                             {% endif %}
                                         </tr>
                                         <tr>
@@ -315,10 +337,10 @@
                                             <td>Quality Certifications</td>
                                             <td>{{application.company_details.quality_certification}}</td>
                                         </tr>
-<!--                                        <tr>-->
-<!--                                            <td>Other Quality Certification</td>-->
-<!--                                            <td>{{application.company_details.certificationExpectedDate}}</td>-->
-<!--                                        </tr>-->
+                                        <!--                                        <tr>-->
+                                        <!--                                            <td>Other Quality Certification</td>-->
+                                        <!--                                            <td>{{application.company_details.certificationExpectedDate}}</td>-->
+                                        <!--                                        </tr>-->
                                         <tr>
                                             <td>Certification Expected Date</td>
                                             <td>{{application.company_details.certification_expected_date}}</td>
@@ -463,6 +485,12 @@
                 </div>
             </div>
         </div>
+        <form action="{% url 'getFeedbacks' %}" id ="getFeedbacks_form" >
+
+            {% csrf_token %}
+            <input type="hidden" id="ApplicationIdForGetFeedbacks" name="ApplicationIdForGetFeedbacks" value={{application.id}}>
+
+        </form>
         <div class="response-view">
             <div class="row">
                 <div class="col-lg-6">
@@ -545,15 +573,27 @@
                 </div>
             </div>
         </div>
-
-
-        <form action="{% url 'getFeedbacks' %}" id ="getFeedbacks_form" >
-
-            {% csrf_token %}
-            <input type="hidden" id="ApplicationIdForGetFeedbacks" name="ApplicationIdForGetFeedbacks" value={{application.id}}>
-
-        </form>
-
+        <div class="feedback-sent margin-top-40">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="same-inner-accord response-form">
+                        <h3>Feedback</h3>
+                        <form method="POST" id="feedbackSent_form" action="{% url 'sendFeedback' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" id="email_address" name="email_address" value={{email_address}}>
+                            <input type="hidden" id="ApplicationIdFeedback" name="ApplicationIdFeedback" value={{application.id}}>
+                            <div class="feedback-msg mt-3">
+                                <div class="feedbackMessageBox mb-3">
+                                    <label class="form-label">Feedback Description</label>
+                                    <textarea class="form-control formInput formTextarea" name="feedbackDescription" rows="5"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="response-btn bg-green white">Submit Feedback</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="all-feedback margin-top-40">
             <div class="same-inner-accord all-feedback-content mt-3">
                 <h3>All Feedbacks</h3>
@@ -566,12 +606,12 @@
                         <th>Update Date</th>
                     </tr>
                     {% for obj in all_feedbacks %}
-                    <tr>
-                        <td>{{obj.email}}</td>
-                        <td>{{obj.feedback}}</td>
-                        <td>Jan. 23, 2022, 4:26 p.m.</td>
-                        <td>April 5, 2022, 9:32 p.m.</td>
-                    </tr>
+                        <tr>
+                            <td>{{obj.email}}</td>
+                            <td>{{obj.feedback}}</td>
+                            <td>Jan. 23, 2022, 4:26 p.m.</td>
+                            <td>April 5, 2022, 9:32 p.m.</td>
+                        </tr>
                     {% endfor %}
 
                     </tbody>
@@ -581,7 +621,54 @@
     </div>
 </section>
 
-{% endblock %}
+
+<footer class="footer bg-grey">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a class="navbar-brand" href="#"><span class="d-block white bg-orange">Corporation</span></a>
+            </div>
+            <h6>Contact us:<a href="#">supplier.diversity@abccorporation.com</a></h6>
+        </div>
+    </div>
+</footer>
+
+
+
+
+
+<!-- Optional JavaScript; choose one of the two! -->
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js">
+</script> <!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+-->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="{% static 'js/owl.carousel.min.js'%}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!--	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>-->
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.colVis.min.js"></script>
+
+
+<script src="{% static  'js/slider.js'%}"></script>
+<script src="{% static 'js/custom.js'%}"></script>
+
+</body>
+</html>
+
+
+
+
+
 
 
 
