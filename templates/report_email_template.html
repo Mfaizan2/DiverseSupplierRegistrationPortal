@@ -2,17 +2,22 @@
 
 {% block content %}
 
-<section class="confirm-text">
-    <div class="confirm-text-content">
-        <h2 class="emailHeadingTwo">We’re sorry to see you go {{content}}</h2>
-        <p class="customParaTxt">Dear {{user.first_name}},</p>
-        <p class="customParaTxt">A Harold Construction Inc company has registered on the ABC supplier diversity portal. You are receiving this note because this supplier may be of interest to you. Please review the supplier information by clicking on the following link. Afterwards please let us know if you plan any further actions by submitting your feedback below the application.</p>
-        <div class="center">
-            <a class="confirmBtn" href="{{report_link}}">
-                Confirm Email
-            </a>
-        </div>
+<div class="email-wrapper" style="">
+    <div class="email-logo">
+        <h1>ABC</h1>
+        <h3>Corporation</h3>
     </div>
-</section>
+    <div class="body-email">
+        <h2>ABC Supplier</h2>
+        <p>
+            {{content}}
+        </p>
+        <a href="{{report_link}}">View Report</a>
+        <h4>Click the View Report Button to view the repost and provide your valuable feedback, Thankyou!</h4>
+    </div>
+    <div class="copyright-email">
+        <p>ABC Supplier &copy; 2021. All Rights Reserved.</p>
+    </div>
+</div>
 
 {% endblock content %}

@@ -1,106 +1,65 @@
-@font-face {
-    font-family: "Poppins";
-    src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap') format("truetype");
+.email-wrapper {
+    font-family: 'Roboto', sans-serif;
+    width: calc(100% - 100px);
+    margin: 0 auto;
 }
-body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
+.email-logo {
+    background-color: #eee;
+    padding: 30px 0;
 }
-.center {
+.email-logo h1, .email-logo h3 {
     text-align: center;
+    margin: 0;
+    text-transform: uppercase;
+    color: #333;
 }
-.blue {
-    color: #0151F7;
+.email-logo h1 {
+    font-size: 90px;
+    font-weight: 400;
 }
-.confirmBtn {
+.email-logo h3 {
+    font-size: 26px;
+    font-weight: 400;
+    position: relative;
+    top: -15px;
+}
+.body-email h2 {
+    margin: 30px 0 25px 0;
+    font-size: 40px;
+    text-align: center;
+    font-weight: 500;
+    color: #333;
+}
+.body-email p {
+    margin: 0 0 30px 0;
+    padding: 0 15px;
+    line-height: 24px;
+    color: #333;
+}
+.body-email a {
     text-decoration: none;
-    display: inline-block;
-    margin: 24px auto;
-    font-size: 20px;
-    text-transform: capitalize;
-    padding: 15px 110px;
-    font-weight: 600;
-    border: unset;
-    color: #fff;
-    background: #0151F7;
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    text-align: center;
     border-radius: 6px;
+    background: #5d6cdf;
+    padding: 12px 0;
+    font-size: 18px;
+    color: #fff;
 }
-.confirmation {
+.body-email h4 {
+    font-size: 30px;
+    text-align: center;
+    width: 90%;
+    margin: 30px auto;
+}
+.copyright-email {
+    background: #eee;
     padding: 40px 0;
 }
-.custom-container {
-    width: 500px;
-    margin: 0 auto;
-}
-.customParaTxt {
-    color: #555;
-    margin: 15px 0;
-    font-size: 16px;
-}
-.customDivider {
-    height: 1px;
-    width: 100%;
-    margin: 0 auto;
-    background: #ddd;
-}
-.navbar-brand {
-    height: 40px;
-}
-.emailHeadingTwo {
-    font-weight:700;
-    margin: 2.5rem 0 2rem 0;
-}
-.paraFootSame {
-    color: #555;
-    font-size:13px;
-    margin: 10px 0;
-}
-.paraFootOne {
-    margin: 15px 0 10px 0;
-}
-/* Aboard css */
-.border-box {
-    border: 1px solid #000;
-    border-radius: 6px;
-    padding: 40px 30px;
-}
-.box-heading-three {
+.copyright-email p {
     margin: 0;
-}
-.get-started {
-    display: flex;
-    margin: 30px 0 0 0;
-}
-.startedFirst {
-    margin: 25px 0 0 0;
-}
-.number {
-    display: flex;
-    height: 40px;
-    background: #FF7901;
-    min-width: 40px;
-    border-radius: 50%;
-}
-.number-span-style {
-    display: block;
-    width: 100%;
     text-align: center;
-    color: #fff;
-    padding-top: 10px;
-}
-.text-para-start {
-    margin: 0 0 0 15px;
-    color: #555;
-}
-.para-start-strong {
-    text-decoration: underline;
-}
-.started-button {
-    border: unset;
-    background: #0151F7;
-    font-size: 14px;
-    color: #fff;
-    padding: 10px 14px;
-    border-radius: 6px;
-    margin: 10px 0 0 13px;
+    font-weight: 700;
 }
