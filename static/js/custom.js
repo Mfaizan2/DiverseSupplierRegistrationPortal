@@ -934,7 +934,7 @@ $(document).ready(function(){
 
 
 
-// Add Span Click
+// NPM Add Span Click
 var npmSelectCatOne = null;
 var npmSelectCatTwo = null;
 var npmSelectCatThree = null;
@@ -952,28 +952,60 @@ $(document).ready(function(){
             $("#npmListJquery").append('<li class="npmList'+npmCount+'">'+htmlQuery+'<button class="remove-btn-npm-select" data-id="npmList'+npmCount+'">Remove</button></li>');
         }
         $('.remove-btn-npm-select').click(function(){
-            if( clickCount === 1) {
+//            if( clickCount === 1) {
                 let dataID = $(this).attr("data-id")
                 let numberStr = dataID.substr(7);
                 let index = parseInt(numberStr)
-                //$("."+dataID).remove(); //Removing the specific List
-                let clone = []
-                for(let i = 0; i < npmArrayHtml.length; i++){
-                    if(npmArrayHtml[i] === npmArrayHtml[index]){}
-                    else{
-                        clone.push(npmArrayHtml[i])
-                    }
-                }
-                npmArrayHtml = clone
-                console.log(npmArrayHtml)
-                clickCount++;
-            } else {}
+                $("."+dataID).remove(); //Removing the specific List
+//                let clone = []
+//                for(let i = 0; i < npmArrayHtml.length; i++){
+//                    if(npmArrayHtml[i] === npmArrayHtml[index]){}
+//                    else{
+//                        clone.push(npmArrayHtml[i])
+//                    }
+//                }
+//                npmArrayHtml = clone
+//                console.log(npmArrayHtml)
+//                clickCount++;
+//            } else {}
         });
 //        let index = npmArrayHtml.indexOf(this);
 //        npmArrayHtml.splice(index,1);
 //        console.log(npmArrayHtml)
-        clickCount=1;
         npmCount++;
+    });
+//    for (let i = 0; i < npmArrayHtml.length; i++) {
+//        $("#npmListJquery").append('<li class="npmList'+i+'">'+npmArrayHtml[i]+'<a href="#" class="remove-btn-npm-select" data-id="npmList'+i+'">Remove</a></li>');
+//    }
+});
+
+
+
+
+
+// PM Add Span Click
+var pmSelectCatOne = null;
+var pmSelectCatTwo = null;
+var pmSelectCatThree = null;
+var pmCount = 0;
+var pmArrayHtml = []; // Store data in Array
+$(document).ready(function(){
+    $('#pm-select-add').click(function(){
+        pmSelectCatOne = $("#select2-pmValue-container").text()
+        pmSelectCatTwo = $("#select2-pmValueCategory1-container").text()
+        pmSelectCatThree = $("#select2-pmValueCategory2-container").text()
+        htmlQuery = pmSelectCatOne + ' > ' + pmSelectCatTwo + ' > ' + pmSelectCatThree
+        if(!pmArrayHtml.includes(htmlQuery)){
+            pmArrayHtml.push(htmlQuery)
+            $("#pmListJquery").append('<li class="pmList'+pmCount+'">'+htmlQuery+'<button class="remove-btn-pm-select" data-id="pmList'+pmCount+'">Remove</button></li>');
+        }
+        $('.remove-btn-pm-select').click(function(){
+            let dataID = $(this).attr("data-id")
+            let numberStr = dataID.substr(7);
+            let index = parseInt(numberStr)
+            $("."+dataID).remove(); //Removing the specific List
+        });
+        pmCount++;
     });
 //    for (let i = 0; i < npmArrayHtml.length; i++) {
 //        $("#npmListJquery").append('<li class="npmList'+i+'">'+npmArrayHtml[i]+'<a href="#" class="remove-btn-npm-select" data-id="npmList'+i+'">Remove</a></li>');

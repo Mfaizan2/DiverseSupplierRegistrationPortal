@@ -749,6 +749,25 @@ button:focus {
     margin-left: auto;
     margin-right: unset;
 }
+.npm-pm-style li {
+    list-style-type: none;
+    display: flex;
+    background: #313b54;
+    margin: 5px;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 4px;
+    align-items: center;
+}
+.npm-pm-style li button {
+    margin-left: auto;
+    border: unset;
+    height: 34px;
+    padding: 0 10px;
+    background: red;
+    color: #fff;
+    border-radius: 4px;
+}
 
 
 
