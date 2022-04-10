@@ -359,7 +359,7 @@ button:focus {
     background-color: #eb5d0a;
     border-color: #eb5d0a;
 }
-.radio-box .btn-check:focus+.btn-secondary, .radio-box .btn-secondary:focus{ 
+.radio-box .btn-check:focus+.btn-secondary, .radio-box .btn-secondary:focus{
     box-shadow: unset;
 }
 .formTextarea {
@@ -749,6 +749,25 @@ button:focus {
     margin-left: auto;
     margin-right: unset;
 }
+.npm-pm-style li {
+    list-style-type: none;
+    display: flex;
+    background: #313b54;
+    margin: 5px;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 4px;
+    align-items: center;
+}
+.npm-pm-style li button {
+    margin-left: auto;
+    border: unset;
+    height: 34px;
+    padding: 0 10px;
+    background: red;
+    color: #fff;
+    border-radius: 4px;
+}
 
 
 
@@ -816,7 +835,7 @@ button:focus {
 @media (max-width: 767px) {
     .footer-content h6 {
         font-size: 12px;
-    } 
+    }
     .same-detail-record-tbl {
         display: block;
         overflow-x: scroll;
@@ -859,7 +878,7 @@ button:focus {
     .landing-content p {
         padding: 0 10px;
     }
-    
+
 }
 
 @media (max-width: 450px) {
