@@ -1038,11 +1038,11 @@ $(document).ready(function(){
             $("#npmListJquery").append('<li class="npmList'+npmCount+'">'+htmlQuery+'<button class="remove-btn-npm-select" data-id="npmList'+npmCount+'">Remove</button></li>');
         }
         $('.remove-btn-npm-select').click(function(){
-            if( clickCount === 1) {
+            // if( clickCount === 1) {
                 let dataID = $(this).attr("data-id")
                 let numberStr = dataID.substr(7);
                 let index = parseInt(numberStr)
-                //$("."+dataID).remove(); //Removing the specific List
+                $("."+dataID).remove(); //Removing the specific List
                 let clone = []
                 for(let i = 0; i < npmArrayHtml.length; i++){
                     if(npmArrayHtml[i] === npmArrayHtml[index]){}
@@ -1053,11 +1053,11 @@ $(document).ready(function(){
                 npmArrayHtml = clone
                 console.log(npmArrayHtml)
                 clickCount++;
-            } else {}
+            // } else {}
         });
 //        let index = npmArrayHtml.indexOf(this);
 //        npmArrayHtml.splice(index,1);
-//        console.log(npmArrayHtml)
+       console.log(npmArrayHtml)
         clickCount=1;
         npmCount++;
     });

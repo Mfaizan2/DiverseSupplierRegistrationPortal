@@ -985,44 +985,54 @@ def SendResponseToSubmitter(request):
 
 def SendResponseToSomeone(request, id):
     email_address = request.POST.get('email', None)
-    try:
+    if request.method == 'POST':
+        try:
 
-        application_id = id
+            application_id = id
 
-        messageType = request.POST.get('messageType', None)
+            messageType = request.POST.get('messageType', None)
 
-        if messageType == 'Default Message':
-            content = "A Harold Construction Inc company has registered on the ABC supplier diversity portal. You are receiving this note because this supplier may be of interest to you. Please review the supplier information by clicking on the following link. Afterwards please let us know if you plan any further actions by submitting your feedback below the application."
-        else:
-            customDescription = request.POST.get('customDescription', None)
-            content = customDescription
+            if messageType == 'Default Message':
+                content = "A Harold Construction Inc company has registered on the ABC supplier diversity portal. You are receiving this note because this supplier may be of interest to you. Please review the supplier information by clicking on the following link. Afterwards please let us know if you plan any further actions by submitting your feedback below the application."
+            else:
+                customDescription = request.POST.get('customDescription', None)
+                content = customDescription
 
-        report_link = settings.APPLICATION_BASE_URL+"report/"+str(application_id)+"/"+email_address
-        html_content = render_to_string("report_email_template.html", {'content': content, 'report_link':report_link})
-        text_content = strip_tags(html_content)
-        email = EmailMultiAlternatives(
-            "New Application at ABC Supplier",
-            text_content,
-            settings.EMAIL_HOST_USER,
-            [email_address]
-        )
+            report_link = settings.APPLICATION_BASE_URL+"report/"+str(application_id)+"/"+email_address
+            html_content = render_to_string("report_email_template.html", {'content': content, 'report_link':report_link})
+            text_content = strip_tags(html_content)
+            email = EmailMultiAlternatives(
+                "New Application at ABC Supplier",
+                text_content,
+                settings.EMAIL_HOST_USER,
+                [email_address]
+            )
 
-        email.attach_alternative(html_content, "text/html")
-        email.send()
+            email.attach_alternative(html_content, "text/html")
+            email.send()
 
-        application = ABCCorporation.objects.filter(id=id).first()
+            application = ABCCorporation.objects.filter(id=id).first()
 
-        country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
-        context = {
-            'application': application,
-            'country': mapCountryName(country.country_name)
-        }
-        messages.success(request, 'The Report Has Been Sent Successfully To: '+email_address)
-        return render(request, 'detailRecord.html', context)
+            country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
+            context = {
+                'application': application,
+                'country': mapCountryName(country.country_name)
+            }
+            messages.success(request, 'The Report Has Been Sent Successfully To: '+email_address)
+            return render(request, 'detailRecord.html', context)
 
-    except:
+        except:
 
-        messages.error(request, 'Error while sending report to: '+email_address)
+            messages.error(request, 'Error while sending report to: '+email_address)
+            application = ABCCorporation.objects.filter(id=id).first()
+
+            country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
+            context = {
+                'application': application,
+                'country': mapCountryName(country.country_name)
+            }
+            return render(request, 'detailRecord.html', context)
+    else:
         application = ABCCorporation.objects.filter(id=id).first()
 
         country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
@@ -1102,23 +1112,36 @@ def SendFeedback(request):
 
     ApplicationIdFeedback = request.POST.get('ApplicationIdFeedback', None)
 
-    try:
+    if request.method == 'POST':
 
-        application = ABCCorporation.objects.filter(id=ApplicationIdFeedback).first()
+        try:
 
-        country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
-        context = {
-            'application': application,
-            'country': mapCountryName(country.country_name),
-            'email_address': email_address
-        }
+            application = ABCCorporation.objects.filter(id=ApplicationIdFeedback).first()
 
-        feedback = Feedback(email=email_address,feedback= feedbackDescription, application_id=ApplicationIdFeedback)
-        feedback.save()
+            country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
+            context = {
+                'application': application,
+                'country': mapCountryName(country.country_name),
+                'email_address': email_address
+            }
 
-        messages.success(request, 'The Feedback Has Been Sumitted Successfully. Thank You For Providing Your Feedback.')
-        return render(request, 'Report.html', context)
-    except:
+            feedback = Feedback(email=email_address,feedback= feedbackDescription, application_id=ApplicationIdFeedback)
+            feedback.save()
+
+            messages.success(request, 'The Feedback Has Been Sumitted Successfully. Thank You For Providing Your Feedback.')
+            return render(request, 'Report.html', context)
+        except:
+            application = ABCCorporation.objects.filter(id=ApplicationIdFeedback).first()
+
+            country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
+            context = {
+                'application': application,
+                'country': mapCountryName(country.country_name),
+                'email_address': email_address
+            }
+            messages.error(request, 'Error while sending the feedback.')
+            return render(request, 'report.html', context)
+    else:
         application = ABCCorporation.objects.filter(id=ApplicationIdFeedback).first()
 
         country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
