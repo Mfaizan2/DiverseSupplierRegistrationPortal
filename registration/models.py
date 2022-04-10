@@ -16,7 +16,7 @@ class CompanyDetails(models.Model):
     duns_number =  models.CharField(max_length=266)
     quality_certification = models.CharField(max_length=266, null=False, blank=False)
     # otherQualityCertification = models.CharField(max_length=266)
-    certification_expected_date = models.DateField()
+    certification_expected_date = models.DateField(null=True, blank= True)
     operation_outside_usa = models.CharField(max_length=266, null=False, blank=False)
 
 class GeneralContact(models.Model):
@@ -24,23 +24,23 @@ class GeneralContact(models.Model):
     last_name = models.CharField(max_length=255, null=False, blank=False)
     email = models.EmailField(_('email address'), unique=True, null=False, blank=False)
     job_title = models.CharField(max_length=255, null=False, blank=False)
-    phone_number = models.IntegerField(null=False, blank=False)
-    mobile_number = models.IntegerField()
+    phone_number = models.BigIntegerField(null=False, blank=False)
+    mobile_number = models.BigIntegerField(null=True, blank=True)
 
 class SalesContact(models.Model):
     first_name = models.CharField(max_length=255, null=False, blank=False)
     last_name = models.CharField(max_length=255, null=False, blank=False)
     email = models.EmailField(_('email address'), unique=True, null=False, blank=False)
     job_title = models.CharField(max_length=255, null=False, blank=False)
-    phone_number = models.IntegerField(null=False, blank=False)
-    mobile_number = models.IntegerField()
+    phone_number = models.BigIntegerField(null=False, blank=False)
+    mobile_number = models.BigIntegerField(null=True, blank=True)
 
 class BusinessAndCertification(models.Model):
     business = models.CharField(max_length=255, null=False, blank=False)
     council =  models.CharField(max_length=255)
     ethnicity = models.CharField(max_length=255)
     certification_description = models.CharField(max_length=255)
-    expiration_date = models.DateField()
+    expiration_date = models.DateField(null=True, blank=True)
     certification_file = models.CharField(max_length=255, default='')
 
 class WomenOwnedBusiness(models.Model):
@@ -48,7 +48,7 @@ class WomenOwnedBusiness(models.Model):
     council =  models.CharField(max_length=255)
     # ethnicity = models.CharField(max_length=255)
     certification_description = models.CharField(max_length=255)
-    expiration_date = models.DateField()
+    expiration_date = models.DateField(null=True, blank=True)
     certification_file = models.CharField(max_length=255, default='')
 
 class VeteranOwnedBusiness(models.Model):
@@ -56,7 +56,7 @@ class VeteranOwnedBusiness(models.Model):
     council =  models.CharField(max_length=255)
     # ethnicity = models.CharField(max_length=255)
     certification_description = models.CharField(max_length=255)
-    expiration_date = models.DateField()
+    expiration_date = models.DateField(null=True, blank=True)
     certification_file = models.CharField(max_length=255, default='')
 
 class OtherCertification(models.Model):
@@ -64,7 +64,7 @@ class OtherCertification(models.Model):
     council =  models.CharField(max_length=255)
     # ethnicity = models.CharField(max_length=255)
     certification_description = models.CharField(max_length=255)
-    expiration_date = models.DateField()
+    expiration_date = models.DateField(null=True, blank=True)
     certification_file = models.CharField(max_length=255, default='')
 
 class Country(models.Model):
@@ -78,7 +78,7 @@ class GeneralContactInfo(models.Model):
     address2 = models.CharField(max_length=255, null=False, blank=False)
     city = models.CharField(max_length=255, null=False, blank=False)
     state = models.CharField(max_length=255, null=False, blank=False)
-    zip_code = models.IntegerField(null=False, blank=False)
+    zip_code = models.BigIntegerField(null=False, blank=False)
     sales_contact = models.ForeignKey(SalesContact, on_delete=models.CASCADE)
     general_contact = models.ForeignKey(GeneralContact, on_delete=models.CASCADE)
 
@@ -98,31 +98,31 @@ class ProductionCapabilities(models.Model):
     isOem = models.BooleanField(null=False, blank=False)
     oems = models.ForeignKey(OEMS, on_delete=models.CASCADE)
     abc_supplier = models.BooleanField(null=False, blank=False)
-    vendor_number = models.IntegerField()
+    vendor_number = models.IntegerField(null=True, blank=True)
     any_other_tier1_automotive_company = models.BooleanField()
     nmi = models.BooleanField(default=False)
     jit = models.BooleanField(default=False)
-    percentage_sale = models.IntegerField()
+    percentage_sale = models.BigIntegerField(null=True, blank=True)
     significant_awards = models.CharField(max_length=1055, null=False, blank=False)
     customer_name1 = models.CharField(max_length=255, null=False, blank=False)
-    sales1 = models.IntegerField(null=False, blank=False)
+    sales1 = models.BigIntegerField(null=False, blank=False)
     automotive1 = models.BooleanField(null=False, blank=False)
     customer_name2 = models.CharField(max_length=255, null=False, blank=False)
-    sales2 = models.IntegerField(null=False, blank=False)
+    sales2 = models.BigIntegerField(null=False, blank=False)
     automotive2 = models.BooleanField(null=False, blank=False)
     customer_name3 = models.CharField(max_length=255, null=False, blank=False)
-    sales3 = models.IntegerField(null=False, blank=False)
+    sales3 = models.BigIntegerField(null=False, blank=False)
     automotive3 = models.BooleanField(null=False, blank=False)
     record_per_naLocation = models.ForeignKey(NaLocation, on_delete=models.CASCADE)
     manufacturing_locations = models.CharField(max_length=1055)
-    event = models.CharField(max_length=1055)
+    event = models.CharField(max_length=1055, null=True, blank=True)
 
 class NpmCategory(models.Model):
     name = models.CharField(max_length=255)
 
 
 class NpmSubCategory(models.Model):
-    parent_id = models.IntegerField()
+    parent_id = models.BigIntegerField()
     name = models.CharField(max_length=255)
 
 class PmCategory(models.Model):
@@ -130,18 +130,18 @@ class PmCategory(models.Model):
 
 
 class PmSubCategory(models.Model):
-    parent_id = models.IntegerField()
+    parent_id = models.BigIntegerField()
     name = models.CharField(max_length=255)
 
 class ProductAndService(models.Model):
-    npm_value = models.CharField(max_length=255)
-    npm_value_category1 = models.CharField(max_length=255)
-    npm_value_category2 = models.CharField(max_length=255)
+    npm_value = models.CharField(max_length=255, null=True, blank=True)
+    npm_value_category1 = models.CharField(max_length=255, null=True, blank=True)
+    npm_value_category2 = models.CharField(max_length=255, null=True, blank=True)
 
-    pm_value = models.CharField(max_length=255)
-    pm_value_category1 = models.CharField(max_length=255)
-    pm_value_category2 = models.CharField(max_length=255)
-    additoinal_product_and_services = models.CharField(max_length=1055)
+    pm_value = models.CharField(max_length=255, null=True, blank=True)
+    pm_value_category1 = models.CharField(max_length=255, null=True, blank=True)
+    pm_value_category2 = models.CharField(max_length=255, null=True, blank=True)
+    additoinal_product_and_services = models.CharField(max_length=1055, null=True, blank=True)
 
 class ApplicationResponse(models.Model):
     date = models.DateTimeField(auto_now_add=True, blank=True)
@@ -159,11 +159,11 @@ class ABCCorporation(models.Model):
     company_details = models.ForeignKey(CompanyDetails, on_delete=models.CASCADE)
     production_capabilities = models.ForeignKey(ProductionCapabilities, on_delete=models.CASCADE)
     product_and_service = models.ForeignKey(ProductAndService, on_delete=models.CASCADE)
-    response = models.IntegerField(default=0)
-    emailed = models.IntegerField(default=0)
+    response = models.BigIntegerField(default=0)
+    emailed = models.BigIntegerField(default=0)
 
 class Feedback(models.Model):
-    application_id = models.IntegerField(null=False, default=0)
+    application_id = models.BigIntegerField(null=False, default=0)
     email = models.EmailField(_('email address'), null=False, blank=False)
     feedback = models.CharField(max_length=1055, null=True, blank=True)
     feedback_date = models.DateField(auto_now_add=True)

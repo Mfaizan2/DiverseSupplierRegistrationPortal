@@ -35,111 +35,120 @@ def Registration(request):
     for _ in list(storage._loaded_messages):
         del storage._loaded_messages[0]
 
+
+
     try:
         if request.method == 'POST':
 
             # try:
             # General Contact Info
             # print(request.POST['campany_name'])
-            campany_name = request.POST['campany_name']
-            # print(request.POST['website_url'])
-            website_url = request.POST['website_url']
-            # print(request.POST['address1'])
-            address1 = request.POST['address1']
-            # print(request.POST['address2'])
-            address2 = request.POST['address2']
-            # print(request.POST['country'])
-            country = request.POST['country']
-            # print(request.POST['city'])
-            city = request.POST['city']
-            # print(request.POST['state'])
-            state = request.POST['state']
-            # print(request.POST['zip_code'])
-            zip_code = request.POST['zip_code']
+            feedbackDescription = request.POST.get('feedbackDescription', None)
+            campany_name = request.POST.get('campany_name', None)
+            # print(request.POST.get('website_url'])
+            website_url = request.POST.get('website_url', None)
+            # print(request.POST.get('address1',None))
+            address1 = request.POST.get('address1', None)
+            # print(request.POST.get('address2',None))
+            address2 = request.POST.get('address2', None)
+            # print(request.POST.get('country',None))
+            country = request.POST.get('country', None)
+            # print(request.POST.get('city',None))
+            city = request.POST.get('city', None)
+            # print(request.POST.get('state',None))
+            state = request.POST.get('state', None)
+            # print(request.POST.get('zip_code',None))
+            zip_code = request.POST.get('zip_code', None)
 
-            # print(request.POST['sales_contact_first_name'])
-            sales_contact_first_name = request.POST['sales_contact_first_name']
-            # print(request.POST['sales_contact_last_name'])
-            sales_contact_last_name = request.POST['sales_contact_last_name']
-            # print(request.POST['sales_contact_email'])
-            sales_contact_email = request.POST['sales_contact_email']
-            # print(request.POST['sales_contact_job_title'])
-            sales_contact_job_title = request.POST['sales_contact_job_title']
-            # print(request.POST['sales_contact_phone'])
-            sales_contact_phone = request.POST['sales_contact_phone']
-            # print(request.POST['sales_contact_mobile'])
-            sales_contact_mobile = request.POST['sales_contact_mobile']
+            # print(request.POST.get('sales_contact_first_name',None))
+            sales_contact_first_name = request.POST.get('sales_contact_first_name', None)
+            # print(request.POST.get('sales_contact_last_name',None))
+            sales_contact_last_name = request.POST.get('sales_contact_last_name', None)
+            # print(request.POST.get('sales_contact_email',None))
+            sales_contact_email = request.POST.get('sales_contact_email', None)
+            # print(request.POST.get('sales_contact_job_title',None))
+            sales_contact_job_title = request.POST.get('sales_contact_job_title', None)
+            # print(request.POST.get('sales_contact_phone',None))
+            sales_contact_phone = request.POST.get('sales_contact_phone', None)
+            # print(request.POST.get('sales_contact_mobile',None))
+            sales_contact_mobile = request.POST.get('sales_contact_mobile', None)
 
-            # print(request.POST['general_contact_first_name'])
-            general_contact_first_name = request.POST['general_contact_first_name']
-            # print(request.POST['general_contact_last_name'])
-            general_contact_last_name = request.POST['general_contact_last_name']
-            # print(request.POST['general_contact_email'])
-            general_contact_email = request.POST['general_contact_email']
-            # print(request.POST['general_contact_job_title'])
-            general_contact_job_title = request.POST['general_contact_job_title']
-            # print(request.POST['general_contact_phone'])
-            general_contact_phone = request.POST['general_contact_phone']
-            # print(request.POST['general_contact_mobile'])
-            general_contact_mobile = request.POST['general_contact_mobile']
+            # print(request.POST.get('general_contact_first_name',None))
+            general_contact_first_name = request.POST.get('general_contact_first_name', None)
+            # print(request.POST.get('general_contact_last_name',None))
+            general_contact_last_name = request.POST.get('general_contact_last_name', None)
+            # print(request.POST.get('general_contact_email',None))
+            general_contact_email = request.POST.get('general_contact_email', None)
+            # print(request.POST.get('general_contact_job_title',None))
+            general_contact_job_title = request.POST.get('general_contact_job_title', None)
+            # print(request.POST.get('general_contact_phone',None))
+            general_contact_phone = request.POST.get('general_contact_phone', None)
+            # print(request.POST.get('general_contact_mobile',None))
+            general_contact_mobile = request.POST.get('general_contact_mobile', None)
             # ----------------------------------
 
             # Diverse Certification
 
-            # print(request.POST['mbe_business'])
-            mbe_business = request.POST['mbe_business']
-            # print(request.POST['mbe_council'])
-            mbe_council = request.POST['mbe_council']
-            # print(request.POST['mbe_ethnicity'])
-            mbe_ethnicity = request.POST['mbe_ethnicity']
-            # print(request.POST['mbe_certificationDescription'])
-            mbe_certificationDescription = request.POST['mbe_certificationDescription']
+            # print(request.POST.get('mbe_business',None))
+            mbe_business = request.POST.get('mbe_business', None)
+            # print(request.POST.get('mbe_council',None))
+            mbe_council = request.POST.get('mbe_council', None)
+            # print(request.POST.get('mbe_ethnicity',None))
+            mbe_ethnicity = request.POST.get('mbe_ethnicity', None)
+            # print(request.POST.get('mbe_certificationDescription',None))
+            mbe_certificationDescription = request.POST.get('mbe_certificationDescription', None)
 
-            if request.FILES['MobCertificationFile']:
-                mbe_certification_file = request.FILES['MobCertificationFile']
+            if request.FILES.get('MobCertificationFile', None):
+                mbe_certification_file = request.FILES.get('MobCertificationFile', None)
                 fss = FileSystemStorage()
                 file = fss.save(mbe_certification_file.name, mbe_certification_file)
                 mbe_certification_file = fss.url(file)
                 print("mbe_certification_file", mbe_certification_file)
             else:
                 mbe_certification_file = ''
-            # print(request.POST['mbe_expirationDate'])
-            mbe_expirationDate = str(request.POST['mbe_expirationDate']).split('-')
-            mbe_expirationDate = datetime.date(int(mbe_expirationDate[0]), int(mbe_expirationDate[1]),
-                                               int(mbe_expirationDate[2]))
+            # print(request.POST.get('mbe_expirationDate',None))
+            mbe_expirationDate = str(request.POST.get('mbe_expirationDate', None))
 
-            # print(request.POST['wbe_business'])
-            wbe_business = request.POST['wbe_business']
-            # print(request.POST['wbe_council'])
-            wbe_council = request.POST['wbe_council']
-            # print(request.POST['wbe_ethnicity'])
+            if mbe_expirationDate:
+                mbe_expirationDate = mbe_expirationDate.split('-')
+
+                mbe_expirationDate = datetime.date(int(mbe_expirationDate[0]), int(mbe_expirationDate[1]),
+                                                   int(mbe_expirationDate[2]))
+
+            # print(request.POST.get('wbe_business',None))
+            wbe_business = request.POST.get('wbe_business', None)
+            # print(request.POST.get('wbe_council',None))
+            wbe_council = request.POST.get('wbe_council', None)
+            # print(request.POST.get('wbe_ethnicity',None))
             # wbe_ethnicity = "xyz"
-            # print(request.POST['wbe_certificationDescription'])
-            wbe_certificationDescription = request.POST['wbe_certificationDescription']
-            if request.FILES['WobCertificationFile']:
-                wbe_certification_file = request.FILES['WobCertificationFile']
+            # print(request.POST.get('wbe_certificationDescription',None))
+            wbe_certificationDescription = request.POST.get('wbe_certificationDescription', None)
+            if request.FILES.get('WobCertificationFile', None):
+                wbe_certification_file = request.FILES.get('WobCertificationFile', None)
                 fss = FileSystemStorage()
                 file = fss.save(wbe_certification_file.name, wbe_certification_file)
                 wbe_certification_file = fss.url(file)
                 print("wbe_certification_file", wbe_certification_file)
             else:
                 wbe_certification_file = ''
-            # print(request.POST['wbe_expirationDate'])
-            wbe_expirationDate = str((request.POST['wbe_expirationDate'])).split('-')
-            wbe_expirationDate = datetime.date(int(wbe_expirationDate[0]), int(wbe_expirationDate[1]),
-                                               int(wbe_expirationDate[2]))
+            # print(request.POST.get('wbe_expirationDate',None))
+            wbe_expirationDate = str((request.POST.get('wbe_expirationDate', None)))
+            if wbe_expirationDate:
+                wbe_expirationDate = wbe_expirationDate.split('-')
+                wbe_expirationDate = datetime.date(int(wbe_expirationDate[0]), int(wbe_expirationDate[1]),
+                                                   int(wbe_expirationDate[2]))
 
-            # print(request.POST['vb_business'])
-            vb_business = request.POST['vb_business']
-            # print(request.POST['vb_council'])
-            vb_council = request.POST['vb_council']
-            # print(request.POST['vb_ethnicity'])
+            # print(request.POST.get('vb_business',None))
+            vb_business = request.POST.get('vb_business', None)
+            # print(request.POST.get('vb_council',None))
+            vb_council = request.POST.get('vb_council', None)
+            # print(request.POST.get('vb_ethnicity',None))
             # vb_ethnicity = "xyz"
-            # print(request.POST['vb_certificationDescription'])
-            vb_certificationDescription = request.POST['vb_certificationDescription']
+            # print(request.POST.get('vb_certificationDescription',None))
+            vb_certificationDescription = request.POST.get('vb_certificationDescription', None)
 
-            if request.FILES['VobCertificationFile']:
-                vb_certification_file = request.FILES['VobCertificationFile']
+            if request.FILES.get('VobCertificationFile', None):
+                vb_certification_file = request.FILES.get('VobCertificationFile', None)
                 fss = FileSystemStorage()
                 file = fss.save(vb_certification_file.name, vb_certification_file)
                 vb_certification_file = fss.url(file)
@@ -147,22 +156,26 @@ def Registration(request):
             else:
                 vb_certification_file = ''
 
-            vb_expirationDate = str(request.POST['vb_expirationDate']).split('-')
-            print(int(vb_expirationDate[0]), int(vb_expirationDate[1]), int(vb_expirationDate[2]), "faizan")
-            vb_expirationDate = datetime.date(int(vb_expirationDate[0]), int(vb_expirationDate[1]),
-                                              int(vb_expirationDate[2]))
+            vb_expirationDate = str(request.POST.get('vb_expirationDate', None))
 
-            # print(request.POST['other_certification_business'])
-            other_certification_business = request.POST['other_certification_business']
-            # print(request.POST['other_certification_council'])
-            other_certification_council = request.POST['other_certification_council']
-            # print(request.POST['other_certification_ethnicity'])
+            if vb_expirationDate:
+                vb_expirationDate = vb_expirationDate.split('-')
+
+                vb_expirationDate = datetime.date(int(vb_expirationDate[0]), int(vb_expirationDate[1]),
+                                                  int(vb_expirationDate[2]))
+
+            # print(request.POST.get('other_certification_business',None))
+            other_certification_business = request.POST.get('other_certification_business', None)
+            # print(request.POST.get('other_certification_council',None))
+            other_certification_council = request.POST.get('other_certification_council', None)
+            # print(request.POST.get('other_certification_ethnicity',None))
             # other_certification_ethnicity = "xyz"
-            # print(request.POST['other_certification_certificationDescription'])
-            other_certification_certificationDescription = request.POST['other_certification_certificationDescription']
+            # print(request.POST.get('other_certification_certificationDescription',None))
+            other_certification_certificationDescription = request.POST.get(
+                'other_certification_certificationDescription', None)
 
-            if request.FILES['CobCertificationFile']:
-                other_certification_file = request.FILES['CobCertificationFile']
+            if request.FILES.get('CobCertificationFile', None):
+                other_certification_file = request.FILES.get('CobCertificationFile', None)
                 fss = FileSystemStorage()
                 file = fss.save(other_certification_file.name, other_certification_file)
                 other_certification_file = fss.url(file)
@@ -170,128 +183,158 @@ def Registration(request):
             else:
                 other_certification_file = ''
 
-            # print(request.POST['other_certification_expirationDate'])
-            other_certification_expirationDate = str(request.POST['other_certification_expirationDate']).split('-')
-            other_certification_expirationDate = datetime.date(int(other_certification_expirationDate[0]),
-                                                               int(other_certification_expirationDate[1]),
-                                                               int(other_certification_expirationDate[2]))
+            # print(request.POST.get('other_certification_expirationDate',None))
+            other_certification_expirationDate = str(
+                request.POST.get('other_certification_expirationDate', None))
+
+
+            if other_certification_expirationDate:
+                other_certification_expirationDate = other_certification_expirationDate.split('-')
+                other_certification_expirationDate = datetime.date(int(other_certification_expirationDate[0]),
+                                                                   int(other_certification_expirationDate[1]),
+                                                                   int(other_certification_expirationDate[2]))
+
             # --------------------------------------
 
             # Company Details
 
-            # print(request.POST['presentationDescription'])
-            presentationDescription = request.POST['presentationDescription']
+            # print(request.POST.get('presentationDescription',None))
+            presentationDescription = request.POST.get('presentationDescription', None)
 
-            if request.FILES['presentationFile']:
-                presentation_file = request.FILES['presentationFile']
+            if request.FILES.get('presentationFile', None):
+                presentation_file = request.FILES.get('presentationFile', None)
                 fss = FileSystemStorage()
                 file = fss.save(presentation_file.name, presentation_file)
                 presentation_file = fss.url(file)
             else:
                 presentation_file = ''
 
-            # print(request.POST['numberOfEmployees'])
-            numberOfEmployees = request.POST['numberOfEmployees']
-            # print(request.POST['taxIdVatNumber'])
-            taxIdVatNumber = request.POST['taxIdVatNumber']
-            # print(request.POST['totalAnnaulSales'])
-            totalAnnaulSales = request.POST['totalAnnaulSales']
-            # print(request.POST['DunsNumber'])
-            DunsNumber = request.POST['DunsNumber']
-            # print(request.POST['qualityCertification'])
-            qualityCertification = request.POST['qualityCertification']
-            # print(request.POST['certificationExpectedDate'])
-            certificationExpectedDate = str(request.POST['certificationExpectedDate']).split('-')
-            certificationExpectedDate = datetime.date(int(certificationExpectedDate[0]),
-                                                      int(certificationExpectedDate[1]),
-                                                      int(certificationExpectedDate[2]))
-            # print(request.POST['operationOutsideUsa'])
-            operationOutsideUsa = request.POST['operationOutsideUsa']
+            # print(request.POST.get('numberOfEmployees',None))
+            numberOfEmployees = request.POST.get('numberOfEmployees', None)
+            # print(request.POST.get('taxIdVatNumber',None))
+            taxIdVatNumber = request.POST.get('taxIdVatNumber', None)
+            # print(request.POST.get('totalAnnaulSales',None))
+            totalAnnaulSales = request.POST.get('totalAnnaulSales', None)
+            # print(request.POST.get('DunsNumber',None))
+            DunsNumber = request.POST.get('DunsNumber', None)
+            # print(request.POST.get('qualityCertification',None))
+            qualityCertification = request.POST.get('qualityCertification', None)
+            # print(request.POST.get('certificationExpectedDate',None))
+            certificationExpectedDate = str(request.POST.get('certificationExpectedDate', None))
+            if certificationExpectedDate:
+                certificationExpectedDate = certificationExpectedDate.split('-')
+
+                certificationExpectedDate = datetime.date(int(certificationExpectedDate[0]),
+                                                          int(certificationExpectedDate[1]),
+                                                          int(certificationExpectedDate[2]))
+            # print(request.POST.get('operationOutsideUsa',None))
+            operationOutsideUsa = request.POST.get('operationOutsideUsa', None)
 
             # --------------------------------------
 
             # Production Capability
-            # print(request.POST['isOem'])
+            # print(request.POST.get('isOem',None))
             isOem = request.POST.get('isOem', False)
-            # print(request.POST['oEMS'])
-            oEMS = request.POST['oEMS']
-            oEMS = OEMS.objects.filter(name=oEMS).first()
-            # print(request.POST['JIT'])
+            # print(request.POST.get('oEMS',None))
+            oEMS = request.POST.get('oEMS', None)
+            if oEMS:
+                oEMS = OEMS.objects.filter(name=oEMS).first()
+            # print(request.POST.get('JIT',None))
             JIT = request.POST.get('JIT', False)
-            # print(request.POST['AbcSupplier'])
+            # print(request.POST.get('AbcSupplier',None))
             AbcSupplier = request.POST.get('AbcSupplier', False)
-            # print(request.POST['vendorNumber'])
-            vendorNumber = int(request.POST['vendorNumber'])
-            # print(request.POST['anyOtherTier1AutomotiveCompany'])
+            # print(request.POST.get('vendorNumber',None))
+            vendorNumber = int(request.POST.get('vendorNumber', None))
+            # print(request.POST.get('anyOtherTier1AutomotiveCompany',None))
             anyOtherTier1AutomotiveCompany = request.POST.get('anyOtherTier1AutomotiveCompany', False)
-            # print(request.POST['vmi'])
+            # print(request.POST.get('vmi',None))
             VMI = request.POST.get('vmi', False)
-            # print(request.POST['percentageSale'])
-            percentageSale = int(request.POST['percentageSale'])
-            print(request.POST['significantAwards'])
-            significantAwards = request.POST['significantAwards']
-            # print(request.POST['customerName1'])
-            customerName1 = request.POST['customerName1']
-            # print(request.POST['sales1'])
-            sales1 = int(request.POST['sales1'])
-            # print(request.POST['automotive1'])
+            print(request.POST.get('percentageSale',None))
+            percentageSale = request.POST.get('percentageSale', None)
+            if percentageSale:
+                percentageSale = int(percentageSale)
+            print(request.POST.get('significantAwards', None))
+            significantAwards = request.POST.get('significantAwards', None)
+            # print(request.POST.get('customerName1',None))
+            customerName1 = request.POST.get('customerName1', None)
+            # print(request.POST.get('sales1',None))
+            sales1 = request.POST.get('sales1', None)
+            if sales1:
+                sales1 = int(sales1)
+            # print(request.POST.get('automotive1',None))
             automotive1 = request.POST.get('automotive1', False)
-            # print(request.POST['customerName2'])
-            customerName2 = request.POST['customerName2']
-            # print(request.POST['sales2'])
-            sales2 = int(request.POST['sales2'])
-            # print(request.POST['automotive2'])
+            # print(request.POST.get('customerName2',None))
+            customerName2 = request.POST.get('customerName2', None)
+            # print(request.POST.get('sales2',None))
+            sales2 = request.POST.get('sales2', None)
+            if sales2:
+                sales2 = int(sales2)
+            # print(request.POST.get('automotive2',None))
             automotive2 = request.POST.get('automotive2', False)
-            # print(request.POST['customerName3'])
-            customerName3 = request.POST['customerName3']
-            # print(request.POST['sales3'])
-            sales3 = int(request.POST['sales3'])
-            # print(request.POST['automotive3'])
+            # print(request.POST.get('customerName3',None))
+            customerName3 = request.POST.get('customerName3', None)
+            # print(request.POST.get('sales3',None))
+            sales3 = request.POST.get('sales3', None)
+            if sales3:
+                sales3 = int(sales3)
+            # print(request.POST.get('automotive3',None))
             automotive3 = request.POST.get('automotive3', False)
-            # print(request.POST['recordPerNaLocation'])
-            recordPerNaLocation = request.POST['recordPerNaLocation']
-            # print(request.POST['manufacturingLocations'])
-            manufacturingLocations = request.POST['manufacturingLocations']
-            # print(request.POST['event'])
-            event = request.POST['event']
+            # print(request.POST.get('recordPerNaLocation',None))
+            recordPerNaLocation = request.POST.get('recordPerNaLocation', None)
+            # print(request.POST.get('manufacturingLocations',None))
+            manufacturingLocations = request.POST.get('manufacturingLocations', None)
+            # print(request.POST.get('event',None))
+            event = request.POST.get('event', None)
 
             # -----------------------------------------------
 
             # Production and services
-            # print(request.POST['npmValue'])
-            npmValue = request.POST['npmValue']
-            # print(request.POST['npmValueCategory1'])
-            npmValueCategory1 = request.POST['npmValueCategory1']
-            # print(request.POST['npmValueCategory2'])
-            npmValueCategory2 = request.POST['npmValueCategory2']
+            # print(request.POST.get('npmValue',None))
+            npmValue = request.POST.get('npmValue', None)
+            # print(request.POST.get('npmValueCategory1',None))
+            npmValueCategory1 = request.POST.get('npmValueCategory1', None)
+            # print(request.POST.get('npmValueCategory2',None))
+            npmValueCategory2 = request.POST.get('npmValueCategory2', None)
 
-            # print(request.POST['pmValue'])
-            pmValue = request.POST['pmValue']
-            # print(request.POST['pmValueCategory1'])
-            pmValueCategory1 = request.POST['pmValueCategory1']
-            # print(request.POST['pmValueCategory2'])
-            pmValueCategory2 = request.POST['pmValueCategory2']
-            # print(request.POST['additoinalProductAndServices'])
-            additoinalProductAndServices = request.POST['additoinalProductAndServices']
+            # print(request.POST.get('pmValue',None))
+            pmValue = request.POST.get('pmValue', None)
+            # print(request.POST.get('pmValueCategory1',None))
+            pmValueCategory1 = request.POST.get('pmValueCategory1', None)
+            # print(request.POST.get('pmValueCategory2',None))
+            pmValueCategory2 = request.POST.get('pmValueCategory2', None)
+            # print(request.POST.get('additoinalProductAndServices',None))
+            additoinalProductAndServices = request.POST.get('additoinalProductAndServices', None)
 
             # ------------------------------------------------
 
             salesContact = SalesContact()
-            salesContact.first_name = sales_contact_first_name
-            salesContact.last_name = sales_contact_last_name
-            salesContact.email = sales_contact_email
-            salesContact.job_title = sales_contact_job_title
-            salesContact.phone_number = sales_contact_phone
-            salesContact.mobile_number = sales_contact_mobile
+            if sales_contact_first_name:
+                salesContact.first_name = sales_contact_first_name
+            if sales_contact_last_name:
+                salesContact.last_name = sales_contact_last_name
+            if sales_contact_email:
+                salesContact.email = sales_contact_email
+            if sales_contact_job_title:
+                salesContact.job_title = sales_contact_job_title
+            if sales_contact_phone:
+                salesContact.phone_number = sales_contact_phone
+            if sales_contact_mobile:
+                salesContact.mobile_number = sales_contact_mobile
             salesContact.save()
 
             generalContact = GeneralContact()
-            generalContact.first_name = general_contact_first_name
-            generalContact.last_name = general_contact_last_name
-            generalContact.email = general_contact_email
-            generalContact.job_title = general_contact_job_title
-            generalContact.phone_number = general_contact_phone
-            generalContact.mobile_number = general_contact_mobile
+            if general_contact_first_name:
+                generalContact.first_name = general_contact_first_name
+            if general_contact_last_name:
+                generalContact.last_name = general_contact_last_name
+            if general_contact_email:
+                generalContact.email = general_contact_email
+            if general_contact_job_title:
+                generalContact.job_title = general_contact_job_title
+            if general_contact_phone:
+                generalContact.phone_number = general_contact_phone
+            if general_contact_mobile:
+                generalContact.mobile_number = general_contact_mobile
             generalContact.save()
             generalContact = GeneralContact.objects.filter(email=general_contact_email).first()
 
@@ -318,7 +361,8 @@ def Registration(request):
             businessAndCertification.ethnicity = mbe_ethnicity
             businessAndCertification.certification_description = mbe_certificationDescription
             businessAndCertification.certification_file = mbe_certification_file
-            businessAndCertification.expiration_date = mbe_expirationDate
+            if mbe_expirationDate:
+                businessAndCertification.expiration_date = mbe_expirationDate
             businessAndCertification.save()
 
             print("wbe_business", wbe_business)
@@ -328,7 +372,8 @@ def Registration(request):
             # womenOwnedBusiness.ethnicity = wbe_ethnicity
             womenOwnedBusiness.certification_description = wbe_certificationDescription
             womenOwnedBusiness.certification_file = wbe_certification_file
-            womenOwnedBusiness.expiration_date = wbe_expirationDate
+            if wbe_expirationDate:
+                womenOwnedBusiness.expiration_date = wbe_expirationDate
             womenOwnedBusiness.save()
 
             print("vb_business", vb_business)
@@ -338,7 +383,8 @@ def Registration(request):
             # veteranOwnedBusiness.ethnicity = vb_ethnicity
             veteranOwnedBusiness.certification_description = vb_certificationDescription
             veteranOwnedBusiness.certification_file = vb_certification_file
-            veteranOwnedBusiness.expiration_date = vb_expirationDate
+            if vb_expirationDate:
+                veteranOwnedBusiness.expiration_date = vb_expirationDate
             veteranOwnedBusiness.save()
 
             print("other_certification_business", other_certification_business)
@@ -348,7 +394,8 @@ def Registration(request):
             # otherCertification.ethnicity = other_certification_ethnicity
             otherCertification.certification_description = other_certification_certificationDescription
             otherCertification.certification_file = other_certification_file
-            otherCertification.expiration_date = other_certification_expirationDate
+            if other_certification_expirationDate:
+                otherCertification.expiration_date = other_certification_expirationDate
             otherCertification.save()
 
             diverseCertification = DiverseCertification()
@@ -366,7 +413,8 @@ def Registration(request):
             companyDetails.total_annaul_sales = totalAnnaulSales
             companyDetails.duns_number = DunsNumber
             companyDetails.quality_certification = qualityCertification
-            companyDetails.certification_expected_date = certificationExpectedDate
+            if certificationExpectedDate:
+                companyDetails.certification_expected_date = certificationExpectedDate
             companyDetails.operation_outside_usa = operationOutsideUsa
             companyDetails.save()
 
@@ -407,13 +455,16 @@ def Registration(request):
                 anyOtherTier1AutomotiveCompany = False
             # print(isOem, AbcSupplier, VMI, JIT, automotive1, automotive2, automotive3)
             productionCapabilities.isOem = isOem
-            productionCapabilities.oems = oEMS
+            if oEMS:
+                productionCapabilities.oems = oEMS
             productionCapabilities.abc_supplier = AbcSupplier
-            productionCapabilities.vendor_number = vendorNumber
+            if vendorNumber:
+                productionCapabilities.vendor_number = vendorNumber
             productionCapabilities.any_other_tier1_automotive_company = anyOtherTier1AutomotiveCompany
             productionCapabilities.nmi = VMI
             productionCapabilities.jit = JIT
-            productionCapabilities.percentage_sale = percentageSale
+            if percentageSale:
+                productionCapabilities.percentage_sale = percentageSale
             productionCapabilities.significant_awards = significantAwards
             productionCapabilities.customer_name1 = customerName1
             productionCapabilities.sales1 = sales1
@@ -483,6 +534,14 @@ def mapCountryName(name):
 
 
 def DetailRecord(request, id):
+    storage = messages.get_messages(request)
+    for _ in storage:
+        # This is important
+        # Without this loop `_loaded_messages` is empty
+        pass
+
+    for _ in list(storage._loaded_messages):
+        del storage._loaded_messages[0]
     application = ABCCorporation.objects.filter(id=id).first()
 
     country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
@@ -494,6 +553,14 @@ def DetailRecord(request, id):
 
 
 def BulkUpload(request):
+    storage = messages.get_messages(request)
+    for _ in storage:
+        # This is important
+        # Without this loop `_loaded_messages` is empty
+        pass
+
+    for _ in list(storage._loaded_messages):
+        del storage._loaded_messages[0]
     return render(request, 'bulk.html')
 
 
@@ -618,7 +685,7 @@ def UnmapPm(id):
 
 
 def UploadExcelFile(request):
-    # excel_file = request.FILES["excel_file"]
+    # excel_file = request.FILES.get("excel_file"]
     #
     # print("excel_file", excel_file)
     #
@@ -639,8 +706,16 @@ def UploadExcelFile(request):
     #         row_data.append(str(cell.value))
     #     excel_data.append(row_data)
 
+    storage = messages.get_messages(request)
+    for _ in storage:
+        # This is important
+        # Without this loop `_loaded_messages` is empty
+        pass
+
+    for _ in list(storage._loaded_messages):
+        del storage._loaded_messages[0]
     try:
-        excel_file = request.FILES['excel_file']
+        excel_file = request.FILES.get('excel_file', None)
         print("excel_file", excel_file)
         data = ""
         # except MultiValueDictKeyError:
@@ -949,7 +1024,15 @@ def send_mail_to_client(email, review, customDescription):
 
 
 def SendResponseToSubmitter(request):
-    ApplicationId = request.POST['ApplicationId']
+    storage = messages.get_messages(request)
+    for _ in storage:
+        # This is important
+        # Without this loop `_loaded_messages` is empty
+        pass
+
+    for _ in list(storage._loaded_messages):
+        del storage._loaded_messages[0]
+    ApplicationId = request.POST.get('ApplicationId', None)
     try:
 
         application = ABCCorporation.objects.filter(id=ApplicationId).first()
@@ -962,14 +1045,12 @@ def SendResponseToSubmitter(request):
 
         send_mail_to_client(general_contact_email, review, customDescription)
 
-
-
         country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
         context = {
             'application': application,
             'country': mapCountryName(country.country_name)
         }
-        messages.success(request, 'The Response Has Been Sent Successfully To: '+general_contact_email)
+        messages.success(request, 'The Response Has Been Sent Successfully To: ' + general_contact_email)
         return render(request, 'detailRecord.html', context)
     except:
         application = ABCCorporation.objects.filter(id=ApplicationId).first()
@@ -979,11 +1060,19 @@ def SendResponseToSubmitter(request):
             'application': application,
             'country': mapCountryName(country.country_name)
         }
-        messages.error(request, 'Error While Sending Reponse To: '+general_contact_email)
+        messages.error(request, 'Error While Sending Reponse To: ' + general_contact_email)
         return render(request, 'detailRecord.html', context)
 
 
 def SendResponseToSomeone(request, id):
+    storage = messages.get_messages(request)
+    for _ in storage:
+        # This is important
+        # Without this loop `_loaded_messages` is empty
+        pass
+
+    for _ in list(storage._loaded_messages):
+        del storage._loaded_messages[0]
     email_address = request.POST.get('email', None)
     if request.method == 'POST':
         try:
@@ -998,8 +1087,9 @@ def SendResponseToSomeone(request, id):
                 customDescription = request.POST.get('customDescription', None)
                 content = customDescription
 
-            report_link = settings.APPLICATION_BASE_URL+"report/"+str(application_id)+"/"+email_address
-            html_content = render_to_string("report_email_template.html", {'content': content, 'report_link':report_link})
+            report_link = settings.APPLICATION_BASE_URL + "report/" + str(application_id) + "/" + email_address
+            html_content = render_to_string("report_email_template.html",
+                                            {'content': content, 'report_link': report_link})
             text_content = strip_tags(html_content)
             email = EmailMultiAlternatives(
                 "New Application at ABC Supplier",
@@ -1018,12 +1108,12 @@ def SendResponseToSomeone(request, id):
                 'application': application,
                 'country': mapCountryName(country.country_name)
             }
-            messages.success(request, 'The Report Has Been Sent Successfully To: '+email_address)
+            messages.success(request, 'The Report Has Been Sent Successfully To: ' + email_address)
             return render(request, 'detailRecord.html', context)
 
         except:
 
-            messages.error(request, 'Error while sending report to: '+email_address)
+            messages.error(request, 'Error while sending report to: ' + email_address)
             application = ABCCorporation.objects.filter(id=id).first()
 
             country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
@@ -1052,8 +1142,6 @@ def GetEmailResponse(request):
         EMAIL = 'faizanaslam455@gmail.com'
         PASSWORD = 'enooetksxehjrjts'
 
-
-
         imap_host = 'imap.gmail.com'
 
         # init imap connection
@@ -1062,7 +1150,7 @@ def GetEmailResponse(request):
 
         # select only unread messages from inbox
         mail.select('Inbox')
-        status, data = mail.search(None, '(FROM "mf591108@gmail.com" SUBJECT "abc")' )
+        status, data = mail.search(None, '(FROM "mf591108@gmail.com" SUBJECT "abc")')
 
         # for each e-mail messages, print text content
         for num in data[0].split():
@@ -1077,7 +1165,7 @@ def GetEmailResponse(request):
                 str(email_msg['From']), \
                 str(email_msg['To']), \
                 str(email_msg['Date']), \
-                str(email_msg['Subject'] )))
+                str(email_msg['Subject'])))
 
             # print only message parts that contain text data
             for part in email_msg.walk():
@@ -1091,8 +1179,6 @@ def GetEmailResponse(request):
         return JsonResponse({'data': "Error while sending response.", 'status': 400})
 
 
-
-
 def Report(request, id, email_address):
     application = ABCCorporation.objects.filter(id=id).first()
 
@@ -1104,8 +1190,16 @@ def Report(request, id, email_address):
     }
     return render(request, 'report.html', context)
 
-def SendFeedback(request):
 
+def SendFeedback(request):
+    storage = messages.get_messages(request)
+    for _ in storage:
+        # This is important
+        # Without this loop `_loaded_messages` is empty
+        pass
+
+    for _ in list(storage._loaded_messages):
+        del storage._loaded_messages[0]
     email_address = request.POST['email_address']
 
     feedbackDescription = request.POST.get('feedbackDescription', None)
@@ -1125,10 +1219,11 @@ def SendFeedback(request):
                 'email_address': email_address
             }
 
-            feedback = Feedback(email=email_address,feedback= feedbackDescription, application_id=ApplicationIdFeedback)
+            feedback = Feedback(email=email_address, feedback=feedbackDescription, application_id=ApplicationIdFeedback)
             feedback.save()
 
-            messages.success(request, 'The Feedback Has Been Sumitted Successfully. Thank You For Providing Your Feedback.')
+            messages.success(request,
+                             'The Feedback Has Been Sumitted Successfully. Thank You For Providing Your Feedback.')
             return render(request, 'Report.html', context)
         except:
             application = ABCCorporation.objects.filter(id=ApplicationIdFeedback).first()
@@ -1150,32 +1245,33 @@ def SendFeedback(request):
             'country': mapCountryName(country.country_name),
             'email_address': email_address
         }
-        messages.error(request, 'Error while sending the feedback.')
         return render(request, 'report.html', context)
 
-def GetFeedbacks(request):
 
+def GetFeedbacks(request):
     application_id = request.POST['ApplicationIdForGetFeedbacks']
 
     try:
 
         result = []
-
+        status = 400
 
         print("application_id", application_id)
 
         all_feedbacks = Feedback.objects.filter(application_id=application_id)
-        for obj in all_feedbacks:
-            temp = []
-            temp.append(obj.email)
-            temp.append(obj.feedback)
-            temp.append(obj.feedback_date)
-            temp.append(obj.update_date)
-            result.append(temp)
+        if all_feedbacks:
+            for obj in all_feedbacks:
+                temp = []
+                temp.append(obj.email)
+                temp.append(obj.feedback)
+                temp.append(obj.feedback_date)
+                temp.append(obj.update_date)
+                result.append(temp)
+            status = 200
 
         print("temp", result)
-        return JsonResponse({'data': "Perfect",'status':200,"result":result})
+        return JsonResponse({'data': "Perfect", 'status': status, "result": result})
     except:
 
         print("application_id", application_id)
-        return JsonResponse({'data': "Error",'status':400})
+        return JsonResponse({'data': "Error", 'status': 400})

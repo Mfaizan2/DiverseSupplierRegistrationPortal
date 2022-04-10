@@ -990,22 +990,26 @@ function GetFeedbacks()
 
             var body = ''
 
+            if (test.status === 200) {
 
-            for (const key in test.result) {
-                // var row = table.insertRow(key + 1);
-                body = '<tr>'
-                for (const k in test.result[key]) {
 
-                    if (test.result[key][k]) {
-                        body = body + '<td>' + test.result[key][k] + '</td>'
+                $('#AllFeedBacksDiv').removeClass("displayNone");
+
+
+                for (const key in test.result) {
+                    // var row = table.insertRow(key + 1);
+                    body = '<tr>'
+                    for (const k in test.result[key]) {
+
+                        if (test.result[key][k]) {
+                            body = body + '<td>' + test.result[key][k] + '</td>'
+                        } else {
+                            body = body + '<td>' + '</td>'
+                        }
                     }
-                    else
-                    {
-                        body = body + '<td>'  + '</td>'
-                    }
+                    body = body + '</tr>'
+                    $('#feedback_table tbody').append(body);
                 }
-                body = body + '</tr>'
-                $('#feedback_table tbody').append(body);
             }
 
         }

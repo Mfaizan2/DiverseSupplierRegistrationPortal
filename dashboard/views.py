@@ -13,94 +13,109 @@ def dashboard(request):
     return render(request, 'dashboard.html')
 
 def mapCountryNameById(id):
-    if id==2:
-        return "Canada"
-    elif id == 1:
-        return "United States"
-    elif id == 3:
-        return "Maxico"
+    if id:
+        if id==2:
+            return "Canada"
+        elif id == 1:
+            return "United States"
+        elif id == 3:
+            return "Maxico"
+    else:
+        return None
 
 def mapNaLocation(id):
-    if id==1:
-        return "CAN"
-    elif id == 2:
-        return "Global"
-    elif id == 3:
-        return "MX"
-    elif id == 4:
-        return "US"
+    if id:
+        if id==1:
+            return "CAN"
+        elif id == 2:
+            return "Global"
+        elif id == 3:
+            return "MX"
+        elif id == 4:
+            return "US"
+    else:
+        return None
 
 def mapOems(id):
-    if id==1:
-        return "BMW"
-    elif id == 2:
-        return "Cummins"
-    elif id == 3:
-        return "FCA"
-    elif id == 4:
-        return "Ford"
-    elif id == 5:
-        return "Fuji"
-    elif id == 6:
-        return "GM"
-    elif id == 7:
-        return "Honda"
-    elif id == 8:
-        return "Hyundai/ Kia"
-    elif id == 9:
-        return "Mazda"
-    elif id == 10:
-        return "Mercedes/ Daimler"
-    elif id == 11:
-        return "Mitsubishi"
-    elif id == 12:
-        return "Navistar"
-    elif id == 13:
-        return "Nissan"
-    elif id == 14:
-        return "Toyota"
-    elif id == 15:
-        return "VW"
+    if id:
+        if id==1:
+            return "BMW"
+        elif id == 2:
+            return "Cummins"
+        elif id == 3:
+            return "FCA"
+        elif id == 4:
+            return "Ford"
+        elif id == 5:
+            return "Fuji"
+        elif id == 6:
+            return "GM"
+        elif id == 7:
+            return "Honda"
+        elif id == 8:
+            return "Hyundai/ Kia"
+        elif id == 9:
+            return "Mazda"
+        elif id == 10:
+            return "Mercedes/ Daimler"
+        elif id == 11:
+            return "Mitsubishi"
+        elif id == 12:
+            return "Navistar"
+        elif id == 13:
+            return "Nissan"
+        elif id == 14:
+            return "Toyota"
+        elif id == 15:
+            return "VW"
+    else:
+        return None
 
 def mapNpm(id):
-    id = int(id)
-    if id==1:
-        return "Auxiliaries and supplies"
-    elif id == 2:
-        return "IT and Telecommunication"
-    elif id == 3:
-        return "IT and Telecommunication(cont.)"
-    elif id == 4:
-        return "Production Equipment and Engineering, Buildings and Vehicles"
-    elif id == 5:
-        return "Production Equipment and Engineering, Buildings and Vehicles (cont.)"
-    elif id == 6:
-        return "Corporate Services and Related Supplies"
-    elif id == 7:
-        return "Logistical Services"
-    elif id == 8:
-        return "Logistical Services (cont.)"
+    if id:
+        id = int(id)
+        if id==1:
+            return "Auxiliaries and supplies"
+        elif id == 2:
+            return "IT and Telecommunication"
+        elif id == 3:
+            return "IT and Telecommunication(cont.)"
+        elif id == 4:
+            return "Production Equipment and Engineering, Buildings and Vehicles"
+        elif id == 5:
+            return "Production Equipment and Engineering, Buildings and Vehicles (cont.)"
+        elif id == 6:
+            return "Corporate Services and Related Supplies"
+        elif id == 7:
+            return "Logistical Services"
+        elif id == 8:
+            return "Logistical Services (cont.)"
+    else:
+        return None
 
 def mapPm(id):
-    id = int(id)
-    if id==1:
-        return "Raw Material"
-    elif id == 2:
-        return "Casting"
-    elif id == 3:
-        return "Non Cast Metal Parts"
-    elif id == 4:
-        return "Miscelleanous"
-    elif id == 5:
-        return "Plastic Parts"
-    elif id == 6:
-        return "Rubber Parts"
-    elif id == 7:
-        return "Electronics"
-    elif id == 8:
-        return "Electronics (cont.)"
-    elif id == 9:
-        return "Electro-mech Parts"
+    if id:
+        id = int(id)
+        if id==1:
+            return "Raw Material"
+        elif id == 2:
+            return "Casting"
+        elif id == 3:
+            return "Non Cast Metal Parts"
+        elif id == 4:
+            return "Miscelleanous"
+        elif id == 5:
+            return "Plastic Parts"
+        elif id == 6:
+            return "Rubber Parts"
+        elif id == 7:
+            return "Electronics"
+        elif id == 8:
+            return "Electronics (cont.)"
+        elif id == 9:
+            return "Electro-mech Parts"
+    else:
+        return None
 
 
 def diverseCertificationData(request):
