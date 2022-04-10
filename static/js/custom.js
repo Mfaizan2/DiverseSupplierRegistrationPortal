@@ -946,37 +946,34 @@ $(document).ready(function(){
         npmSelectCatOne = $("#select2-npmValue-container").text()
         npmSelectCatTwo = $("#select2-npmValueCategory1-container").text()
         npmSelectCatThree = $("#select2-npmValueCategory2-container").text()
-        htmlQuery = npmSelectCatOne + ' > ' + npmSelectCatTwo + ' > ' + npmSelectCatThree
-        if(!npmArrayHtml.includes(htmlQuery)){
-            npmArrayHtml.push(htmlQuery)
-            $("#npmListJquery").append('<li class="npmList'+npmCount+'">'+htmlQuery+'<button class="remove-btn-npm-select" data-id="npmList'+npmCount+'">Remove</button></li>');
+        let npmHtmlQuery = npmSelectCatOne + ' > ' + npmSelectCatTwo + ' > ' + npmSelectCatThree
+        if(!npmArrayHtml.includes(npmHtmlQuery)){
+            npmArrayHtml.push(npmHtmlQuery)
+            $("#npmListJquery").append('<li class="npmList'+npmCount+'" value="'+npmHtmlQuery+'">'+npmHtmlQuery+'<button class="remove-btn-npm-select" data-id="npmList'+npmCount+'">Remove</button></li>');
         }
-        $('.remove-btn-npm-select').click(function(){
-//            if( clickCount === 1) {
+        $('.remove-btn-npm-select').click(function() {
+            if( clickCount === 1) {
                 let dataID = $(this).attr("data-id")
-                let numberStr = dataID.substr(7);
-                let index = parseInt(numberStr)
+                console.log("Value => " + $("."+dataID).attr("value"))
+                let value = $("."+dataID).attr("value")
+//                let numberStr = dataID.substr(7);
+//                let index = parseInt(numberStr)
                 $("."+dataID).remove(); //Removing the specific List
-//                let clone = []
-//                for(let i = 0; i < npmArrayHtml.length; i++){
-//                    if(npmArrayHtml[i] === npmArrayHtml[index]){}
-//                    else{
-//                        clone.push(npmArrayHtml[i])
-//                    }
-//                }
-//                npmArrayHtml = clone
-//                console.log(npmArrayHtml)
-//                clickCount++;
-//            } else {}
+                let clone = []
+                for(let i = 0; i < npmArrayHtml.length; i++){
+                    if(npmArrayHtml[i] === value){}
+                    else{
+                        clone.push(npmArrayHtml[i])
+                    }
+                }
+                npmArrayHtml = clone
+                console.log(npmArrayHtml)
+                clickCount++;
+            } else if ( clickCount <= npmArrayHtml.length ) { clickCount++ } else { clickCount = 1 }
         });
-//        let index = npmArrayHtml.indexOf(this);
-//        npmArrayHtml.splice(index,1);
-//        console.log(npmArrayHtml)
+        console.log(npmArrayHtml)
         npmCount++;
     });
-//    for (let i = 0; i < npmArrayHtml.length; i++) {
-//        $("#npmListJquery").append('<li class="npmList'+i+'">'+npmArrayHtml[i]+'<a href="#" class="remove-btn-npm-select" data-id="npmList'+i+'">Remove</a></li>');
-//    }
 });
 
 
@@ -988,22 +985,36 @@ var pmSelectCatOne = null;
 var pmSelectCatTwo = null;
 var pmSelectCatThree = null;
 var pmCount = 0;
+var pmclickCount = 1;
 var pmArrayHtml = []; // Store data in Array
 $(document).ready(function(){
     $('#pm-select-add').click(function(){
         pmSelectCatOne = $("#select2-pmValue-container").text()
         pmSelectCatTwo = $("#select2-pmValueCategory1-container").text()
         pmSelectCatThree = $("#select2-pmValueCategory2-container").text()
-        htmlQuery = pmSelectCatOne + ' > ' + pmSelectCatTwo + ' > ' + pmSelectCatThree
-        if(!pmArrayHtml.includes(htmlQuery)){
-            pmArrayHtml.push(htmlQuery)
-            $("#pmListJquery").append('<li class="pmList'+pmCount+'">'+htmlQuery+'<button class="remove-btn-pm-select" data-id="pmList'+pmCount+'">Remove</button></li>');
+        let pmHtmlQuery = pmSelectCatOne + ' > ' + pmSelectCatTwo + ' > ' + pmSelectCatThree
+        if(!pmArrayHtml.includes(pmHtmlQuery)){
+            pmArrayHtml.push(pmHtmlQuery)
+            $("#pmListJquery").append('<li class="pmList'+pmCount+'" value="'+pmHtmlQuery+'">'+pmHtmlQuery+'<button class="remove-btn-pm-select" data-id="pmList'+pmCount+'">Remove</button></li>');
         }
         $('.remove-btn-pm-select').click(function(){
-            let dataID = $(this).attr("data-id")
-            let numberStr = dataID.substr(7);
-            let index = parseInt(numberStr)
-            $("."+dataID).remove(); //Removing the specific List
+            if( pmclickCount === 1) {
+                let dataID = $(this).attr("data-id")
+                let value = $("."+dataID).attr("value")
+                $("."+dataID).remove(); //Removing the specific List
+
+                let clone = []
+                for(let i = 0; i < pmArrayHtml.length; i++){
+                    if(pmArrayHtml[i] === value){}
+                    else{
+                        clone.push(pmArrayHtml[i])
+                    }
+                }
+                pmArrayHtml = clone
+                console.log(pmArrayHtml)
+
+                pmclickCount++;
+            } else if ( pmclickCount <= pmArrayHtml.length ) { pmclickCount++ } else { pmclickCount = 1 }
         });
         pmCount++;
     });
