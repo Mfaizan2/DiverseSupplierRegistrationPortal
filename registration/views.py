@@ -36,7 +36,6 @@ def Registration(request):
         del storage._loaded_messages[0]
 
 
-
     try:
         if request.method == 'POST':
 
@@ -296,6 +295,8 @@ def Registration(request):
             # print(request.POST.get('npmValueCategory2',None))
             npmValueCategory2 = request.POST.get('npmValueCategory2', None)
 
+            npmSelectedValueFinal = request.POST.get('npmSelectedValueFinal', None)
+
             # print(request.POST.get('pmValue',None))
             pmValue = request.POST.get('pmValue', None)
             # print(request.POST.get('pmValueCategory1',None))
@@ -304,6 +305,8 @@ def Registration(request):
             pmValueCategory2 = request.POST.get('pmValueCategory2', None)
             # print(request.POST.get('additoinalProductAndServices',None))
             additoinalProductAndServices = request.POST.get('additoinalProductAndServices', None)
+
+            pmSelectedValueFinal = request.POST.get('pmSelectedValueFinal', None)
 
             # ------------------------------------------------
 
@@ -480,25 +483,52 @@ def Registration(request):
             productionCapabilities.event = event
             productionCapabilities.save()
 
-            productAndService = ProductAndService()
-            productAndService.npm_value = npmValue
-            productAndService.npm_value_category1 = npmValueCategory1
-            productAndService.npm_value_category2 = npmValueCategory2
-            productAndService.save()
 
-            productAndService.pm_value = pmValue
-            productAndService.pm_value_category1 = pmValueCategory1
-            productAndService.pm_value_category2 = pmValueCategory2
-            productAndService.additoinal_product_and_services = additoinalProductAndServices
-            productAndService.save()
 
             aBCCorporation = ABCCorporation()
             aBCCorporation.general_contant_info = generalContactInfo
             aBCCorporation.diverse_certification = diverseCertification
             aBCCorporation.company_details = companyDetails
             aBCCorporation.production_capabilities = productionCapabilities
-            aBCCorporation.product_and_service = productAndService
+            # aBCCorporation.product_and_service = productAndService
             aBCCorporation.save()
+
+
+
+
+            if npmSelectedValueFinal:
+                print("Faizan", npmSelectedValueFinal)
+                npmSelectedValueFinal = npmSelectedValueFinal.split(',')
+                for obj in npmSelectedValueFinal:
+
+                    obj = obj.split('>')
+                    npmValue = obj[0]
+                    npmValueCategory1 = obj[1]
+                    if obj[2]:
+                        npmValueCategory2 = obj[2]
+                    else:
+                        npmValueCategory2 = ''
+                    npmValues = NpmValues(abc_corporation_id=aBCCorporation.id, npm_value=npmValue, npm_value_category1=npmValueCategory1, npm_value_category2=npmValueCategory2)
+                    npmValues.save()
+                    print("Faizan")
+
+
+            if pmSelectedValueFinal:
+                print("zee", pmSelectedValueFinal)
+                pmSelectedValueFinal = pmSelectedValueFinal.split(',')
+                for obj in pmSelectedValueFinal:
+
+                    obj = obj.split('>')
+                    pmValue = obj[0]
+                    if obj[1]:
+                        pmValueCategory1 = obj[1]
+                    else:
+                        pmValueCategory1 = ''
+                    pmValues = PmValues(abc_corporation_id=aBCCorporation.id, pm_value=pmValue, pm_value_category1=pmValueCategory1)
+                    pmValues.save()
+                    print("zee")
+
+
             messages.success(request, 'Application successfully submitted')
             return render(request, 'Registrationform.html')
             # except Exception as e:
@@ -516,10 +546,14 @@ def AllRecords(request):
     # page_number = request.GET.get('page')
     # page_obj = Paginator.get_page(paginator, page_number)
     # print("all_applications", page_obj)
+    npmValues = NpmValues.objects.all()
+    pmValues = PmValues.objects.all()
 
     context = {
         'expenses': all_applications,
-        'page_obj': all_applications
+        'page_obj': all_applications,
+        'npmValues': npmValues,
+        'pmValues': pmValues
     }
     return render(request, 'allRecords.html', context)
 
@@ -543,11 +577,23 @@ def DetailRecord(request, id):
     for _ in list(storage._loaded_messages):
         del storage._loaded_messages[0]
     application = ABCCorporation.objects.filter(id=id).first()
+    npmValues = NpmValues.objects.filter(abc_corporation_id=id)
+    npmFinal = ''
+    for obj in npmValues:
+        npmFinal = npmFinal + obj.npm_value+ " > "+ obj.npm_value_category1+ " > "+ obj.npm_value_category2+ " | "
+
+    pmValues = PmValues.objects.filter(abc_corporation_id=id)
+    pmFinal = ''
+    for obj in pmValues:
+        pmFinal = pmFinal + obj.pm_value+ " > "+ obj.pm_value_category1+ " > "+ obj.pm_value_category2+ " | "
+
 
     country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
     context = {
         'application': application,
-        'country': mapCountryName(country.country_name)
+        'country': mapCountryName(country.country_name),
+        'npmValues': npmFinal,
+        'pmValues': pmFinal
     }
     return render(request, 'detailRecord.html', context)
 
@@ -685,26 +731,7 @@ def UnmapPm(id):
 
 
 def UploadExcelFile(request):
-    # excel_file = request.FILES.get("excel_file"]
-    #
-    # print("excel_file", excel_file)
-    #
-    # # you may put validations here to check extension or file size
-    #
-    # wb = openpyxl.load_workbook(excel_file)
-    #
-    # # getting a particular sheet by name out of many sheets
-    # worksheet = wb["Sheet1"]
-    # print(worksheet)
-    #
-    # excel_data = list()
-    # # iterating over the rows and
-    # # getting value from each cell in row
-    # for row in worksheet.iter_rows():
-    #     row_data = list()
-    #     for cell in row:
-    #         row_data.append(str(cell.value))
-    #     excel_data.append(row_data)
+
 
     storage = messages.get_messages(request)
     for _ in storage:
@@ -714,6 +741,10 @@ def UploadExcelFile(request):
 
     for _ in list(storage._loaded_messages):
         del storage._loaded_messages[0]
+
+
+
+
     try:
         excel_file = request.FILES.get('excel_file', None)
         print("excel_file", excel_file)
@@ -734,6 +765,7 @@ def UploadExcelFile(request):
 
         sales_contact_job_title = data['Sales Job Title']
         sales_contact_phone = data['Sales Office Phone']
+        print("sales_contact_phone", sales_contact_phone)
         sales_contact_mobile = data['Sales Mobile Phone']
         sales_contact_first_name = data['Sales First Name']
         sales_contact_last_name = data['Sales Last Name']
@@ -814,21 +846,35 @@ def UploadExcelFile(request):
 
         for index in range(0, len(campany_name)):
             salesContact = SalesContact()
-            salesContact.first_name = sales_contact_first_name[index]
-            salesContact.last_name = sales_contact_last_name[index]
-            salesContact.email = sales_contact_email[index]
-            salesContact.job_title = sales_contact_job_title[index]
-            salesContact.phone_number = sales_contact_phone[index]
-            salesContact.mobile_number = sales_contact_mobile[index]
+            if sales_contact_first_name[index]:
+                salesContact.first_name = sales_contact_first_name[index]
+            if sales_contact_last_name[index]:
+                salesContact.last_name = sales_contact_last_name[index]
+            if sales_contact_email[index]:
+                salesContact.email = sales_contact_email[index]
+            if sales_contact_job_title[index]:
+                salesContact.job_title = sales_contact_job_title[index]
+            print("sales_contact_phone[index]", sales_contact_phone[index])
+            if sales_contact_phone[index]:
+                salesContact.phone_number = sales_contact_phone[index].astype('int64')
+            print("sales_contact_mobile[index]", sales_contact_mobile[index])
+            if sales_contact_mobile[index]:
+                salesContact.mobile_number = sales_contact_mobile[index].astype('int64')
             salesContact.save()
 
             generalContact = GeneralContact()
-            generalContact.first_name = general_contact_first_name[index]
-            generalContact.last_name = general_contact_last_name[index]
-            generalContact.email = general_contact_email[index]
-            generalContact.job_title = general_contact_job_title[index]
-            generalContact.phone_number = general_contact_phone[index]
-            generalContact.mobile_number = general_contact_mobile[index]
+            if general_contact_first_name[index]:
+                generalContact.first_name = general_contact_first_name[index]
+            if general_contact_last_name[index]:
+                generalContact.last_name = general_contact_last_name[index]
+            if general_contact_email[index]:
+                generalContact.email = general_contact_email[index]
+            if general_contact_job_title[index]:
+                generalContact.job_title = general_contact_job_title[index]
+            if general_contact_phone[index]:
+                generalContact.phone_number = general_contact_phone[index].astype('int64')
+            if general_contact_mobile[index]:
+                generalContact.mobile_number = general_contact_mobile[index].astype('int64')
             generalContact.save()
             generalContact = GeneralContact.objects.filter(email=general_contact_email[index]).first()
 
@@ -852,20 +898,23 @@ def UploadExcelFile(request):
             businessAndCertification.council = mbe_council[index]
             businessAndCertification.ethnicity = mbe_ethnicity[index]
             businessAndCertification.certification_description = mbe_certificationDescription[index]
-            temp_date = str(mbe_expirationDate[index]).split('/')
-            mbe_expirationDate[index] = datetime.date(int(temp_date[2]), int(temp_date[1]), int(temp_date[0]))
-            businessAndCertification.expiration_date = mbe_expirationDate[index]
-            print("mbe_expirationDate[index]", mbe_expirationDate[index])
+            if mbe_expirationDate[index]:
+                temp_date = str(mbe_expirationDate[index]).split('/')
+                mbe_expirationDate[index] = datetime.date(int(temp_date[2]), int(temp_date[1]), int(temp_date[0]))
+                businessAndCertification.expiration_date = mbe_expirationDate[index]
+                print("mbe_expirationDate[index]", mbe_expirationDate[index])
             businessAndCertification.save()
 
             womenOwnedBusiness = WomenOwnedBusiness()
             womenOwnedBusiness.business = wbe_business[index]
             womenOwnedBusiness.council = wbe_council[index]
             # womenOwnedBusiness.ethnicity = wbe_ethnicity
+            womenOwnedBusiness.certification_file = ''
             womenOwnedBusiness.certification_description = wbe_certificationDescription[index]
-            temp_date = str(wbe_expirationDate[index]).split('/')
-            wbe_expirationDate[index] = datetime.date(int(temp_date[2]), int(temp_date[1]), int(temp_date[0]))
-            womenOwnedBusiness.expiration_date = wbe_expirationDate[index]
+            if wbe_expirationDate[index]:
+                temp_date = str(wbe_expirationDate[index]).split('/')
+                wbe_expirationDate[index] = datetime.date(int(temp_date[2]), int(temp_date[1]), int(temp_date[0]))
+                womenOwnedBusiness.expiration_date = wbe_expirationDate[index]
             womenOwnedBusiness.save()
 
             veteranOwnedBusiness = VeteranOwnedBusiness()
@@ -873,21 +922,25 @@ def UploadExcelFile(request):
             veteranOwnedBusiness.business = vb_business[index]
             veteranOwnedBusiness.council = vb_council[index]
             # veteranOwnedBusiness.ethnicity = vb_ethnicity
+            veteranOwnedBusiness.certification_file = ''
             veteranOwnedBusiness.certification_description = vb_certificationDescription[index]
-            temp_date = str(vb_expirationDate[index]).split('/')
-            vb_expirationDate[index] = datetime.date(int(temp_date[2]), int(temp_date[1]), int(temp_date[0]))
-            veteranOwnedBusiness.expiration_date = vb_expirationDate[index]
+            if vb_expirationDate[index]:
+                temp_date = str(vb_expirationDate[index]).split('/')
+                vb_expirationDate[index] = datetime.date(int(temp_date[2]), int(temp_date[1]), int(temp_date[0]))
+                veteranOwnedBusiness.expiration_date = vb_expirationDate[index]
             veteranOwnedBusiness.save()
 
             otherCertification = OtherCertification()
             otherCertification.business = other_certification_business[index]
             otherCertification.council = other_certification_council[index]
             # otherCertification.ethnicity = other_certification_ethnicity
+            otherCertification.certification_file = ''
             otherCertification.certification_description = other_certification_certificationDescription[index]
-            temp_date = str(other_certification_expirationDate[index]).split('/')
-            other_certification_expirationDate[index] = datetime.date(int(temp_date[2]), int(temp_date[1]),
-                                                                      int(temp_date[0]))
-            otherCertification.expiration_date = other_certification_expirationDate[index]
+            if other_certification_expirationDate[index]:
+                temp_date = str(other_certification_expirationDate[index]).split('/')
+                other_certification_expirationDate[index] = datetime.date(int(temp_date[2]), int(temp_date[1]),
+                                                                          int(temp_date[0]))
+                otherCertification.expiration_date = other_certification_expirationDate[index]
             otherCertification.save()
 
             diverseCertification = DiverseCertification()
@@ -898,15 +951,17 @@ def UploadExcelFile(request):
             diverseCertification.save()
 
             companyDetails = CompanyDetails()
+            companyDetails.presentation_file = ''
             companyDetails.presentation_description = presentationDescription[index]
             companyDetails.number_of_employees = numberOfEmployees[index]
             companyDetails.tax_id_vat_number = taxIdVatNumber[index]
             companyDetails.total_annaul_sales = totalAnnaulSales[index]
             companyDetails.duns_number = DunsNumber[index]
             companyDetails.quality_certification = qualityCertification[index]
-            temp_date = str(certificationExpectedDate[index]).split('/')
-            certificationExpectedDate[index] = datetime.date(int(temp_date[2]), int(temp_date[1]), int(temp_date[0]))
-            companyDetails.certification_expected_date = certificationExpectedDate[index]
+            if certificationExpectedDate[index]:
+                temp_date = str(certificationExpectedDate[index]).split('/')
+                certificationExpectedDate[index] = datetime.date(int(temp_date[2]), int(temp_date[1]), int(temp_date[0]))
+                companyDetails.certification_expected_date = certificationExpectedDate[index]
             companyDetails.operation_outside_usa = operationOutsideUsa[index]
             companyDetails.save()
 
@@ -950,11 +1005,13 @@ def UploadExcelFile(request):
             tempOEMS = OEMS.objects.filter(name=oEMS[index]).first()
             productionCapabilities.oems = tempOEMS
             productionCapabilities.abc_supplier = AbcSupplier[index]
-            productionCapabilities.vendor_number = vendorNumber[index]
+            if vendorNumber[index]:
+                productionCapabilities.vendor_number = vendorNumber[index]
             productionCapabilities.any_other_tier1_automotive_company = anyOtherTier1AutomotiveCompany[index]
             productionCapabilities.nmi = VMI[index]
             productionCapabilities.jit = JIT[index]
-            productionCapabilities.percentage_sale = percentageSale[index]
+            if percentageSale[index]:
+                productionCapabilities.percentage_sale = percentageSale[index]
             productionCapabilities.significant_awards = significantAwards[index]
             productionCapabilities.customer_name1 = customerName1[index]
             productionCapabilities.sales1 = sales1[index]
@@ -970,39 +1027,48 @@ def UploadExcelFile(request):
             productionCapabilities.event = event[index]
             productionCapabilities.save()
 
-            productAndService = ProductAndService()
 
-            temp = str(npmValue[index]).split('>')
-            tempNpmValue = temp[0]
-            npmValueCategory1 = temp[1]
-            npmValueCategory2 = temp[2]
-
-            productAndService.npm_value = UnmapNpm(tempNpmValue)
-            productAndService.npm_value_category1 = npmValueCategory1
-            productAndService.npm_value_category2 = npmValueCategory2
-            productAndService.save()
-
-            temp = str(pmValue[index]).split('>')
-            tempPmValue = temp[0]
-            pmValueCategory1 = temp[1]
-            pmValueCategory2 = temp[2]
-
-            productAndService.pm_value = UnmapPm(tempPmValue)
-            productAndService.pm_value_category1 = pmValueCategory1
-            productAndService.pm_value_category2 = pmValueCategory2
-            productAndService.additoinal_product_and_services = additoinalProductAndServices[index]
-            productAndService.save()
 
             aBCCorporation = ABCCorporation()
             aBCCorporation.general_contant_info = generalContactInfo
             aBCCorporation.diverse_certification = diverseCertification
             aBCCorporation.company_details = companyDetails
             aBCCorporation.production_capabilities = productionCapabilities
-            aBCCorporation.product_and_service = productAndService
+
             aBCCorporation.save()
 
-        messages.success(request, 'Data successfully uploaded')
 
+
+            if npmValue[index]:
+                npmSelectedValueFinal = npmValue[index].split(',')
+                for obj in npmSelectedValueFinal:
+                    temp = str(obj).split('>')
+                    tempNpmValue = temp[0]
+                    npmValueCategory1 = temp[1]
+                    if temp[2]:
+                        npmValueCategory2 = temp[2]
+                    else:
+                        npmValueCategory2 = ''
+                    npmValues = NpmValues(abc_corporation_id=aBCCorporation.id, npm_value=tempNpmValue, npm_value_category1=npmValueCategory1, npm_value_category2=npmValueCategory2)
+                    npmValues.save()
+
+
+
+            if pmValue[index]:
+                pmSelectedValueFinal = pmValue[index].split(',')
+                for obj in pmSelectedValueFinal:
+                    temp = str(obj).split('>')
+                    tempPmValue = temp[0]
+                    if temp[1]:
+                        pmValueCategory1 = temp[1]
+                    else:
+                        pmValueCategory1 = ''
+                    pmValues = PmValues(abc_corporation_id=aBCCorporation.id, pm_value=tempPmValue, pm_value_category1=pmValueCategory1)
+                    pmValues.save()
+
+
+
+            messages.success(request, 'Data successfully uploaded')
     except:
         messages.error(request, 'Error while uploading data')
         print("No")
@@ -1050,6 +1116,8 @@ def SendResponseToSubmitter(request):
             'application': application,
             'country': mapCountryName(country.country_name)
         }
+        application.response = 1
+        application.save()
         messages.success(request, 'The Response Has Been Sent Successfully To: ' + general_contact_email)
         return render(request, 'detailRecord.html', context)
     except:
@@ -1108,6 +1176,8 @@ def SendResponseToSomeone(request, id):
                 'application': application,
                 'country': mapCountryName(country.country_name)
             }
+            application.emailed = application.emailed + 1
+            application.save()
             messages.success(request, 'The Report Has Been Sent Successfully To: ' + email_address)
             return render(request, 'detailRecord.html', context)
 

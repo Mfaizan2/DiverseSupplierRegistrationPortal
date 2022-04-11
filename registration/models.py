@@ -96,7 +96,7 @@ class NaLocation(models.Model):
 
 class ProductionCapabilities(models.Model):
     isOem = models.BooleanField(null=False, blank=False)
-    oems = models.ForeignKey(OEMS, on_delete=models.CASCADE)
+    oems = models.ForeignKey(OEMS, on_delete=models.CASCADE, null=True, blank=True)
     abc_supplier = models.BooleanField(null=False, blank=False)
     vendor_number = models.IntegerField(null=True, blank=True)
     any_other_tier1_automotive_company = models.BooleanField()
@@ -153,12 +153,24 @@ class ApplicationEmailed(models.Model):
     message = models.CharField(max_length=1055)
     to = models.CharField(max_length=1055)
 
+class NpmValues(models.Model):
+    abc_corporation_id = models.IntegerField()
+    npm_value = models.CharField(max_length=255)
+    npm_value_category1 = models.CharField(max_length=255)
+    npm_value_category2 = models.CharField(max_length=255)
+
+class PmValues(models.Model):
+    abc_corporation_id = models.IntegerField()
+    pm_value = models.CharField(max_length=255)
+    pm_value_category1 = models.CharField(max_length=255)
+    pm_value_category2 = models.CharField(max_length=255)
+
 class ABCCorporation(models.Model):
     general_contant_info = models.ForeignKey(GeneralContactInfo, on_delete=models.CASCADE)
     diverse_certification = models.ForeignKey(DiverseCertification, on_delete=models.CASCADE)
     company_details = models.ForeignKey(CompanyDetails, on_delete=models.CASCADE)
     production_capabilities = models.ForeignKey(ProductionCapabilities, on_delete=models.CASCADE)
-    product_and_service = models.ForeignKey(ProductAndService, on_delete=models.CASCADE)
+    # product_and_service = models.ForeignKey(ProductAndService, on_delete=models.CASCADE)
     response = models.BigIntegerField(default=0)
     emailed = models.BigIntegerField(default=0)
 
