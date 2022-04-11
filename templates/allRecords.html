@@ -45,13 +45,27 @@
                             {% for rec in page_obj %}
                                 <tr>
                                     <td>{{rec.general_contant_info.company_name}}</td>
-                                    <td>{{rec.product_and_service.npm_value}} > {{rec.product_and_service.npm_value_category1}} > {{rec.product_and_service.npm_value_category2}}</td>
-                                    <td>{{rec.product_and_service.pm_value}} > {{rec.product_and_service.pm_value_category1}} > {{rec.product_and_service.pm_value_category2}}</td>
+                                    <td>
+                                        {% for obj in npmValues %}
+                                            {% if obj.abc_corporation_id == rec.id%}
+
+                                                {{obj.npm_value}} > {{obj.npm_value_category1}} > {{obj.npm_value_category2}} |
+                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        {% for obj in pmValues %}
+                                            {% if obj.abc_corporation_id == rec.id%}
+
+                                                {{obj.pm_value}} > {{obj.pm_value_category1}} |
+                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
                                     <td>{{rec.production_capabilities.oems.name}}</td>
                                     <td>{{rec.production_capabilities.abc_supplier}}</td>
                                     <td>{{rec.production_capabilities.record_per_naLocation.name}}</td>
-                                    <td>No</td>
-                                    <td>2 Times</td>
+                                    <td> {% if rec.response == 1 %} Yes {% else %} No {%endif %}</td>
+                                    <td> {{rec.emailed}} Times</td>
                                     <td><a href="{% url 'detailRecord' rec.id %}"><i class="bi bi-eye-fill"></i></a></td>
                                 </tr>
                             {% endfor %}
