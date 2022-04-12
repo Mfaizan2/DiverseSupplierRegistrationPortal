@@ -46,6 +46,7 @@ def Registration(request):
             campany_name = request.POST.get('campany_name', None)
             # print(request.POST.get('website_url'])
             website_url = request.POST.get('website_url', None)
+            company_video = request.POST.get('company_video', None)
             # print(request.POST.get('address1',None))
             address1 = request.POST.get('address1', None)
             # print(request.POST.get('address2',None))
@@ -347,6 +348,7 @@ def Registration(request):
             generalContactInfo = GeneralContactInfo()
             generalContactInfo.company_name = campany_name
             generalContactInfo.website_url = website_url
+            generalContactInfo.video_url = company_video
             generalContactInfo.address1 = address1
             generalContactInfo.address2 = address2
             generalContactInfo.country = country
@@ -528,6 +530,17 @@ def Registration(request):
                     pmValues.save()
                     print("zee")
 
+                print("Sending email")
+                subject = 'New Application at ABC Supplier'
+
+                message = "You have received a new application at ABC Supplier"
+
+
+                email_from = settings.EMAIL_HOST_USER
+                email = "faizanaslam455@gmail.com"
+                recipient_list = [email]
+                send_mail(subject, message, email_from, recipient_list, fail_silently=False)
+
 
             messages.success(request, 'Application successfully submitted')
             return render(request, 'Registrationform.html')
@@ -631,7 +644,7 @@ def DownloadSampleExcelFile(request):
     font_style.font.bold = True
 
     # column header names, you can use your own headers here
-    columns = ['Company Name', 'Website URL', 'Country', 'Address 1',
+    columns = ['Company Name', 'Website URL', "Company detail's Video link", 'Country', 'Address 1',
                'Address 2', 'Neighborhood', 'City', 'State', 'Postal Code',
                'Sales First Name', 'Sales Last Name', 'Sales Email Address',
                'Sales Job Title', 'Sales Office Phone', 'Sales Mobile Phone',
@@ -756,6 +769,7 @@ def UploadExcelFile(request):
 
         campany_name = data['Company Name']
         website_url = data['Website URL']
+        company_video = data["Company detail's Video link"]
         address1 = data['Address 1']
         address2 = data['Address 2']
         country = data['Country']
@@ -883,6 +897,7 @@ def UploadExcelFile(request):
             generalContactInfo = GeneralContactInfo()
             generalContactInfo.company_name = campany_name[index]
             generalContactInfo.website_url = website_url[index]
+            generalContactInfo.video_url = company_video[index]
             generalContactInfo.address1 = address1[index]
             generalContactInfo.address2 = address2[index]
             generalContactInfo.country = tempCountry

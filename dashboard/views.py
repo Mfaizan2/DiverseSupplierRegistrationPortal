@@ -167,6 +167,8 @@ def diverseCertificationData(request):
 
     totalOemsIds = ProductionCapabilities.objects.values('oems_id').annotate(count=Count('oems_id')).order_by('oems_id')
 
+
+
     totalOemsArray = []
     totalOemsArrayCount = []
 
@@ -174,27 +176,33 @@ def diverseCertificationData(request):
         totalOemsArray.append(mapOems(totalOemsIds[r]['oems_id']))
         totalOemsArrayCount.append(totalOemsIds[r]['count'])
 
-    
+    print("totalOemsArray", totalOemsArray)
+    print("totalOemsArrayCount", totalOemsArrayCount)
 
 
-    totalNpmValues = ProductAndService.objects.values('npm_value').annotate(count=Count('npm_value')).order_by('npm_value')
+
+
+
+    npmValues = NpmValues.objects.values('npm_value').annotate(count=Count('*')).order_by('npm_value')
+
 
     totalNpmValuesArray = []
     totalNpmValuesCount = []
 
-    for r in range(0,len(totalNpmValues)):
-        totalNpmValuesArray.append(mapNpm(totalNpmValues[r]['npm_value']))
-        totalNpmValuesCount.append(totalNpmValues[r]['count'])
+    for r in range(0,len(npmValues)):
+        totalNpmValuesArray.append(npmValues[r]['npm_value'])
+        totalNpmValuesCount.append(npmValues[r]['count'])
 
 
-    totalPmValues = ProductAndService.objects.values('pm_value').annotate(count=Count('pm_value')).order_by('pm_value')
+
+    pmValues = PmValues.objects.values('pm_value').annotate(count=Count('*')).order_by('pm_value')
 
     totalPmValuesArray = []
     totalPmValuesCount = []
     
-    for r in range(0,len(totalPmValues)):
-        totalPmValuesArray.append(mapPm(totalPmValues[r]['pm_value']))
-        totalPmValuesCount.append(totalPmValues[r]['count'])
+    for r in range(0,len(pmValues)):
+        totalPmValuesArray.append(pmValues[r]['pm_value'])
+        totalPmValuesCount.append(pmValues[r]['count'])
 
 
 
