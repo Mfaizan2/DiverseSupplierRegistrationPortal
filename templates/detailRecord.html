@@ -30,7 +30,11 @@
                                         </tr>
                                         <tr>
                                             <td>Company detail's Video link</td>
-                                            <td><a href="{{application.general_contant_info.video_url}}">{{application.general_contant_info.video_url}}</a></td>
+                                            {% if application.general_contant_info.video_url  %}
+                                                <td><a href="{{application.general_contant_info.video_url}}">{{application.general_contant_info.video_url}}</a></td>
+                                            {% else %}
+                                                <td><a href=""></a></td>
+                                            {% endif %}
                                         </tr>
                                         <tr>
                                             <td>Country</td>
