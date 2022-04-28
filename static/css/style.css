@@ -225,7 +225,7 @@ button:focus {
 
 /* ================ Landing Page ================ */
 .landingPage {
-    background-image: url(https://webappmuh.blob.core.windows.net/temp/LandingBanner.jpg?sv=2021-04-10&st=2022-04-20T17%3A44%3A01Z&se=2022-04-21T17%3A44%3A01Z&sr=b&sp=r&sig=VxryX0pff3IB5voLOIlcb438%2BtuCFCOx4hNwtqkZlic%3D);
+    background-image: url(https://webappmuh.blob.core.windows.net/static/imgs/LandingBanner.jpg?sv=2021-04-10&st=2022-04-24T09%3A11%3A45Z&se=2025-05-25T09%3A11%3A00Z&sr=b&sp=r&sig=Qb0O%2FXjhI7URkfDg6IS5qORKIXnrFZE75hTad9iWk%2FM%3D);
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;

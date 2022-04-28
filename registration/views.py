@@ -1,6 +1,7 @@
 import datetime
 
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from registration.models import *
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -23,6 +24,48 @@ import imaplib, email, getpass
 from email import policy
 
 
+def upload(container_name, file_path, file_name):
+    from azure.storage.blob import (
+        BlobServiceClient,
+        PublicAccess,
+        ContainerClient,
+    )
+    from datetime import datetime, timedelta
+
+    now = str(datetime.now()).split(" ")[1]
+    print("now", now)
+    file_name = file_name.replace(" ", "")
+    file_name = now.replace(" ", "") + file_name
+    container_client = ContainerClient.from_connection_string("BlobEndpoint=https://webappmuh.blob.core.windows.net/;QueueEndpoint=https://webappmuh.queue.core.windows.net/;FileEndpoint=https://webappmuh.file.core.windows.net/;TableEndpoint=https://webappmuh.table.core.windows.net/;SharedAccessSignature=sv=2020-08-04&ss=bfqt&srt=co&sp=rwdlacupx&se=2025-04-27T15:10:20Z&st=2022-04-22T07:10:20Z&spr=https&sig=5q1UtBRUUxP23oGBcKiv1c5mXMVDh1M9HYAbYrVPx1E%3D",container_name)
+
+    print("Uploading files")
+
+    blob_client = container_client.get_blob_client(file_name)
+    blob_client.upload_blob(file_path)
+    print("File_uploaded")
+
+
+
+
+    from azure.storage.blob import BlobClient, generate_blob_sas, BlobSasPermissions
+
+    account_name = 'webappmuh'
+    account_key = 'Ob9SQssWcPW8hAb6GEOu2xaCHiMv1Q5BV5fdHPoioUW8hktZIQIyTOjvx5gOmv7GYCSy6e9cN+RW+AStbBskSA=='
+
+
+    sas_blob = generate_blob_sas(account_name=account_name,
+                                 container_name=container_name,
+                                 blob_name=file_name,
+                                 account_key=account_key,
+                                 permission=BlobSasPermissions(read=True),
+                                 expiry=datetime.utcnow() + timedelta(hours=26280)
+                                 )
+
+    url = 'https://'+account_name+'.blob.core.windows.net/'+container_name+'/'+file_name+'?'+sas_blob
+    print("url", url)
+    return url
+
+
 # Create your views here.
 
 def Registration(request):
@@ -36,6 +79,9 @@ def Registration(request):
         del storage._loaded_messages[0]
 
 
+
+
+
     try:
         if request.method == 'POST':
 
@@ -46,7 +92,13 @@ def Registration(request):
             campany_name = request.POST.get('campany_name', None)
             # print(request.POST.get('website_url'])
             website_url = request.POST.get('website_url', None)
-            company_video = request.POST.get('company_video', None)
+            company_video_link = request.POST.get('company_video_link', None)
+            if request.FILES.get('company_video_file', None):
+                company_video_file = request.FILES.get('company_video_file', None)
+
+                company_video_file = upload("company-details", company_video_file, company_video_file.name)
+            else:
+                company_video_file = ''
             # print(request.POST.get('address1',None))
             address1 = request.POST.get('address1', None)
             # print(request.POST.get('address2',None))
@@ -100,9 +152,7 @@ def Registration(request):
 
             if request.FILES.get('MobCertificationFile', None):
                 mbe_certification_file = request.FILES.get('MobCertificationFile', None)
-                fss = FileSystemStorage()
-                file = fss.save(mbe_certification_file.name, mbe_certification_file)
-                mbe_certification_file = fss.url(file)
+                mbe_certification_file = upload("minority-owned-business", mbe_certification_file, mbe_certification_file.name)
                 print("mbe_certification_file", mbe_certification_file)
             else:
                 mbe_certification_file = ''
@@ -125,9 +175,7 @@ def Registration(request):
             wbe_certificationDescription = request.POST.get('wbe_certificationDescription', None)
             if request.FILES.get('WobCertificationFile', None):
                 wbe_certification_file = request.FILES.get('WobCertificationFile', None)
-                fss = FileSystemStorage()
-                file = fss.save(wbe_certification_file.name, wbe_certification_file)
-                wbe_certification_file = fss.url(file)
+                wbe_certification_file = upload("women-owned-business", wbe_certification_file, wbe_certification_file.name)
                 print("wbe_certification_file", wbe_certification_file)
             else:
                 wbe_certification_file = ''
@@ -149,9 +197,8 @@ def Registration(request):
 
             if request.FILES.get('VobCertificationFile', None):
                 vb_certification_file = request.FILES.get('VobCertificationFile', None)
-                fss = FileSystemStorage()
-                file = fss.save(vb_certification_file.name, vb_certification_file)
-                vb_certification_file = fss.url(file)
+                vb_certification_file = upload("veteran-owned-business", vb_certification_file, vb_certification_file.name)
+
                 print("vb_certification_file", vb_certification_file)
             else:
                 vb_certification_file = ''
@@ -176,9 +223,8 @@ def Registration(request):
 
             if request.FILES.get('CobCertificationFile', None):
                 other_certification_file = request.FILES.get('CobCertificationFile', None)
-                fss = FileSystemStorage()
-                file = fss.save(other_certification_file.name, other_certification_file)
-                other_certification_file = fss.url(file)
+                other_certification_file = upload("other-certification", other_certification_file, other_certification_file.name)
+
                 print("other_certification_file", other_certification_file)
             else:
                 other_certification_file = ''
@@ -203,9 +249,7 @@ def Registration(request):
 
             if request.FILES.get('presentationFile', None):
                 presentation_file = request.FILES.get('presentationFile', None)
-                fss = FileSystemStorage()
-                file = fss.save(presentation_file.name, presentation_file)
-                presentation_file = fss.url(file)
+                presentation_file = upload("company-details", presentation_file, presentation_file.name)
             else:
                 presentation_file = ''
 
@@ -348,7 +392,8 @@ def Registration(request):
             generalContactInfo = GeneralContactInfo()
             generalContactInfo.company_name = campany_name
             generalContactInfo.website_url = website_url
-            generalContactInfo.video_url = company_video
+            generalContactInfo.video_url = company_video_link
+            generalContactInfo.company_video_file = company_video_file
             generalContactInfo.address1 = address1
             generalContactInfo.address2 = address2
             generalContactInfo.country = country
@@ -553,6 +598,7 @@ def Registration(request):
     return render(request, 'Registrationform.html')
 
 
+@login_required(login_url='/login')
 def AllRecords(request):
     all_applications = ABCCorporation.objects.all()
     # paginator = Paginator(all_applications, 10)
@@ -580,6 +626,7 @@ def mapCountryName(name):
         return "Maxico"
 
 
+@login_required(login_url='/login')
 def DetailRecord(request, id):
     storage = messages.get_messages(request)
     for _ in storage:
@@ -611,6 +658,7 @@ def DetailRecord(request, id):
     return render(request, 'detailRecord.html', context)
 
 
+@login_required(login_url='/login')
 def BulkUpload(request):
     storage = messages.get_messages(request)
     for _ in storage:
@@ -623,6 +671,7 @@ def BulkUpload(request):
     return render(request, 'bulk.html')
 
 
+@login_required(login_url='/login')
 def DownloadSampleExcelFile(request):
     # content-type of response
     response = HttpResponse(content_type='application/ms-excel')
@@ -743,6 +792,7 @@ def UnmapPm(id):
         return 9
 
 
+@login_required(login_url='/login')
 def UploadExcelFile(request):
 
 
@@ -769,7 +819,7 @@ def UploadExcelFile(request):
 
         campany_name = data['Company Name']
         website_url = data['Website URL']
-        company_video = data["Company detail's Video link"]
+        company_video_link = data["Company detail's Video link"]
         address1 = data['Address 1']
         address2 = data['Address 2']
         country = data['Country']
@@ -897,7 +947,7 @@ def UploadExcelFile(request):
             generalContactInfo = GeneralContactInfo()
             generalContactInfo.company_name = campany_name[index]
             generalContactInfo.website_url = website_url[index]
-            generalContactInfo.video_url = company_video[index]
+            generalContactInfo.video_url = company_video_link[index]
             generalContactInfo.address1 = address1[index]
             generalContactInfo.address2 = address2[index]
             generalContactInfo.country = tempCountry
@@ -1104,6 +1154,7 @@ def send_mail_to_client(email, review, customDescription):
     send_mail(subject, message, email_from, recipient_list, fail_silently=False)
 
 
+@login_required(login_url='/login')
 def SendResponseToSubmitter(request):
     storage = messages.get_messages(request)
     for _ in storage:
@@ -1147,6 +1198,7 @@ def SendResponseToSubmitter(request):
         return render(request, 'detailRecord.html', context)
 
 
+@login_required(login_url='/login')
 def SendResponseToSomeone(request, id):
     storage = messages.get_messages(request)
     for _ in storage:

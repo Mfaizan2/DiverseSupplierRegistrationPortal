@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from registration.models import *
 from django.db.models import Q
@@ -8,7 +9,7 @@ from django.db.models import Count
 
 
 # Create your views here.
-
+@login_required(login_url='/login')
 def dashboard(request):
     return render(request, 'dashboard.html')
 

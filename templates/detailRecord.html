@@ -31,9 +31,17 @@
                                         <tr>
                                             <td>Company detail's Video link</td>
                                             {% if application.general_contant_info.video_url  %}
-                                                <td><a href="{{application.general_contant_info.video_url}}">{{application.general_contant_info.video_url}}</a></td>
+                                                <td><a href="{{application.general_contant_info.video_url}}">Click here</a></td>
                                             {% else %}
                                                 <td><a href=""></a></td>
+                                            {% endif %}
+                                        </tr>
+                                        <tr>
+                                            <td>Company detail's Video</td>
+                                            {% if application.general_contant_info.video_url  %}
+                                            <td><a href="{{application.general_contant_info.company_video_file}}">Video File</a></td>
+                                            {% else %}
+                                            <td><a href=""></a></td>
                                             {% endif %}
                                         </tr>
                                         <tr>

@@ -1,6 +1,7 @@
 
 from django.shortcuts import render, redirect
 from django.views import View
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -49,23 +50,23 @@ def verification(self, request, uuid, token):
 #         ContainerClient,
 #     )
 #     container_client = ContainerClient.from_connection_string("BlobEndpoint=https://webappmuh.blob.core.windows.net/;QueueEndpoint=https://webappmuh.queue.core.windows.net/;FileEndpoint=https://webappmuh.file.core.windows.net/;TableEndpoint=https://webappmuh.table.core.windows.net/;SharedAccessSignature=sv=2020-08-04&ss=bfqt&srt=co&sp=rwdlacupx&se=2022-04-20T16:00:12Z&st=2022-04-20T08:00:12Z&spr=https&sig=0zI517%2F7DEGqoXN4iKmeZIHuhSDaj7cfOA3PCFoSWn4%3D","temp")
-#
+# 
 #     print("Uploading files")
-#
+# 
 #     blob_client = container_client.get_blob_client("salman.pdf")
 #     with open("/Users/techesthete009/Downloads/salman.pdf", "rb") as data:
 #         blob_client.upload_blob(data)
 #         print("africa uploaded to blob")
-#
-#
+# 
+# 
 #     from datetime import datetime, timedelta
 #     from azure.storage.blob import BlobClient, generate_blob_sas, BlobSasPermissions
-#
+# 
 #     account_name = 'webappmuh'
 #     account_key = 'Ob9SQssWcPW8hAb6GEOu2xaCHiMv1Q5BV5fdHPoioUW8hktZIQIyTOjvx5gOmv7GYCSy6e9cN+RW+AStbBskSA=='
 #     container_name = 'temp'
 #     blob_name = 'salman.pdf'
-#
+# 
 #     sas_blob = generate_blob_sas(account_name=account_name,
 #                                  container_name=container_name,
 #                                  blob_name=blob_name,
@@ -73,7 +74,7 @@ def verification(self, request, uuid, token):
 #                                  permission=BlobSasPermissions(read=True),
 #                                  expiry=datetime.utcnow() + timedelta(hours=1)
 #                                  )
-#
+# 
 #     url = 'https://'+account_name+'.blob.core.windows.net/'+container_name+'/'+blob_name+'?'+sas_blob
 #     print("url", url)
 
@@ -208,6 +209,7 @@ def signup(request):
     return render(request, 'login.html', status=400)
 
 
+@login_required(login_url='/login')
 def logout(request):
     auth.logout(request)
     messages.success(request, 'Successfully logout')

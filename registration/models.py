@@ -74,6 +74,7 @@ class GeneralContactInfo(models.Model):
     company_name = models.CharField(max_length=255, null=False, blank=False)
     website_url = models.CharField(max_length=255, null=False, blank=False)
     video_url = models.CharField(max_length=1255, null=True, blank=True, default='')
+    company_video_file = models.CharField(max_length=255, null=True, blank=True, default='')
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     address1 = models.CharField(max_length=255, null=False, blank=False)
     address2 = models.CharField(max_length=255, null=False, blank=False)
