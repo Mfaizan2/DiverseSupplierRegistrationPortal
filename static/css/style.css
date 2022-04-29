@@ -7,8 +7,14 @@ body {
     overflow-x: hidden;
     background-color: #e9ecef;
 }
+.h-80v{
+    height: 80vh;
+}
 .mr-10{
     margin-right: 10px !important;
+}
+.text-decoration-none{
+    text-decoration: none !important;
 }
 .w-auto{
     width: auto;
@@ -644,7 +650,24 @@ padding: 0px;
     z-index: -1;
 }
 
+/*favourite-list-styles*/
 
+.favourite-list-styles{
+    margin-left: 30px;
+}
+
+.favourite-list-styles li{
+        list-style-type: auto;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        padding: 5px;
+        background-color: transparent;
+}
+
+.favourite-list-styles li:HOVER{
+        background-color: #fff;
+}
 
 /* Data Table Styles */
 .search-tbl {
@@ -851,8 +874,19 @@ padding: 0px;
     color: #fff;
     border-radius: 4px;
 }
+/*modal-content-styles*/
 
-
+.modal-content .modal-body {
+    padding-top: 36px;
+}
+.modal-body .closeModalHeader{
+    position: absolute;
+    top: 8px;
+    right: 12px;
+}
+.modal-body .modalBodyContent{
+    display: block;
+}
 
 
 

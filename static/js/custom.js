@@ -490,6 +490,19 @@ $(document).ready(function() {
         fixedHeader: true,
         scrollX: true
     } );
+        $('#favouriteRecord').DataTable( {
+        dom: 'Bfrtip',
+        "paging": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "responsive": true,
+        "lengthChange": true,
+        "autoWidth": false,
+        fixedHeader: true,
+        scrollX: true
+    } );
+
 } );
 
 

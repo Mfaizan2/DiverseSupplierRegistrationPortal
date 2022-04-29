@@ -1353,3 +1353,8 @@ def GetFeedbacks(request):
 
         print("application_id", application_id)
         return JsonResponse({'data': "Error", 'status': 400})
+
+def favouriteRecode(request):
+
+    # upload()
+    return render(request, 'favourite-list.html')
