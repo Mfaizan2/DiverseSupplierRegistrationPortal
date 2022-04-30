@@ -1,6 +1,6 @@
-
 from django.shortcuts import render, redirect
 from django.views import View
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -16,7 +16,6 @@ from .utils import token_generator
 from django.utils.encoding import force_str, force_bytes, DjangoUnicodeDecodeError
 
 import json
-
 
 
 def verification(self, request, uuid, token):
@@ -37,9 +36,6 @@ def verification(self, request, uuid, token):
     return redirect('login')
 
 
-
-
-
 # def upload():
 #     from azure.storage.blob import (
 #         BlobServiceClient,
@@ -49,23 +45,23 @@ def verification(self, request, uuid, token):
 #         ContainerClient,
 #     )
 #     container_client = ContainerClient.from_connection_string("BlobEndpoint=https://webappmuh.blob.core.windows.net/;QueueEndpoint=https://webappmuh.queue.core.windows.net/;FileEndpoint=https://webappmuh.file.core.windows.net/;TableEndpoint=https://webappmuh.table.core.windows.net/;SharedAccessSignature=sv=2020-08-04&ss=bfqt&srt=co&sp=rwdlacupx&se=2022-04-20T16:00:12Z&st=2022-04-20T08:00:12Z&spr=https&sig=0zI517%2F7DEGqoXN4iKmeZIHuhSDaj7cfOA3PCFoSWn4%3D","temp")
-#
+# 
 #     print("Uploading files")
-#
+# 
 #     blob_client = container_client.get_blob_client("salman.pdf")
 #     with open("/Users/techesthete009/Downloads/salman.pdf", "rb") as data:
 #         blob_client.upload_blob(data)
 #         print("africa uploaded to blob")
-#
-#
+# 
+# 
 #     from datetime import datetime, timedelta
 #     from azure.storage.blob import BlobClient, generate_blob_sas, BlobSasPermissions
-#
+# 
 #     account_name = 'webappmuh'
 #     account_key = 'Ob9SQssWcPW8hAb6GEOu2xaCHiMv1Q5BV5fdHPoioUW8hktZIQIyTOjvx5gOmv7GYCSy6e9cN+RW+AStbBskSA=='
 #     container_name = 'temp'
 #     blob_name = 'salman.pdf'
-#
+# 
 #     sas_blob = generate_blob_sas(account_name=account_name,
 #                                  container_name=container_name,
 #                                  blob_name=blob_name,
@@ -73,23 +69,17 @@ def verification(self, request, uuid, token):
 #                                  permission=BlobSasPermissions(read=True),
 #                                  expiry=datetime.utcnow() + timedelta(hours=1)
 #                                  )
-#
+# 
 #     url = 'https://'+account_name+'.blob.core.windows.net/'+container_name+'/'+blob_name+'?'+sas_blob
 #     print("url", url)
-
-
-
-
-
-
 
 
 # Create your views here.
 
 def index(request):
-
     # upload()
     return render(request, 'index.html')
+
 
 def upload_file_to_directory():
     try:
@@ -99,7 +89,8 @@ def upload_file_to_directory():
         directory_client = file_system_client.get_directory_client("my-directory")
 
         file_client = directory_client.create_file("africa.jpeg")
-        local_file = open("/Users/techesthete009/PycharmProjects/DiverseSupplierRegistrationPortal/static/imgs/africa.jpeg",'r')
+        local_file = open(
+            "/Users/techesthete009/PycharmProjects/DiverseSupplierRegistrationPortal/static/imgs/africa.jpeg", 'r')
 
         file_contents = local_file.read()
 
@@ -109,7 +100,6 @@ def upload_file_to_directory():
 
     except Exception as e:
         print(e)
-
 
 
 # def login(request):
@@ -130,20 +120,20 @@ def login(request):
                     if user.is_active:
                         auth.login(request, user)
                         messages.success(request, 'Successfully login')
-                        return JsonResponse({'data': "Successfully login.",'status':200})
+                        return JsonResponse({'data': "Successfully login.", 'status': 200})
                     else:
                         messages.error(request, 'User is not active')
-                        return JsonResponse({'data': "User is not active.",'status':400})
+                        return JsonResponse({'data': "User is not active.", 'status': 400})
                 else:
                     print("In valid")
                     messages.error(request, 'Invalid credentials!!!')
-                    return JsonResponse({'data': "Invalid credentials.",'status':400})
+                    return JsonResponse({'data': "Invalid credentials.", 'status': 400})
             else:
-                return JsonResponse({'data': "User not found.",'status':400})
+                return JsonResponse({'data': "User not found.", 'status': 400})
 
         else:
             messages.error(request, 'Provide credentials!!!')
-            return JsonResponse({'data': "Provide credentials.",'status':400})
+            return JsonResponse({'data': "Provide credentials.", 'status': 400})
 
     return render(request, 'login.html')
 
@@ -177,7 +167,6 @@ def signup(request):
             user.is_active = True
             user.save()
 
-
             # domain = get_current_site(request).domain
             #
             # uuid = urlsafe_base64_encode(force_bytes(user.pk))
@@ -200,14 +189,44 @@ def signup(request):
             #     [mail_to],
             #     fail_silently=False,
             # )
-            return JsonResponse({'data': "Account Successfully created.",'status':200})
+            return JsonResponse({'data': "Account Successfully created.", 'status': 200})
         else:
-            return JsonResponse({'data': "Email already exist.",'status':500})
-
+            return JsonResponse({'data': "Email already exist.", 'status': 500})
 
     return render(request, 'login.html', status=400)
 
 
+def forgotPassword(request):
+    if request.method == 'POST':
+        email = request.POST['emailForgotPassword']
+        password = request.POST['ForgotPassword1']
+        confirm_password = request.POST['ForgotPassword2']
+
+        if len(email) == 0:
+            return JsonResponse({'data': "Please provide Email.", 'status': 500})
+        elif len(password) == 0:
+            return JsonResponse({'data': "Please provide Password.", 'status': 500})
+        elif len(confirm_password) == 0:
+            return JsonResponse({'data': "Please provide Confirm Password.", 'status': 500})
+        elif password != confirm_password:
+            return JsonResponse({'data': "Password and Confirm Password must have to be same.", 'status': 500})
+        
+
+        if User.objects.filter(email=email).exists():
+
+            user = User.objects.filter(email=email).first()
+            user.set_password(password)
+            user.save()
+
+
+            return JsonResponse({'data': "Password Successfully Restored.", 'status': 200})
+        else:
+            return JsonResponse({'data': "Email already exist.", 'status': 500})
+
+    return render(request, 'login.html', status=400)
+
+
+@login_required(login_url='/login')
 def logout(request):
     auth.logout(request)
     messages.success(request, 'Successfully logout')

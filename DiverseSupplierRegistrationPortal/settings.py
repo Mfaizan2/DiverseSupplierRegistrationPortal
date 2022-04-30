@@ -84,11 +84,11 @@ WSGI_APPLICATION = 'DiverseSupplierRegistrationPortal.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+#      'default': {
+#          'ENGINE': 'django.db.backends.sqlite3',
+#          'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#      }
+#  }
 
 # DATABASES = {
 #     'default': {
@@ -112,7 +112,6 @@ WSGI_APPLICATION = 'DiverseSupplierRegistrationPortal.wsgi.application'
 #     }
 # }
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'sql_server.pyodbc',
@@ -126,6 +125,8 @@ DATABASES = {
         },
     }
 }
+
+
 
 
 # Password validation
