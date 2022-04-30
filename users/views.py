@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.decorators import login_required
@@ -19,7 +18,6 @@ from django.utils.encoding import force_str, force_bytes, DjangoUnicodeDecodeErr
 import json
 
 
-
 def verification(self, request, uuid, token):
     try:
         id = force_str(urlsafe_base64_decode(uuid))
@@ -36,9 +34,6 @@ def verification(self, request, uuid, token):
         pass
 
     return redirect('login')
-
-
-
 
 
 # def upload():
@@ -79,18 +74,12 @@ def verification(self, request, uuid, token):
 #     print("url", url)
 
 
-
-
-
-
-
-
 # Create your views here.
 
 def index(request):
-
     # upload()
     return render(request, 'index.html')
+
 
 def upload_file_to_directory():
     try:
@@ -100,7 +89,8 @@ def upload_file_to_directory():
         directory_client = file_system_client.get_directory_client("my-directory")
 
         file_client = directory_client.create_file("africa.jpeg")
-        local_file = open("/Users/techesthete009/PycharmProjects/DiverseSupplierRegistrationPortal/static/imgs/africa.jpeg",'r')
+        local_file = open(
+            "/Users/techesthete009/PycharmProjects/DiverseSupplierRegistrationPortal/static/imgs/africa.jpeg", 'r')
 
         file_contents = local_file.read()
 
@@ -110,7 +100,6 @@ def upload_file_to_directory():
 
     except Exception as e:
         print(e)
-
 
 
 # def login(request):
@@ -131,20 +120,20 @@ def login(request):
                     if user.is_active:
                         auth.login(request, user)
                         messages.success(request, 'Successfully login')
-                        return JsonResponse({'data': "Successfully login.",'status':200})
+                        return JsonResponse({'data': "Successfully login.", 'status': 200})
                     else:
                         messages.error(request, 'User is not active')
-                        return JsonResponse({'data': "User is not active.",'status':400})
+                        return JsonResponse({'data': "User is not active.", 'status': 400})
                 else:
                     print("In valid")
                     messages.error(request, 'Invalid credentials!!!')
-                    return JsonResponse({'data': "Invalid credentials.",'status':400})
+                    return JsonResponse({'data': "Invalid credentials.", 'status': 400})
             else:
-                return JsonResponse({'data': "User not found.",'status':400})
+                return JsonResponse({'data': "User not found.", 'status': 400})
 
         else:
             messages.error(request, 'Provide credentials!!!')
-            return JsonResponse({'data': "Provide credentials.",'status':400})
+            return JsonResponse({'data': "Provide credentials.", 'status': 400})
 
     return render(request, 'login.html')
 
@@ -178,7 +167,6 @@ def signup(request):
             user.is_active = True
             user.save()
 
-
             # domain = get_current_site(request).domain
             #
             # uuid = urlsafe_base64_encode(force_bytes(user.pk))
@@ -201,10 +189,39 @@ def signup(request):
             #     [mail_to],
             #     fail_silently=False,
             # )
-            return JsonResponse({'data': "Account Successfully created.",'status':200})
+            return JsonResponse({'data': "Account Successfully created.", 'status': 200})
         else:
-            return JsonResponse({'data': "Email already exist.",'status':500})
+            return JsonResponse({'data': "Email already exist.", 'status': 500})
 
+    return render(request, 'login.html', status=400)
+
+
+def forgotPassword(request):
+    if request.method == 'POST':
+        email = request.POST['emailForgotPassword']
+        password = request.POST['ForgotPassword1']
+        confirm_password = request.POST['ForgotPassword2']
+
+        if len(email) == 0:
+            return JsonResponse({'data': "Please provide Email.", 'status': 500})
+        elif len(password) == 0:
+            return JsonResponse({'data': "Please provide Password.", 'status': 500})
+        elif len(confirm_password) == 0:
+            return JsonResponse({'data': "Please provide Confirm Password.", 'status': 500})
+        elif password != confirm_password:
+            return JsonResponse({'data': "Password and Confirm Password must have to be same.", 'status': 500})
+        
+
+        if User.objects.filter(email=email).exists():
+
+            user = User.objects.filter(email=email).first()
+            user.set_password(password)
+            user.save()
+
+
+            return JsonResponse({'data': "Password Successfully Restored.", 'status': 200})
+        else:
+            return JsonResponse({'data': "Email already exist.", 'status': 500})
 
     return render(request, 'login.html', status=400)
 

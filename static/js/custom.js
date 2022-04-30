@@ -604,7 +604,7 @@ function ForgotPassword()
 
 function ForgotPasswordCall()
 {
-    $form=$('#signup_form');
+    $form=$('#forgotPassword_form');
     var datastring = $form.serialize();
     $.ajax({
         type: "POST",
@@ -618,7 +618,7 @@ function ForgotPasswordCall()
 
             if (test.status === 200)
             {
-                $('#signupModal').modal('hide');
+                $('#forgotPasswordModal').modal('hide');
                 $('#loginModal').modal('show');
 
                 $("#messagesDivLogin").addClass("alert-success");
@@ -626,8 +626,8 @@ function ForgotPasswordCall()
             }
             else
             {
-                $("#messagesDiv").addClass("alert-danger");
-                $("#outputLabel").text(test.data);
+                $("#messagesDivForgotPassword").addClass("alert-danger");
+                $("#outputLabelForgorPassword").text(test.data);
             }
 
             // $("#loginModal").modal();
