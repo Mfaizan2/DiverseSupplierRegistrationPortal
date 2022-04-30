@@ -7,6 +7,10 @@ body {
     overflow-x: hidden;
     background-color: #e9ecef;
 }
+main{
+    height: calc( 100vh - 112px);
+    overflow: auto;
+}
 .h-80v{
     height: 80vh;
 }
@@ -887,10 +891,115 @@ padding: 0px;
 .modal-body .modalBodyContent{
     display: block;
 }
+.support-wrapper{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 9999;
+    width: 26%;
+}
+@media (max-width:767px) {
+    .support-wrapper{
+        width: 96%;
+    }
+}
+.support-tag{
+    background-color: #eb5d0a;
+    color: #fff;
+    padding: 10px;
+    width: 130px;
+    border-radius: 999rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    cursor: pointer;
+    margin-left: auto;
+}
+.questions-wrapper{
 
-
-
-
+}
+.questions-wrapper .header{
+    height: 50px;
+    padding: 0px 15px;
+    background-color: #313b54;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px 8px 0px 0px;
+    position: relative;
+}
+.questions-wrapper ol{
+padding-left: 18px;
+}
+.questions-wrapper ol li a{
+    text-decoration: none;
+    color: #333333;
+    font-size: 16px;
+    font-weight: bold;
+}
+.questions-wrapper img{
+    position: absolute;
+    width: 18px;
+    right: 11px;
+    top: 8px;
+    cursor: pointer;;
+}
+.questions-wrapper .header img{
+    width: 18px;
+    position: absolute;
+    top: 13px;
+    cursor: pointer;
+}
+.questions-wrapper .body{
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 0px 0px 8px 8px;
+}
+.wrapper.h-0{
+        height: 0;
+        overflow: hidden;
+}
+.wrapper.h-100{
+        height: 100%;
+        overflow: visible;
+}
+.questions-wrapper .body .dt-buttons{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-end;
+    padding-top: 5px;
+}
+.questions-wrapper .body .dt-buttons button{
+    margin: 0px;
+}
+.questions-wrapper .body input{
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #6e6c6c;
+    height: 35px;
+    margin-bottom: 10px;
+    padding: 5px 33px 5px 5px;
+}
+.questions-wrapper .body input:focus-visible{
+    outline: none;
+}
+.question-wrapper{
+    max-height: 350px;
+    overflow: auto;
+}
+.question-wrapper p{
+    color: #000;
+    padding-bottom: 5px;
+    font-size: 15px;
+    font-weight: 800;
+}
+.position-relative{
+    position: relative !important;
+}
 
 
 

@@ -28,7 +28,7 @@
                         <!-- <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
                         <button class="btn btn-primary" type="button">Understood</button> -->
                     </div>
-                    <div class="modalBodyContent">
+                    <div class="modalBodyContent d-flex">
                         <div class="image-modal"><img src="https://webappmuh.blob.core.windows.net/static/imgs/sign.png?sv=2021-04-10&st=2022-04-21T07%3A53%3A57Z&se=2025-05-22T07%3A53%3A00Z&sr=b&sp=r&sig=TacDIwZ1qiYnc9XM2IqhRy%2FSKhJc0ZnfL7eDuZCg54A%3D" alt="..."></div>
                         <form class="login-form-modal" id="login_form" method="POST" action="{% url 'login' %}" enctype="multipart/form-data">
                             {% csrf_token %}

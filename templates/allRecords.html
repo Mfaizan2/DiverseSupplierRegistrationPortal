@@ -12,7 +12,10 @@
             <div class="record-content">
             <div class="table-record mb-2 records-filter d-flex align-items-center">
                 <div class="row w-100">
-                    <div class="col-md-2">
+                    <div class="col-md-7 col-12">
+                        <div class="row mb-2">
+
+                    <div class="col-md-3 col-6 mb-2">
                          <div class="dropdown">
                   <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                     Select
@@ -25,7 +28,7 @@
                   </ul>
                 </div>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-2 col-6 mb-2">
                     <div class="dropdown">
                   <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                     =
@@ -38,13 +41,16 @@
                   </ul>
                 </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4 col-6 mb-2">
                     <input required="" type="text"  name="" class="form-control formInput" placeholder="Enter here">
                     </div>
-                    <div class="col-md-1 pt-1">
+                    <div class="col-md-1 pt-1 col-6 mb-2">
                         <a href="#">
                             <img src="{% static 'imgs/delete.png' %}" alt="" height="20"/>
                         </a>
+                    </div>
+                        </div>
+                  <a href="#">Add Filters</a>
                     </div>
                     <div class="col-md-5 d-flex align-items-center justify-content-end">
                      <div class="dt-buttons">
@@ -160,6 +166,7 @@
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
                     </div>
                     <div class="modalBodyContent">
+                        <h4 class="mb-2"> Add Favourite Records</h4>
                             <div class="mb-3">
                                 <label for="" class="form-label">Non Production Material</label>
                                 <input type="text" required name="" class="form-control formInput" id="" aria-describedby="emailHelp">
