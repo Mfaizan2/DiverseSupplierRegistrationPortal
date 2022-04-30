@@ -6,6 +6,7 @@ from . import views
 urlpatterns = [
     path('Registration', views.Registration, name='Registration'),
     path('allRecords', views.AllRecords, name='allRecords'),
+    path('favouriteRecode', views.favouriteRecode, name='favouriteRecode'),
     path('detailRecord/<int:id>', views.DetailRecord, name='detailRecord'),
     path('bulkUpload', views.BulkUpload, name='bulkUpload'),
     path('downloadSampleExcelFile', views.DownloadSampleExcelFile, name='downloadSampleExcelFile'),

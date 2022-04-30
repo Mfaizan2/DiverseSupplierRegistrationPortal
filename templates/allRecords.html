@@ -5,16 +5,62 @@
 {% load  static%}
 
 {% block content %}
-
     <section class="records">
-
-
-
 <!--        <input type="button" value="select table" onclick="selectElementContents( document.getElementById('tableId') );">-->
 
         <div class="container">
             <div class="record-content">
-                <div class="table-record">
+            <div class="table-record mb-2 records-filter d-flex align-items-center">
+                <div class="row w-100">
+                    <div class="col-md-7 col-12">
+                        <div class="row mb-2">
+
+                    <div class="col-md-3 col-6 mb-2">
+                         <div class="dropdown">
+                  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    Select
+                  </a>
+
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  </ul>
+                </div>
+                    </div>
+                    <div class="col-md-2 col-6 mb-2">
+                    <div class="dropdown">
+                  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    =
+                  </a>
+
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" href="#"></a></li>
+                    <li><a class="dropdown-item" href="#"><</a></li>
+                    <li><a class="dropdown-item" href="#">=</a></li>
+                  </ul>
+                </div>
+                    </div>
+                    <div class="col-md-4 col-6 mb-2">
+                    <input required="" type="text"  name="" class="form-control formInput" placeholder="Enter here">
+                    </div>
+                    <div class="col-md-1 pt-1 col-6 mb-2">
+                        <a href="#">
+                            <img src="{% static 'imgs/delete.png' %}" alt="" height="20"/>
+                        </a>
+                    </div>
+                        </div>
+                  <a href="#">Add Filters</a>
+                    </div>
+                    <div class="col-md-5 d-flex align-items-center justify-content-end">
+                     <div class="dt-buttons">
+                       <button class="dt-button buttons-pdf buttons-html5" type="button"><span>Export</span></button>
+                     </div>
+                        <div class="clr"></div>
+                    </div>
+                </div>
+            </div>
+                <div  class="table-record">
 <!--                    <div class="table-record-actions">-->
 <!--                        <button class="hvr-sweep-orange-bottom theme-btn bg-grey white" id="download-button">Excel</button>-->
 <!--                        <button class="hvr-sweep-orange-bottom theme-btn bg-grey white" onclick="generate()">PDF</button>-->
@@ -44,7 +90,11 @@
                             <tbody>
                             {% for rec in page_obj %}
                                 <tr>
-                                    <td>{{rec.general_contant_info.company_name}}</td>
+                                    <td>
+                                        <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#favouriteList">
+                                        <img src="{% static 'imgs/favorite.png' %}" alt="" height="15" class="mb-1"/>
+                                        </a>
+                                        {{rec.general_contant_info.company_name}}</td>
                                     <td>
                                         {% for obj in npmValues %}
                                             {% if obj.abc_corporation_id == rec.id%}
@@ -106,6 +156,39 @@
             </div>
         </div>
     </section>
+
+    <!-- favourite Modal -->
+    <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="favouriteList" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="closeModalHeader">
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                    </div>
+                    <div class="modalBodyContent">
+                        <h4 class="mb-2"> Add Favourite Records</h4>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Non Production Material</label>
+                                <input type="text" required name="" class="form-control formInput" id="" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Production Material</label>
+                                <input type="text" required name="" class="form-control formInput" id="">
+                            </div>
+                        <div class="mb-3">
+                                <label for="" class="form-label">Oem's</label>
+                                <input type="text" required name="" class="form-control formInput" id="">
+                            </div>
+
+                        <div class="dt-buttons">
+                       <button class="dt-button buttons-pdf buttons-html5" type="button"><span>ADD</span></button>
+                     </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>

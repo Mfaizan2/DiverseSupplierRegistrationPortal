@@ -7,6 +7,28 @@ body {
     overflow-x: hidden;
     background-color: #e9ecef;
 }
+main{
+    height: calc( 100vh - 112px);
+    overflow: auto;
+}
+.h-80v{
+    height: 80vh;
+}
+.mr-10{
+    margin-right: 10px !important;
+}
+.text-decoration-none{
+    text-decoration: none !important;
+}
+.w-auto{
+    width: auto;
+}
+.clr{
+    clear: both;
+}
+.ml-auto{
+    margin-left: auto !important;
+}
 body, p, h1, h2, h3, h4, h5, h6, ul {
     padding: 0;
     margin: 0;
@@ -385,6 +407,45 @@ button:focus {
     border-radius: 3px;
     cursor: pointer;
 }
+
+/* +++++++++++++++ Theme Select starts +++++++++++++++ */
+.dropdown a{
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: transparent;
+    margin-left: 3px;
+    color: #000;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.dropdown a:hover{
+    box-shadow: none !important;
+    background: transparent !important;
+    color: #000;
+}
+.dropdown a:focus{
+    box-shadow: none !important;
+    background: transparent !important;
+    color: #000;
+}
+.dropdown-menu{
+padding: 0px;
+}
+.dropdown-menu li a{
+    border: none;
+    padding: 5px;
+    margin: 0px;
+    font-size: 15px;
+}
+.dropdown-menu li a:hover{
+ background-color: #f5f5f5 !important;
+}
+/* +++++++++++++++ Theme Select ends +++++++++++++++ */
+
+
 /* +++++++++++++++ Theme Select2 +++++++++++++++ */
 .theme-select .select2 {
     display: block;
@@ -438,6 +499,10 @@ button:focus {
     border-radius: 6px;
     box-shadow: 0 0 20px 20px #cccccc3b;
 }
+.records-filter{
+    padding: 20px;
+    padding-right: 0px;
+}
 .tbl-wrapper-content {
     overflow-x: scroll;
     /* margin-top: 20px; */
@@ -478,6 +543,15 @@ button:focus {
 .table-record-actions .theme-btn.white.bg-grey {
     margin-right: 6px;
 }
+.table-record .row > div{
+    margin-bottom: 0px;
+}
+@media (max-width:768px) {
+    .table-record .row > div{
+    margin-bottom: 10px;
+}
+}
+
 /* Data Table Styles */
 .tbl-wrapper-content .dt-buttons {
     position: sticky;
@@ -580,7 +654,24 @@ button:focus {
     z-index: -1;
 }
 
+/*favourite-list-styles*/
 
+.favourite-list-styles{
+    margin-left: 30px;
+}
+
+.favourite-list-styles li{
+        list-style-type: auto;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        padding: 5px;
+        background-color: transparent;
+}
+
+.favourite-list-styles li:HOVER{
+        background-color: #fff;
+}
 
 /* Data Table Styles */
 .search-tbl {
@@ -679,6 +770,25 @@ button:focus {
     padding: 50px 0 30px 0;
     min-height: calc(100vh - 112px);
 }
+.card-notes-wrapper .card{
+    position: relative;
+    padding: 0px;
+    margin-bottom: 10px;
+}
+.card-notes-wrapper .card-body{
+    max-height: 250px;
+    overflow: auto;
+    padding: 10px;
+    padding-bottom: 60px;
+}
+.card-notes-wrapper .dt-buttons{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    padding: 5px;
+    background: #fff;
+    width: 100%;
+}
 .table-view-record {
     width: 100%;
     margin-top: 15px;
@@ -768,12 +878,128 @@ button:focus {
     color: #fff;
     border-radius: 4px;
 }
+/*modal-content-styles*/
 
+.modal-content .modal-body {
+    padding-top: 36px;
+}
+.modal-body .closeModalHeader{
+    position: absolute;
+    top: 8px;
+    right: 12px;
+}
+.modal-body .modalBodyContent{
+    display: block;
+}
+.support-wrapper{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 9999;
+    width: 26%;
+}
+@media (max-width:767px) {
+    .support-wrapper{
+        width: 96%;
+    }
+}
+.support-tag{
+    background-color: #eb5d0a;
+    color: #fff;
+    padding: 10px;
+    width: 130px;
+    border-radius: 999rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    cursor: pointer;
+    margin-left: auto;
+}
+.questions-wrapper{
 
-
-
-
-
+}
+.questions-wrapper .header{
+    height: 50px;
+    padding: 0px 15px;
+    background-color: #313b54;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px 8px 0px 0px;
+    position: relative;
+}
+.questions-wrapper ol{
+padding-left: 18px;
+}
+.questions-wrapper ol li a{
+    text-decoration: none;
+    color: #333333;
+    font-size: 16px;
+    font-weight: bold;
+}
+.questions-wrapper img{
+    position: absolute;
+    width: 18px;
+    right: 11px;
+    top: 8px;
+    cursor: pointer;;
+}
+.questions-wrapper .header img{
+    width: 18px;
+    position: absolute;
+    top: 13px;
+    cursor: pointer;
+}
+.questions-wrapper .body{
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 0px 0px 8px 8px;
+}
+.wrapper.h-0{
+        height: 0;
+        overflow: hidden;
+}
+.wrapper.h-100{
+        height: 100%;
+        overflow: visible;
+}
+.questions-wrapper .body .dt-buttons{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-end;
+    padding-top: 5px;
+}
+.questions-wrapper .body .dt-buttons button{
+    margin: 0px;
+}
+.questions-wrapper .body input{
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #6e6c6c;
+    height: 35px;
+    margin-bottom: 10px;
+    padding: 5px 33px 5px 5px;
+}
+.questions-wrapper .body input:focus-visible{
+    outline: none;
+}
+.question-wrapper{
+    max-height: 350px;
+    overflow: auto;
+}
+.question-wrapper p{
+    color: #000;
+    padding-bottom: 5px;
+    font-size: 15px;
+    font-weight: 800;
+}
+.position-relative{
+    position: relative !important;
+}
 
 
 

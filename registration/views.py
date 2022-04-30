@@ -805,9 +805,7 @@ def UploadExcelFile(request):
     for _ in list(storage._loaded_messages):
         del storage._loaded_messages[0]
 
-
-
-
+    
     try:
         excel_file = request.FILES.get('excel_file', None)
         print("excel_file", excel_file)
@@ -1092,8 +1090,6 @@ def UploadExcelFile(request):
             productionCapabilities.event = event[index]
             productionCapabilities.save()
 
-
-
             aBCCorporation = ABCCorporation()
             aBCCorporation.general_contant_info = generalContactInfo
             aBCCorporation.diverse_certification = diverseCertification
@@ -1101,8 +1097,6 @@ def UploadExcelFile(request):
             aBCCorporation.production_capabilities = productionCapabilities
 
             aBCCorporation.save()
-
-
 
             if npmValue[index]:
                 npmSelectedValueFinal = npmValue[index].split(',')
@@ -1114,10 +1108,9 @@ def UploadExcelFile(request):
                         npmValueCategory2 = temp[2]
                     else:
                         npmValueCategory2 = ''
-                    npmValues = NpmValues(abc_corporation_id=aBCCorporation.id, npm_value=tempNpmValue, npm_value_category1=npmValueCategory1, npm_value_category2=npmValueCategory2)
+                    npmValues = NpmValues(abc_corporation_id=aBCCorporation.id, npm_value=tempNpmValue,
+                                          npm_value_category1=npmValueCategory1, npm_value_category2=npmValueCategory2)
                     npmValues.save()
-
-
 
             if pmValue[index]:
                 pmSelectedValueFinal = pmValue[index].split(',')
@@ -1128,10 +1121,9 @@ def UploadExcelFile(request):
                         pmValueCategory1 = temp[1]
                     else:
                         pmValueCategory1 = ''
-                    pmValues = PmValues(abc_corporation_id=aBCCorporation.id, pm_value=tempPmValue, pm_value_category1=pmValueCategory1)
+                    pmValues = PmValues(abc_corporation_id=aBCCorporation.id, pm_value=tempPmValue,
+                                        pm_value_category1=pmValueCategory1)
                     pmValues.save()
-
-
 
             messages.success(request, 'Data successfully uploaded')
     except:
@@ -1412,3 +1404,8 @@ def GetFeedbacks(request):
 
         print("application_id", application_id)
         return JsonResponse({'data': "Error", 'status': 400})
+
+def favouriteRecode(request):
+
+    # upload()
+    return render(request, 'favourite-list.html')

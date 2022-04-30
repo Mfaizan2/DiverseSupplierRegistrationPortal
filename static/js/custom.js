@@ -490,6 +490,19 @@ $(document).ready(function() {
         fixedHeader: true,
         scrollX: true
     } );
+        $('#favouriteRecord').DataTable( {
+        dom: 'Bfrtip',
+        "paging": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "responsive": true,
+        "lengthChange": true,
+        "autoWidth": false,
+        fixedHeader: true,
+        scrollX: true
+    } );
+
 } );
 
 
@@ -571,6 +584,50 @@ function UserLogin()
             {
                 $("#messagesDivLogin").addClass("alert-danger");
                 $("#outputLabelLogin").text(test.data);
+            }
+
+            // $("#loginModal").modal();
+
+
+
+
+            // $("#search_modal").modal("show");
+        }
+    });
+}
+
+function ForgotPassword()
+{
+    $('#loginModal').modal('hide');
+    $('#forgotPasswordModal').modal('show');
+}
+
+function ForgotPasswordCall()
+{
+    $form=$('#signup_form');
+    var datastring = $form.serialize();
+    $.ajax({
+        type: "POST",
+        url: $form.attr('action'),
+        dataType: 'html',
+        data: datastring,
+        success: function(result)
+        {
+
+            var test=JSON.parse(result);
+
+            if (test.status === 200)
+            {
+                $('#signupModal').modal('hide');
+                $('#loginModal').modal('show');
+
+                $("#messagesDivLogin").addClass("alert-success");
+                $("#outputLabelLogin").text(test.data);
+            }
+            else
+            {
+                $("#messagesDiv").addClass("alert-danger");
+                $("#outputLabel").text(test.data);
             }
 
             // $("#loginModal").modal();
