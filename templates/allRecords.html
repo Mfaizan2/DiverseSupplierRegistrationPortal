@@ -11,9 +11,9 @@
         <div class="container">
             <div class="record-content">
                 <div class="table-record mb-2 records-filter d-flex align-items-center">
-                    <div class="dt-buttons">
+                    <div class="dt-buttons d-flex align-items-center">
 
-                        <button onclick="ShowAddFilterOption()" class="bg-grey white  hvr-sweep-orange-bottom mt-6">Add Filter</button>
+                        <button onclick="ShowAddFilterOption()" class="mr-10 bg-grey white  hvr-sweep-orange-bottom mt-6">Add Filter</button>
 
 
 
@@ -39,10 +39,10 @@
                     <div class="row w-100 ">
                         <form action="{% url 'allRecords' %}" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
-                            <div class="col-md-7 col-12" >
-                                <div >
+                            <div class="col-md-12 col-12" >
+                                <div class="row">
 
-                                    <div class="col-lg-6">
+                                    <div class="col-md-4 col-6">
                                         <div class="mb-2 mt-2">
                                             <label class="form-label">Last Name</label>
                                             <input  type="text"  name="last_name" class="form-control formInput" placeholder="i.e (Smith)">
@@ -50,7 +50,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-md-4 col-6">
                                         <div class="mb-2 mt-2">
                                             <label class="form-label">First Name</label>
                                             <input  type="text"  name="first_name" class="form-control formInput" placeholder="i.e (Smith)">
@@ -58,7 +58,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-md-4 col-6">
                                         <div class="mb-2 mt-2">
                                             <label class="form-label">City</label>
                                             <input  type="text"  name="city" class="form-control formInput" >
@@ -66,7 +66,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-md-4 col-6">
                                         <div class="mb-2 mt-2">
                                             <label class="form-label">State / Province</label>
                                             <input  type="text"  name="state" class="form-control formInput" >
@@ -74,7 +74,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-md-4 col-6">
                                         <div class="mb-2 theme-select">
                                             <label class="form-label">Address Country</label>
                                             <select  class="state-select" name="address">
@@ -86,7 +86,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-md-4 col-6">
                                         <div class="mb-2 theme-select">
                                             <label class="form-label">Minority Certification</label>
                                             <select  class="state-select" name="minority_certification">
@@ -98,7 +98,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-md-4 col-6">
                                         <div class="mb-2 theme-select">
                                             <label class="form-label">WBE</label>
                                             <select  class="state-select" name="wbe_certification">
@@ -110,7 +110,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-md-4 col-6">
                                         <div class="mb-2 theme-select">
                                             <label class="form-label">MBE</label>
                                             <select  class="state-select" name="mbe">
@@ -122,7 +122,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-md-4 col-6">
                                         <div class="mb-2 theme-select">
                                             <label class="form-label">Veteran-Owned business</label>
                                             <select  class="state-select" name="vob">
@@ -134,7 +134,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-md-4 col-6">
                                         <div class="mb-2 theme-select">
                                             <label class="form-label">Other Certifications</label>
                                             <select  class="state-select" name="other_certification">
@@ -146,7 +146,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-md-4 col-6">
                                         <div class="mb-2 theme-select">
                                             <label class="form-label">Quality Certifications</label>
                                             <select  class="state-select" name="quality_certification">
@@ -158,7 +158,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-md-4 col-6">
                                         <div class="mb-2 theme-select">
                                             <label class="form-label">Operation Outside USA</label>
                                             <select  class="state-select" name="operation_outside_usa">
@@ -170,7 +170,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-md-4 col-6">
                                         <div class="mb-2 theme-select">
                                             <label class="form-label">Non Production Material</label>
                                             <select  class="state-select" name="npm">
@@ -182,7 +182,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-md-4 col-6">
                                         <div class="mb-2 theme-select">
                                             <label class="form-label">Production Material</label>
                                             <select  class="state-select" name="pm">
@@ -199,20 +199,11 @@
 
 
                                 </div>
-
-
-
-
-
-
-
-
-
 <!--                                <a style="cursor: pointer;" onclick="AddMoreFilter()">Add Filters</a>-->
                             </div>
 
 
-                            <div class="col-md-5 d-flex align-items-center justify-content-end">
+                            <div class="col-md-12">
                              <div class="dt-buttons">
                                <button type="submit" class="bg-grey white  hvr-sweep-orange-bottom mt-3">Apply Filter</button>
                                <button onclick="HideAddFilterDiv()" class="bg-grey white  hvr-sweep-orange-bottom mt-3">Hide Filter Menu</button>
@@ -315,7 +306,7 @@
         </div>
     </section>
 
-    <!-- favourite Modal -->
+    <!-- existed favourite Modal -->
     <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="favouriteList" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -324,28 +315,78 @@
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
                     </div>
                     <div class="modalBodyContent">
-                        <h4 class="mb-2"> Add Favourite Records</h4>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Non Production Material</label>
-                                <input type="text" required name="" class="form-control formInput" id="" aria-describedby="emailHelp">
-                            </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Production Material</label>
-                                <input type="text" required name="" class="form-control formInput" id="">
-                            </div>
-                        <div class="mb-3">
-                                <label for="" class="form-label">Oem's</label>
-                                <input type="text" required name="" class="form-control formInput" id="">
-                            </div>
-
+                        <h4 class="mb-2"> Favourite Records</h4>
+                        <ul class="favourite-list-styles mb-2">
+                    <li>
+                        Favourite List Data
+                    </li>
+                    <li>
+                        Favourite List Data
+                    </li>
+                    <li>
+                        Favourite List Data
+                    </li>
+                    <li>
+                        Favourite List Data
+                    </li>
+                    <li>
+                        Favourite List Data
+                    </li>
+                    <li>
+                        Favourite List Data
+                    </li>
+                    <li>
+                        Favourite List Data
+                    </li>
+                    <li>
+                        Favourite List Data
+                    </li>
+                    <li>
+                        Favourite List Data
+                    </li>
+                </ul>
                         <div class="dt-buttons">
-                       <button class="dt-button buttons-pdf buttons-html5" type="button"><span>ADD</span></button>
+                       <button class="dt-button buttons-pdf buttons-html5 mr-10" type="button"><span>Add Favourite</span></button>
+                            <button class="dt-button buttons-pdf buttons-html5" type="button"><span>To Add Favourite List</span></button>
                      </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- favourite Modal -->
+{#    <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="favouriteList" tabindex="-1">#}
+{#        <div class="modal-dialog modal-dialog-centered modal-lg">#}
+{#            <div class="modal-content">#}
+{#                <div class="modal-body">#}
+{#                    <div class="closeModalHeader">#}
+{#                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>#}
+{#                    </div>#}
+{#                    <div class="modalBodyContent">#}
+{#                        <h4 class="mb-2"> Add Favourite Records</h4>#}
+{#                            <div class="mb-3">#}
+{#                                <label for="" class="form-label">Non Production Material</label>#}
+{#                                <input type="text" required name="" class="form-control formInput" id="" aria-describedby="emailHelp">#}
+{#                            </div>#}
+{#                            <div class="mb-3">#}
+{#                                <label for="" class="form-label">Production Material</label>#}
+{#                                <input type="text" required name="" class="form-control formInput" id="">#}
+{#                            </div>#}
+{#                        <div class="mb-3">#}
+{#                                <label for="" class="form-label">Oem's</label>#}
+{#                                <input type="text" required name="" class="form-control formInput" id="">#}
+{#                            </div>#}
+{##}
+{#                        <div class="dt-buttons">#}
+{#                       <button class="dt-button buttons-pdf buttons-html5" type="button"><span>ADD</span></button>#}
+{#                     </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>

@@ -6,10 +6,7 @@ body {
     width: 100vw;
     overflow-x: hidden;
     background-color: #e9ecef;
-}
-main{
-    height: calc( 100vh - 112px);
-    overflow: auto;
+    position: relative;
 }
 .h-80v{
     height: 80vh;
@@ -227,6 +224,10 @@ button:focus {
 }
 .footer {
     height: 56px;
+    position: relative;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
 }
 .footer-logo .navbar-brand span {
     height: 56px;
@@ -902,7 +903,6 @@ padding: 0px;
     right: 10px;
     z-index: 9999;
     width: 26%;
-    margin-bottom: 50px;
 }
 @media (max-width:767px) {
     .support-wrapper{
@@ -999,9 +999,13 @@ padding-left: 18px;
 }
 .question-wrapper p{
     color: #000;
-    padding-bottom: 5px;
+    margin: 0px;
     font-size: 15px;
     font-weight: 800;
+}
+.question-wrapper span{
+    font-size: 15px;
+
 }
 .position-relative{
     position: relative !important;
