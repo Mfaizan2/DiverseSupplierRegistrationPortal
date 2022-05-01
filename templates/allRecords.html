@@ -10,68 +10,226 @@
 
         <div class="container">
             <div class="record-content">
-            <div class="table-record mb-2 records-filter d-flex align-items-center">
-                <div class="row w-100">
-                    <div class="col-md-7 col-12">
-                        <div class="row mb-2">
+                <div class="table-record mb-2 records-filter d-flex align-items-center">
+                    <div class="dt-buttons">
 
-                    <div class="col-md-3 col-6 mb-2">
-                         <div class="dropdown">
-                  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                    Select
-                  </a>
+                        <button onclick="ShowAddFilterOption()" class="bg-grey white  hvr-sweep-orange-bottom mt-6">Add Filter</button>
 
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                  </ul>
-                </div>
-                    </div>
-                    <div class="col-md-2 col-6 mb-2">
-                    <div class="dropdown">
-                  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                    =
-                  </a>
 
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" href="#"></a></li>
-                    <li><a class="dropdown-item" href="#"><</a></li>
-                    <li><a class="dropdown-item" href="#">=</a></li>
-                  </ul>
-                </div>
-                    </div>
-                    <div class="col-md-4 col-6 mb-2">
-                    <input required="" type="text"  name="" class="form-control formInput" placeholder="Enter here">
-                    </div>
-                    <div class="col-md-1 pt-1 col-6 mb-2">
-                        <a href="#">
-                            <img src="{% static 'imgs/delete.png' %}" alt="" height="20"/>
-                        </a>
-                    </div>
-                        </div>
-                  <a href="#">Add Filters</a>
-                    </div>
-                    <div class="col-md-5 d-flex align-items-center justify-content-end">
-                     <div class="dt-buttons">
-                       <button class="dt-button buttons-pdf buttons-html5" type="button"><span>Export</span></button>
-                     </div>
-                        <div class="clr"></div>
+
+                        <form action="{% url 'downloadSampleExcelFile' %}">
+                            {% csrf_token %}
+                            <div class="mb-3 mt-3">
+                                <button type="submit" class="bg-grey white  hvr-sweep-orange-bottom mt-6">Export</button>
+                            </div>
+                        </form>
+
+
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="container">
+            <div class="record-content">
+
+                <div class="displayNone" id="filtersDiv">
+                    <div class="table-record mb-2 records-filter d-flex align-items-center" >
+
+                    <div class="row w-100 ">
+                        <form action="{% url 'allRecords' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="col-md-7 col-12" >
+                                <div >
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-2 mt-2">
+                                            <label class="form-label">Last Name</label>
+                                            <input  type="text"  name="last_name" class="form-control formInput" placeholder="i.e (Smith)">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-2 mt-2">
+                                            <label class="form-label">First Name</label>
+                                            <input  type="text"  name="first_name" class="form-control formInput" placeholder="i.e (Smith)">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-2 mt-2">
+                                            <label class="form-label">City</label>
+                                            <input  type="text"  name="city" class="form-control formInput" >
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-2 mt-2">
+                                            <label class="form-label">State / Province</label>
+                                            <input  type="text"  name="state" class="form-control formInput" >
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-2 theme-select">
+                                            <label class="form-label">Address Country</label>
+                                            <select  class="state-select" name="address">
+                                                <option value="-1" disabled selected>Select Address</option>
+                                                <option value="CAMSC - Canadian Aboriginal &amp; Minority Supplier Council">CAMSC - Canadian Aboriginal &amp; Minority Supplier Council</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-2 theme-select">
+                                            <label class="form-label">Minority Certification</label>
+                                            <select  class="state-select" name="minority_certification">
+                                                <option value="-1" disabled selected>Select Minority Certification</option>
+                                                <option value="CAMSC - Canadian Aboriginal &amp; Minority Supplier Council">CAMSC - Canadian Aboriginal &amp; Minority Supplier Council</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-2 theme-select">
+                                            <label class="form-label">WBE</label>
+                                            <select  class="state-select" name="wbe_certification">
+                                                <option value="-1" disabled selected>Select WBE</option>
+                                                <option value="CAMSC - Canadian Aboriginal &amp; Minority Supplier Council">CAMSC - Canadian Aboriginal &amp; Minority Supplier Council</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-2 theme-select">
+                                            <label class="form-label">MBE</label>
+                                            <select  class="state-select" name="mbe">
+                                                <option value="-1" disabled selected>Select MBE</option>
+                                                <option value="CAMSC - Canadian Aboriginal &amp; Minority Supplier Council">CAMSC - Canadian Aboriginal &amp; Minority Supplier Council</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-2 theme-select">
+                                            <label class="form-label">Veteran-Owned business</label>
+                                            <select  class="state-select" name="vob">
+                                                <option value="-1" disabled selected>Select Veteran-Owned business</option>
+                                                <option value="CAMSC - Canadian Aboriginal &amp; Minority Supplier Council">CAMSC - Canadian Aboriginal &amp; Minority Supplier Council</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-2 theme-select">
+                                            <label class="form-label">Other Certifications</label>
+                                            <select  class="state-select" name="other_certification">
+                                                <option value="-1" disabled selected>Select Other Certifications</option>
+                                                <option value="CAMSC - Canadian Aboriginal &amp; Minority Supplier Council">CAMSC - Canadian Aboriginal &amp; Minority Supplier Council</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-2 theme-select">
+                                            <label class="form-label">Quality Certifications</label>
+                                            <select  class="state-select" name="quality_certification">
+                                                <option value="-1" disabled selected>Select Quality Certifications</option>
+                                                <option value="CAMSC - Canadian Aboriginal &amp; Minority Supplier Council">CAMSC - Canadian Aboriginal &amp; Minority Supplier Council</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-2 theme-select">
+                                            <label class="form-label">Operation Outside USA</label>
+                                            <select  class="state-select" name="operation_outside_usa">
+                                                <option value="-1" disabled selected>Select Operation Outside USA</option>
+                                                <option value="CAMSC - Canadian Aboriginal &amp; Minority Supplier Council">CAMSC - Canadian Aboriginal &amp; Minority Supplier Council</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-2 theme-select">
+                                            <label class="form-label">Non Production Material</label>
+                                            <select  class="state-select" name="npm">
+                                                <option value="-1" disabled selected>Select Non Production Material</option>
+                                                <option value="CAMSC - Canadian Aboriginal &amp; Minority Supplier Council">CAMSC - Canadian Aboriginal &amp; Minority Supplier Council</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-2 theme-select">
+                                            <label class="form-label">Production Material</label>
+                                            <select  class="state-select" name="pm">
+                                                <option value="-1" disabled selected>Select Production Material</option>
+                                                <option value="CAMSC - Canadian Aboriginal &amp; Minority Supplier Council">CAMSC - Canadian Aboriginal &amp; Minority Supplier Council</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                </div>
+
+
+
+
+
+
+
+
+
+<!--                                <a style="cursor: pointer;" onclick="AddMoreFilter()">Add Filters</a>-->
+                            </div>
+
+
+                            <div class="col-md-5 d-flex align-items-center justify-content-end">
+                             <div class="dt-buttons">
+                               <button type="submit" class="bg-grey white  hvr-sweep-orange-bottom mt-3">Apply Filter</button>
+                               <button onclick="HideAddFilterDiv()" class="bg-grey white  hvr-sweep-orange-bottom mt-3">Hide Filter Menu</button>
+                             </div>
+                                <div class="clr"></div>
+                            </div>
+                            <input type="hidden" id="NumberOfFilters" name="NumberOfFilters" value="1">
+                        </form>
+
+                    </div>
+
+            </div>
+
+                </div>
+
                 <div  class="table-record">
-<!--                    <div class="table-record-actions">-->
-<!--                        <button class="hvr-sweep-orange-bottom theme-btn bg-grey white" id="download-button">Excel</button>-->
-<!--                        <button class="hvr-sweep-orange-bottom theme-btn bg-grey white" onclick="generate()">PDF</button>-->
-<!--                        <button class="hvr-sweep-orange-bottom theme-btn bg-grey white">Print</button>-->
-<!--                        <div class="d-flex search-tbl">-->
-<!--                            <form>-->
-<!--                                <input type="text" placeholder="Search.....">-->
-<!--                                <button type="submit"><i class="bi bi-search"></i></button>-->
-<!--                            </form>-->
-<!--                        </div>-->
-<!--                    </div>-->
+
                     <div class="tbl-wrapper-content">
                         <table class="table theme-tbl" id="AllRecords">
                             <thead>

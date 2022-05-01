@@ -6,44 +6,32 @@
 {% block content %}
 
     <div class="support-wrapper">
-    <div class="support-tag">Support</div>
-    <div class="wrapper h-100">
+        <div class="support-tag" onclick="SupportBar()" id="SupportDiv">Support</div>
+        <div class="wrapper h-100 displayNone" id="SupportBarDiv">
             <div class="questions-wrapper">
         <div class="header">
             <span>Support</span>
-            <img src="{% static 'imgs/cross.png' %}" alt=""/>
+            <img  onclick="CloseSupportBarDiv()" src="{% static 'imgs/cross.png' %}" alt=""/>
         </div>
         <div class="body">
             <div class="position-relative">
-           <input value="" name="" type="text" placeholder="Enter your Question Here..."/>
-            <img src="{% static 'imgs/search.svg' %}" alt=""/>
+               <input value="" name="SupportSearch" id="SupportSearch" type="text" placeholder="Enter your Question Here..."/>
+               <img src="{% static 'imgs/search.svg' %}" alt=""/>
             </div>
-            <div class="question-wrapper">
+
+            <div class="question-wrapper" id="SupportQuestionsDiv">
                 <ol>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-              </ol>
+<!--                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>-->
+                </ol>
 
             </div>
-            <div class="clr"></div>
-            <div class="dt-buttons">
-                <button type="submit" class="dt-button buttons-pdf buttons-html5">Contact Us</button>
+
+            <div class="clr">
+
             </div>
+<!--            <div class="dt-buttons">-->
+<!--                <button type="submit" class="dt-button buttons-pdf buttons-html5">Contact Us</button>-->
+<!--            </div>-->
              <div class="clr"></div>
         </div>
     </div>

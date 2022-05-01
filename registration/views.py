@@ -600,6 +600,33 @@ def Registration(request):
 
 @login_required(login_url='/login')
 def AllRecords(request):
+
+    if request.method == 'POST':
+        print("Faizan DON")
+        last_name = request.POST.get('last_name', None)
+        first_name = request.POST.get('first_name', None)
+        city = request.POST.get('city', None)
+        state = request.POST.get('state', None)
+        address = request.POST.get('address', None)
+        minority_certification = request.POST.get('minority_certification', None)
+        wbe_certification = request.POST.get('wbe_certification', None)
+        mbe = request.POST.get('mbe', None)
+        vob = request.POST.get('vob', None)
+        other_certification = request.POST.get('other_certification', None)
+        quality_certification = request.POST.get('quality_certification', None)
+        operation_outside_usa = request.POST.get('operation_outside_usa', None)
+        npm = request.POST.get('npm', None)
+        pm = request.POST.get('pm', None)
+
+
+
+        all_applications = ABCCorporation.objects.filter( general_contant_info__general_contact__last_name="flastname")
+
+        print("all_applications", all_applications)
+
+
+        print("vob", vob)
+
     all_applications = ABCCorporation.objects.all()
     # paginator = Paginator(all_applications, 10)
     # page_number = request.GET.get('page')

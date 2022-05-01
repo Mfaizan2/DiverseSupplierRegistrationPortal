@@ -717,6 +717,11 @@ padding: 0px;
     outline: unset;
     box-shadow: unset;
 }
+
+.lightGreen {
+    color: #02b399;
+}
+
 /* ================ Forgot Page Styling ================ */
 .forgot-content {
     width: 400px;
@@ -897,6 +902,7 @@ padding: 0px;
     right: 10px;
     z-index: 9999;
     width: 26%;
+    margin-bottom: 50px;
 }
 @media (max-width:767px) {
     .support-wrapper{
