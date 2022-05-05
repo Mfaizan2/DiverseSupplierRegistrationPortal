@@ -7,20 +7,15 @@
 
     <div class="support-wrapper">
         <div class="support-tag" onclick="SupportBar()" id="SupportDiv">Support</div>
-        <div class="wrapper h-100 displayNone" id="SupportBarDiv">
+        <div class="wrapper h-100 displayNone" id="SupportBarDiv1">
             <div class="questions-wrapper">
         <div class="header">
             <span>Support</span>
-            <img  onclick="CloseSupportBarDiv()" src="{% static 'imgs/cross.png' %}" alt=""/>
+            <img  onclick="CloseSupportBarDiv(1)" src="{% static 'imgs/cross.png' %}" alt=""/>
         </div>
-        <div class="body">
-            <div class="question-wrapper">
-                <p>
-                    Engage with buyers from the world's leading companies?
-                </p>
-                <span>
-                    Engage with buyers from the world's leading companies?
-                </span>
+        <div class="body" >
+            <div class="question-wrapper" id="SupportAnswerDiv">
+
             </div>
             <div>
                 <div class="position-relative">
@@ -46,6 +41,32 @@
     </div>
 
     </div>
+
+
+        <div class="wrapper h-100 displayNone" id="SupportBarDiv2">
+            <div class="questions-wrapper">
+                <div class="header">
+
+                    <span>Support</span>
+                    <img  onclick="CloseSupportBarDiv(2)" src="{% static 'imgs/cross.png' %}" alt=""/>
+                </div>
+                <div class="body" >
+                    <div class="question-wrapper" id="SupportAnswerDiv2">
+
+                    </div>
+
+                    <div class="clr">
+
+                    </div>
+                                <div class="dt-buttons">
+                                    <button type="submit" onclick="BackToQuestions()" class="dt-button buttons-pdf buttons-html5">Back</button>
+                                </div>
+                    <div class="clr"></div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
     <section class="diversity">

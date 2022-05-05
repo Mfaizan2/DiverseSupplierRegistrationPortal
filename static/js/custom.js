@@ -643,14 +643,14 @@ function ForgotPasswordCall()
 function SupportBar()
 {
     $('#SupportDiv').attr('style','display: none');
-    $("#SupportBarDiv").removeClass("displayNone");
+    $("#SupportBarDiv1").removeClass("displayNone");
 
 }
 
-function CloseSupportBarDiv()
+function CloseSupportBarDiv(temp)
 {
     $('#SupportDiv').attr('style','display: flex');
-    $("#SupportBarDiv").addClass("displayNone");
+    $("#SupportBarDiv"+temp).addClass("displayNone");
 
 }
 
@@ -690,6 +690,24 @@ $("#SupportSearch").keypress(function(e) {
 
     }
 });
+
+function GetAnswer(no)
+{
+
+    $("#SupportBarDiv1").addClass("displayNone");
+    $("#SupportBarDiv2").removeClass("displayNone");
+
+    $("#SupportAnswerDiv2 p").remove();
+    $("#SupportAnswerDiv2 span").remove();
+
+    $("#SupportAnswerDiv2").append('<p>'+supportQuestions[no]+'</p><span>'+supportAnswers[no]+'</span>')
+}
+
+function BackToQuestions()
+{
+    $("#SupportBarDiv2").addClass("displayNone");
+    $("#SupportBarDiv1").removeClass("displayNone");
+}
 
 // function SendResponse()
 // {
@@ -1225,7 +1243,77 @@ $(document).ready(function(){
         pmclickCount++;
 
     });
+
+    $('#addNoteBtn').click(function(){
+        newNoteText = $("#newNote").val()
+        ApplicationId = $("#ApplicationId").val()
+        $.ajax({
+            type: "POST",
+            url: "/addNote",
+            dataType: 'html',
+            data: {
+                noteText : newNoteText,
+                ApplicationId: ApplicationId
+            },
+            success: function(result)
+            {
+                var test=JSON.parse(result);
+                console.log(test)
+                if (test.status == 200)
+                {
+                    newNoteHtml = getNewNoteHtml(test.id, test.note)
+                    $('.card-notes-wrapper').append(newNoteHtml);
+                    $("#newNote").val("")
+                }
+            }
+        });
+    });
 });
+
+function removeCard(noteId){
+
+
+    $form=$('#getFeedbacks_form');
+    var datastring = $form.serialize();
+    $.ajax({
+        type: "POST",
+        url: "/removeNote/"+noteId,
+        dataType: 'html',
+        data: datastring,
+        success: function(result)
+        {
+            var test=JSON.parse(result);
+            console.log(test)
+            if (test.status == 200)
+            {
+                path = 'div.card-notes-wrapper > div.zeeCard' + test.id
+                $(path).remove();
+
+
+            }
+        }
+    });
+}
+function getNewNoteHtml(id, text)
+{
+    htmlStr = "<div class=\"col-6 zeeCard zeeCard" + id + " \" id=\"zeeCard\">\n" +
+        "                                    <div class=\"card\" style=\"min-height: 200px ; max-height: 200px\">\n" +
+        "                                        <div class=\"card-body\">\n" +
+        "                                            <p id=\"card-body-text\" class=\"card-body-text\">\n" +
+        "                                                 " + text + " \n" +
+        "                                            </p>\n" +
+        "                                            <div class=\"dt-buttons \">\n" +
+        "                                                <button class=\"dt-button buttons-pdf buttons-html5 delete-btn-note\" id=\"delete-btn-note\" type=\"button\" data-parentId=\" " + id + " \" onclick=\"removeCard( " + id + " )\"><span>Delete</span>\n" +
+        "                                                </button>\n" +
+        "                                            </div>\n" +
+        "                                            <div class=\"clr\"></div>\n" +
+        "                                        </div>\n" +
+        "\n" +
+        "                                    </div>\n" +
+        "                                </div>"
+    return htmlStr
+}
+
 
 // let number_of_filters = 2;
 //
