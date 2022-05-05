@@ -456,11 +456,16 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-body">
+                    <div class="modal-header">
+                        <h4> Favourite Records</h4>
                     <div class="closeModalHeader">
-                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button">
+                            <img src="{% static 'imgs/cross.png' %}" alt=""/>
+                        </button>
                     </div>
+                    </div>
+
                     <div class="modalBodyContent">
-                        <h4 class="mb-2"> Favourite Records</h4>
                         <ul class="favourite-list-styles mb-2">
                     <li>
                         Favourite List Data
@@ -490,10 +495,12 @@
                         Favourite List Data
                     </li>
                 </ul>
+                        <div class="clr"></div>
                         <div class="dt-buttons">
                        <button class="dt-button buttons-pdf buttons-html5 mr-10" type="button"><span>Add Favourite</span></button>
                             <button class="dt-button buttons-pdf buttons-html5" type="button"><span>To Add Favourite List</span></button>
                      </div>
+                         <div class="clr"></div>
                     </div>
                 </div>
             </div>
@@ -501,36 +508,42 @@
     </div>
 
     <!-- favourite Modal -->
-{#    <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="favouriteList" tabindex="-1">#}
-{#        <div class="modal-dialog modal-dialog-centered modal-lg">#}
-{#            <div class="modal-content">#}
-{#                <div class="modal-body">#}
-{#                    <div class="closeModalHeader">#}
-{#                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>#}
-{#                    </div>#}
-{#                    <div class="modalBodyContent">#}
-{#                        <h4 class="mb-2"> Add Favourite Records</h4>#}
-{#                            <div class="mb-3">#}
-{#                                <label for="" class="form-label">Non Production Material</label>#}
-{#                                <input type="text" required name="" class="form-control formInput" id="" aria-describedby="emailHelp">#}
-{#                            </div>#}
-{#                            <div class="mb-3">#}
-{#                                <label for="" class="form-label">Production Material</label>#}
-{#                                <input type="text" required name="" class="form-control formInput" id="">#}
-{#                            </div>#}
-{#                        <div class="mb-3">#}
-{#                                <label for="" class="form-label">Oem's</label>#}
-{#                                <input type="text" required name="" class="form-control formInput" id="">#}
-{#                            </div>#}
-{##}
-{#                        <div class="dt-buttons">#}
-{#                       <button class="dt-button buttons-pdf buttons-html5" type="button"><span>ADD</span></button>#}
-{#                     </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
+    <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="favouriteList" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="modal-header">
+                        <h4> Favourite Records</h4>
+                    <div class="closeModalHeader">
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button">
+                            <img src="{% static 'imgs/cross.png' %}" alt=""/>
+                        </button>
+                    </div>
+                    </div>
+                    <div class="modalBodyContent">
+                        <h4 class="mb-2"> Add Favourite Records</h4>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Non Production Material</label>
+                                <input type="text" required name="" class="form-control formInput" id="" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Production Material</label>
+                                <input type="text" required name="" class="form-control formInput" id="">
+                            </div>
+                        <div class="mb-3">
+                                <label for="" class="form-label">Oem's</label>
+                                <input type="text" required name="" class="form-control formInput" id="">
+                            </div>
+                        <div class="clr"></div>
+                        <div class="dt-buttons">
+                       <button class="dt-button buttons-pdf buttons-html5" type="button"><span>ADD</span></button>
+                     </div>
+                        <div class="clr"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
