@@ -640,6 +640,75 @@ function ForgotPasswordCall()
     });
 }
 
+function SupportBar()
+{
+    $('#SupportDiv').attr('style','display: none');
+    $("#SupportBarDiv1").removeClass("displayNone");
+
+}
+
+function CloseSupportBarDiv(temp)
+{
+    $('#SupportDiv').attr('style','display: flex');
+    $("#SupportBarDiv"+temp).addClass("displayNone");
+
+}
+
+const supportQuestions = ["New Company Details Page in Explorer", "How do I update my company information?", "Where can I upload my company logo?", "Can we have multiple users under one company?", "How do I get my company's SIC number?"];
+
+const supportAnswers = ["Summary\n" + "The company details page has been redesigned to improve the overall user experience. Important supplier information has been organized into different tabs to provide a less condensed view of the supplier data.", "How do I update my company information?", "Where can I upload my company logo?", "Can we have multiple users under one company?", "How do I get my company's SIC number?"];
+
+$("#SupportSearch").keypress(function(e) {
+
+
+
+    if(e.which == 13) {
+
+        $("#SupportQuestionsDiv ol li").remove();
+        var entered_value = $('#SupportSearch').val();
+
+        let question_to_show = [];
+
+        for (let i = 0; i < supportQuestions.length; i++) {
+
+            if (supportQuestions[i].includes(entered_value))
+            {
+                question_to_show.push(supportQuestions[i]);
+            }
+
+        }
+
+        if (question_to_show.length==0)
+        {
+            $("#SupportQuestionsDiv ol").append('<li><a href="">No Result Found</a></li>');
+        }
+        else {
+            for (let i = 0; i < question_to_show.length; i++) {
+                $("#SupportQuestionsDiv ol").append('<li><a style="cursor: pointer;" onclick=GetAnswer('+i+')>' + question_to_show[i] + '</a></li>');
+            }
+        }
+
+    }
+});
+
+function GetAnswer(no)
+{
+
+    $("#SupportBarDiv1").addClass("displayNone");
+    $("#SupportBarDiv2").removeClass("displayNone");
+
+    $("#SupportAnswerDiv2 p").remove();
+    $("#SupportAnswerDiv2 span").remove();
+
+    $("#SupportAnswerDiv2").append('<p>'+supportQuestions[no]+'</p><span>'+supportAnswers[no]+'</span>')
+}
+
+function BackToQuestions()
+{
+    $("#SupportBarDiv2").addClass("displayNone");
+    $("#SupportBarDiv1").removeClass("displayNone");
+}
+
 // function SendResponse()
 // {
 //     $form=$('#sendResponse_form');
@@ -1174,6 +1243,154 @@ $(document).ready(function(){
         pmclickCount++;
 
     });
+
+    $('#addNoteBtn').click(function(){
+        newNoteText = $("#newNote").val()
+        ApplicationId = $("#ApplicationId").val()
+        $.ajax({
+            type: "POST",
+            url: "/addNote",
+            dataType: 'html',
+            data: {
+                noteText : newNoteText,
+                ApplicationId: ApplicationId
+            },
+            success: function(result)
+            {
+                var test=JSON.parse(result);
+                console.log(test)
+                if (test.status == 200)
+                {
+                    newNoteHtml = getNewNoteHtml(test.id, test.note)
+                    $('.card-notes-wrapper').append(newNoteHtml);
+                    $("#newNote").val("")
+                }
+            }
+        });
+    });
 });
 
+function removeCard(noteId){
+
+
+    $form=$('#getFeedbacks_form');
+    var datastring = $form.serialize();
+    $.ajax({
+        type: "POST",
+        url: "/removeNote/"+noteId,
+        dataType: 'html',
+        data: datastring,
+        success: function(result)
+        {
+            var test=JSON.parse(result);
+            console.log(test)
+            if (test.status == 200)
+            {
+                path = 'div.card-notes-wrapper > div.zeeCard' + test.id
+                $(path).remove();
+
+
+            }
+        }
+    });
+}
+function getNewNoteHtml(id, text)
+{
+    htmlStr = "<div class=\"col-6 zeeCard zeeCard" + id + " \" id=\"zeeCard\">\n" +
+        "                                    <div class=\"card\" style=\"min-height: 200px ; max-height: 200px\">\n" +
+        "                                        <div class=\"card-body\">\n" +
+        "                                            <p id=\"card-body-text\" class=\"card-body-text\">\n" +
+        "                                                 " + text + " \n" +
+        "                                            </p>\n" +
+        "                                            <div class=\"dt-buttons \">\n" +
+        "                                                <button class=\"dt-button buttons-pdf buttons-html5 delete-btn-note\" id=\"delete-btn-note\" type=\"button\" data-parentId=\" " + id + " \" onclick=\"removeCard( " + id + " )\"><span>Delete</span>\n" +
+        "                                                </button>\n" +
+        "                                            </div>\n" +
+        "                                            <div class=\"clr\"></div>\n" +
+        "                                        </div>\n" +
+        "\n" +
+        "                                    </div>\n" +
+        "                                </div>"
+    return htmlStr
+}
+
+
+// let number_of_filters = 2;
+//
+// function AddMoreFilter()
+// {
+//
+//     var select = $('<select class="state-select" name="MainMenu2" id="MainMenu2"></select>');
+//     var chanels = ["chanel1", "chanel2", "chanel3"]
+//     var chanelValue = ["1", "2", "3"]
+//
+//     for(var i=0;i<chanels.length;i++){
+//         var option = $("<option></option>");
+//         $(option).val(chanelValue[i]);
+//         $(option).html(chanels[i]);
+//         $(select).append(option);
+//     }
+//
+//
+//     let temp = '<div class="row mb-2" id="filtersDiv2">\n' +
+//         '\n' +
+//         '\n' +
+//         '                                        <div class="col-md-3 col-6 mb-2">\n' +
+//         '\n' +
+//         '\n' +
+//         '                                            <div class="mb-2 theme-select">\n' +
+//         '\n' +
+//         '                                                <select class="state-select" name="MainMenu2" id="MainMenu2">\n' +
+//         '                                                    <option value="-1" disabled="">Select Council</option>\n' +
+//         '                                                    <option value="CAMSC - Canadian Aboriginal &amp; Minority Supplier Council">CAMSC - Canadian Aboriginal &amp; Minority Supplier Council</option>\n' +
+//         '                                                </select>\n' +
+//         '                                            </div>\n' +
+//         '\n' +
+//         '\n' +
+//         '                                        </div>\n' +
+//         '                                        <div class="col-md-2 col-6 mb-2">\n' +
+//         '\n' +
+//         '                                            <div class="mb-2 theme-select">\n' +
+//         '\n' +
+//         '                                                <select class="state-select" name="ContainMenu2" id="ContainMenu2">\n' +
+//         '                                                    <option value="-1" disabled="">Select Council</option>\n' +
+//         '                                                    <option value="=">=</option>\n' +
+//         '                                                </select>\n' +
+//         '                                            </div>\n' +
+//         '\n' +
+//         '\n' +
+//         '                                        </div>\n' +
+//         '                                        <div class="col-md-4 col-6 mb-2">\n' +
+//         '                                            <input required="" type="text" id="UserInput2" name="UserInput2" class="form-control formInput" placeholder="Enter here">\n' +
+//         '                                        </div>\n' +
+//         '                                        <div class="col-md-1 pt-1 col-6 mb-2">\n' +
+//         '                                            <a href="#" onclick="DeleteFilter(1)">\n' +
+//         '                                                <img src="{% static \'imgs/delete.png\' %}" alt="" height="20">\n' +
+//         '                                            </a>\n' +
+//         '                                        </div>\n' +
+//         '\n' +
+//         '                                    </div>'
+//     $('#filtersDiv').append(temp);
+//     number_of_filters = number_of_filters + 1;
+//     $('#NumberOfFilters').val(number_of_filters);
+//
+//     $('head').append( $('<link rel="stylesheet" type="text/css" />').attr('href', 'https://webappmuh.blob.core.windows.net/static/css/style.css?sv=2021-04-10&st=2022-04-30T09%3A25%3A18Z&se=2025-05-01T09%3A25%3A00Z&sr=b&sp=r&sig=3q3CBL%2FE8gmO7UPDzXCI8A%2Bpqxl%2FhbVlTpyXW2XQ0dk%3D') );
+//
+// }
+//
+// function DeleteFilter(num)
+// {
+//     $("#filtersDiv"+num).remove();
+// }
+
+
+function ShowAddFilterOption()
+{
+    $('#filtersDiv').removeClass("displayNone");
+}
+
+function HideAddFilterDiv()
+{
+    $('#filtersDiv').addClass("displayNone");
+}
 

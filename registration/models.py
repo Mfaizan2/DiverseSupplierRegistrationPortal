@@ -183,6 +183,12 @@ class Feedback(models.Model):
     feedback_date = models.DateField(auto_now_add=True)
     update_date = models.DateField(null=True)
 
+class Notes(models.Model):
+    application_id = models.BigIntegerField(null=False, default=0)
+    feedback = models.CharField(max_length=1055, null=True, blank=True)
+    user_id = models.IntegerField()
+    date = models.DateTimeField(auto_now_add=True, blank=True)
+
 
 
 

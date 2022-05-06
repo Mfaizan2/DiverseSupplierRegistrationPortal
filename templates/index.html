@@ -6,61 +6,80 @@
 {% block content %}
 
     <div class="support-wrapper">
-    <div class="support-tag">Support</div>
-    <div class="wrapper h-100">
+        <div class="support-tag" onclick="SupportBar()" id="SupportDiv"><i class="bi bi-headset me-2 d-flex"></i>Support</div>
+        <div class="wrapper h-100 displayNone" id="SupportBarDiv1">
             <div class="questions-wrapper">
         <div class="header">
             <span>Support</span>
-            <img src="{% static 'imgs/cross.png' %}" alt=""/>
+            <img  onclick="CloseSupportBarDiv(1)" src="https://webappmuh.blob.core.windows.net/static/imgs/cross.png?sv=2021-04-10&st=2022-05-06T13%3A27%3A02Z&se=2025-05-07T13%3A27%3A00Z&sr=b&sp=r&sig=YTsNT%2FYHyPHvs5TRJTC2C3jy1ahn0Hk3nie2OoxY3RA%3D" alt=""/>
         </div>
-        <div class="body">
-            <div class="position-relative">
-           <input value="" name="" type="text" placeholder="Enter your Question Here..."/>
-            <img src="{% static 'imgs/search.svg' %}" alt=""/>
-            </div>
-            <div class="question-wrapper">
-                <ol>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>
-              </ol>
+        <div class="body" >
+            <div class="question-wrapper" id="SupportAnswerDiv">
 
             </div>
-            <div class="clr"></div>
-            <div class="dt-buttons">
-                <button type="submit" class="dt-button buttons-pdf buttons-html5">Contact Us</button>
+            <div>
+                <div class="position-relative">
+               <input value="" name="SupportSearch" id="SupportSearch" type="text" placeholder="Enter your Question Here..."/>
+               <img src="https://webappmuh.blob.core.windows.net/static/imgs/search.svg?sv=2021-04-10&st=2022-05-06T13%3A28%3A34Z&se=2025-05-07T13%3A28%3A00Z&sr=b&sp=r&sig=ziew8X44lh6gN%2BY9GzGaT9dmC9UMFWCwQhbUDcEKtJ8%3D" alt=""/>
             </div>
+
+            <div class="question-wrapper" id="SupportQuestionsDiv">
+                <ol>
+<!--                  <li><a href="#">Engage with buyers from the world's leading companies?</a></li>-->
+                </ol>
+
+            </div>
+            </div>
+            <div class="clr">
+
+            </div>
+<!--            <div class="dt-buttons">-->
+<!--                <button type="submit" class="dt-button buttons-pdf buttons-html5">Contact Us</button>-->
+<!--            </div>-->
              <div class="clr"></div>
         </div>
     </div>
 
     </div>
+
+
+        <div class="wrapper h-100 displayNone" id="SupportBarDiv2">
+            <div class="questions-wrapper">
+                <div class="header">
+
+                    <span>Support</span>
+                    <img  onclick="CloseSupportBarDiv(2)" src="{% static 'imgs/cross.png' %}" alt=""/>
+                </div>
+                <div class="body" >
+                    <div class="question-wrapper" id="SupportAnswerDiv2">
+
+                    </div>
+
+                    <div class="clr">
+
+                    </div>
+                                <div class="dt-buttons">
+                                    <button type="submit" onclick="BackToQuestions()" class="dt-button buttons-pdf buttons-html5">Back</button>
+                                </div>
+                    <div class="clr"></div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
     <section class="diversity">
         <div class="container">
             <div class="diversity-content center">
                 <h5 class="theme-heading">Supplier Diversity Registration Form</h5>
-                <p>Welcome to the ABC Corporation Supplier Diversity Registration Site. At ABC Corporation, we recognize that connecting qualified diverse businesses with sourcing opportunities provides both economic development and growth in our communities, as well as enables our customers to achieve their supplier diversity goals.</p>
-                <p>ABC Corporation is committed to creating a diverse and dynamic supply chain. Our goal is to include diverse suppliers in our sourcing efforts where there is alignment with our business needs and the needs of our customers.</p>
+                <p>We would like to thank you for visiting the Nippon Seiki International Supplier Diversity Registration Portal. Our company, Nippon Seiki International, recognizes the importance of connecting qualified diverse businesses with sourcing opportunities to drive economic development and growth in our communities.</p>
+                <p>Creating a dynamic and diverse supply chain is an important goal for Nippon Seiki International. As part of our strategic sourcing efforts, we aim to include diverse suppliers where alignment exists between our business needs and the needs of our customers.</p>
             </div>
             <div class="diversity-content center">
                 <h5 class="theme-heading">What is a Diverse Supplier?</h5>
-                <p>For the purpose of this program, a supplier is considered diverse if they are a U.S. privately held company that is 51% owned and operated by an individual who falls into one or more of the following categories:</p>
+                <p>A Diverse Supplier is a business that is at least 51% owned and operated by an individual that is part of a traditionally underrepresented or underserved group.  individual who operates an individual who falls into one or more of the following categories:</p>
+                <p>An eligible supplier is considered diverse if it is a privately held company whose majority owner and operator falls into at least one of the following categories and has a valid certification.</p>
                 <div class="owl-carousel owl-theme slider-types">
                     <div class="item">
                         <div class="boxDiversty">
@@ -126,7 +145,78 @@
                         </div>
                     </div>
                 </div>
-                <em>Please note: this site is for certified diverse companies only. All non-diverse supplier submissions will be deleted.</em>
+                <em>Please note: This site is only available to certify diverse companies. All non-diverse supplier submissions will be deleted.</em>
+            </div>
+        </div>
+    </section>
+
+    <section class="diverse-certficates">
+        <div class="container">
+            <div class="diverse-certficates-content">
+                <h5 class="theme-heading center">NSNA accepts the following certifications from the councils and organizations listed below:</h5>
+                <ul class="nav nav-pills mb-3 justify-content-center certificates-ul" id="certificates-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-mbe-tab" data-bs-toggle="pill" data-bs-target="#pills-mbe" type="button" role="tab" aria-controls="pills-mbe" aria-selected="true">MBE</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-wbe-tab" data-bs-toggle="pill" data-bs-target="#pills-wbe" type="button" role="tab" aria-controls="pills-wbe" aria-selected="false">WBE</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-veteran-tab" data-bs-toggle="pill" data-bs-target="#pills-veteran" type="button" role="tab" aria-controls="pills-veteran" aria-selected="false">Veteran</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-lgbtq-tab" data-bs-toggle="pill" data-bs-target="#pills-lgbtq" type="button" role="tab" aria-controls="pills-lgbtq" aria-selected="false">LGBTQ+</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-disable-tab" data-bs-toggle="pill" data-bs-target="#pills-disable" type="button" role="tab" aria-controls="pills-disable" aria-selected="false">Disabled</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-sba-tab" data-bs-toggle="pill" data-bs-target="#pills-sba" type="button" role="tab" aria-controls="pills-sba" aria-selected="false">SBA</button>
+                    </li>
+                </ul>
+                <div class="tab-content certificates-tab-content" id="certificates-tabContent">
+<!--                    <div class="tab-pane fade show active" id="pills-mbe" role="tabpanel" aria-labelledby="pills-mbe-tab">-->
+<!--                        <ul class="d-flex certificates-list">-->
+<!--                            <li class="list-nav"><span>NMSDC / Regional Council</span></li>-->
+<!--                            <li class="list-nav"><span>CAMSC (Canadian Aboriginal and Minority Supplier Council)</span></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                    <div class="tab-pane fade" id="pills-wbe" role="tabpanel" aria-labelledby="pills-wbe-tab">-->
+<!--                        <ul class="d-flex certificates-list">-->
+<!--                            <li class="list-nav"><span>WBENC  / Regional Council</span></li>-->
+<!--                            <li class="list-nav"><span>WBE Canada</span></li>-->
+<!--                            <li class="list-nav"><span>WEConnect International</span></li>-->
+<!--                            <li class="list-nav"><span>NWBOC ( National Association of Women Business Owners )</span></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                    <div class="tab-pane fade" id="pills-veteran" role="tabpanel" aria-labelledby="pills-veteran-tab">-->
+<!--                        <ul class="d-flex certificates-list">-->
+<!--                            <li class="list-nav"><span>NVBDC</span></li>-->
+<!--                            <li class="list-nav"><span>Veteran Affairs / Vetbiz / CVE</span></li>-->
+<!--                            <li class="list-nav"><span>NaVOBA ( National Veteran Owned Business Association )</span></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                    <div class="tab-pane fade" id="pills-lgbtq" role="tabpanel" aria-labelledby="pills-lgbtq-tab">-->
+<!--                        <ul class="d-flex certificates-list">-->
+<!--                            <li class="list-nav"><span>National LGBT Chamber of Commerce  (NGLCC)</span></li>-->
+<!--                            <li class="list-nav"><span>Canadian Gay & Lesbian Chamber of Commerce (CGLCC)</span></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                    <div class="tab-pane fade" id="pills-disable" role="tabpanel" aria-labelledby="pills-disable-tab">-->
+<!--                        <ul class="d-flex certificates-list">-->
+<!--                            <li class="list-nav"><span>DisabilityIN (formerly USBLN)</span></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                    <div class="tab-pane fade" id="pills-sba" role="tabpanel" aria-labelledby="pills-sba-tab">-->
+<!--                        <ul class="d-flex certificates-list">-->
+<!--                            <li class="list-nav"><span>SAM Small Business Enterprise (SBE)</span></li>-->
+<!--                            <li class="list-nav"><span>SAM Small Disadvantaged Business (DBE)</span></li>-->
+<!--                            <li class="list-nav"><span>SAM (SBA-8A)</span></li>-->
+<!--                            <li class="list-nav"><span>SAM (Vet, HUBZone, Disabled-Vet)</span></li>-->
+<!--                            <li class="list-nav"><span>SBA (WOSB)</span></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+                </div>
             </div>
         </div>
     </section>

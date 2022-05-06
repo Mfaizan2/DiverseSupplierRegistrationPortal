@@ -23,8 +23,8 @@
 	<!-- Custom Style -->
 	<link rel="stylesheet" href="https://webappmuh.blob.core.windows.net/static/css/animation.css?sv=2021-04-10&st=2022-04-21T07%3A41%3A48Z&se=2025-05-22T07%3A41%3A00Z&sr=b&sp=r&sig=l239Cox3HQDANJTQlDZFkfrsxOJvcvuBN%2B6HGiF4Z7w%3D">
 
-<!--	<link rel="stylesheet" href="{% static 'css/style.css'%}">-->
-	<link href="https://webappmuh.blob.core.windows.net/static/css/style.css?sv=2021-04-10&st=2022-04-30T09%3A25%3A18Z&se=2025-05-01T09%3A25%3A00Z&sr=b&sp=r&sig=3q3CBL%2FE8gmO7UPDzXCI8A%2Bpqxl%2FhbVlTpyXW2XQ0dk%3D" rel="stylesheet" />
+	<link rel="stylesheet" href="{% static 'css/style.css'%}">
+<!--	<link href="https://webappmuh.blob.core.windows.net/static/css/style.css?sv=2021-04-10&st=2022-04-30T09%3A25%3A18Z&se=2025-05-01T09%3A25%3A00Z&sr=b&sp=r&sig=3q3CBL%2FE8gmO7UPDzXCI8A%2Bpqxl%2FhbVlTpyXW2XQ0dk%3D" rel="stylesheet" />-->
 
 	<title>Home | Corporation</title>
 </head>
@@ -32,7 +32,7 @@
 	<header class="header">
 		<nav class="navbar navbar-expand-lg bg-grey">
 			<div class="container">
-				<a class="navbar-brand" href="{% url 'index' %}"><span class="d-block white bg-orange">ABC Corporation</span></a>
+				<a class="navbar-brand" href="{% url 'index' %}"><span class="d-block white bg-orange"><img src="/static/imgs/brand/nsna.png" class="brand-img"/></span></a>
 				<button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler mobile-hamburger" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
 					<span class="navbar-toggler-icon">
 						<span></span>
@@ -64,16 +64,16 @@
 							<a class="nav-link" href="{% url 'Registration' %}">Form</a>
 						</li>
 
-						{% if request.user.is_authenticated %}
-							<li class="nav-item">
-								<a class="nav-link" href="{% url 'logout' %}">Logout</a>
-							</li>
-						{% else %}
+<!--						{% if request.user.is_authenticated %}-->
+<!--							<li class="nav-item">-->
+<!--								<a class="nav-link" href="{% url 'logout' %}">Logout</a>-->
+<!--							</li>-->
+<!--						{% else %}-->
 
-							<li class="nav-item">
-								<a class="nav-link" href="{% url 'login' %}">Login</a>
-							</li>
-						{% endif %}
+<!--							<li class="nav-item">-->
+<!--								<a class="nav-link" href="{% url 'login' %}">Login</a>-->
+<!--							</li>-->
+<!--						{% endif %}-->
 					</ul>
 				</div>
 			</div>
@@ -92,7 +92,7 @@
 		<div class="container">
 			<div class="footer-content">
 				<div class="footer-logo">
-					<a class="navbar-brand" href="{% url 'index' %}"><span class="d-block white bg-orange">ABC Corporation</span></a>
+					<a class="navbar-brand" href="{% url 'index' %}"><span class="d-block white bg-orange"><img src="/static/imgs/brand/nsna.png" class="brand-img"/></span></a>
 				</div>
 				<h6>Contact us:<a href="mailto:supplier.diversity@abccorporation.com">supplier.diversity@abccorporation.com</a></h6>
 			</div>
@@ -127,9 +127,9 @@
 
 	<script src="https://webappmuh.blob.core.windows.net/static/js/slider.js?sv=2021-04-10&st=2022-04-21T07%3A47%3A40Z&se=2025-05-22T07%3A47%3A00Z&sr=b&sp=r&sig=2LPe%2B52vco83vohIH0zFdJTybWT7YtvhtIEWeeeTgec%3D"></script>
 
-	<script src="https://webappmuh.blob.core.windows.net/static/js/custom.js?sv=2021-04-10&st=2022-04-30T09%3A26%3A43Z&se=2025-05-01T09%3A26%3A00Z&sr=b&sp=r&sig=z747psDLI0zXXyP0RJ5Af6LzxLK%2BcpgQtNvh5sKCwdg%3D"></script>
+<!--	<script src="https://webappmuh.blob.core.windows.net/static/js/custom.js?sv=2021-04-10&st=2022-04-30T09%3A26%3A43Z&se=2025-05-01T09%3A26%3A00Z&sr=b&sp=r&sig=z747psDLI0zXXyP0RJ5Af6LzxLK%2BcpgQtNvh5sKCwdg%3D"></script>-->
 
-<!--	<script src="{% static 'js/custom.js'%}"></script>-->
+	<script src="{% static 'js/custom.js'%}"></script>
 
 </body>
 </html>

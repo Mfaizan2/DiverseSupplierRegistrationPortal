@@ -36,7 +36,9 @@ def upload(container_name, file_path, file_name):
     print("now", now)
     file_name = file_name.replace(" ", "")
     file_name = now.replace(" ", "") + file_name
-    container_client = ContainerClient.from_connection_string("BlobEndpoint=https://webappmuh.blob.core.windows.net/;QueueEndpoint=https://webappmuh.queue.core.windows.net/;FileEndpoint=https://webappmuh.file.core.windows.net/;TableEndpoint=https://webappmuh.table.core.windows.net/;SharedAccessSignature=sv=2020-08-04&ss=bfqt&srt=co&sp=rwdlacupx&se=2025-04-27T15:10:20Z&st=2022-04-22T07:10:20Z&spr=https&sig=5q1UtBRUUxP23oGBcKiv1c5mXMVDh1M9HYAbYrVPx1E%3D",container_name)
+    container_client = ContainerClient.from_connection_string(
+        "BlobEndpoint=https://webappmuh.blob.core.windows.net/;QueueEndpoint=https://webappmuh.queue.core.windows.net/;FileEndpoint=https://webappmuh.file.core.windows.net/;TableEndpoint=https://webappmuh.table.core.windows.net/;SharedAccessSignature=sv=2020-08-04&ss=bfqt&srt=co&sp=rwdlacupx&se=2025-04-27T15:10:20Z&st=2022-04-22T07:10:20Z&spr=https&sig=5q1UtBRUUxP23oGBcKiv1c5mXMVDh1M9HYAbYrVPx1E%3D",
+        container_name)
 
     print("Uploading files")
 
@@ -44,14 +46,10 @@ def upload(container_name, file_path, file_name):
     blob_client.upload_blob(file_path)
     print("File_uploaded")
 
-
-
-
     from azure.storage.blob import BlobClient, generate_blob_sas, BlobSasPermissions
 
     account_name = 'webappmuh'
     account_key = 'Ob9SQssWcPW8hAb6GEOu2xaCHiMv1Q5BV5fdHPoioUW8hktZIQIyTOjvx5gOmv7GYCSy6e9cN+RW+AStbBskSA=='
-
 
     sas_blob = generate_blob_sas(account_name=account_name,
                                  container_name=container_name,
@@ -61,7 +59,7 @@ def upload(container_name, file_path, file_name):
                                  expiry=datetime.utcnow() + timedelta(hours=26280)
                                  )
 
-    url = 'https://'+account_name+'.blob.core.windows.net/'+container_name+'/'+file_name+'?'+sas_blob
+    url = 'https://' + account_name + '.blob.core.windows.net/' + container_name + '/' + file_name + '?' + sas_blob
     print("url", url)
     return url
 
@@ -77,10 +75,6 @@ def Registration(request):
 
     for _ in list(storage._loaded_messages):
         del storage._loaded_messages[0]
-
-
-
-
 
     try:
         if request.method == 'POST':
@@ -152,7 +146,8 @@ def Registration(request):
 
             if request.FILES.get('MobCertificationFile', None):
                 mbe_certification_file = request.FILES.get('MobCertificationFile', None)
-                mbe_certification_file = upload("minority-owned-business", mbe_certification_file, mbe_certification_file.name)
+                mbe_certification_file = upload("minority-owned-business", mbe_certification_file,
+                                                mbe_certification_file.name)
                 print("mbe_certification_file", mbe_certification_file)
             else:
                 mbe_certification_file = ''
@@ -175,7 +170,8 @@ def Registration(request):
             wbe_certificationDescription = request.POST.get('wbe_certificationDescription', None)
             if request.FILES.get('WobCertificationFile', None):
                 wbe_certification_file = request.FILES.get('WobCertificationFile', None)
-                wbe_certification_file = upload("women-owned-business", wbe_certification_file, wbe_certification_file.name)
+                wbe_certification_file = upload("women-owned-business", wbe_certification_file,
+                                                wbe_certification_file.name)
                 print("wbe_certification_file", wbe_certification_file)
             else:
                 wbe_certification_file = ''
@@ -197,7 +193,8 @@ def Registration(request):
 
             if request.FILES.get('VobCertificationFile', None):
                 vb_certification_file = request.FILES.get('VobCertificationFile', None)
-                vb_certification_file = upload("veteran-owned-business", vb_certification_file, vb_certification_file.name)
+                vb_certification_file = upload("veteran-owned-business", vb_certification_file,
+                                               vb_certification_file.name)
 
                 print("vb_certification_file", vb_certification_file)
             else:
@@ -223,7 +220,8 @@ def Registration(request):
 
             if request.FILES.get('CobCertificationFile', None):
                 other_certification_file = request.FILES.get('CobCertificationFile', None)
-                other_certification_file = upload("other-certification", other_certification_file, other_certification_file.name)
+                other_certification_file = upload("other-certification", other_certification_file,
+                                                  other_certification_file.name)
 
                 print("other_certification_file", other_certification_file)
             else:
@@ -232,7 +230,6 @@ def Registration(request):
             # print(request.POST.get('other_certification_expirationDate',None))
             other_certification_expirationDate = str(
                 request.POST.get('other_certification_expirationDate', None))
-
 
             if other_certification_expirationDate:
                 other_certification_expirationDate = other_certification_expirationDate.split('-')
@@ -293,7 +290,7 @@ def Registration(request):
             anyOtherTier1AutomotiveCompany = request.POST.get('anyOtherTier1AutomotiveCompany', False)
             # print(request.POST.get('vmi',None))
             VMI = request.POST.get('vmi', False)
-            print(request.POST.get('percentageSale',None))
+            print(request.POST.get('percentageSale', None))
             percentageSale = request.POST.get('percentageSale', None)
             if percentageSale:
                 percentageSale = int(percentageSale)
@@ -530,8 +527,6 @@ def Registration(request):
             productionCapabilities.event = event
             productionCapabilities.save()
 
-
-
             aBCCorporation = ABCCorporation()
             aBCCorporation.general_contant_info = generalContactInfo
             aBCCorporation.diverse_certification = diverseCertification
@@ -539,9 +534,6 @@ def Registration(request):
             aBCCorporation.production_capabilities = productionCapabilities
             # aBCCorporation.product_and_service = productAndService
             aBCCorporation.save()
-
-
-
 
             if npmSelectedValueFinal:
                 print("Faizan", npmSelectedValueFinal)
@@ -555,10 +547,10 @@ def Registration(request):
                         npmValueCategory2 = obj[2]
                     else:
                         npmValueCategory2 = ''
-                    npmValues = NpmValues(abc_corporation_id=aBCCorporation.id, npm_value=npmValue, npm_value_category1=npmValueCategory1, npm_value_category2=npmValueCategory2)
+                    npmValues = NpmValues(abc_corporation_id=aBCCorporation.id, npm_value=npmValue,
+                                          npm_value_category1=npmValueCategory1, npm_value_category2=npmValueCategory2)
                     npmValues.save()
                     print("Faizan")
-
 
             if pmSelectedValueFinal:
                 print("zee", pmSelectedValueFinal)
@@ -571,7 +563,8 @@ def Registration(request):
                         pmValueCategory1 = obj[1]
                     else:
                         pmValueCategory1 = ''
-                    pmValues = PmValues(abc_corporation_id=aBCCorporation.id, pm_value=pmValue, pm_value_category1=pmValueCategory1)
+                    pmValues = PmValues(abc_corporation_id=aBCCorporation.id, pm_value=pmValue,
+                                        pm_value_category1=pmValueCategory1)
                     pmValues.save()
                     print("zee")
 
@@ -580,12 +573,10 @@ def Registration(request):
 
                 message = "You have received a new application at ABC Supplier"
 
-
                 email_from = settings.EMAIL_HOST_USER
                 email = "faizanaslam455@gmail.com"
                 recipient_list = [email]
                 send_mail(subject, message, email_from, recipient_list, fail_silently=False)
-
 
             messages.success(request, 'Application successfully submitted')
             return render(request, 'Registrationform.html')
@@ -600,6 +591,96 @@ def Registration(request):
 
 @login_required(login_url='/login')
 def AllRecords(request):
+    if request.method == 'POST':
+        print("Faizan DON")
+        last_name = request.POST.get('last_name', None)
+        first_name = request.POST.get('first_name', None)
+        city = request.POST.get('city', None)
+        state = request.POST.get('state', None)
+        address = request.POST.getlist('address', None)
+        diverse_certification = request.POST.get('diverse_certification', None)
+        wbe_certification = request.POST.getlist('wbe_certification', None)
+        mbe = request.POST.getlist('mbe', None)
+        vob = request.POST.getlist('vob', None)
+        other_certification = request.POST.getlist('other_certification', None)
+        quality_certification = request.POST.getlist('quality_certification', None)
+        operation_outside_usa = request.POST.getlist('operation_outside_usa', None)
+        npm = request.POST.getlist('npm', None)
+        pm = request.POST.getlist('pm', None)
+        print("npm", npm)
+
+
+
+        kwargs = {}
+
+        if last_name:
+            kwargs['{0}__{1}__{2}'.format('general_contant_info', 'general_contact', 'last_name')] = last_name
+
+        if first_name:
+            kwargs['{0}__{1}__{2}'.format('general_contant_info', 'general_contact', 'first_name')] = first_name
+
+        if city:
+            kwargs['{0}__{1}'.format('general_contant_info', 'city')] = city
+
+        if state:
+            kwargs['{0}__{1}'.format('general_contant_info', 'state')] = state
+
+        if address:
+            kwargs['{0}__{1}__{2}__in'.format('general_contant_info', 'country','country_name')] = address
+
+        if diverse_certification:
+            
+            kwargs['{0}__{1}__{2}__in'.format('diverse_certification', diverse_certification,'business')] = ['Yes', 'In Progress']
+        if wbe_certification:
+            
+            kwargs['{0}__{1}__{2}__in'.format('diverse_certification', 'women_owned_business','council')] = wbe_certification
+
+        if mbe:
+            
+            kwargs['{0}__{1}__{2}__in'.format('diverse_certification', 'minority_owned_business','council')] = mbe
+
+        if vob:
+            
+            kwargs['{0}__{1}__{2}__in'.format('diverse_certification', 'veteran_owned_business','council')] = vob
+
+        if other_certification:
+            
+            kwargs['{0}__{1}__{2}__in'.format('diverse_certification', 'other_certification','council')] = other_certification
+        if quality_certification:
+            kwargs['{0}__{1}__in'.format('company_details', 'quality_certification')] = quality_certification
+        if operation_outside_usa:
+            kwargs['{0}__{1}__in'.format('company_details', 'operation_outside_usa')] = operation_outside_usa
+        if npm:
+            all_objs = NpmValues.objects.filter(npm_value__in=npm)
+            ids = []
+            for obj in all_objs:
+                ids.append(obj.abc_corporation_id)
+            kwargs['{0}__in'.format('id')] = ids
+
+        if pm:
+            all_objs = PmValues.objects.filter(pm_value__in=pm)
+            ids = []
+            for obj in all_objs:
+                ids.append(obj.abc_corporation_id)
+            kwargs['{0}__in'.format('id')] = ids
+
+
+
+        all_applications = ABCCorporation.objects.filter(**kwargs)
+        print("all_applications", all_applications)
+
+
+        npmValues = NpmValues.objects.all()
+        pmValues = PmValues.objects.all()
+
+        context = {
+            'expenses': all_applications,
+            'page_obj': all_applications,
+            'npmValues': npmValues,
+            'pmValues': pmValues
+        }
+        return render(request, 'allRecords.html', context)
+
     all_applications = ABCCorporation.objects.all()
     # paginator = Paginator(all_applications, 10)
     # page_number = request.GET.get('page')
@@ -649,11 +730,26 @@ def DetailRecord(request, id):
 
 
     country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
+
+    notes = Notes.objects.filter(application_id=id, user_id=request.user.id)
+    
+    notes_dic = {}
+    
+    for note in notes:
+        notes_dic[note.id] = note.feedback
+    
+    
+    dummyNotes = {
+        1: "dummy note 1 dummy note 1 dummy note 1 dummy note 1 dummy note 1 dummy note 1 dummy note 1 dummy note 1 dummy note 1 dummy note 1 dummy note 1 dummy note 1",
+        2: "dummy note 2 dummy note 2 dummy note 2 dummy note 2 dummy note 2 dummy note 2",
+        3: "dummy note 3 dummy note 3 dummy note 3 dummy note 3 dummy note 3 dummy note 3 dummy note 3 dummy note 3 dummy note 3 dummy note 3 dummy note 3 dummy note 3",
+    }
     context = {
         'application': application,
         'country': mapCountryName(country.country_name),
         'npmValues': npmFinal,
-        'pmValues': pmFinal
+        'pmValues': pmFinal,
+        'Notes_dic': notes_dic
     }
     return render(request, 'detailRecord.html', context)
 
@@ -794,8 +890,6 @@ def UnmapPm(id):
 
 @login_required(login_url='/login')
 def UploadExcelFile(request):
-
-
     storage = messages.get_messages(request)
     for _ in storage:
         # This is important
@@ -805,7 +899,6 @@ def UploadExcelFile(request):
     for _ in list(storage._loaded_messages):
         del storage._loaded_messages[0]
 
-    
     try:
         excel_file = request.FILES.get('excel_file', None)
         print("excel_file", excel_file)
@@ -1023,7 +1116,8 @@ def UploadExcelFile(request):
             companyDetails.quality_certification = qualityCertification[index]
             if certificationExpectedDate[index]:
                 temp_date = str(certificationExpectedDate[index]).split('/')
-                certificationExpectedDate[index] = datetime.date(int(temp_date[2]), int(temp_date[1]), int(temp_date[0]))
+                certificationExpectedDate[index] = datetime.date(int(temp_date[2]), int(temp_date[1]),
+                                                                 int(temp_date[0]))
                 companyDetails.certification_expected_date = certificationExpectedDate[index]
             companyDetails.operation_outside_usa = operationOutsideUsa[index]
             companyDetails.save()
@@ -1405,7 +1499,32 @@ def GetFeedbacks(request):
         print("application_id", application_id)
         return JsonResponse({'data': "Error", 'status': 400})
 
-def favouriteRecode(request):
 
+def favouriteRecode(request):
     # upload()
     return render(request, 'favourite-list.html')
+
+def removeNote(request, id):
+
+    Notes.objects.filter(id=id).delete()
+    resp = {
+        'id': id,
+        'status': 200
+
+    }
+    return JsonResponse(resp)
+
+def addNote(request):
+    noteText = request.POST.get('noteText', None)
+    ApplicationId = request.POST.get('ApplicationId', None)
+
+    note = Notes(application_id=ApplicationId,feedback=noteText, user_id=request.user.id)
+    note.save()
+    print("noteText", noteText)
+    resp = {
+        'id': 21,
+        'note': noteText,
+        'status': 200
+
+    }
+    return JsonResponse(resp)

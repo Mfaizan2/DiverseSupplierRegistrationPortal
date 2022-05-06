@@ -1,7 +1,6 @@
-
 {% extends 'base.html' %}
 
-{% load  static%}
+{% load  static %}
 
 {% block content %}
 
@@ -12,8 +11,14 @@
         <div class="viewRecordContent accordion-wrapper">
             <div class="accordion accordion-form-content accordion-view-content" id="accordionViewRecord">
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingViewOne"><button aria-controls="collapseViewOne" aria-expanded="true" class="accordion-button" data-bs-target="#collapseViewOne" data-bs-toggle="collapse" type="button">Genral Contact info</button></h2>
-                    <div aria-labelledby="headingViewOne" class="accordion-collapse collapse show" data-bs-parent="#accordionViewRecord" id="collapseViewOne">
+                    <h2 class="accordion-header" id="headingViewOne">
+                        <button aria-controls="collapseViewOne" aria-expanded="true" class="accordion-button"
+                                data-bs-target="#collapseViewOne" data-bs-toggle="collapse" type="button">Genral
+                            Contact info
+                        </button>
+                    </h2>
+                    <div aria-labelledby="headingViewOne" class="accordion-collapse collapse show"
+                         data-bs-parent="#accordionViewRecord" id="collapseViewOne">
                         <div class="accordion-body">
                             <div class="same-inner-accord gci-form">
                                 <h3>General Contact Information</h3>
@@ -22,39 +27,42 @@
                                         <tbody>
                                         <tr>
                                             <td>Company Name</td>
-                                            <td>{{application.general_contant_info.company_name}}</td>
+                                            <td>{{ application.general_contant_info.company_name }}</td>
                                         </tr>
                                         <tr>
                                             <td>Website URL</td>
-                                            <td>{{application.general_contant_info.website_url}}</td>
+                                            <td>{{ application.general_contant_info.website_url }}</td>
                                         </tr>
                                         <tr>
                                             <td>Company detail's Video link</td>
-                                            {% if application.general_contant_info.video_url  %}
-                                                <td><a href="{{application.general_contant_info.video_url}}">Click here</a></td>
+                                            {% if application.general_contant_info.video_url %}
+                                            <td><a href="{{ application.general_contant_info.video_url }}">Click
+                                                here</a></td>
                                             {% else %}
-                                                <td><a href=""></a></td>
+                                            <td><a href=""></a></td>
                                             {% endif %}
                                         </tr>
                                         <tr>
                                             <td>Company detail's Video</td>
-                                            {% if application.general_contant_info.video_url  %}
-                                            <td><a href="{{application.general_contant_info.company_video_file}}">Video File</a></td>
+                                            {% if application.general_contant_info.video_url %}
+                                            <td>
+                                                <a href="{{ application.general_contant_info.company_video_file }}">Video
+                                                    File</a></td>
                                             {% else %}
                                             <td><a href=""></a></td>
                                             {% endif %}
                                         </tr>
                                         <tr>
                                             <td>Country</td>
-                                            <td>{{country}}</td>
+                                            <td>{{ country }}</td>
                                         </tr>
                                         <tr>
                                             <td>Address Line 1</td>
-                                            <td>{{application.general_contant_info.address1}}</td>
+                                            <td>{{ application.general_contant_info.address1 }}</td>
                                         </tr>
                                         <tr>
                                             <td>Address Line 2</td>
-                                            <td>{{application.general_contant_info.address2}}</td>
+                                            <td>{{ application.general_contant_info.address2 }}</td>
                                         </tr>
                                         <tr>
                                             <td>Neighborhood</td>
@@ -62,15 +70,15 @@
                                         </tr>
                                         <tr>
                                             <td>City</td>
-                                            <td>{{application.general_contant_info.city}}</td>
+                                            <td>{{ application.general_contant_info.city }}</td>
                                         </tr>
                                         <tr>
                                             <td>State</td>
-                                            <td>{{application.general_contant_info.state}}</td>
+                                            <td>{{ application.general_contant_info.state }}</td>
                                         </tr>
                                         <tr>
                                             <td>ZipCode</td>
-                                            <td>{{application.general_contant_info.zip_code}}</td>
+                                            <td>{{ application.general_contant_info.zip_code }}</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -83,27 +91,27 @@
                                         <tbody>
                                         <tr>
                                             <td>First Name</td>
-                                            <td>{{application.general_contant_info.sales_contact.first_name}}</td>
+                                            <td>{{ application.general_contant_info.sales_contact.first_name }}</td>
                                         </tr>
                                         <tr>
                                             <td>Last Name</td>
-                                            <td>{{application.general_contant_info.sales_contact.last_name}}</td>
+                                            <td>{{ application.general_contant_info.sales_contact.last_name }}</td>
                                         </tr>
                                         <tr>
                                             <td>Email Address</td>
-                                            <td>{{application.general_contant_info.sales_contact.email}}</td>
+                                            <td>{{ application.general_contant_info.sales_contact.email }}</td>
                                         </tr>
                                         <tr>
                                             <td>Job Title</td>
-                                            <td>{{application.general_contant_info.sales_contact.job_title}}</td>
+                                            <td>{{ application.general_contant_info.sales_contact.job_title }}</td>
                                         </tr>
                                         <tr>
                                             <td>Office Phone</td>
-                                            <td>{{application.general_contant_info.sales_contact.phone_number}}</td>
+                                            <td>{{ application.general_contant_info.sales_contact.phone_number }}</td>
                                         </tr>
                                         <tr>
                                             <td>Mobile Phone</td>
-                                            <td>{{application.general_contant_info.sales_contact.mobile_number}}</td>
+                                            <td>{{ application.general_contant_info.sales_contact.mobile_number }}</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -117,27 +125,27 @@
                                         <tbody>
                                         <tr>
                                             <td>First Name</td>
-                                            <td>{{application.general_contant_info.general_contact.first_name}}</td>
+                                            <td>{{ application.general_contant_info.general_contact.first_name }}</td>
                                         </tr>
                                         <tr>
                                             <td>Last Name</td>
-                                            <td>{{application.general_contant_info.general_contact.last_name}}</td>
+                                            <td>{{ application.general_contant_info.general_contact.last_name }}</td>
                                         </tr>
                                         <tr>
                                             <td>Email Address</td>
-                                            <td>{{application.general_contant_info.general_contact.email}}</td>
+                                            <td>{{ application.general_contant_info.general_contact.email }}</td>
                                         </tr>
                                         <tr>
                                             <td>Job Title</td>
-                                            <td>{{application.general_contant_info.general_contact.job_title}}</td>
+                                            <td>{{ application.general_contant_info.general_contact.job_title }}</td>
                                         </tr>
                                         <tr>
                                             <td>Office Phone</td>
-                                            <td>{{application.general_contant_info.general_contact.phone_number}}</td>
+                                            <td>{{ application.general_contant_info.general_contact.phone_number }}</td>
                                         </tr>
                                         <tr>
                                             <td>Mobile Phone</td>
-                                            <td>{{application.general_contant_info.general_contact.mobile_number}}</td>
+                                            <td>{{ application.general_contant_info.general_contact.mobile_number }}</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -147,8 +155,14 @@
                     </div>
                 </div>
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingViewTwo"><button aria-controls="collapseViewTwo" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapseViewTwo" data-bs-toggle="collapse" type="button">diverse certifications</button></h2>
-                    <div aria-labelledby="headingViewTwo" class="accordion-collapse collapse" data-bs-parent="#accordionViewRecord" id="collapseViewTwo">
+                    <h2 class="accordion-header" id="headingViewTwo">
+                        <button aria-controls="collapseViewTwo" aria-expanded="false"
+                                class="accordion-button collapsed" data-bs-target="#collapseViewTwo"
+                                data-bs-toggle="collapse" type="button">diverse certifications
+                        </button>
+                    </h2>
+                    <div aria-labelledby="headingViewTwo" class="accordion-collapse collapse"
+                         data-bs-parent="#accordionViewRecord" id="collapseViewTwo">
                         <div class="accordion-body">
                             <div class="same-inner-accord mob-form">
                                 <h3>Minority Owned Business</h3>
@@ -157,30 +171,32 @@
                                         <tbody>
                                         <tr>
                                             <td>Minority Owned Business</td>
-                                            <td>{{application.diverse_certification.minority_owned_business.Business}}</td>
+                                            <td>{{ application.diverse_certification.minority_owned_business.Business }}</td>
                                         </tr>
                                         <tr>
                                             <td>Council</td>
-                                            <td>{{application.diverse_certification.minority_owned_business.council}}</td>
+                                            <td>{{ application.diverse_certification.minority_owned_business.council }}</td>
                                         </tr>
                                         <tr>
                                             <td>Ethnicity</td>
-                                            <td>{{application.diverse_certification.minority_owned_business.ethnicity}}</td>
+                                            <td>{{ application.diverse_certification.minority_owned_business.ethnicity }}</td>
                                         </tr>
                                         <tr>
                                             <td>Certification Description</td>
-                                            <td>{{application.diverse_certification.minority_owned_business.certification_description}}</td>
+                                            <td>{{ application.diverse_certification.minority_owned_business.certification_description }}</td>
                                         </tr>
                                         <tr>
                                             <td>Expiration Date</td>
-                                            <td>{{application.diverse_certification.minority_owned_business.expiration_date}}</td>
+                                            <td>{{ application.diverse_certification.minority_owned_business.expiration_date }}</td>
                                         </tr>
                                         <tr>
                                             <td>Certification File</td>
                                             {% if application.diverse_certification.minority_owned_business.certification_file %}
-                                                <td><a href="{{application.diverse_certification.minority_owned_business.certification_file}}">Certification File</a></td>
+                                            <td>
+                                                <a href="{{ application.diverse_certification.minority_owned_business.certification_file }}">Certification
+                                                    File</a></td>
                                             {% else %}
-                                                <td></td>
+                                            <td></td>
                                             {% endif %}
 
                                         </tr>
@@ -195,26 +211,28 @@
                                         <tbody>
                                         <tr>
                                             <td>Women Owned Business</td>
-                                            <td>{{application.diverse_certification.women_owned_business.Business}}</td>
+                                            <td>{{ application.diverse_certification.women_owned_business.Business }}</td>
                                         </tr>
                                         <tr>
                                             <td>Council</td>
-                                            <td>{{application.diverse_certification.women_owned_business.council}}</td>
+                                            <td>{{ application.diverse_certification.women_owned_business.council }}</td>
                                         </tr>
                                         <tr>
                                             <td>Certification Description</td>
-                                            <td>{{application.diverse_certification.women_owned_business.certification_description}}</td>
+                                            <td>{{ application.diverse_certification.women_owned_business.certification_description }}</td>
                                         </tr>
                                         <tr>
                                             <td>Expiration Date</td>
-                                            <td>{{application.diverse_certification.women_owned_business.expiration_date}}</td>
+                                            <td>{{ application.diverse_certification.women_owned_business.expiration_date }}</td>
                                         </tr>
                                         <tr>
                                             <td>Certification File</td>
                                             {% if application.diverse_certification.women_owned_business.certification_file %}
-                                                <td><a href="{{application.diverse_certification.women_owned_business.certification_file}}">Certification File</a></td>
+                                            <td>
+                                                <a href="{{ application.diverse_certification.women_owned_business.certification_file }}">Certification
+                                                    File</a></td>
                                             {% else %}
-                                                <td></td>
+                                            <td></td>
                                             {% endif %}
                                         </tr>
                                         </tbody>
@@ -228,26 +246,28 @@
                                         <tbody>
                                         <tr>
                                             <td>Veteran Owned Business</td>
-                                            <td>{{application.diverse_certification.veteran_owned_business.Business}}</td>
+                                            <td>{{ application.diverse_certification.veteran_owned_business.Business }}</td>
                                         </tr>
                                         <tr>
                                             <td>Council</td>
-                                            <td>{{application.diverse_certification.veteran_owned_business.council}}</td>
+                                            <td>{{ application.diverse_certification.veteran_owned_business.council }}</td>
                                         </tr>
                                         <tr>
                                             <td>Certification Description</td>
-                                            <td>{{application.diverse_certification.veteran_owned_business.certification_description}}</td>
+                                            <td>{{ application.diverse_certification.veteran_owned_business.certification_description }}</td>
                                         </tr>
                                         <tr>
                                             <td>Expiration Date</td>
-                                            <td>{{application.diverse_certification.veteran_owned_business.expiration_date}}</td>
+                                            <td>{{ application.diverse_certification.veteran_owned_business.expiration_date }}</td>
                                         </tr>
                                         <tr>
                                             <td>Certification File</td>
                                             {% if application.diverse_certification.veteran_owned_business.certification_file %}
-                                                <td><a href="{{application.diverse_certification.veteran_owned_business.certification_file}}">Certification File</a></td>
+                                            <td>
+                                                <a href="{{ application.diverse_certification.veteran_owned_business.certification_file }}">Certification
+                                                    File</a></td>
                                             {% else %}
-                                                <td></td>
+                                            <td></td>
                                             {% endif %}
                                         </tr>
                                         </tbody>
@@ -261,26 +281,28 @@
                                         <tbody>
                                         <tr>
                                             <td>Other Business</td>
-                                            <td>{{application.diverse_certification.other_certification.Business}}</td>
+                                            <td>{{ application.diverse_certification.other_certification.Business }}</td>
                                         </tr>
                                         <tr>
                                             <td>Council</td>
-                                            <td>{{application.diverse_certification.other_certification.council}}</td>
+                                            <td>{{ application.diverse_certification.other_certification.council }}</td>
                                         </tr>
                                         <tr>
                                             <td>Certification Description</td>
-                                            <td>{{application.diverse_certification.other_certification.certification_description}}</td>
+                                            <td>{{ application.diverse_certification.other_certification.certification_description }}</td>
                                         </tr>
                                         <tr>
                                             <td>Expiration Date</td>
-                                            <td>{{application.diverse_certification.other_certification.expiration_date}}</td>
+                                            <td>{{ application.diverse_certification.other_certification.expiration_date }}</td>
                                         </tr>
                                         <tr>
                                             <td>Certification File</td>
                                             {% if application.diverse_certification.other_certification.certification_file %}
-                                                <td><a href="{{application.diverse_certification.other_certification.certification_file}}">Certification File</a></td>
+                                            <td>
+                                                <a href="{{ application.diverse_certification.other_certification.certification_file }}">Certification
+                                                    File</a></td>
                                             {% else %}
-                                                <td></td>
+                                            <td></td>
                                             {% endif %}
                                         </tr>
                                         </tbody>
@@ -291,8 +313,14 @@
                     </div>
                 </div>
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingViewThree"><button aria-controls="collapseViewThree" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapseViewThree" data-bs-toggle="collapse" type="button">Company Details</button></h2>
-                    <div aria-labelledby="headingViewThree" class="accordion-collapse collapse" data-bs-parent="#accordionViewRecord" id="collapseViewThree">
+                    <h2 class="accordion-header" id="headingViewThree">
+                        <button aria-controls="collapseViewThree" aria-expanded="false"
+                                class="accordion-button collapsed" data-bs-target="#collapseViewThree"
+                                data-bs-toggle="collapse" type="button">Company Details
+                        </button>
+                    </h2>
+                    <div aria-labelledby="headingViewThree" class="accordion-collapse collapse"
+                         data-bs-parent="#accordionViewRecord" id="collapseViewThree">
                         <div class="accordion-body">
                             <div class="same-inner-accord company-detail-form">
                                 <h3>Company Details</h3>
@@ -301,47 +329,48 @@
                                         <tbody>
                                         <tr>
                                             <td>Presentation File</td>
-                                            {%if application.company_details.presentation_file %}
-                                                <td><a href="{{application.company_details.presentation_file}}">Presentation File</a></td>
+                                            {% if application.company_details.presentation_file %}
+                                            <td><a href="{{ application.company_details.presentation_file }}">Presentation
+                                                File</a></td>
                                             {% else %}
-                                                <td></td>
+                                            <td></td>
                                             {% endif %}
                                         </tr>
                                         <tr>
                                             <td>Presentation Description</td>
-                                            <td>{{application.company_details.presentation_description}}</td>
+                                            <td>{{ application.company_details.presentation_description }}</td>
                                         </tr>
                                         <tr>
                                             <td>Number of Employees</td>
-                                            <td>{{application.company_details.number_of_employees}}</td>
+                                            <td>{{ application.company_details.number_of_employees }}</td>
                                         </tr>
                                         <tr>
                                             <td>Tax ID / VAT Number</td>
-                                            <td>{{application.company_details.tax_id_vat_number}}</td>
+                                            <td>{{ application.company_details.tax_id_vat_number }}</td>
                                         </tr>
                                         <tr>
                                             <td>Total Annual Sales</td>
-                                            <td>{{application.company_details.total_annaul_sales}}</td>
+                                            <td>{{ application.company_details.total_annaul_sales }}</td>
                                         </tr>
                                         <tr>
                                             <td>DUNS Number</td>
-                                            <td>{{application.company_details.duns_number}}</td>
+                                            <td>{{ application.company_details.duns_number }}</td>
                                         </tr>
                                         <tr>
                                             <td>Quality Certifications</td>
-                                            <td>{{application.company_details.quality_certification}}</td>
+                                            <td>{{ application.company_details.quality_certification }}</td>
                                         </tr>
-<!--                                        <tr>-->
-<!--                                            <td>Other Quality Certification</td>-->
-<!--                                            <td>{{application.company_details.certificationExpectedDate}}</td>-->
-<!--                                        </tr>-->
+                                        <!--                                        <tr>-->
+                                        <!--                                            <td>Other Quality Certification</td>-->
+                                        <!--                                            <td>{{application.company_details.certificationExpectedDate}}</td>-->
+                                        <!--                                        </tr>-->
                                         <tr>
                                             <td>Certification Expected Date</td>
-                                            <td>{{application.company_details.certification_expected_date}}</td>
+                                            <td>{{ application.company_details.certification_expected_date }}</td>
                                         </tr>
                                         <tr>
                                             <td>Operations Outside USA</td>
-                                            <td>{{application.company_details.operation_outside_usa}}</td>
+                                            <td>{{ application.company_details.operation_outside_usa }}</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -351,8 +380,14 @@
                     </div>
                 </div>
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingViewFour"><button aria-controls="collapseViewFour" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapseViewFour" data-bs-toggle="collapse" type="button">Production Capabilities</button></h2>
-                    <div aria-labelledby="headingViewFour" class="accordion-collapse collapse" data-bs-parent="#accordionViewRecord" id="collapseViewFour">
+                    <h2 class="accordion-header" id="headingViewFour">
+                        <button aria-controls="collapseViewFour" aria-expanded="false"
+                                class="accordion-button collapsed" data-bs-target="#collapseViewFour"
+                                data-bs-toggle="collapse" type="button">Production Capabilities
+                        </button>
+                    </h2>
+                    <div aria-labelledby="headingViewFour" class="accordion-collapse collapse"
+                         data-bs-parent="#accordionViewRecord" id="collapseViewFour">
                         <div class="accordion-body">
                             <div class="same-inner-accord production-detail-form">
                                 <h3>Production Capabilities</h3>
@@ -361,87 +396,87 @@
                                         <tbody>
                                         <tr>
                                             <td>OEM</td>
-                                            <td>{{application.production_capabilities.isOem}}</td>
+                                            <td>{{ application.production_capabilities.isOem }}</td>
                                         </tr>
                                         <tr>
                                             <td>OEM's</td>
-                                            <td>{{application.production_capabilities.oems.name}}</td>
+                                            <td>{{ application.production_capabilities.oems.name }}</td>
                                         </tr>
                                         <tr>
                                             <td>ABC Supplier</td>
-                                            <td>{{application.production_capabilities.abc_supplier}}</td>
+                                            <td>{{ application.production_capabilities.abc_supplier }}</td>
                                         </tr>
                                         <tr>
                                             <td>Vendor Number</td>
-                                            <td>{{application.production_capabilities.vendor_number}}</td>
+                                            <td>{{ application.production_capabilities.vendor_number }}</td>
                                         </tr>
                                         <tr>
                                             <td>Any Other Tier Automotive Companies</td>
-                                            <td>{{application.production_capabilities.any_other_tier1_automotive_company}}</td>
+                                            <td>{{ application.production_capabilities.any_other_tier1_automotive_company }}</td>
                                         </tr>
                                         <tr>
                                             <td>Offer JIT Delivery</td>
-                                            <td>{{application.production_capabilities.nmi}}</td>
+                                            <td>{{ application.production_capabilities.nmi }}</td>
                                         </tr>
                                         <tr>
                                             <td>Offer Consignment Or VMI</td>
-                                            <td>{{application.production_capabilities.jit}}</td>
+                                            <td>{{ application.production_capabilities.jit }}</td>
                                         </tr>
                                         <tr>
                                             <td>Sales Automotive</td>
-                                            <td>{{application.production_capabilities.percentage_sale}}</td>
+                                            <td>{{ application.production_capabilities.percentage_sale }}</td>
                                         </tr>
                                         <tr>
                                             <td>Significant Awards</td>
-                                            <td>{{application.production_capabilities.significant_awards}}</td>
+                                            <td>{{ application.production_capabilities.significant_awards }}</td>
                                         </tr>
                                         <tr>
                                             <td>Customer Name 1</td>
-                                            <td>{{application.production_capabilities.customer_name1}}</td>
+                                            <td>{{ application.production_capabilities.customer_name1 }}</td>
                                         </tr>
                                         <tr>
                                             <td>Sales 1</td>
-                                            <td>{{application.production_capabilities.sales1}}</td>
+                                            <td>{{ application.production_capabilities.sales1 }}</td>
                                         </tr>
                                         <tr>
                                             <td>Automotive 1</td>
-                                            <td>{{application.production_capabilities.automotive1}}</td>
+                                            <td>{{ application.production_capabilities.automotive1 }}</td>
                                         </tr>
                                         <tr>
                                             <td>Customer Name 2</td>
-                                            <td>{{application.production_capabilities.customer_name2}}</td>
+                                            <td>{{ application.production_capabilities.customer_name2 }}</td>
                                         </tr>
                                         <tr>
                                             <td>Sales 2</td>
-                                            <td>{{application.production_capabilities.sales2}}</td>
+                                            <td>{{ application.production_capabilities.sales2 }}</td>
                                         </tr>
                                         <tr>
                                             <td>Automotive 2</td>
-                                            <td>{{application.production_capabilities.isOem}}</td>
+                                            <td>{{ application.production_capabilities.isOem }}</td>
                                         </tr>
                                         <tr>
                                             <td>Customer Name 3</td>
-                                            <td>{{application.production_capabilities.customer_name3}}</td>
+                                            <td>{{ application.production_capabilities.customer_name3 }}</td>
                                         </tr>
                                         <tr>
                                             <td>Sales 3</td>
-                                            <td>{{application.production_capabilities.sales3}}</td>
+                                            <td>{{ application.production_capabilities.sales3 }}</td>
                                         </tr>
                                         <tr>
                                             <td>Automotive 3</td>
-                                            <td>{{application.production_capabilities.automotive3}}</td>
+                                            <td>{{ application.production_capabilities.automotive3 }}</td>
                                         </tr>
                                         <tr>
                                             <td>Service Location</td>
-                                            <td>{{application.production_capabilities.record_per_naLocation.name}}</td>
+                                            <td>{{ application.production_capabilities.record_per_naLocation.name }}</td>
                                         </tr>
                                         <tr>
                                             <td>Manufacturing Locations</td>
-                                            <td>{{application.production_capabilities.manufacturing_locations}}</td>
+                                            <td>{{ application.production_capabilities.manufacturing_locations }}</td>
                                         </tr>
                                         <tr>
                                             <td>Effectively Service Location</td>
-                                            <td>{{application.production_capabilities.event}}</td>
+                                            <td>{{ application.production_capabilities.event }}</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -451,15 +486,21 @@
                     </div>
                 </div>
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingViewFive"><button aria-controls="collapseViewFive" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapseViewFive" data-bs-toggle="collapse" type="button">Production Services</button></h2>
-                    <div aria-labelledby="headingViewFive" class="accordion-collapse collapse" data-bs-parent="#accordionViewRecord" id="collapseViewFive">
+                    <h2 class="accordion-header" id="headingViewFive">
+                        <button aria-controls="collapseViewFive" aria-expanded="false"
+                                class="accordion-button collapsed" data-bs-target="#collapseViewFive"
+                                data-bs-toggle="collapse" type="button">Production Services
+                        </button>
+                    </h2>
+                    <div aria-labelledby="headingViewFive" class="accordion-collapse collapse"
+                         data-bs-parent="#accordionViewRecord" id="collapseViewFive">
                         <div class="accordion-body">
                             <div class="same-inner-accord npm-form">
                                 <h3>NPM - Non Production Material</h3>
                                 <table class="table-view-record table table-striped">
                                     <tbody>
                                     <tr>
-                                        <td>{{npmValues}}  </td>
+                                        <td>{{ npmValues }}  </td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -469,7 +510,7 @@
                                 <table class="table-view-record table table-striped">
                                     <tbody>
                                     <tr>
-                                        <td>{{pmValues}}</td>
+                                        <td>{{ pmValues }}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -484,30 +525,39 @@
                 <div class="col-lg-6">
                     <div class="same-inner-accord response-form">
                         <h3>Send Response to Submitter</h3>
-                        <form method="POST" id="sendResponse_form" action="{% url 'sendResponseToSubmitter' %}" enctype="multipart/form-data">
+                        <form method="POST" id="sendResponse_form" action="{% url 'sendResponseToSubmitter' %}"
+                              enctype="multipart/form-data">
                             {% csrf_token %}
 
-                            <input type="hidden" id="ApplicationId" name="ApplicationId" value={{application.id}}>
+                            <input type="hidden" id="ApplicationId" name="ApplicationId" value={{ application.id }}>
                             <div class="selection-radio-box response-radio-box justify-content-center mb-3">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="radio-box mt-3 mb-3">
-                                            <input type="radio" class="srs-radio-click btn-check" name="review" id="underReview" autocomplete="off" value="Under Review">
+                                            <input type="radio" class="srs-radio-click btn-check" name="review"
+                                                   id="underReview" autocomplete="off" value="Under Review">
                                             <label class="btn btn-secondary" for="underReview">Under Review</label>
                                         </div>
                                         <div class="radio-box">
-                                            <input type="radio" class="srs-radio-click btn-check" name="review" id="noOpportunity" autocomplete="off" value="Review & No Opportunity">
-                                            <label class="btn btn-secondary" for="noOpportunity">Review & No Opportunity</label>
+                                            <input type="radio" class="srs-radio-click btn-check" name="review"
+                                                   id="noOpportunity" autocomplete="off"
+                                                   value="Review & No Opportunity">
+                                            <label class="btn btn-secondary" for="noOpportunity">Review & No
+                                                Opportunity</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="radio-box mt-3 mb-3">
-                                            <input type="radio" class="srs-radio-click btn-check" name="review" id="Opportunity" autocomplete="off" value="Review & Opportunity">
-                                            <label class="btn btn-secondary" for="Opportunity">Review & Opportunity</label>
+                                            <input type="radio" class="srs-radio-click btn-check" name="review"
+                                                   id="Opportunity" autocomplete="off" value="Review & Opportunity">
+                                            <label class="btn btn-secondary" for="Opportunity">Review &
+                                                Opportunity</label>
                                         </div>
                                         <div class="radio-box">
-                                            <input type="radio" class="srs-radio-click btn-check" name="review" id="customResponse" autocomplete="off" value="Custom Response">
-                                            <label class="btn btn-secondary" for="customResponse">Custom Response</label>
+                                            <input type="radio" class="srs-radio-click btn-check" name="review"
+                                                   id="customResponse" autocomplete="off" value="Custom Response">
+                                            <label class="btn btn-secondary" for="customResponse">Custom
+                                                Response</label>
                                         </div>
                                     </div>
                                 </div>
@@ -515,16 +565,20 @@
                             <div class="response-custom-msg d-none">
                                 <div class="customMessageArea mb-3">
                                     <label class="form-label">Custom Description</label>
-                                    <textarea class="form-control formInput formTextarea" name="customDescription" rows="5"></textarea>
+                                    <textarea class="form-control formInput formTextarea" name="customDescription"
+                                              rows="5"></textarea>
                                 </div>
                             </div>
                             <div class="response-custom-msg">
                                 <div class="customMessageArea mb-3">
                                     <label class="form-label">Add Notes</label>
-                                    <textarea class="form-control formInput formTextarea mb-3" name="" rows="5"></textarea>
-                                                    <div class="dt-buttons">
-                                                         <button type="submit" class="dt-button buttons-pdf buttons-html5">Add Note</button>
-                                                    </div>
+                                    <textarea class="form-control formInput formTextarea mb-3" name="" rows="5"
+                                              id="newNote"></textarea>
+                                    <div class="dt-buttons">
+                                        <button type="button" class="dt-button buttons-pdf buttons-html5 addNoteBtn"
+                                                id="addNoteBtn">Add Note
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="clr"></div>
@@ -533,81 +587,62 @@
                             </div>
                         </form>
                     </div>
-                     <h5 class="mt-2">Your Attached Notes</h5>
+
+
+
+
+
+
+                    <h5 class="mt-2">Your Attached Notes</h5>
+
+
                     <hr>
-                    <div class="row card-notes-wrapper mb-3">
-                        <div class="col-6 ">
-                            <div class="card">
-                                                        <div class="card-body">
-                            <p>
-                                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                            </p>
-                            <div class="dt-buttons ">
-                                   <button class="dt-button buttons-pdf buttons-html5" type="button"><span>Delete</span></button>
+                        <div class="row card-notes-wrapper mb-3">
+                            {% for key, values in Notes_dic.items %}
+                                <div class="col-6 zeeCard zeeCard{{ key }}" id="zeeCard">
+                                <div class="card" style="min-height: 200px ; max-height: 200px">
+                                    <div class="card-body">
+                                        <p id="card-body-text" class="card-body-text">
+                                            {{ values }}
+                                        </p>
+                                        <div class="dt-buttons ">
+                                            <button class="dt-button buttons-pdf buttons-html5 delete-btn-note" id="delete-btn-note" type="button" data-parentId="{{ key }}" onclick="removeCard({{ key }})"><span>Delete</span>
+                                            </button>
+                                        </div>
+                                        <div class="clr"></div>
+                                    </div>
+
+                                </div>
                             </div>
-                            <div class="clr"></div>
+                            {% endfor %}
                         </div>
-
-                            </div>
-                    </div>
-                        <div class="col-6 ">
-                            <div class="card">
-                                                        <div class="card-body">
-                            <p>
-                                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                            </p>
-                            <div class="dt-buttons ">
-                                   <button class="dt-button buttons-pdf buttons-html5" type="button"><span>Delete</span></button>
-                            </div>
-                            <div class="clr"></div>
-                        </div>
-
-                            </div>
-                    </div>
-                        <div class="col-6 ">
-                            <div class="card">
-                                                        <div class="card-body">
-                            <p>
-                                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                            </p>
-                            <div class="dt-buttons ">
-                                   <button class="dt-button buttons-pdf buttons-html5" type="button"><span>Delete</span></button>
-                            </div>
-                            <div class="clr"></div>
-                        </div>
-
-                            </div>
-                    </div>
-
-                    </div>
-                    </div>
+                    <hr>
+                </div>
                 <div class="col-lg-6">
-                        <div class="same-inner-accord report-form">
+                    <div class="same-inner-accord report-form">
                         <h3>Send Report to Someone</h3>
-                        <form method="POST" id="sendResponseToSomeone_form" action="{% url 'sendResponseToSomeone' application.id %}" enctype="multipart/form-data">
+                        <form method="POST" id="sendResponseToSomeone_form"
+                              action="{% url 'sendResponseToSomeone' application.id %}"
+                              enctype="multipart/form-data">
                             {% csrf_token %}
 
-                            <input type="hidden" id="ApplicationIdToSomeone" name="ApplicationId" value={{application.id}}>
+                            <input type="hidden" id="ApplicationIdToSomeone" name="ApplicationId"
+                                   value={{ application.id }}>
                             <div class="selection-radio-box response-radio-box report-radio-box justify-content-center mb-3">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="radio-box mt-3">
-                                            <input type="radio" class="report-radio-click btn-check" name="messageType" id="reportTwo" autocomplete="off" value="Default Message">
+                                            <input type="radio" class="report-radio-click btn-check"
+                                                   name="messageType" id="reportTwo" autocomplete="off"
+                                                   value="Default Message">
                                             <label class="btn btn-secondary" for="reportTwo">Default Message</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="radio-box mt-3">
-                                            <input type="radio" class="report-radio-click btn-check" name="messageType" id="reportOne" autocomplete="off" value="Custom Report">
+                                            <input type="radio" class="report-radio-click btn-check"
+                                                   name="messageType" id="reportOne" autocomplete="off"
+                                                   value="Custom Report">
                                             <label class="btn btn-secondary" for="reportOne">Custom Message</label>
                                         </div>
                                     </div>
@@ -615,12 +650,14 @@
                             </div>
                             <div class="mt-3 mb-3 report-mail">
                                 <label class="form-label">Email</label>
-                                <input type="email" required name="email" class="form-control formInput" placeholder="example@mail.com">
+                                <input type="email" required name="email" class="form-control formInput"
+                                       placeholder="example@mail.com">
                             </div>
                             <div class="report-custom-msg d-none">
                                 <div class="customMessageArea mt-3 mb-3">
                                     <label class="form-label">Custom Description</label>
-                                    <textarea name="customDescription" class="form-control formInput formTextarea" rows="5"></textarea>
+                                    <textarea name="customDescription" class="form-control formInput formTextarea"
+                                              rows="5"></textarea>
                                 </div>
                             </div>
                             <button type="submit" class="response-btn bg-green white">Send Response</button>
@@ -628,19 +665,22 @@
                     </div>
                 </div>
 
-                </div>
             </div>
-<!--        </div>-->
+        </div>
+        <!--        </div>-->
 
 
-        <form action="{% url 'getFeedbacks' %}" id ="getFeedbacks_form" >
+        <form action="{% url 'getFeedbacks' %}" id="getFeedbacks_form">
 
             {% csrf_token %}
-            <input type="hidden" id="ApplicationIdForGetFeedbacks" name="ApplicationIdForGetFeedbacks" value={{application.id}}>
+            <input type="hidden" id="ApplicationIdForGetFeedbacks" name="ApplicationIdForGetFeedbacks"
+                   value={{ application.id }}>
 
         </form>
 
-        <div class="all-feedback margin-top-40 displayNone" id="AllFeedBacksDiv" >
+
+
+        <div class="all-feedback margin-top-40 displayNone" id="AllFeedBacksDiv">
             <div class="same-inner-accord all-feedback-content mt-3">
                 <h3>All Feedbacks</h3>
                 <table id="feedback_table" class="table-view-record table table-striped">
@@ -653,8 +693,8 @@
                     </tr>
                     {% for obj in all_feedbacks %}
                     <tr>
-                        <td>{{obj.email}}</td>
-                        <td>{{obj.feedback}}</td>
+                        <td>{{ obj.email }}</td>
+                        <td>{{ obj.feedback }}</td>
                         <td>Jan. 23, 2022, 4:26 p.m.</td>
                         <td>April 5, 2022, 9:32 p.m.</td>
                     </tr>

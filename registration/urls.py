@@ -16,5 +16,6 @@ urlpatterns = [
     path('report/<int:id>/<str:email_address>', views.Report, name='report'),
     path('sendFeedback', views.SendFeedback, name='sendFeedback'),
     path('getFeedbacks', views.GetFeedbacks, name='getFeedbacks'),
-
+    path('removeNote/<int:id>', views.removeNote, name='removeNote'),
+    path('addNote', csrf_exempt(views.addNote), name='addNote'),
 ]

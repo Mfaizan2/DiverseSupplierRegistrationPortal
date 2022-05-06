@@ -10,68 +10,362 @@
 
         <div class="container">
             <div class="record-content">
-            <div class="table-record mb-2 records-filter d-flex align-items-center">
-                <div class="row w-100">
-                    <div class="col-md-7 col-12">
-                        <div class="row mb-2">
+                <div class="table-record mb-2 records-filter d-flex align-items-center">
+                    <div class="dt-buttons d-flex align-items-center">
 
-                    <div class="col-md-3 col-6 mb-2">
-                         <div class="dropdown">
-                  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                    Select
-                  </a>
+                        <button onclick="ShowAddFilterOption()" class="mr-10 bg-grey white  hvr-sweep-orange-bottom mt-6">Add Filter</button>
 
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                  </ul>
-                </div>
-                    </div>
-                    <div class="col-md-2 col-6 mb-2">
-                    <div class="dropdown">
-                  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                    =
-                  </a>
 
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" href="#"></a></li>
-                    <li><a class="dropdown-item" href="#"><</a></li>
-                    <li><a class="dropdown-item" href="#">=</a></li>
-                  </ul>
-                </div>
-                    </div>
-                    <div class="col-md-4 col-6 mb-2">
-                    <input required="" type="text"  name="" class="form-control formInput" placeholder="Enter here">
-                    </div>
-                    <div class="col-md-1 pt-1 col-6 mb-2">
-                        <a href="#">
-                            <img src="{% static 'imgs/delete.png' %}" alt="" height="20"/>
-                        </a>
-                    </div>
-                        </div>
-                  <a href="#">Add Filters</a>
-                    </div>
-                    <div class="col-md-5 d-flex align-items-center justify-content-end">
-                     <div class="dt-buttons">
-                       <button class="dt-button buttons-pdf buttons-html5" type="button"><span>Export</span></button>
-                     </div>
-                        <div class="clr"></div>
+
+                        <form action="{% url 'downloadSampleExcelFile' %}">
+                            {% csrf_token %}
+                            <div class="mb-3 mt-3">
+                                <button type="submit" class="bg-grey white  hvr-sweep-orange-bottom mt-6">Export</button>
+                            </div>
+                        </form>
+
+
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="container">
+            <div class="record-content">
+
+                <div class="displayNone" id="filtersDiv">
+                    <div class="table-record mb-2 records-filter d-flex align-items-center" >
+
+                    <div class="row w-100 ">
+                        <form action="{% url 'allRecords' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="col-md-12 col-12" >
+                                <div class="row">
+
+                                    <div class="col-md-4 col-6">
+                                        <div class="mb-2 mt-2">
+                                            <label class="form-label">Last Name</label>
+                                            <input  type="text"  name="last_name" class="form-control formInput" placeholder="i.e (Smith)">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-6">
+                                        <div class="mb-2 mt-2">
+                                            <label class="form-label">First Name</label>
+                                            <input  type="text"  name="first_name" class="form-control formInput" placeholder="i.e (Smith)">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-6">
+                                        <div class="mb-2 mt-2">
+                                            <label class="form-label">City</label>
+                                            <input  type="text"  name="city" class="form-control formInput" >
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-6">
+                                        <div class="mb-2 mt-2">
+                                            <label class="form-label">State / Province</label>
+                                            <input  type="text"  name="state" class="form-control formInput" >
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-6">
+                                        <div class="mb-2 theme-select">
+                                            <label class="form-label">Address Country</label>
+                                            <select  class="state-select" name="address" multiple="multiple">
+                                                <option value="-1" disabled >Select Country</option>
+                                                <option value="United States">United States</option>
+                                                <option value="Canada">Canada</option>
+                                                <option value="Maxico">Maxico</option>
+
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-6">
+                                        <div class="mb-2 theme-select">
+                                            <label class="form-label">Diverse Certification</label>
+                                            <select  class="state-select" name="diverse_certification" >
+                                                <option value="-1" disabled selected>Select Minority Certification</option>
+                                                <option value="minority_owned_business">Minority-Owned Business</option>
+                                                <option value="women_owned_business">Women-Owned Business</option>
+                                                <option value="veteran_owned_business">Veteran-Owned Business</option>
+                                                <option value="other_certification">Other Certification</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-6">
+                                        <div class="mb-2 theme-select">
+                                            <label class="form-label">WBE</label>
+                                            <select  class="state-select" name="wbe_certification" multiple="multiple">
+                                                <option value="-1" disabled >Select WBE</option>
+                                                <option value="Astra Women's Business Alliance">Astra Women's Business Alliance</option>
+
+                                                <option value="Center for Women &amp; Enterprise">Center for Women &amp; Enterprise</option>
+
+                                                <option value="Greater Women's Business Council">Greater Women's Business Council</option>
+
+                                                <option value="Ohio River Valley Women's Business Council">Ohio River Valley Women's Business Council</option>
+
+                                                <option value="WBE Canada">WBE Canada</option>
+
+                                                <option value="WeConnect International">WeConnect International</option>
+
+                                                <option value="Women Presidents' Educational Organization-DC">Women Presidents' Educational Organization-DC</option>
+
+                                                <option value="Women Presidents' Educational Organization-NY">Women Presidents' Educational Organization-NY</option>
+
+                                                <option value="Women's Business Council-Southwest">Women's Business Council-Southwest</option>
+
+                                                <option value="Women's Business Development Center-Chicago">Women's Business Development Center-Chicago</option>
+
+                                                <option value="Women's Business Development Council-Midwest">Women's Business Development Council-Midwest</option>
+
+                                                <option value="Women's Business Development Council of Florida">Women's Business Development Council of Florida</option>
+
+                                                <option value="Women's Business Enterprise Alliance">Women's Business Enterprise Alliance</option>
+
+                                                <option value="Women's Business Enterprise Council South">Women's Business Enterprise Council South</option>
+
+                                                <option value="Women's Business Enterprise Council-Great Lakes">Women's Business Enterprise Council-Great Lakes</option>
+
+                                                <option value="Women's Business Enterprise Council-PA-DE-sNJ">Women's Business Enterprise Council-PA-DE-sNJ</option>
+
+                                                <option value="Women's Business Enterprise Council-West">Women's Business Enterprise Council-West</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-6">
+                                        <div class="mb-2 theme-select">
+                                            <label class="form-label">MBE</label>
+                                            <select  class="state-select" name="mbe" multiple="multiple">
+                                                <option value="-1" disabled >Select MBE</option>
+                                                <option value="CAMSC - Canadian Aboriginal &amp; Minority Supplier Council">CAMSC - Canadian Aboriginal &amp; Minority Supplier Council</option>
+
+                                                <option value="Capital Region Minority Supplier Development Council">Capital Region Minority Supplier Development Council</option>
+
+                                                <option value="Carolinas-Virginia Minority Supplier Development Council">Carolinas-Virginia Minority Supplier Development Council</option>
+
+                                                <option value="Central &amp; North Florida Minority Supplier Development Council">Central &amp; North Florida Minority Supplier Development Council</option>
+
+                                                <option value="Chicago Minority Supplier Development Council">Chicago Minority Supplier Development Council</option>
+
+                                                <option value="Dallas/Fort Worth Minority Supplier Development Council">Dallas/Fort Worth Minority Supplier Development Council</option>
+
+                                                <option value="Eastern Minority Supplier Development Council">Eastern Minority Supplier Development Council</option>
+
+                                                <option value="Georgia Minority Supplier Development Council">Georgia Minority Supplier Development Council</option>
+
+                                                <option value="Greater New England Minority Supplier Development Council">Greater New England Minority Supplier Development Council</option>
+
+                                                <option value="Houston Minority Supplier Development Council">Houston Minority Supplier Development Council</option>
+
+                                                <option value="Michigan Minority Supplier Development Council">Michigan Minority Supplier Development Council</option>
+
+                                                <option value="Mid-States Minority Supplier Development Council">Mid-States Minority Supplier Development Council</option>
+
+                                                <option value="Mountain Plains Minority Supplier Development Council">Mountain Plains Minority Supplier Development Council</option>
+
+                                                <option value="New York &amp; New Jersey Minority Supplier Development Council">New York &amp; New Jersey Minority Supplier Development Council</option>
+
+                                                <option value="North Central Minority Supplier Development Council">North Central Minority Supplier Development Council</option>
+
+                                                <option value="Northwest Mountain Minority Supplier Development Council">Northwest Mountain Minority Supplier Development Council</option>
+
+                                                <option value="Ohio Minority Supplier Development Council">Ohio Minority Supplier Development Council</option>
+
+                                                <option value="Pacific Southwest Minority Supplier Development Council">Pacific Southwest Minority Supplier Development Council</option>
+
+                                                <option value="Puerto Rico Minority Supplier Development Council">Puerto Rico Minority Supplier Development Council</option>
+
+                                                <option value="Southern California Minority Supplier Development Council">Southern California Minority Supplier Development Council</option>
+
+                                                <option value="Southern Florida Minority Supplier Development Council">Southern Florida Minority Supplier Development Council</option>
+
+                                                <option value="Southern Region Minority Supplier Development Council">Southern Region Minority Supplier Development Council</option>
+
+                                                <option value="Southwest Minority Supplier Development Council">Southwest Minority Supplier Development Council</option>
+
+                                                <option value="TriState Minority Supplier Development Council">TriState Minority Supplier Development Council</option>
+
+                                                <option value="Western Regional Minority Supplier Development Council">Western Regional Minority Supplier Development Council</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-6">
+                                        <div class="mb-2 theme-select">
+                                            <label class="form-label">Veteran-Owned business</label>
+                                            <select  class="state-select" name="vob" multiple="multiple">
+                                                <option value="-1" disabled >Select Veteran-Owned business</option>
+                                                <option value="National Veterans Business Development Council (NVBDC)">National Veterans Business Development Council (NVBDC)</option>
+
+                                                <option value="Service Disabled Veteran Owned">Service Disabled Veteran Owned</option>
+
+                                                <option value="Veteran Owned">Veteran Owned</option>
+
+                                                <option value="Veteran Owned Small Business">Veteran Owned Small Business</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-6">
+                                        <div class="mb-2 theme-select">
+                                            <label class="form-label">Other Certifications</label>
+                                            <select  class="state-select" name="other_certification" multiple="multiple">
+                                                <option value="-1" disabled >Select Other Certifications</option>
+                                                <option value="HubZone">HubZone</option>
+
+                                                <option value="Small Business Enterprise">Small Business Enterprise</option>
+
+                                                <option value="Small Disadvantaged Program">Small Disadvantaged Program</option>
+
+                                                <option value="Woman Owned Small Business">Woman Owned Small Business</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-6">
+                                        <div class="mb-2 theme-select">
+                                            <label class="form-label">Quality Certifications</label>
+                                            <select  class="state-select" name="quality_certification" multiple="multiple">
+                                                <option value="-1" disabled >Select Quality Certifications</option>
+                                                <option value="ISO 14001">ISO 14001</option>
+
+                                                <option value="ISO 9000">ISO 9000</option>
+
+                                                <option value="QS 9000">QS 9000</option>
+
+                                                <option value="TS 16949">TS 16949</option>
+
+                                                <option value="IATF-16949">IATF-16949</option>
+
+                                                <option value="Other">Other</option>
+
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-6">
+                                        <div class="mb-2 theme-select">
+                                            <label class="form-label">Operation Outside USA</label>
+                                            <select  class="state-select" name="operation_outside_usa" multiple="multiple">
+                                                <option value="-1" disabled >Select Operation Outside USA</option>
+                                                <option value="Mexico">Mexico</option>
+
+                                                <option value="Canada">Canada</option>
+
+                                                <option value="China">China</option>
+
+                                                <option value="Europe">Europe</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-6">
+                                        <div class="mb-2 theme-select">
+                                            <label class="form-label">Non Production Material</label>
+                                            <select  class="state-select" name="npm" multiple="multiple">
+                                                <option value="-1" disabled >Select Non Production Material</option>
+                                                <option value="Auxiliaries and supplies">Auxiliaries and supplies</option>
+
+                                                <option value="IT and Telecommunication">IT and Telecommunication</option>
+
+                                                <option value="IT and Telecommunication(cont.)">IT and Telecommunication(cont.)</option>
+
+                                                <option value="Production Equipment and Engineering, Buildings and Vehicles">Production Equipment and Engineering, Buildings and Vehicles</option>
+
+                                                <option value="Production Equipment and Engineering, Buildings and Vehicles (cont.)">Production Equipment and Engineering, Buildings and Vehicles (cont.)</option>
+
+                                                <option value="Corporate Services and Related Supplies">Corporate Services and Related Supplies</option>
+
+                                                <option value="Logistical Services">Logistical Services</option>
+
+                                                <option value="Logistical Services (cont.)">Logistical Services (cont.)</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-6">
+                                        <div class="mb-2 theme-select">
+                                            <label class="form-label">Production Material</label>
+                                            <select  class="state-select" name="pm" multiple="multiple">
+                                                <option value="-1" disabled >Select Production Material</option>
+                                                <option value="Raw Material">Raw Material</option>
+
+                                                <option value="Casting">Casting</option>
+
+                                                <option value="Non Cast Metal Parts">Non Cast Metal Parts</option>
+
+                                                <option value="Miscelleanous">Miscelleanous</option>
+
+                                                <option value="Plastic Parts">Plastic Parts</option>
+
+                                                <option value="Rubber Parts">Rubber Parts</option>
+
+                                                <option value="Electronics">Electronics</option>
+
+                                                <option value="Electronics (cont.)">Electronics (cont.)</option>
+
+                                                <option value="Electro-mech Parts">Electro-mech Parts</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                </div>
+<!--                                <a style="cursor: pointer;" onclick="AddMoreFilter()">Add Filters</a>-->
+                            </div>
+
+
+                            <div class="col-md-12">
+                             <div class="dt-buttons">
+                               <button type="submit" class="bg-grey white  hvr-sweep-orange-bottom mt-3">Apply Filter</button>
+                               <button onclick="HideAddFilterDiv()" class="bg-grey white  hvr-sweep-orange-bottom mt-3">Hide Filter Menu</button>
+                             </div>
+                                <div class="clr"></div>
+                            </div>
+                            <input type="hidden" id="NumberOfFilters" name="NumberOfFilters" value="1">
+                        </form>
+
+                    </div>
+
+            </div>
+
+                </div>
+
                 <div  class="table-record">
-<!--                    <div class="table-record-actions">-->
-<!--                        <button class="hvr-sweep-orange-bottom theme-btn bg-grey white" id="download-button">Excel</button>-->
-<!--                        <button class="hvr-sweep-orange-bottom theme-btn bg-grey white" onclick="generate()">PDF</button>-->
-<!--                        <button class="hvr-sweep-orange-bottom theme-btn bg-grey white">Print</button>-->
-<!--                        <div class="d-flex search-tbl">-->
-<!--                            <form>-->
-<!--                                <input type="text" placeholder="Search.....">-->
-<!--                                <button type="submit"><i class="bi bi-search"></i></button>-->
-<!--                            </form>-->
-<!--                        </div>-->
-<!--                    </div>-->
+
                     <div class="tbl-wrapper-content">
                         <table class="table theme-tbl" id="AllRecords">
                             <thead>
@@ -157,7 +451,7 @@
         </div>
     </section>
 
-    <!-- favourite Modal -->
+    <!-- existed favourite Modal -->
     <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="favouriteList" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -166,28 +460,78 @@
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
                     </div>
                     <div class="modalBodyContent">
-                        <h4 class="mb-2"> Add Favourite Records</h4>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Non Production Material</label>
-                                <input type="text" required name="" class="form-control formInput" id="" aria-describedby="emailHelp">
-                            </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Production Material</label>
-                                <input type="text" required name="" class="form-control formInput" id="">
-                            </div>
-                        <div class="mb-3">
-                                <label for="" class="form-label">Oem's</label>
-                                <input type="text" required name="" class="form-control formInput" id="">
-                            </div>
-
+                        <h4 class="mb-2"> Favourite Records</h4>
+                        <ul class="favourite-list-styles mb-2">
+                    <li>
+                        Favourite List Data
+                    </li>
+                    <li>
+                        Favourite List Data
+                    </li>
+                    <li>
+                        Favourite List Data
+                    </li>
+                    <li>
+                        Favourite List Data
+                    </li>
+                    <li>
+                        Favourite List Data
+                    </li>
+                    <li>
+                        Favourite List Data
+                    </li>
+                    <li>
+                        Favourite List Data
+                    </li>
+                    <li>
+                        Favourite List Data
+                    </li>
+                    <li>
+                        Favourite List Data
+                    </li>
+                </ul>
                         <div class="dt-buttons">
-                       <button class="dt-button buttons-pdf buttons-html5" type="button"><span>ADD</span></button>
+                       <button class="dt-button buttons-pdf buttons-html5 mr-10" type="button"><span>Add Favourite</span></button>
+                            <button class="dt-button buttons-pdf buttons-html5" type="button"><span>To Add Favourite List</span></button>
                      </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- favourite Modal -->
+{#    <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="favouriteList" tabindex="-1">#}
+{#        <div class="modal-dialog modal-dialog-centered modal-lg">#}
+{#            <div class="modal-content">#}
+{#                <div class="modal-body">#}
+{#                    <div class="closeModalHeader">#}
+{#                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>#}
+{#                    </div>#}
+{#                    <div class="modalBodyContent">#}
+{#                        <h4 class="mb-2"> Add Favourite Records</h4>#}
+{#                            <div class="mb-3">#}
+{#                                <label for="" class="form-label">Non Production Material</label>#}
+{#                                <input type="text" required name="" class="form-control formInput" id="" aria-describedby="emailHelp">#}
+{#                            </div>#}
+{#                            <div class="mb-3">#}
+{#                                <label for="" class="form-label">Production Material</label>#}
+{#                                <input type="text" required name="" class="form-control formInput" id="">#}
+{#                            </div>#}
+{#                        <div class="mb-3">#}
+{#                                <label for="" class="form-label">Oem's</label>#}
+{#                                <input type="text" required name="" class="form-control formInput" id="">#}
+{#                            </div>#}
+{##}
+{#                        <div class="dt-buttons">#}
+{#                       <button class="dt-button buttons-pdf buttons-html5" type="button"><span>ADD</span></button>#}
+{#                     </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
