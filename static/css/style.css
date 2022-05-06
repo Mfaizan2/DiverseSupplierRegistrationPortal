@@ -35,10 +35,10 @@ body, p, h1, h2, h3, h4, h5, h6, ul {
     color: #fff;
 }
 .bg-grey {
-    background-color: #313b54;
+    background-color: #4d8f40;
 }
 .bg-orange {
-    background-color: #eb5d0a;
+    background-color: #686766;
 }
 .bg-green {
     background-color: #017a82;
@@ -49,7 +49,7 @@ body, p, h1, h2, h3, h4, h5, h6, ul {
 .theme-heading {
     font-size: 22px;
     font-weight: 600;
-    color: #017a82;
+    color: #77bb44;
     padding: 30px 0 15px 0;
 }
 .theme-btn {
@@ -60,7 +60,7 @@ body, p, h1, h2, h3, h4, h5, h6, ul {
 }
 p {
     margin-bottom: 10px;
-    color: #313b54;
+    color: #555;
 }
 button:focus {
     outline: none !important;
@@ -88,13 +88,16 @@ button:focus {
     font-weight: 600;
     font-family: 'Vollkorn', serif;
 }
+.brand-img {
+    width: 110px;
+}
 .navbar-nav li a {
     color: #fff;
     font-weight: 600;
     transition: 0.5s;
 }
 .navbar-nav li a:hover {
-    color: #eb5d0a;
+    color: #555;
     transition: 0.5s;
 }
 /* .mobile-hamburger {
@@ -171,7 +174,7 @@ button:focus {
     width: 100%;
     z-index: 1;
     color: #fff;
-    background-color: #313b54c7;
+    background-color: #77bb44ab;
     padding: 10px 10px 10px 10px;
 }
 .diversity-content em {
@@ -189,11 +192,15 @@ button:focus {
 }
 .slider-types .owl-nav button {
     font-size: 30px !important;
-    color: #eb5d0a !important;
-    background: #313b54c7 !important;
+    color: #fff !important;
+    background: #77bb44ab !important;
     border-radius: 6px !important;
     width: 45px;
     height: 45px;
+}
+.slider-types .owl-nav button span {
+    position: relative;
+    top: -1px;
 }
 .slider-types .owl-nav .owl-next {
     margin-left: auto !important;
@@ -203,7 +210,7 @@ button:focus {
 }
 .newsletter {
     padding: 30px 0;
-    background: #017a82;
+    background: #bbb;
 }
 .newsContent {
     display: flex;
@@ -211,7 +218,7 @@ button:focus {
 .newsContent h5 {
     font-size: 22px;
     font-weight: 600;
-    color: #fff;
+    color: #555;
     padding-top: 8px;
     margin-right: 20px;
 }
@@ -221,6 +228,15 @@ button:focus {
     margin-left: 15px;
     border: unset;
     border-radius: 6px;
+    background: #686766;
+    color: #fff;
+}
+.newsContent .hvr-sweep-orange-bottom a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: unset;
+    color: #fff;
 }
 .footer {
     height: 56px;
@@ -238,7 +254,7 @@ button:focus {
     text-align: right;
     color: #fff;
     position: relative;
-    top: -7px;
+    top: -8px;
 }
 .footer-content h6 a {
     color: #fff;
@@ -746,13 +762,6 @@ padding: 0px;
     text-decoration: unset;
 }
 
-.hvr-sweep-orange-bottom a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: unset;
-    color: black;
-}
 /* ================ Bulk Page Styling ================ */
 .bulkUpload {
     height: calc(100vh - 112px);
@@ -911,11 +920,11 @@ padding: 0px;
     }
 }
 .support-tag{
-    background-color: #eb5d0a;
+    background-color: #77bb44;
     color: #fff;
     padding: 10px;
-    width: 130px;
-    border-radius: 999rem;
+    width: 110px;
+    border-radius: 6px;
     display: flex;
     justify-content: center;
     align-items: center;
