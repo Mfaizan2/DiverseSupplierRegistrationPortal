@@ -262,6 +262,29 @@ button:focus {
     transition: 0.5s;
 }
 
+.diverse-certficates {
+    position: relative;
+    top: -35px;
+}
+.certificates-ul li button {
+    background: #686766 !important;
+    margin-right: 5px;
+    color: #fff;
+}
+.certificates-ul li button:hover {
+    color: #fff;
+}
+.certificates-ul li button.active {
+    background: #77bb44 !important;
+}
+.certificates-list {
+    flex-wrap: wrap;
+    list-style-type: decimal;
+    padding: 0 50px;
+}
+.certificates-list li {
+    flex-basis: 50%;
+}
 /* ================ Landing Page ================ */
 .landingPage {
     background-image: url(https://webappmuh.blob.core.windows.net/static/imgs/LandingBanner.jpg?sv=2021-04-10&st=2022-04-24T09%3A11%3A45Z&se=2025-05-25T09%3A11%3A00Z&sr=b&sp=r&sig=Qb0O%2FXjhI7URkfDg6IS5qORKIXnrFZE75hTad9iWk%2FM%3D);
