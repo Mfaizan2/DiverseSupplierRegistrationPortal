@@ -90,16 +90,16 @@ WSGI_APPLICATION = 'DiverseSupplierRegistrationPortal.wsgi.application'
 #       }
 #   }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'temp1',
-        'USER': 'postgres',
-        'PASSWORD': 'secret',
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': '5432'
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'temp1',
+#         'USER': 'postgres',
+#         'PASSWORD': 'secret',
+#         'HOST': os.environ.get('DB_HOST'),
+#         'PORT': '5432'
+#     }
+# }
 
 # DATABASES = {
 #     'default': {
@@ -112,20 +112,20 @@ DATABASES = {
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'sql_server.pyodbc',
-#         'NAME': 'ABC2DB',
-#         'USER': 'abc2',
-#         'PASSWORD': 'SupplierDiversity2',
-#         'HOST': 'abc2server.database.windows.net',
-#         'PORT': '1433',
-#         'OPTIONS': {
-#             'driver': 'ODBC Driver 17 for SQL Server',
-#         },
-#     }
-# }
-#
+DATABASES = {
+    'default': {
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'ABC2DB',
+        'USER': 'abc2',
+        'PASSWORD': 'SupplierDiversity2',
+        'HOST': 'abc2server.database.windows.net',
+        'PORT': '1433',
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+        },
+    }
+}
+
 
 
 
