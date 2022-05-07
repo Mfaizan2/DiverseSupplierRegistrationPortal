@@ -285,6 +285,26 @@ button:focus {
 .certificates-list li {
     flex-basis: 50%;
 }
+.certificate-list-box {
+    background: #bbb;
+    color: #444;
+    border-radius: 6px;
+    height: 180px;
+    font-size: 22px;
+    padding: 52px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.certificate-list-box:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+.certificate-list-box small {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+}
 /* ================ Landing Page ================ */
 .landingPage {
     background-image: url(https://webappmuh.blob.core.windows.net/static/imgs/LandingBanner.jpg?sv=2021-04-10&st=2022-04-24T09%3A11%3A45Z&se=2025-05-25T09%3A11%3A00Z&sr=b&sp=r&sig=Qb0O%2FXjhI7URkfDg6IS5qORKIXnrFZE75hTad9iWk%2FM%3D);
