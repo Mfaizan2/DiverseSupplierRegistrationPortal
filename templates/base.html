@@ -23,8 +23,8 @@
 	<!-- Custom Style -->
 	<link rel="stylesheet" href="https://webappmuh.blob.core.windows.net/static/css/animation.css?sv=2021-04-10&st=2022-04-21T07%3A41%3A48Z&se=2025-05-22T07%3A41%3A00Z&sr=b&sp=r&sig=l239Cox3HQDANJTQlDZFkfrsxOJvcvuBN%2B6HGiF4Z7w%3D">
 
-<!--	<link rel="stylesheet" href="{% static 'css/style.css'%}">-->
-	<link href="https://webappmuh.blob.core.windows.net/static/css/style.css?sv=2021-04-10&st=2022-05-08T08%3A18%3A19Z&se=2025-05-09T08%3A18%3A00Z&sr=b&sp=r&sig=VN2AUg3oWd%2F0YWzQMkL0ok%2BNGpLVG1MiPrJOJtqHXJo%3D" rel="stylesheet" />
+	<link rel="stylesheet" href="{% static 'css/style.css'%}">
+<!--	<link href="https://webappmuh.blob.core.windows.net/static/css/style.css?sv=2021-04-10&st=2022-05-08T08%3A18%3A19Z&se=2025-05-09T08%3A18%3A00Z&sr=b&sp=r&sig=VN2AUg3oWd%2F0YWzQMkL0ok%2BNGpLVG1MiPrJOJtqHXJo%3D" rel="stylesheet" />-->
 
 	<title>Home | Corporation</title>
 </head>
@@ -64,16 +64,16 @@
 							<a class="nav-link" href="{% url 'Registration' %}">Form</a>
 						</li>
 
-<!--						{% if request.user.is_authenticated %}-->
-<!--							<li class="nav-item">-->
-<!--								<a class="nav-link" href="{% url 'logout' %}">Logout</a>-->
-<!--							</li>-->
-<!--						{% else %}-->
+						{% if request.user.is_authenticated %}
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'logout' %}">Logout</a>
+							</li>
+						{% else %}
 
-<!--							<li class="nav-item">-->
-<!--								<a class="nav-link" href="{% url 'login' %}">Login</a>-->
-<!--							</li>-->
-<!--						{% endif %}-->
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'login' %}">Login</a>
+							</li>
+						{% endif %}
 					</ul>
 				</div>
 			</div>
@@ -127,9 +127,9 @@
 
 	<script src="https://webappmuh.blob.core.windows.net/static/js/slider.js?sv=2021-04-10&st=2022-04-21T07%3A47%3A40Z&se=2025-05-22T07%3A47%3A00Z&sr=b&sp=r&sig=2LPe%2B52vco83vohIH0zFdJTybWT7YtvhtIEWeeeTgec%3D"></script>
 
-	<script src="https://webappmuh.blob.core.windows.net/static/js/custom.js?sv=2021-04-10&st=2022-05-06T13%3A51%3A12Z&se=2025-05-07T13%3A51%3A00Z&sr=b&sp=r&sig=qMFKWxG3BsH9V1XfPsAD1o4avVtKHmnMSc9wL4zSA%2BU%3D"></script>
+<!--	<script src="https://webappmuh.blob.core.windows.net/static/js/custom.js?sv=2021-04-10&st=2022-05-06T13%3A51%3A12Z&se=2025-05-07T13%3A51%3A00Z&sr=b&sp=r&sig=qMFKWxG3BsH9V1XfPsAD1o4avVtKHmnMSc9wL4zSA%2BU%3D"></script>-->
 
-<!--	<script src="{% static 'js/custom.js'%}"></script>-->
+	<script src="{% static 'js/custom.js'%}"></script>
 
 </body>
 </html>

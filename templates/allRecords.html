@@ -5,36 +5,36 @@
 {% load  static%}
 
 {% block content %}
-    <section class="records">
-<!--        <input type="button" value="select table" onclick="selectElementContents( document.getElementById('tableId') );">-->
+<section class="records">
+    <!--        <input type="button" value="select table" onclick="selectElementContents( document.getElementById('tableId') );">-->
 
-        <div class="container">
-            <div class="record-content">
-                <div class="table-record mb-2 records-filter d-flex align-items-center">
-                    <div class="dt-buttons d-flex align-items-center">
+    <div class="container">
+        <div class="record-content">
+            <div class="table-record mb-2 records-filter d-flex align-items-center">
+                <div class="dt-buttons d-flex align-items-center">
 
-                        <button onclick="ShowAddFilterOption()" class="mr-10 bg-grey white  hvr-sweep-orange-bottom mt-6">Add Filter</button>
-
-
-
-                        <form action="{% url 'downloadSampleExcelFile' %}">
-                            {% csrf_token %}
-                            <div class="mb-3 mt-3">
-                                <button type="submit" class="bg-grey white  hvr-sweep-orange-bottom mt-6">Export</button>
-                            </div>
-                        </form>
+                    <button onclick="ShowAddFilterOption()" class="mr-10 bg-grey white  hvr-sweep-orange-bottom mt-6">Add Filter</button>
 
 
-                    </div>
+
+                    <form action="{% url 'downloadSampleExcelFile' %}">
+                        {% csrf_token %}
+                        <div class="mb-3 mt-3">
+                            <button type="submit" class="bg-grey white  hvr-sweep-orange-bottom mt-6">Export</button>
+                        </div>
+                    </form>
+
+
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="container">
-            <div class="record-content">
+    <div class="container">
+        <div class="record-content">
 
-                <div class="displayNone" id="filtersDiv">
-                    <div class="table-record mb-2 records-filter d-flex align-items-center" >
+            <div class="displayNone" id="filtersDiv">
+                <div class="table-record mb-2 records-filter d-flex align-items-center" >
 
                     <div class="row w-100 ">
                         <form action="{% url 'allRecords' %}" method="POST" enctype="multipart/form-data">
@@ -344,15 +344,15 @@
 
 
                                 </div>
-<!--                                <a style="cursor: pointer;" onclick="AddMoreFilter()">Add Filters</a>-->
+                                <!--                                <a style="cursor: pointer;" onclick="AddMoreFilter()">Add Filters</a>-->
                             </div>
 
 
                             <div class="col-md-12">
-                             <div class="dt-buttons">
-                               <button type="submit" class="bg-grey white  hvr-sweep-orange-bottom mt-3">Apply Filter</button>
-                               <button onclick="HideAddFilterDiv()" class="bg-grey white  hvr-sweep-orange-bottom mt-3">Hide Filter Menu</button>
-                             </div>
+                                <div class="dt-buttons">
+                                    <button type="submit" class="bg-grey white  hvr-sweep-orange-bottom mt-3">Apply Filter</button>
+                                    <button onclick="HideAddFilterDiv()" class="bg-grey white  hvr-sweep-orange-bottom mt-3">Hide Filter Menu</button>
+                                </div>
                                 <div class="clr"></div>
                             </div>
                             <input type="hidden" id="NumberOfFilters" name="NumberOfFilters" value="1">
@@ -360,182 +360,194 @@
 
                     </div>
 
-            </div>
-
                 </div>
 
-                <div  class="table-record">
-
-                    <div class="tbl-wrapper-content">
-                        <table class="table theme-tbl" id="AllRecords">
-                            <thead>
-                            <tr>
-                                <th>Company Name</th>
-                                <th>Non Production Material</th>
-                                <th>Production Material</th>
-                                <th>Oem's</th>
-                                <th>Current Supplier</th>
-                                <th>Technology & Location</th>
-                                <th>Responded</th>
-                                <th>Emailed</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for rec in page_obj %}
-                                <tr>
-                                    <td>
-                                        <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#favouriteList">
-                                        <img src="{% static 'imgs/favorite.png' %}" alt="" height="15" class="mb-1"/>
-                                        </a>
-                                        {{rec.general_contant_info.company_name}}</td>
-                                    <td>
-                                        {% for obj in npmValues %}
-                                            {% if obj.abc_corporation_id == rec.id%}
-
-                                                {{obj.npm_value}} > {{obj.npm_value_category1}} > {{obj.npm_value_category2}} |
-                                            {% endif %}
-                                        {% endfor %}
-                                    </td>
-                                    <td>
-                                        {% for obj in pmValues %}
-                                            {% if obj.abc_corporation_id == rec.id%}
-
-                                                {{obj.pm_value}} > {{obj.pm_value_category1}} |
-                                            {% endif %}
-                                        {% endfor %}
-                                    </td>
-                                    <td>{{rec.production_capabilities.oems.name}}</td>
-                                    <td>{{rec.production_capabilities.abc_supplier}}</td>
-                                    <td>{{rec.production_capabilities.record_per_naLocation.name}}</td>
-                                    <td> {% if rec.response == 1 %} Yes {% else %} No {%endif %}</td>
-                                    <td> {{rec.emailed}} Times</td>
-                                    <td><a href="{% url 'detailRecord' rec.id %}"><i class="bi bi-eye-fill"></i></a></td>
-                                </tr>
-                            {% endfor %}
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-
-
-<!--                {% if page_obj.paginator.num_pages > 1 %}-->
-<!--                <div class="theme-pagination">-->
-<!--                    <nav aria-label="Page navigation example">-->
-<!--                        <ul class="pagination">-->
-
-<!--                            {% if page_obj.has_previous %}-->
-<!--                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>-->
-<!--                            {% endif %}-->
-
-<!--                            {% for page_num in page_obj.paginator.page_range %}-->
-<!--                                {% if page_num == page_obj.number %}-->
-<!--                                    <li class="page-item"><a class="page-link" href="#">{{page_num}}</a></li>-->
-
-<!--                                {% endif %}-->
-<!--                            {%endfor%}-->
-
-<!--                            {% if page_obj.has_next %}-->
-<!--                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}"><span>&raquo;</span></a></li>-->
-<!--                            {% endif %}-->
-
-
-
-<!--                        </ul>-->
-<!--                    </nav>-->
-<!--                </div>-->
-<!--                {% endif %}-->
             </div>
+
+            <div  class="table-record">
+
+                <div class="tbl-wrapper-content">
+                    <table class="table theme-tbl" id="AllRecords">
+                        <thead>
+                        <tr>
+                            <th>Company Name</th>
+                            <th>Non Production Material</th>
+                            <th>Production Material</th>
+                            <th>Oem's</th>
+                            <th>Current Supplier</th>
+                            <th>Technology & Location</th>
+                            <th>Responded</th>
+                            <th>Emailed</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for rec in page_obj %}
+                        <tr>
+                            <td>
+                                <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#favouriteList">
+                                    <img src="{% static 'imgs/favorite.png' %}" alt="" height="15" class="mb-1"/>
+                                </a>
+                                {{rec.general_contant_info.company_name}}</td>
+                            <td>
+                                {% for obj in npmValues %}
+                                {% if obj.abc_corporation_id == rec.id%}
+
+                                {{obj.npm_value}} > {{obj.npm_value_category1}} > {{obj.npm_value_category2}} |
+                                {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% for obj in pmValues %}
+                                {% if obj.abc_corporation_id == rec.id%}
+
+                                {{obj.pm_value}} > {{obj.pm_value_category1}} |
+                                {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>{{rec.production_capabilities.oems.name}}</td>
+                            <td>{{rec.production_capabilities.abc_supplier}}</td>
+                            <td>{{rec.production_capabilities.record_per_naLocation.name}}</td>
+                            <td> {% if rec.response == 1 %} Yes {% else %} No {%endif %}</td>
+                            <td> {{rec.emailed}} Times</td>
+                            <td><a href="{% url 'detailRecord' rec.id %}"><i class="bi bi-eye-fill"></i></a></td>
+                        </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+            <!--                {% if page_obj.paginator.num_pages > 1 %}-->
+            <!--                <div class="theme-pagination">-->
+            <!--                    <nav aria-label="Page navigation example">-->
+            <!--                        <ul class="pagination">-->
+
+            <!--                            {% if page_obj.has_previous %}-->
+            <!--                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>-->
+            <!--                            {% endif %}-->
+
+            <!--                            {% for page_num in page_obj.paginator.page_range %}-->
+            <!--                                {% if page_num == page_obj.number %}-->
+            <!--                                    <li class="page-item"><a class="page-link" href="#">{{page_num}}</a></li>-->
+
+            <!--                                {% endif %}-->
+            <!--                            {%endfor%}-->
+
+            <!--                            {% if page_obj.has_next %}-->
+            <!--                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}"><span>&raquo;</span></a></li>-->
+            <!--                            {% endif %}-->
+
+
+
+            <!--                        </ul>-->
+            <!--                    </nav>-->
+            <!--                </div>-->
+            <!--                {% endif %}-->
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- existed favourite Modal -->
-    <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="favouriteList" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-body">
+<!-- existed favourite Modal -->
+<div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="favouriteList" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-header">
+                    <h4> Favourite Records</h4>
                     <div class="closeModalHeader">
-                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button">
+                            <img src="{% static 'imgs/cross.png' %}" alt=""/>
+                        </button>
                     </div>
-                    <div class="modalBodyContent">
-                        <h4 class="mb-2"> Favourite Records</h4>
-                        <ul class="favourite-list-styles mb-2">
-                    <li>
-                        Favourite List Data
-                    </li>
-                    <li>
-                        Favourite List Data
-                    </li>
-                    <li>
-                        Favourite List Data
-                    </li>
-                    <li>
-                        Favourite List Data
-                    </li>
-                    <li>
-                        Favourite List Data
-                    </li>
-                    <li>
-                        Favourite List Data
-                    </li>
-                    <li>
-                        Favourite List Data
-                    </li>
-                    <li>
-                        Favourite List Data
-                    </li>
-                    <li>
-                        Favourite List Data
-                    </li>
-                </ul>
-                        <div class="dt-buttons">
-                       <button class="dt-button buttons-pdf buttons-html5 mr-10" type="button"><span>Add Favourite</span></button>
-                            <button class="dt-button buttons-pdf buttons-html5" type="button"><span>To Add Favourite List</span></button>
-                     </div>
+                </div>
+
+                <div class="modalBodyContent">
+                    <ul class="favourite-list-styles mb-2">
+                        <li>
+                            Favourite List Data
+                        </li>
+                        <li>
+                            Favourite List Data
+                        </li>
+                        <li>
+                            Favourite List Data
+                        </li>
+                        <li>
+                            Favourite List Data
+                        </li>
+                        <li>
+                            Favourite List Data
+                        </li>
+                        <li>
+                            Favourite List Data
+                        </li>
+                        <li>
+                            Favourite List Data
+                        </li>
+                        <li>
+                            Favourite List Data
+                        </li>
+                        <li>
+                            Favourite List Data
+                        </li>
+                    </ul>
+                    <div class="clr"></div>
+                    <div class="dt-buttons">
+                        <button class="dt-button buttons-pdf buttons-html5 mr-10" type="button"><span>Add Favourite</span></button>
+                        <button class="dt-button buttons-pdf buttons-html5" type="button"><span>To Add Favourite List</span></button>
                     </div>
+                    <div class="clr"></div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- favourite Modal -->
-{#    <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="favouriteList" tabindex="-1">#}
-{#        <div class="modal-dialog modal-dialog-centered modal-lg">#}
-{#            <div class="modal-content">#}
-{#                <div class="modal-body">#}
-{#                    <div class="closeModalHeader">#}
-{#                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>#}
-{#                    </div>#}
-{#                    <div class="modalBodyContent">#}
-{#                        <h4 class="mb-2"> Add Favourite Records</h4>#}
-{#                            <div class="mb-3">#}
-{#                                <label for="" class="form-label">Non Production Material</label>#}
-{#                                <input type="text" required name="" class="form-control formInput" id="" aria-describedby="emailHelp">#}
-{#                            </div>#}
-{#                            <div class="mb-3">#}
-{#                                <label for="" class="form-label">Production Material</label>#}
-{#                                <input type="text" required name="" class="form-control formInput" id="">#}
-{#                            </div>#}
-{#                        <div class="mb-3">#}
-{#                                <label for="" class="form-label">Oem's</label>#}
-{#                                <input type="text" required name="" class="form-control formInput" id="">#}
-{#                            </div>#}
-{##}
-{#                        <div class="dt-buttons">#}
-{#                       <button class="dt-button buttons-pdf buttons-html5" type="button"><span>ADD</span></button>#}
-{#                     </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
+<!-- favourite Modal -->
+<div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="favouriteList" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-header">
+                    <h4> Favourite Records</h4>
+                    <div class="closeModalHeader">
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button">
+                            <img src="{% static 'imgs/cross.png' %}" alt=""/>
+                        </button>
+                    </div>
+                </div>
+                <div class="modalBodyContent">
+                    <h4 class="mb-2"> Add Favourite Records</h4>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Non Production Material</label>
+                        <input type="text" required name="" class="form-control formInput" id="" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Production Material</label>
+                        <input type="text" required name="" class="form-control formInput" id="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Oem's</label>
+                        <input type="text" required name="" class="form-control formInput" id="">
+                    </div>
+                    <div class="clr"></div>
+                    <div class="dt-buttons">
+                        <button class="dt-button buttons-pdf buttons-html5" type="button"><span>ADD</span></button>
+                    </div>
+                    <div class="clr"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
 
 {% endblock %}
-

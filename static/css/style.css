@@ -17,6 +17,9 @@ body {
 .text-decoration-none{
     text-decoration: none !important;
 }
+.container-fluid{
+    padding: 0px 15px;
+}
 .w-auto{
     width: auto;
 }
@@ -492,7 +495,7 @@ button:focus {
     color: #000;
 }
 .dropdown-menu{
-padding: 0px;
+    padding: 0px;
 }
 .dropdown-menu li a{
     border: none;
@@ -501,7 +504,7 @@ padding: 0px;
     font-size: 15px;
 }
 .dropdown-menu li a:hover{
- background-color: #f5f5f5 !important;
+    background-color: #f5f5f5 !important;
 }
 /* +++++++++++++++ Theme Select ends +++++++++++++++ */
 
@@ -608,8 +611,8 @@ padding: 0px;
 }
 @media (max-width:768px) {
     .table-record .row > div{
-    margin-bottom: 10px;
-}
+        margin-bottom: 10px;
+    }
 }
 
 /* Data Table Styles */
@@ -717,20 +720,29 @@ padding: 0px;
 /*favourite-list-styles*/
 
 .favourite-list-styles{
-    margin-left: 30px;
+    padding-left: 25px;
 }
 
 .favourite-list-styles li{
-        list-style-type: auto;
-        font-size: 15px;
-        font-weight: 700;
-        cursor: pointer;
-        padding: 5px;
-        background-color: transparent;
+    list-style-type: auto;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 5px;
+    background-color: transparent;
 }
 
-.favourite-list-styles li:HOVER{
-        background-color: #fff;
+.favourite-list-styles li:hover{
+    background-color: #313b54;
+    color: #fff;
+}
+h4.heading{
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    padding: 10px;
+    background: #313b54;
+    border-radius: 4px 4px 0px 0px;
 }
 
 /* Data Table Styles */
@@ -939,23 +951,42 @@ padding: 0px;
 /*modal-content-styles*/
 
 .modal-content .modal-body {
-    padding-top: 36px;
+    padding: 0px;
 }
 .modal-body .closeModalHeader{
     position: absolute;
-    top: 8px;
-    right: 12px;
+    top: 12px;
+    right: 15px;
 }
 .modal-body .modalBodyContent{
     display: block;
+    padding: 10px;
 }
+.modal-header{
+    display: flex;
+    align-items: center;
+    border: none;
+    padding: 15px;
+    background: #313b54;
+}
+.modal-header h4{
+    color: #fff;
+    font-size: 22px;
+}
+
+.modal-header button{
+    background: none;
+}
+.modal-header button img{
+    width: 18px;
+}
+
 .support-wrapper{
     position: fixed;
     bottom: 10px;
     right: 10px;
     z-index: 9999;
-    width: 26%;
-    margin-bottom: 50px;
+    width: 26%;;
 }
 @media (max-width:767px) {
     .support-wrapper{
@@ -990,7 +1021,7 @@ padding: 0px;
     position: relative;
 }
 .questions-wrapper ol{
-padding-left: 18px;
+    padding-left: 18px;
 }
 .questions-wrapper ol li a{
     text-decoration: none;
@@ -1017,12 +1048,12 @@ padding-left: 18px;
     border-radius: 0px 0px 8px 8px;
 }
 .wrapper.h-0{
-        height: 0;
-        overflow: hidden;
+    height: 0;
+    overflow: hidden;
 }
 .wrapper.h-100{
-        height: 100%;
-        overflow: visible;
+    height: 100%;
+    overflow: visible;
 }
 .questions-wrapper .body .dt-buttons{
     background-color: #fff;
