@@ -231,10 +231,10 @@ button:focus {
     margin-left: 15px;
     border: unset;
     border-radius: 6px;
-    background: #686766;
+    background: #77bb44;
     color: #fff;
 }
-.newsContent .hvr-sweep-orange-bottom a {
+.newsContent button a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -986,12 +986,9 @@ h4.heading{
     bottom: 10px;
     right: 10px;
     z-index: 9999;
-    width: 26%;;
 }
-@media (max-width:767px) {
-    .support-wrapper{
-        width: 96%;
-    }
+.w-310{
+    width: 310px;
 }
 .support-tag{
     background-color: #77bb44;
