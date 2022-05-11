@@ -1296,6 +1296,43 @@ def SendResponseToSomeone(request, id):
         del storage._loaded_messages[0]
     email_address = request.POST.get('email', None)
     if request.method == 'POST':
+
+        application_id = id
+
+        messageType = request.POST.get('messageType', None)
+
+        if messageType == 'Default Message':
+            content = "A Harold Construction Inc company has registered on the ABC supplier diversity portal. You are receiving this note because this supplier may be of interest to you. Please review the supplier information by clicking on the following link. Afterwards please let us know if you plan any further actions by submitting your feedback below the application."
+        else:
+            customDescription = request.POST.get('customDescription', None)
+            content = customDescription
+
+        report_link = settings.APPLICATION_BASE_URL + "report/" + str(application_id) + "/" + email_address
+        html_content = render_to_string("report_email_template.html",
+                                        {'content': content, 'report_link': report_link})
+        text_content = strip_tags(html_content)
+        email = EmailMultiAlternatives(
+            "New Application at ABC Supplier",
+            text_content,
+            settings.EMAIL_HOST_USER,
+            [email_address]
+        )
+
+        email.attach_alternative(html_content, "text/html")
+        email.send()
+
+        application = ABCCorporation.objects.filter(id=id).first()
+
+        country = Country.objects.filter(country_name=application.general_contant_info.country.country_name).first()
+        context = {
+            'application': application,
+            'country': mapCountryName(country.country_name)
+        }
+        application.emailed = application.emailed + 1
+        application.save()
+        messages.success(request, 'The Report Has Been Sent Successfully To: ' + email_address)
+        return render(request, 'detailRecord.html', context)
+
         try:
 
             application_id = id
