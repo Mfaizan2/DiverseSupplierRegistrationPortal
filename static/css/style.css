@@ -38,10 +38,10 @@ body, p, h1, h2, h3, h4, h5, h6, ul {
     color: #fff;
 }
 .bg-grey {
-    background-color: #4d8f40;
+    background-color: #f2e400;
 }
 .bg-orange {
-    background-color: #686766;
+    background-color: #d7004b;
 }
 .bg-green {
     background-color: #017a82;
@@ -52,7 +52,7 @@ body, p, h1, h2, h3, h4, h5, h6, ul {
 .theme-heading {
     font-size: 22px;
     font-weight: 600;
-    color: #77bb44;
+    color: #d7004b;
     padding: 30px 0 15px 0;
 }
 .theme-btn {
@@ -86,7 +86,7 @@ button:focus {
     top: -24px;
     height: 70px;
     transform: skewX(345deg);
-    padding: 18px 20px 20px 22px;
+    padding: 14px 20px 14px 22px;
     font-size: 22px;
     font-weight: 600;
     font-family: 'Vollkorn', serif;
@@ -95,12 +95,12 @@ button:focus {
     width: 110px;
 }
 .navbar-nav li a {
-    color: #fff;
+    color: #000;
     font-weight: 600;
     transition: 0.5s;
 }
 .navbar-nav li a:hover {
-    color: #555;
+    color: #d7004b;
     transition: 0.5s;
 }
 /* .mobile-hamburger {
@@ -177,7 +177,7 @@ button:focus {
     width: 100%;
     z-index: 1;
     color: #fff;
-    background-color: #77bb44ab;
+    background-color: #45252573;
     padding: 10px 10px 10px 10px;
 }
 .diversity-content em {
@@ -196,7 +196,7 @@ button:focus {
 .slider-types .owl-nav button {
     font-size: 30px !important;
     color: #fff !important;
-    background: #77bb44ab !important;
+    background: #d7004b63 !important;
     border-radius: 6px !important;
     width: 45px;
     height: 45px;
@@ -213,7 +213,7 @@ button:focus {
 }
 .newsletter {
     padding: 30px 0;
-    background: #bbb;
+    background: #772c2c2e;
 }
 .newsContent {
     display: flex;
@@ -221,7 +221,7 @@ button:focus {
 .newsContent h5 {
     font-size: 22px;
     font-weight: 600;
-    color: #555;
+    color: #4b4b46;
     padding-top: 8px;
     margin-right: 20px;
 }
@@ -231,7 +231,7 @@ button:focus {
     margin-left: 15px;
     border: unset;
     border-radius: 6px;
-    background: #77bb44;
+    background: #f2e400;
     color: #fff;
 }
 .newsContent button a {
@@ -239,7 +239,7 @@ button:focus {
     align-items: center;
     justify-content: center;
     text-decoration: unset;
-    color: #fff;
+    color: #000;
 }
 .footer {
     height: 56px;
@@ -255,12 +255,12 @@ button:focus {
 }
 .footer-content h6 {
     text-align: right;
-    color: #fff;
+    color: #000;
     position: relative;
     top: -8px;
 }
 .footer-content h6 a {
-    color: #fff;
+    color: #000;
     margin-left: 10px;
     transition: 0.5s;
 }
@@ -991,7 +991,7 @@ h4.heading{
     width: 310px;
 }
 .support-tag{
-    background-color: #77bb44;
+    background-color: #d7004b;
     color: #fff;
     padding: 10px;
     width: 110px;
@@ -1091,7 +1091,9 @@ h4.heading{
 .position-relative{
     position: relative !important;
 }
-
+.diversity {
+    background: #fff;
+}
 
 
 
