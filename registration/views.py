@@ -22,6 +22,7 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 import imaplib, email, getpass
 from email import policy
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def upload(container_name, file_path, file_name):
@@ -688,6 +689,7 @@ def AllRecords(request):
     # print("all_applications", page_obj)
     npmValues = NpmValues.objects.all()
     pmValues = PmValues.objects.all()
+    print("request.user.id", request.user.id)
 
     context = {
         'expenses': all_applications,
@@ -1538,8 +1540,25 @@ def GetFeedbacks(request):
 
 
 def favouriteRecode(request):
-    # upload()
-    return render(request, 'favourite-list.html')
+
+
+    all_applications = ABCCorporation.objects.all()
+    # paginator = Paginator(all_applications, 10)
+    # page_number = request.GET.get('page')
+    # page_obj = Paginator.get_page(paginator, page_number)
+    # print("all_applications", page_obj)
+    npmValues = NpmValues.objects.all()
+    pmValues = PmValues.objects.all()
+    # favoriteList = FavoriteList.objects.all()
+
+    context = {
+        'expenses': all_applications,
+        'page_obj': all_applications,
+        'npmValues': npmValues,
+        'pmValues': pmValues
+    }
+    return render(request, 'favourite-list.html', context)
+
 
 def removeNote(request, id):
 
@@ -1565,3 +1584,163 @@ def addNote(request):
 
     }
     return JsonResponse(resp)
+
+def addFavoriteList(request):
+    category = request.POST.get('category', None)
+    location = request.POST.get('location', None)
+    name = request.POST.get('name', None)
+
+    print(category, location, name)
+
+    favoriteList = FavoriteList(user_id = request.user.id,name=name, category=category, location=location)
+    favoriteList.save()
+
+    resp = {
+        'status': 200,
+        'data': "Favorite List Successfully Created"
+
+    }
+    return JsonResponse(resp)
+
+def GetFavoriteLists(request):
+    try:
+
+        result = []
+        status = 400
+
+
+        all_favorite_lists =  FavoriteList.objects.filter(user_id=request.user.id)
+        print("all_favorite_lists", all_favorite_lists)
+        if all_favorite_lists:
+            for obj in all_favorite_lists:
+                temp = []
+                temp.append(obj.name)
+                temp.append(obj.id)
+                result.append(temp)
+            status = 200
+
+        print("temp", result)
+        return JsonResponse({'data': "Perfect", 'status': status, "result": result})
+    except:
+        return JsonResponse({'data': "Error", 'status': 400})
+
+def AddRecordToFavoriteList(request):
+    print("request", request.POST)
+    selectedList = request.POST.get('selectedList', None)
+    recordId = request.POST.get('recordId', None)
+
+    print(selectedList, recordId)
+    favoriteList = FavoriteList.objects.filter(name = selectedList).first()
+
+    try:
+        obj = UserFavoriteList.objects.get(abc_corporation_id=recordId, favorite_list_id=favoriteList.id, user_id=request.user.id)
+        resp = {
+            'status': 400,
+            'data': "Record already added in that list"
+
+        }
+        return JsonResponse(resp)
+    except ObjectDoesNotExist:
+        userFavoriteList = UserFavoriteList(abc_corporation_id=recordId, favorite_list_id=favoriteList.id, user_id=request.user.id )
+        userFavoriteList.save()
+
+        resp = {
+            'status': 200,
+            'data': "Record Successfully Added"
+
+        }
+        return JsonResponse(resp)
+
+
+def favouriteRecodeList(request, id):
+
+    print("Faizan DON 2")
+    print(request)
+    # favouriteRecodeId = request.POST.get('favouriteRecodeId', None)
+    # print("favouriteRecodeId", favouriteRecodeId)
+
+    favoriteList =  FavoriteList.objects.filter( name=id).first()
+
+    userFavoriteList = UserFavoriteList.objects.filter(favorite_list_id=favoriteList.id)
+
+    kwargs = {}
+
+    ids = []
+    for obj in userFavoriteList:
+        ids.append(obj.abc_corporation_id)
+    kwargs['{0}__in'.format('id')] = ids
+
+
+
+
+    all_applications = ABCCorporation.objects.filter(**kwargs)
+    print("all_applications", all_applications)
+
+
+    npmValues = NpmValues.objects.all()
+    pmValues = PmValues.objects.all()
+
+    context = {
+        'expenses': all_applications,
+        'page_obj': all_applications,
+        'npmValues': npmValues,
+        'pmValues': pmValues,
+        'favorite_list_name':id
+    }
+    return render(request, 'favourite-list.html', context)
+
+def SendFavoriteList(request):
+
+    print("Faizan DON 2")
+    favorite_list_name = request.POST.get('favorite_list_name', None)
+    print("favorite_list_name", favorite_list_name)
+    id = favorite_list_name
+    print(request)
+    # favouriteRecodeId = request.POST.get('favouriteRecodeId', None)
+    # print("favouriteRecodeId", favouriteRecodeId)
+
+    favoriteList =  FavoriteList.objects.filter(name=id).first()
+
+    userFavoriteList = UserFavoriteList.objects.filter(favorite_list_id=favoriteList.id)
+
+    kwargs = {}
+
+    ids = []
+    for obj in userFavoriteList:
+        ids.append(obj.abc_corporation_id)
+    kwargs['{0}__in'.format('id')] = ids
+
+
+
+
+    all_applications = ABCCorporation.objects.filter(**kwargs)
+    print("all_applications", all_applications)
+
+
+    npmValues = NpmValues.objects.all()
+    pmValues = PmValues.objects.all()
+
+    context = {
+        'expenses': all_applications,
+        'page_obj': all_applications,
+        'npmValues': npmValues,
+        'pmValues': pmValues,
+        'favorite_list_name':id
+    }
+    return render(request, 'favourite-list.html', context)
+
+
+def GetFavoriteRecordsList(request):
+    if request.method == 'POST':
+        print("Best work")
+        userFavoriteList = UserFavoriteList.objects.filter(user_id=request.user.id)
+        result = []
+        if userFavoriteList:
+            for obj in userFavoriteList:
+                result.append(obj.abc_corporation_id)
+            status = 200
+        else:
+            status = 400
+
+        print("temp", result)
+        return JsonResponse({'status': status, "result": result})

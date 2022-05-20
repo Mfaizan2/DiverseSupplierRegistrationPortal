@@ -1094,6 +1094,22 @@ h4.heading{
 .diversity {
     background: #fff;
 }
+.width-400
+{
+    width: 400px;
+}
+.ml-10
+{
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.bg-grey-2
+{
+    display: flex;
+    width: 180px;
+    margin: 8px;
+    background-color: #313b54;
+}
 
 
 

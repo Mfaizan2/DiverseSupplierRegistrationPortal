@@ -189,6 +189,17 @@ class Notes(models.Model):
     user_id = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True, blank=True)
 
+class FavoriteList(models.Model):
+    user_id = models.IntegerField(null=False, default=0)
+    name = models.CharField(max_length=1055, null=True, blank=True)
+    category = models.CharField(max_length=1055, null=True, blank=True)
+    location = models.CharField(max_length=1055, null=True, blank=True)
+
+class UserFavoriteList(models.Model):
+    abc_corporation_id = models.IntegerField()
+    user_id = models.IntegerField()
+    favorite_list_id = models.IntegerField(default=0)
+
 
 
 

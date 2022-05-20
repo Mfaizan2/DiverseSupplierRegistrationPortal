@@ -6,7 +6,7 @@ from . import views
 urlpatterns = [
     path('Registration', views.Registration, name='Registration'),
     path('allRecords', views.AllRecords, name='allRecords'),
-    path('favouriteRecode', views.favouriteRecode, name='favouriteRecode'),
+    path('favouriteRecode', csrf_exempt(views.favouriteRecode), name='favouriteRecode'),
     path('detailRecord/<int:id>', views.DetailRecord, name='detailRecord'),
     path('bulkUpload', views.BulkUpload, name='bulkUpload'),
     path('downloadSampleExcelFile', views.DownloadSampleExcelFile, name='downloadSampleExcelFile'),
@@ -18,4 +18,10 @@ urlpatterns = [
     path('getFeedbacks', views.GetFeedbacks, name='getFeedbacks'),
     path('removeNote/<int:id>', views.removeNote, name='removeNote'),
     path('addNote', csrf_exempt(views.addNote), name='addNote'),
+    path('addFavoriteList', csrf_exempt(views.addFavoriteList), name='addFavoriteList'),
+    path('getFavoriteLists', csrf_exempt(views.GetFavoriteLists), name='getFavoriteLists'),
+    path('addRecordToFavoriteList', csrf_exempt(views.AddRecordToFavoriteList), name='addRecordToFavoriteList'),
+    path('favouriteRecodeList/<str:id>', csrf_exempt(views.favouriteRecodeList), name='favouriteRecodeList'),
+    path('sendFavoriteList', csrf_exempt(views.SendFavoriteList), name='sendFavoriteList'),
+    path('getFavoriteRecordsList', csrf_exempt(views.GetFavoriteRecordsList), name='getFavoriteRecordsList'),
 ]

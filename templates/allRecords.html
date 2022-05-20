@@ -8,7 +8,15 @@
 <section class="records">
     <!--        <input type="button" value="select table" onclick="selectElementContents( document.getElementById('tableId') );">-->
 
+
     <div class="container">
+        <div class="displayNone" id="allRecordsAlert">
+            <div class="messages">
+                <div id="allRecordsDiv" class="alert" >
+                    <lable id="allRecordsLabel"></lable>
+                </div>
+            </div>
+        </div>
         <div class="record-content">
             <div class="table-record mb-2 records-filter d-flex align-items-center">
                 <div class="dt-buttons d-flex align-items-center">
@@ -382,12 +390,16 @@
                         </tr>
                         </thead>
                         <tbody>
+
+
                         {% for rec in page_obj %}
+
                         <tr>
                             <td>
-<!--                                <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#favouriteList">-->
-<!--                                    <img src="{% static 'imgs/favorite.png' %}" alt="" height="15" class="mb-1"/>-->
-<!--                                </a>-->
+                                <a href="#" onclick="OpenFavoriteListModel({{rec.id}})" class="text-decoration-none">
+                                    <img src="https://webappmuh.blob.core.windows.net/static/imgs/favorite.png?sv=2021-04-10&st=2022-05-20T14%3A54%3A39Z&se=2025-05-21T14%3A54%3A00Z&sr=b&sp=r&sig=c1AplLyv1qt6k3sVSMKjHL%2F0n9aitmitdkBtcnjmfTk%3D" id=img{{rec.id}} alt="" height="15" class="mb-1"/>
+                                </a>
+
                                 {{rec.general_contant_info.company_name}}</td>
                             <td>
                                 {% for obj in npmValues %}
@@ -452,12 +464,12 @@
 </section>
 
 <!-- existed favourite Modal -->
-<div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="favouriteList" tabindex="-1">
+<div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="ExistingFavouriteRecordsList" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="modal-header">
-                    <h4> Favourite Records</h4>
+                    <h4> Favourite Lists</h4>
                     <div class="closeModalHeader">
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button">
                             <img src="{% static 'imgs/cross.png' %}" alt=""/>
@@ -465,55 +477,53 @@
                     </div>
                 </div>
 
-                <div class="modalBodyContent">
-                    <ul class="favourite-list-styles mb-2">
-                        <li>
-                            Favourite List Data
-                        </li>
-                        <li>
-                            Favourite List Data
-                        </li>
-                        <li>
-                            Favourite List Data
-                        </li>
-                        <li>
-                            Favourite List Data
-                        </li>
-                        <li>
-                            Favourite List Data
-                        </li>
-                        <li>
-                            Favourite List Data
-                        </li>
-                        <li>
-                            Favourite List Data
-                        </li>
-                        <li>
-                            Favourite List Data
-                        </li>
-                        <li>
-                            Favourite List Data
-                        </li>
-                    </ul>
-                    <div class="clr"></div>
-                    <div class="dt-buttons">
-                        <button class="dt-button buttons-pdf buttons-html5 mr-10" type="button"><span>Add Favourite</span></button>
-                        <button class="dt-button buttons-pdf buttons-html5" type="button"><span>To Add Favourite List</span></button>
+                <div class="displayNone" id="FavoriteListAlert">
+                    <div class="messages">
+                        <div id="favoriteListDiv" class="alert" >
+                            <lable id="outputLabelFavoriteList"></lable>
+                        </div>
                     </div>
-                    <div class="clr"></div>
                 </div>
+
+                <form class="login-form-modal" id="addRecordToFavoriteListForm" method="POST" action="{% url 'addRecordToFavoriteList' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="modalBodyContent">
+
+                        <input type="hidden" id="recordId" name="recordId" value="1">
+                        <div class="selection-radio-box mb-2 d-block" id="FavoriteListsRadio">
+                            <div class="radio-box mb-2">
+                                <input type="radio" class="nmsdc-radio-click btn-check" name="mbe_business" id="nmsdcOne" autocomplete="off" value="Yes">
+                                <label class="btn btn-secondary width-400" for="nmsdcOne">Yes</label>
+                            </div>
+                            <div class="radio-box mb-2">
+                                <input type="radio" class="nmsdc-radio-click btn-check" name="mbe_business" id="nmsdcTwo" autocomplete="off" value="No">
+                                <label class="btn btn-secondary width-400" for="nmsdcTwo">No</label>
+                            </div>
+                            <div class="radio-box mb-2">
+                                <input type="radio" class="nmsdc-radio-click btn-check" name="mbe_business" id="nmsdcThree" autocomplete="off" value="In Progress">
+                                <label class="btn btn-secondary width-400" for="nmsdcThree">In Progress</label>
+                            </div>
+                        </div>
+                        <div class="clr"></div>
+                        <div class="dt-buttons d-flex">
+                            <button class="dt-button buttons-pdf buttons-html5 mr-10" id="SelectPreviousFavoriteListButton" onclick="addToSelectedFavoriteList()" type="button"><span>Add to Selected Favorite List</span></button>
+                            <button class="dt-button buttons-pdf buttons-html5" type="button" onclick="CreateNewFavoriteList()"><span>Create New Favorite List</span></button>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
 
 <!-- favourite Modal -->
-<div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="favouriteList" tabindex="-1">
+<div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="CreateNewListModel" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="modal-header">
-                    <h4> Favourite Records</h4>
+                    <h4>Create New Favorite List</h4>
                     <div class="closeModalHeader">
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button">
                             <img src="{% static 'imgs/cross.png' %}" alt=""/>
@@ -521,24 +531,27 @@
                     </div>
                 </div>
                 <div class="modalBodyContent">
-                    <h4 class="mb-2"> Add Favourite Records</h4>
+<!--                    <h4 class="mb-2"> Add Favourite Records</h4>-->
+                    <form class="login-form-modal" id="createFavoriteListForm" method="POST" action="{% url 'addFavoriteList' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
                     <div class="mb-3">
-                        <label for="" class="form-label">Non Production Material</label>
-                        <input type="text" required name="" class="form-control formInput" id="" aria-describedby="emailHelp">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" required name="name" class="form-control formInput" id="name" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
-                        <label for="" class="form-label">Production Material</label>
-                        <input type="text" required name="" class="form-control formInput" id="">
+                        <label for="category" class="form-label">Category</label>
+                        <input type="text" required name="category" class="form-control formInput" id="category">
                     </div>
                     <div class="mb-3">
-                        <label for="" class="form-label">Oem's</label>
-                        <input type="text" required name="" class="form-control formInput" id="">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" required name="location" class="form-control formInput" id="location">
                     </div>
                     <div class="clr"></div>
                     <div class="dt-buttons">
-                        <button class="dt-button buttons-pdf buttons-html5" type="button"><span>ADD</span></button>
+                        <a class="dt-button buttons-pdf buttons-html5" type="submit" onclick="CreateFavoriteListInDB()"><span>ADD</span></a>
                     </div>
                     <div class="clr"></div>
+                    </form>
                 </div>
             </div>
         </div>

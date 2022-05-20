@@ -1315,74 +1315,6 @@ function getNewNoteHtml(id, text)
 }
 
 
-// let number_of_filters = 2;
-//
-// function AddMoreFilter()
-// {
-//
-//     var select = $('<select class="state-select" name="MainMenu2" id="MainMenu2"></select>');
-//     var chanels = ["chanel1", "chanel2", "chanel3"]
-//     var chanelValue = ["1", "2", "3"]
-//
-//     for(var i=0;i<chanels.length;i++){
-//         var option = $("<option></option>");
-//         $(option).val(chanelValue[i]);
-//         $(option).html(chanels[i]);
-//         $(select).append(option);
-//     }
-//
-//
-//     let temp = '<div class="row mb-2" id="filtersDiv2">\n' +
-//         '\n' +
-//         '\n' +
-//         '                                        <div class="col-md-3 col-6 mb-2">\n' +
-//         '\n' +
-//         '\n' +
-//         '                                            <div class="mb-2 theme-select">\n' +
-//         '\n' +
-//         '                                                <select class="state-select" name="MainMenu2" id="MainMenu2">\n' +
-//         '                                                    <option value="-1" disabled="">Select Council</option>\n' +
-//         '                                                    <option value="CAMSC - Canadian Aboriginal &amp; Minority Supplier Council">CAMSC - Canadian Aboriginal &amp; Minority Supplier Council</option>\n' +
-//         '                                                </select>\n' +
-//         '                                            </div>\n' +
-//         '\n' +
-//         '\n' +
-//         '                                        </div>\n' +
-//         '                                        <div class="col-md-2 col-6 mb-2">\n' +
-//         '\n' +
-//         '                                            <div class="mb-2 theme-select">\n' +
-//         '\n' +
-//         '                                                <select class="state-select" name="ContainMenu2" id="ContainMenu2">\n' +
-//         '                                                    <option value="-1" disabled="">Select Council</option>\n' +
-//         '                                                    <option value="=">=</option>\n' +
-//         '                                                </select>\n' +
-//         '                                            </div>\n' +
-//         '\n' +
-//         '\n' +
-//         '                                        </div>\n' +
-//         '                                        <div class="col-md-4 col-6 mb-2">\n' +
-//         '                                            <input required="" type="text" id="UserInput2" name="UserInput2" class="form-control formInput" placeholder="Enter here">\n' +
-//         '                                        </div>\n' +
-//         '                                        <div class="col-md-1 pt-1 col-6 mb-2">\n' +
-//         '                                            <a href="#" onclick="DeleteFilter(1)">\n' +
-//         '                                                <img src="{% static \'imgs/delete.png\' %}" alt="" height="20">\n' +
-//         '                                            </a>\n' +
-//         '                                        </div>\n' +
-//         '\n' +
-//         '                                    </div>'
-//     $('#filtersDiv').append(temp);
-//     number_of_filters = number_of_filters + 1;
-//     $('#NumberOfFilters').val(number_of_filters);
-//
-//     $('head').append( $('<link rel="stylesheet" type="text/css" />').attr('href', 'https://webappmuh.blob.core.windows.net/static/css/style.css?sv=2021-04-10&st=2022-04-30T09%3A25%3A18Z&se=2025-05-01T09%3A25%3A00Z&sr=b&sp=r&sig=3q3CBL%2FE8gmO7UPDzXCI8A%2Bpqxl%2FhbVlTpyXW2XQ0dk%3D') );
-//
-// }
-//
-// function DeleteFilter(num)
-// {
-//     $("#filtersDiv"+num).remove();
-// }
-
 
 function ShowAddFilterOption()
 {
@@ -1394,3 +1326,244 @@ function HideAddFilterDiv()
     $('#filtersDiv').addClass("displayNone");
 }
 
+
+function CreateNewFavoriteList()
+{
+    $('#ExistingFavouriteRecordsList').modal('hide');
+    $('#CreateNewListModel').modal('show');
+}
+
+function CreateFavoriteListInDB()
+{
+
+    $form=$('#createFavoriteListForm');
+    var datastring = $form.serialize();
+    $.ajax({
+        type: "POST",
+        url: $form.attr('action'),
+        dataType: 'html',
+        data: datastring,
+        success: function(result)
+        {
+
+            var test=JSON.parse(result);
+
+            if (test.status === 200)
+            {
+                getFavoriteLists();
+                $('#FavoriteListAlert').removeClass('displayNone');
+                $('#CreateNewListModel').modal('hide');
+                $('#ExistingFavouriteRecordsList').modal('show');
+
+                $("#favoriteListDiv").addClass("alert-success");
+                $("#outputLabelFavoriteList").text(test.data);
+            }
+            else
+            {
+                $('#FavoriteListAlert').removeClass('displayNone');
+                $('#CreateNewListModel').modal('hide');
+                $('#ExistingFavouriteRecordsList').modal('show');
+
+                $("#favoriteListDiv").addClass("alert-danger");
+                $("#outputLabelFavoriteList").text(test.data);
+            }
+
+        }
+    });
+}
+
+
+function getFavoriteLists()
+{
+    var datastring = ''
+    $.ajax({
+        type: "POST",
+        url: "/getFavoriteLists",
+        dataType: 'html',
+        data: datastring,
+        success: function(result)
+        {
+            var test=JSON.parse(result);
+
+            if (test.status === 200)
+            {
+
+                $("#FavoriteListsRadio div").remove();
+                $("#FavoriteListsRadio2 button").remove();
+                $("#SelectPreviousFavoriteListButton").show();
+                for (const key in test.result) {
+                    // var row = table.insertRow(key + 1);
+
+                    for (var k in test.result[key]) {
+
+                        if (test.result[key][k] && k==0) {
+
+
+                            var label = '<label class="btn btn-secondary width-400" for="'+test.result[key][k]+'">'+test.result[key][k]+'</label>';
+                            var input = '<input type="radio" class="nmsdc-radio-click btn-check" name="selectedList" id="'+test.result[key][k]+'" autocomplete="off" value="'+test.result[key][k]+'">';
+                            var mainDiv = '<div class="radio-box mb-2">'+input+label+'</div>';
+                            $("#FavoriteListsRadio").append(mainDiv);
+                            
+                            
+                            var t = "'"+test.result[key][k]+"'";
+                            var temp ='<button onclick=" ShowFilteredList(' + t + ')" class="mr-10 bg-grey white  hvr-sweep-orange-bottom mt-6 bg-grey-2">'+test.result[key][k]+'</button>';
+
+                            $("#FavoriteListsRadio2").append(temp);
+
+
+
+                        }
+                    }
+
+                }
+
+
+            }
+        }
+    });
+}
+
+$(document).ready(function(){
+    $(function(){
+        getFavoriteLists();
+        getFavoriteRecords();
+    });
+});
+
+function OpenFavoriteListModel(id)
+{
+    $('#recordId').val(id);
+    if ($('#FavoriteListsRadio div').length == 0) {
+        // ok to add stuff
+        // $("#FavoriteListsUl").append('<li>No Favorite List</li>');
+        $("#SelectPreviousFavoriteListButton").hide();
+    }
+    else
+    {
+        $("#SelectPreviousFavoriteListButton").show();
+    }
+
+    $('#ExistingFavouriteRecordsList').modal('show');
+    $('#CreateNewListModel').modal('hide');
+
+}
+
+function addToSelectedFavoriteList()
+{
+    $form=$('#addRecordToFavoriteListForm');
+    var datastring = $form.serialize();
+    $.ajax({
+        type: "POST",
+        url: $form.attr('action'),
+        dataType: 'html',
+        data: datastring,
+        success: function(result)
+        {
+
+            var test=JSON.parse(result);
+
+
+            if (test.status === 200)
+            {
+                var t = $('#recordId').val();
+                $("#img"+t).attr("src","https://webappmuh.blob.core.windows.net/static/imgs/favorite2.png?sv=2021-04-10&st=2022-05-20T10%3A01%3A09Z&se=2025-05-21T10%3A01%3A00Z&sr=b&sp=r&sig=iuhI7KHHsAGFvLalUP7nD71eEnRFfK7qWS9HOPV3e3w%3D");
+                $('#allRecordsAlert').removeClass('displayNone');
+                $("#allRecordsDiv").addClass("alert-success");
+                $("#allRecordsLabel").text(test.data);
+                $('#ExistingFavouriteRecordsList').modal('hide');
+            }
+            else
+            {
+                $('#allRecordsAlert').removeClass('displayNone');
+                $("#allRecordsDiv").addClass("alert-danger");
+                $("#allRecordsLabel").text(test.data);
+                $('#ExistingFavouriteRecordsList').modal('hide');
+            }
+
+        }
+    });
+}
+
+function ShowFilteredList(listName)
+{
+    var url = "/favouriteRecodeList";
+
+    document.location.href = url + "/" + listName;
+
+    // $form=$('#favouriteRecode_form');
+    // $('#favouriteRecodeId').val(listName);
+    //
+    // var datastring = $form.serialize();
+    // $.ajax({
+    //     type: "POST",
+    //     url: $form.attr('action'),
+    //     dataType: 'html',
+    //     data: datastring,
+    //     success: function(result)
+    //     {
+    //
+    //         var test=JSON.parse(result);
+    //
+    //         // Find a <table> element with id="myTable":
+    //         var table = document.getElementById("feedback_table");
+    //
+    //         var body = ''
+    //
+    //         if (test.status === 200) {
+    //
+    //
+    //             $('#AllFeedBacksDiv').removeClass("displayNone");
+    //
+    //
+    //             for (const key in test.result) {
+    //                 // var row = table.insertRow(key + 1);
+    //                 body = '<tr>'
+    //                 for (const k in test.result[key]) {
+    //
+    //                     if (test.result[key][k]) {
+    //                         body = body + '<td>' + test.result[key][k] + '</td>'
+    //                     } else {
+    //                         body = body + '<td>' + '</td>'
+    //                     }
+    //                 }
+    //                 body = body + '</tr>'
+    //                 $('#feedback_table tbody').append(body);
+    //             }
+    //         }
+    //
+    //     }
+    // });
+
+// else {
+//     $("#img"+test.result[key][k]).attr("src","https://webappmuh.blob.core.windows.net/static/imgs/favorite2.png?sv=2021-04-10&st=2022-05-20T10%3A01%3A09Z&se=2025-05-21T10%3A01%3A00Z&sr=b&sp=r&sig=iuhI7KHHsAGFvLalUP7nD71eEnRFfK7qWS9HOPV3e3w%3D");
+// }
+}
+
+function getFavoriteRecords()
+{
+
+    var datastring = ''
+    $.ajax({
+        type: "POST",
+        url: "/getFavoriteRecordsList",
+        dataType: 'html',
+        data: datastring,
+        success: function(result)
+        {
+            var test=JSON.parse(result);
+
+            if (test.status === 200)
+            {
+                var arrayLength = test.result.length;
+                for (var i = 0; i < arrayLength; i++) {
+                    console.log($("#img"+test.result[i]));
+                    
+                    $("#img"+test.result[i]).attr("src","https://webappmuh.blob.core.windows.net/static/imgs/favorite2.png?sv=2021-04-10&st=2022-05-20T10%3A01%3A09Z&se=2025-05-21T10%3A01%3A00Z&sr=b&sp=r&sig=iuhI7KHHsAGFvLalUP7nD71eEnRFfK7qWS9HOPV3e3w%3D");
+                }
+
+
+
+            }
+        }
+    });
+}

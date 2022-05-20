@@ -5,44 +5,53 @@
 {% load  static%}
 
 {% block content %}
-<section class="bulkUpload">
+<section class="bulkUpload" style="height: auto">
+
     <div class="container-fluid">
         <div class="row mt-3 mb-4">
             <div class="col-md-2 col-12 mb-2">
                 <div class="table-record pt-0">
                     <h4 class="heading">Favourite Record List</h4>
-                    <ul class="favourite-list-styles">
-                        <li>
-                            Favourite List Data
-                        </li>
-                        <li>
-                            Favourite List Data
-                        </li>
-                        <li>
-                            Favourite List Data
-                        </li>
-                        <li>
-                            Favourite List Data
-                        </li>
-                        <li>
-                            Favourite List Data
-                        </li>
-                        <li>
-                            Favourite List Data
-                        </li>
-                        <li>
-                            Favourite List Data
-                        </li>
-                        <li>
-                            Favourite List Data
-                        </li>
-                        <li>
-                            Favourite List Data
-                        </li>
-                    </ul>
+                    <div class="selection-radio-box mb-2 d-block ml-10" id="FavoriteListsRadio2">
+
+
+                    </div>
+
                 </div>
             </div>
+
             <div class="col-md-10 col-12">
+
+                <div class="container">
+                    <div class="displayNone" id="allRecordsAlert">
+                        <div class="messages">
+                            <div id="allRecordsDiv" class="alert" >
+                                <lable id="allRecordsLabel"></lable>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="record-content">
+                        <div class="table-record mb-2 records-filter d-flex align-items-center">
+                            <div class="dt-buttons d-flex align-items-center">
+
+                                <button onclick="ShowAddFilterOption()" class="mr-10 bg-grey white  hvr-sweep-orange-bottom mt-6">Email Saved List</button>
+
+
+
+<!--                                <form action="{% url 'sendFavoriteList' %}" method="POST">-->
+<!--                                    {% csrf_token %}-->
+<!--                                    <input type="hidden" name="favorite_list_name" value="{{favorite_list_name}}">-->
+<!--                                    <div class="mb-3 mt-3">-->
+<!--                                        <button type="submit" class="bg-grey white  hvr-sweep-orange-bottom mt-6">Email Saved List</button>-->
+<!--                                    </div>-->
+<!--                                </form>-->
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div  class="table-record mr-10">
                     <div class="tbl-wrapper-content">
                         <table class="table theme-tbl" id="favouriteRecord">
@@ -96,36 +105,17 @@
                         </table>
                     </div>
                 </div>
-                <!--                {% if page_obj.paginator.num_pages > 1 %}-->
-                <!--                <div class="theme-pagination">-->
-                <!--                    <nav aria-label="Page navigation example">-->
-                <!--                        <ul class="pagination">-->
-
-                <!--                            {% if page_obj.has_previous %}-->
-                <!--                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>-->
-                <!--                            {% endif %}-->
-
-                <!--                            {% for page_num in page_obj.paginator.page_range %}-->
-                <!--                                {% if page_num == page_obj.number %}-->
-                <!--                                    <li class="page-item"><a class="page-link" href="#">{{page_num}}</a></li>-->
-
-                <!--                                {% endif %}-->
-                <!--                            {%endfor%}-->
-
-                <!--                            {% if page_obj.has_next %}-->
-                <!--                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}"><span>&raquo;</span></a></li>-->
-                <!--                            {% endif %}-->
-
-
-
-                <!--                        </ul>-->
-                <!--                    </nav>-->
-                <!--                </div>-->
-                <!--                {% endif %}-->
 
             </div>
         </div>
     </div>
+    <form action="{% url 'favouriteRecode' %}" id="favouriteRecode_form">
+
+        {% csrf_token %}
+        <input type="hidden" id="favouriteRecodeId" name="favouriteRecodeId"
+               value='123'>
+
+    </form>
 </section>
 
 
