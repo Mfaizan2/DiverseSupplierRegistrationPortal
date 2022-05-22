@@ -1567,3 +1567,7 @@ function getFavoriteRecords()
         }
     });
 }
+function showModelToGetEmail()
+{
+    $('#SendListModel').modal('show');
+}

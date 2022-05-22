@@ -34,7 +34,7 @@
                         <div class="table-record mb-2 records-filter d-flex align-items-center">
                             <div class="dt-buttons d-flex align-items-center">
 
-                                <button onclick="ShowAddFilterOption()" class="mr-10 bg-grey white  hvr-sweep-orange-bottom mt-6">Email Saved List</button>
+                                <button onclick="showModelToGetEmail()" class="mr-10 bg-grey white  hvr-sweep-orange-bottom mt-6">Email Saved List</button>
 
 
 
@@ -116,6 +116,37 @@
                value='123'>
 
     </form>
+    <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="SendListModel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="modal-header">
+                        <h4>Send List to Someone</h4>
+                        <div class="closeModalHeader">
+                            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button">
+                                <img src="{% static 'imgs/cross.png' %}" alt=""/>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="modalBodyContent">
+                        <!--                    <h4 class="mb-2"> Add Favourite Records</h4>-->
+                        <form class="login-form-modal" id="createFavoriteListForm" method="POST" action="{% url 'addFavoriteList' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Email</label>
+                                <input type="text" required name="name" class="form-control formInput" id="name" aria-describedby="emailHelp">
+                            </div>
+                            <div class="clr"></div>
+                            <div class="dt-buttons d-flex">
+                                <button class="dt-button buttons-pdf buttons-html5 mr-10" id="SelectPreviousFavoriteListButton" onclick="" type="button"><span>Send</span></button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 

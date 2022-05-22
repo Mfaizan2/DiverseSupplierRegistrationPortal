@@ -94,6 +94,12 @@ def Registration(request):
                 company_video_file = upload("company-details", company_video_file, company_video_file.name)
             else:
                 company_video_file = ''
+
+            campany_fb = request.POST.get('campany_fb', None)
+            campany_linkedin = request.POST.get('campany_linkedin', None)
+            campany_twitter = request.POST.get('campany_twitter', None)
+            campany_insta = request.POST.get('campany_insta', None)
+            
             # print(request.POST.get('address1',None))
             address1 = request.POST.get('address1', None)
             # print(request.POST.get('address2',None))
@@ -392,6 +398,10 @@ def Registration(request):
             generalContactInfo.website_url = website_url
             generalContactInfo.video_url = company_video_link
             generalContactInfo.company_video_file = company_video_file
+            generalContactInfo.campany_fb = campany_fb
+            generalContactInfo.campany_linkedin = campany_linkedin
+            generalContactInfo.campany_twitter = campany_twitter
+            generalContactInfo.campany_insta = campany_insta
             generalContactInfo.address1 = address1
             generalContactInfo.address2 = address2
             generalContactInfo.country = country
@@ -791,7 +801,8 @@ def DownloadSampleExcelFile(request):
     font_style.font.bold = True
 
     # column header names, you can use your own headers here
-    columns = ['Company Name', 'Website URL', "Company detail's Video link", 'Country', 'Address 1',
+    columns = ['Company Name', 'Website URL', "Company detail's Video link", "Company FB Profile link", "Company LinkedIn Profile link", "Company Twitter Profile link", "Company Instagram Profile link"
+                , 'Country', 'Address 1',
                'Address 2', 'Neighborhood', 'City', 'State', 'Postal Code',
                'Sales First Name', 'Sales Last Name', 'Sales Email Address',
                'Sales Job Title', 'Sales Office Phone', 'Sales Mobile Phone',
