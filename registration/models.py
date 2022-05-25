@@ -22,18 +22,18 @@ class CompanyDetails(models.Model):
 class GeneralContact(models.Model):
     first_name = models.CharField(max_length=255, null=False, blank=False)
     last_name = models.CharField(max_length=255, null=False, blank=False)
-    email = models.EmailField(_('email address'), unique=True, null=False, blank=False)
+    email = models.EmailField(_('email address'), null=False, blank=False)
     job_title = models.CharField(max_length=255, null=False, blank=False)
-    phone_number = models.BigIntegerField(null=False, blank=False)
-    mobile_number = models.BigIntegerField(null=True, blank=True)
+    phone_number = models.CharField(max_length=255,null=False, blank=False)
+    mobile_number = models.CharField(max_length=255,null=True, blank=True)
 
 class SalesContact(models.Model):
     first_name = models.CharField(max_length=255, null=False, blank=False)
     last_name = models.CharField(max_length=255, null=False, blank=False)
-    email = models.EmailField(_('email address'), unique=True, null=False, blank=False)
+    email = models.EmailField(_('email address'), null=False, blank=False)
     job_title = models.CharField(max_length=255, null=False, blank=False)
-    phone_number = models.BigIntegerField(null=False, blank=False)
-    mobile_number = models.BigIntegerField(null=True, blank=True)
+    phone_number = models.CharField(max_length=255,null=False, blank=False)
+    mobile_number = models.CharField(max_length=255,null=True, blank=True)
 
 class BusinessAndCertification(models.Model):
     business = models.CharField(max_length=255, null=False, blank=False)
