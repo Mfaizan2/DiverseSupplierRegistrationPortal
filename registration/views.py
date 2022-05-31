@@ -23,6 +23,8 @@ from django.utils.html import strip_tags
 import imaplib, email, getpass
 from email import policy
 from django.core.exceptions import ObjectDoesNotExist
+from django.core import serializers
+from django.core.paginator import Paginator
 
 
 def upload(container_name, file_path, file_name):
@@ -708,6 +710,57 @@ def AllRecords(request):
         'pmValues': pmValues
     }
     return render(request, 'allRecords.html', context)
+
+@login_required(login_url='/login')
+def AllRecords1(request):
+
+    return render(request, 'allRecords.html')
+
+
+
+
+@login_required(login_url='/login')
+def AllRecords2(request):
+
+
+    all_applications = ABCCorporation.objects.get_queryset().order_by('id')
+
+
+
+    data = []
+
+    for obj in all_applications:
+        if obj.response:
+            response = 1
+        else:
+            response = 0
+        if obj.production_capabilities.oems:
+            oem_name = obj.production_capabilities.oems.name
+        else:
+            oem_name = ""
+
+        npmValues = NpmValues.objects.filter(abc_corporation_id=obj.id)
+        npmTemp = ''
+
+        for npmObj in npmValues:
+            npmTemp = npmTemp + npmObj.npm_value +" > "+ npmObj.npm_value_category1 +" > "+ npmObj.npm_value_category2 + " | "
+
+        pmValues = PmValues.objects.filter(abc_corporation_id=obj.id)
+        pmTemp = ''
+        for pmObj in pmValues:
+            pmTemp = pmTemp + pmObj.pm_value +" > "+ pmObj.pm_value_category1
+
+        data.append([obj.general_contant_info.company_name, npmTemp,
+                     pmTemp, oem_name, obj.production_capabilities.abc_supplier,
+                     obj.production_capabilities.record_per_naLocation.name,
+                     response, obj.emailed, obj.id
+                     ])
+
+
+    t = {
+        "data": data
+    }
+    return JsonResponse(t)
 
 
 def mapCountryName(name):
@@ -1718,9 +1771,9 @@ def favouriteRecodeList(request, id):
 
 def SendFavoriteList(request):
 
-    print("Faizan DON 2")
+
     favorite_list_name = request.POST.get('favorite_list_name', None)
-    print("favorite_list_name", favorite_list_name)
+
     id = favorite_list_name
     print(request)
     # favouriteRecodeId = request.POST.get('favouriteRecodeId', None)
@@ -1741,7 +1794,7 @@ def SendFavoriteList(request):
 
 
     all_applications = ABCCorporation.objects.filter(**kwargs)
-    print("all_applications", all_applications)
+
 
 
     npmValues = NpmValues.objects.all()
@@ -1759,7 +1812,7 @@ def SendFavoriteList(request):
 
 def GetFavoriteRecordsList(request):
     if request.method == 'POST':
-        print("Best work")
+
         userFavoriteList = UserFavoriteList.objects.filter(user_id=request.user.id)
         result = []
         if userFavoriteList:
@@ -1769,5 +1822,5 @@ def GetFavoriteRecordsList(request):
         else:
             status = 400
 
-        print("temp", result)
+
         return JsonResponse({'status': status, "result": result})

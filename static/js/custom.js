@@ -467,10 +467,9 @@ $.ajax({
 // }
 
 
+$(document).ready(function () {
+    var table = $('#AllRecords').DataTable({
 
-
-$(document).ready(function() {
-    $('#AllRecords').DataTable( {
         dom: 'Bfrtip',
         "paging": true,
         "searching": true,
@@ -488,8 +487,27 @@ $(document).ready(function() {
             'colvis'
         ],
         fixedHeader: true,
-        scrollX: true
-    } );
+        scrollX: true,
+        ajax: '/allRecords2',
+        columnDefs: [
+            {
+                targets: -1,
+                data: null,
+                defaultContent: '<i class="bi bi-eye-fill"></i>',
+            },
+        ],
+    });
+
+    $('#AllRecords tbody').on('click', 'i', function () {
+        var data = table.row($(this).parents('tr')).data();
+        // http://abccorporation.azurewebsites.net/detailRecord/13
+        location.href='http://abccorporation.azurewebsites.net/detailRecord/'+data[8];
+    });
+});
+
+
+$(document).ready(function() {
+
         $('#favouriteRecord').DataTable( {
         dom: 'Bfrtip',
         "paging": true,

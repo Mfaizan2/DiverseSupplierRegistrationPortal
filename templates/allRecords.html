@@ -375,7 +375,28 @@
             <div  class="table-record">
 
                 <div class="tbl-wrapper-content">
-                    <table class="table theme-tbl" id="AllRecords">
+<!--                    <table class="table theme-tbl" id="AllRecords1">-->
+<!--                        <thead>-->
+<!--                        <tr>-->
+<!--                            <th>Company Name</th>-->
+<!--                            <th>Non Production Material</th>-->
+<!--                            <th>Production Material</th>-->
+<!--                            <th>Oem's</th>-->
+<!--                            <th>Current Supplier</th>-->
+<!--                            <th>Technology & Location</th>-->
+<!--                            <th>Responded</th>-->
+<!--                            <th>Emailed</th>-->
+<!--                            <th>Action</th>-->
+<!--                        </tr>-->
+<!--                        </thead>-->
+<!--                        <tbody>-->
+
+
+
+<!--                        </tbody>-->
+<!--                    </table>-->
+
+                    <table id="AllRecords" class="table theme-tbl" >
                         <thead>
                         <tr>
                             <th>Company Name</th>
@@ -389,76 +410,14 @@
                             <th>Action</th>
                         </tr>
                         </thead>
-                        <tbody>
 
-
-                        {% for rec in page_obj %}
-
-                        <tr>
-                            <td>
-                                <a href="#" onclick="OpenFavoriteListModel({{rec.id}})" class="text-decoration-none">
-                                    <img src="https://webappmuh.blob.core.windows.net/static/imgs/favorite.png?sv=2021-04-10&st=2022-05-20T14%3A54%3A39Z&se=2025-05-21T14%3A54%3A00Z&sr=b&sp=r&sig=c1AplLyv1qt6k3sVSMKjHL%2F0n9aitmitdkBtcnjmfTk%3D" id=img{{rec.id}} alt="" height="15" class="mb-1"/>
-                                </a>
-
-                                {{rec.general_contant_info.company_name}}</td>
-                            <td>
-                                {% for obj in npmValues %}
-                                {% if obj.abc_corporation_id == rec.id%}
-
-                                {{obj.npm_value}} > {{obj.npm_value_category1}} > {{obj.npm_value_category2}} |
-                                {% endif %}
-                                {% endfor %}
-                            </td>
-                            <td>
-                                {% for obj in pmValues %}
-                                {% if obj.abc_corporation_id == rec.id%}
-
-                                {{obj.pm_value}} > {{obj.pm_value_category1}} |
-                                {% endif %}
-                                {% endfor %}
-                            </td>
-                            <td>{{rec.production_capabilities.oems.name}}</td>
-                            <td>{{rec.production_capabilities.abc_supplier}}</td>
-                            <td>{{rec.production_capabilities.record_per_naLocation.name}}</td>
-                            <td> {% if rec.response == 1 %} Yes {% else %} No {%endif %}</td>
-                            <td> {{rec.emailed}} Times</td>
-                            <td><a href="{% url 'detailRecord' rec.id %}"><i class="bi bi-eye-fill"></i></a></td>
-                        </tr>
-                        {% endfor %}
-
-                        </tbody>
                     </table>
                 </div>
             </div>
 
 
 
-            <!--                {% if page_obj.paginator.num_pages > 1 %}-->
-            <!--                <div class="theme-pagination">-->
-            <!--                    <nav aria-label="Page navigation example">-->
-            <!--                        <ul class="pagination">-->
 
-            <!--                            {% if page_obj.has_previous %}-->
-            <!--                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>-->
-            <!--                            {% endif %}-->
-
-            <!--                            {% for page_num in page_obj.paginator.page_range %}-->
-            <!--                                {% if page_num == page_obj.number %}-->
-            <!--                                    <li class="page-item"><a class="page-link" href="#">{{page_num}}</a></li>-->
-
-            <!--                                {% endif %}-->
-            <!--                            {%endfor%}-->
-
-            <!--                            {% if page_obj.has_next %}-->
-            <!--                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}"><span>&raquo;</span></a></li>-->
-            <!--                            {% endif %}-->
-
-
-
-            <!--                        </ul>-->
-            <!--                    </nav>-->
-            <!--                </div>-->
-            <!--                {% endif %}-->
         </div>
     </div>
 </section>
@@ -559,8 +518,10 @@
 </div>
 
 
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
+
+
+
 
 {% endblock %}

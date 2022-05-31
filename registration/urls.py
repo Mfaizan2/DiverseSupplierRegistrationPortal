@@ -6,6 +6,8 @@ from . import views
 urlpatterns = [
     path('Registration', views.Registration, name='Registration'),
     path('allRecords', views.AllRecords, name='allRecords'),
+    path('allRecords1', csrf_exempt(views.AllRecords1), name='allRecords1'),
+    path('allRecords2', csrf_exempt(views.AllRecords2), name='allRecords2'),
     path('favouriteRecode', csrf_exempt(views.favouriteRecode), name='favouriteRecode'),
     path('detailRecord/<int:id>', views.DetailRecord, name='detailRecord'),
     path('bulkUpload', views.BulkUpload, name='bulkUpload'),
