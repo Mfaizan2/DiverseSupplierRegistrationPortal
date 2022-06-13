@@ -204,6 +204,17 @@ class UserFavoriteList(models.Model):
     user_id = models.IntegerField()
     favorite_list_id = models.IntegerField(default=0)
 
+class AllApplications(models.Model):
+    company_name = models.CharField(max_length=1055, null=True, blank=True)
+    non_production_meterial = models.CharField(max_length=1055, null=True, blank=True)
+    production_meterial = models.CharField(max_length=1055, null=True, blank=True)
+    oems = models.CharField(max_length=1055, null=True, blank=True)
+    current_suppliers = models.CharField(max_length=1055, null=True, blank=True)
+    location = models.CharField(max_length=1055, null=True, blank=True)
+    response = models.BigIntegerField(default=0)
+    emailed = models.BigIntegerField(default=0)
+    action_id = models.BigIntegerField(default=0)
+
 
 
 

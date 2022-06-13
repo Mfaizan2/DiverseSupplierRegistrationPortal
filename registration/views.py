@@ -723,43 +723,87 @@ def AllRecords1(request):
 def AllRecords2(request):
 
 
-    all_applications = ABCCorporation.objects.get_queryset().order_by('id')
+    # all_applications = ABCCorporation.objects.get_queryset().order_by('id')
+    #
+    #
+    #
+    # data = []
+    #
+    # for obj in all_applications:
+    #     if obj.response:
+    #         response = 1
+    #     else:
+    #         response = 0
+    #     if obj.production_capabilities.oems:
+    #         oem_name = obj.production_capabilities.oems.name
+    #     else:
+    #         oem_name = ""
+    #
+    #     npmValues = NpmValues.objects.filter(abc_corporation_id=obj.id)
+    #     npmTemp = ''
+    #
+    #     for npmObj in npmValues:
+    #         npmTemp = npmTemp + npmObj.npm_value +" > "+ npmObj.npm_value_category1 +" > "+ npmObj.npm_value_category2 + " | "
+    #
+    #     pmValues = PmValues.objects.filter(abc_corporation_id=obj.id)
+    #     pmTemp = ''
+    #     for pmObj in pmValues:
+    #         pmTemp = pmTemp + pmObj.pm_value +" > "+ pmObj.pm_value_category1
+    #
+    #     data.append([obj.general_contant_info.company_name, npmTemp,
+    #                  pmTemp, oem_name, obj.production_capabilities.abc_supplier,
+    #                  obj.production_capabilities.record_per_naLocation.name,
+    #                  response, obj.emailed, obj.id
+    #                  ])
+    #
+    #
+    # t = {
+    #     "data": data
+    # }
+
+
+    all_applications = AllApplications.objects.get_queryset().order_by('id')
 
 
 
     data = []
+
+    company_name = models.CharField(max_length=1055, null=True, blank=True)
+    non_production_meterial = models.CharField(max_length=1055, null=True, blank=True)
+    production_meterial = models.CharField(max_length=1055, null=True, blank=True)
+    oems = models.CharField(max_length=1055, null=True, blank=True)
+    current_suppliers = models.CharField(max_length=1055, null=True, blank=True)
+    location = models.CharField(max_length=1055, null=True, blank=True)
+    response = models.BigIntegerField(default=0)
+    emailed = models.BigIntegerField(default=0)
+    action_id = models.BigIntegerField(default=0)
 
     for obj in all_applications:
         if obj.response:
             response = 1
         else:
             response = 0
-        if obj.production_capabilities.oems:
-            oem_name = obj.production_capabilities.oems.name
+        if obj.oems:
+            oem_name = obj.oems
         else:
             oem_name = ""
 
-        npmValues = NpmValues.objects.filter(abc_corporation_id=obj.id)
-        npmTemp = ''
+        npmTemp = obj.non_production_meterial
 
-        for npmObj in npmValues:
-            npmTemp = npmTemp + npmObj.npm_value +" > "+ npmObj.npm_value_category1 +" > "+ npmObj.npm_value_category2 + " | "
+        pmTemp = obj.production_meterial
 
-        pmValues = PmValues.objects.filter(abc_corporation_id=obj.id)
-        pmTemp = ''
-        for pmObj in pmValues:
-            pmTemp = pmTemp + pmObj.pm_value +" > "+ pmObj.pm_value_category1
-
-        data.append([obj.general_contant_info.company_name, npmTemp,
-                     pmTemp, oem_name, obj.production_capabilities.abc_supplier,
-                     obj.production_capabilities.record_per_naLocation.name,
-                     response, obj.emailed, obj.id
+        data.append([obj.company_name, npmTemp,
+                     pmTemp, oem_name, obj.current_suppliers,
+                     obj.location,
+                     response, obj.emailed, obj.action_id
                      ])
 
 
     t = {
         "data": data
     }
+
+
     return JsonResponse(t)
 
 
@@ -1824,3 +1868,49 @@ def GetFavoriteRecordsList(request):
 
 
         return JsonResponse({'status': status, "result": result})
+
+def MigrateData(request):
+    all_applications = ABCCorporation.objects.get_queryset().order_by('id')
+
+
+
+    data = []
+
+    for obj in all_applications:
+        if obj.response:
+            response = 1
+        else:
+            response = 0
+        if obj.production_capabilities.oems:
+            oem_name = obj.production_capabilities.oems.name
+        else:
+            oem_name = ""
+
+        npmValues = NpmValues.objects.filter(abc_corporation_id=obj.id)
+        npmTemp = ''
+
+        for npmObj in npmValues:
+            npmTemp = npmTemp + npmObj.npm_value +" > "+ npmObj.npm_value_category1 +" > "+ npmObj.npm_value_category2 + " | "
+
+        pmValues = PmValues.objects.filter(abc_corporation_id=obj.id)
+        pmTemp = ''
+        for pmObj in pmValues:
+            pmTemp = pmTemp + pmObj.pm_value +" > "+ pmObj.pm_value_category1
+
+        data.append([obj.general_contant_info.company_name, npmTemp,
+                     pmTemp, oem_name, obj.production_capabilities.abc_supplier,
+                     obj.production_capabilities.record_per_naLocation.name,
+                     response, obj.emailed, obj.id
+                     ])
+
+
+        newRecord = AllApplications(company_name=obj.general_contant_info.company_name, non_production_meterial= npmTemp,
+                                    production_meterial=pmTemp, oems= oem_name, current_suppliers=obj.production_capabilities.abc_supplier,
+                                    location=obj.production_capabilities.record_per_naLocation.name,response=response,
+                                    emailed=obj.emailed, action_id=obj.id)
+
+        newRecord.save()
+
+
+
+    return render(request, 'allRecords.html')

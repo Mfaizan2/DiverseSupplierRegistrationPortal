@@ -26,4 +26,6 @@ urlpatterns = [
     path('favouriteRecodeList/<str:id>', csrf_exempt(views.favouriteRecodeList), name='favouriteRecodeList'),
     path('sendFavoriteList', csrf_exempt(views.SendFavoriteList), name='sendFavoriteList'),
     path('getFavoriteRecordsList', csrf_exempt(views.GetFavoriteRecordsList), name='getFavoriteRecordsList'),
+    path('migrateData', views.MigrateData, name='migrateData'),
+    
 ]
